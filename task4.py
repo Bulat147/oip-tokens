@@ -3,7 +3,7 @@ import math
 from collections import Counter, defaultdict
 from operator import contains
 
-from task3 import build_inverted_index, parse_query
+from task3 import build_inverted_index
 
 TOKENS_DIR = 'RESULT'
 LEMMAS_DIR = 'RESULT'
@@ -36,14 +36,26 @@ def compute_tf_idf(docs):
     term_idf = {}
     docs_count = len(docs)
 
+    # Считаем IDF
+    df_counter = defaultdict(int)
+    for doc_terms in docs.values():
+        unique_terms = set(doc_terms)
+        for term in unique_terms:
+            df_counter[term] += 1
+
+    for term, df in df_counter.items():
+        term_idf[term] = math.log(docs_count / df)
+
+    # Считаем TF-IDF
     for doc_name, terms in docs.items():
+        total_terms = len(terms)
         term_tf = Counter(terms)
         result = []
-        for term in set(term_tf):
-            if term not in term_idf:
-                term_idf[term] = math.log(docs_count / len(parse_query(term, inverted_index)))
-            tfidf = term_tf[term] * term_idf[term]
-            result.append((term, term_idf[term], tfidf))
+        for term in term_tf:
+            tf = term_tf[term] / total_terms  # доля
+            idf = term_idf[term]
+            tfidf = tf * idf
+            result.append((term, idf, tfidf))
         tf_idf_results[doc_name] = result
 
     return tf_idf_results
