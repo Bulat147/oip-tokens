@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+        }
+        input[type="text"] {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Поисковый движок</h1>
+    <form method="post">
+        <input type="text" name="query" value="{{ query }}" placeholder="Введите запрос...">
+        <button type="submit">Найти</button>
+    </form>
+
+    {% if results %}
+        <h2>Результаты:</h2>
+        <ul>
+        {% for item in results %}
+            <li class="result">
+                <strong>Страница {{ item[0] }}</strong><br>
+                Ссылка: <a href="{{ item[1] }}" target="_blank" rel="noopener noreferrer">{{ item[1] }}</a><br>
+                Сходство: {{ "%.4f"|format(item[2]) }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
