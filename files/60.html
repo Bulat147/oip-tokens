@@ -1,0 +1,1342 @@
+<!doctype html>
+<html lang="ru">
+ <head>
+  <title>Как фронтендеру сделать интерфейс дружелюбнее к пользователю. Коллекция HTML/CSS лайфхаков / Хабр</title>
+  <meta property="fb:app_id" content="444736788986613">
+  <meta property="fb:pages" content="472597926099084">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@habr_com">
+  <meta property="og:site_name" content="Хабр">
+  <link href="https://habr.com/ru/rss/post/905648/?fl=ru" type="application/rss+xml" title rel="alternate" name="rss">
+  <link href="https://habr.com/ru/companies/ruvds/articles/905648/" rel="canonical" data-hid="e3fa780">
+  <link rel="image_src" href="https://habrastorage.org/webt/3c/pf/b_/3cpfb_yvb_trzdjl_owlitrqasm.png" data-hid="2a79c45">
+  <meta property="og:title" content="Как фронтендеру сделать интерфейс дружелюбнее к пользователю. Коллекция HTML/CSS лайфхаков">
+  <meta name="twitter:title" content="Как фронтендеру сделать интерфейс дружелюбнее к пользователю. Коллекция HTML/CSS лайфхаков">
+  <meta name="aiturec:title" content="Как фронтендеру сделать интерфейс дружелюбнее к пользователю. Коллекция HTML/CSS лайфхаков">
+  <meta name="description" content="Привет, Хабр. Мне всегда нравились красивые и удобные интерфейсы. Желая сделать лучше для пользователя, я потратил не один день. Так я начал коллекционировать HTML и CSS лайфхаки, которые улучшают...">
+  <meta itemprop="description" content="Привет, Хабр. Мне всегда нравились красивые и удобные интерфейсы. Желая сделать лучше для пользователя, я потратил не один день. Так я начал коллекционировать HTML и CSS лайфхаки, которые улучшают...">
+  <meta property="og:description" content="Привет, Хабр. Мне всегда нравились красивые и удобные интерфейсы. Желая сделать лучше для пользователя, я потратил не один день. Так я начал коллекционировать HTML и CSS лайфхаки, которые улучшают...">
+  <meta name="twitter:description" content="Привет, Хабр. Мне всегда нравились красивые и удобные интерфейсы. Желая сделать лучше для пользователя, я потратил не один день. Так я начал коллекционировать HTML и CSS лайфхаки, которые улучшают...">
+  <meta property="aiturec:description" content="Привет, Хабр. Мне всегда нравились красивые и удобные интерфейсы. Желая сделать лучше для пользователя, я потратил не один день. Так я начал коллекционировать HTML и CSS лайфхаки, которые улучшают...">
+  <meta itemprop="image" content="https://habrastorage.org/webt/3c/pf/b_/3cpfb_yvb_trzdjl_owlitrqasm.png">
+  <meta property="og:image" content="https://habrastorage.org/webt/3c/pf/b_/3cpfb_yvb_trzdjl_owlitrqasm.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="aiturec:image" content="https://habrastorage.org/webt/3c/pf/b_/3cpfb_yvb_trzdjl_owlitrqasm.png">
+  <meta name="twitter:image" content="https://habrastorage.org/webt/3c/pf/b_/3cpfb_yvb_trzdjl_owlitrqasm.png">
+  <meta property="vk:image" content="https://habrastorage.org/webt/3c/pf/b_/3cpfb_yvb_trzdjl_owlitrqasm.png?format=vk">
+  <meta property="vk:image" content="https://habrastorage.org/webt/3c/pf/b_/3cpfb_yvb_trzdjl_owlitrqasm.png?format=vk">
+  <meta property="aiturec:item_id" content="905648">
+  <meta property="aiturec:datetime" content="2025-05-06T09:01:54.000Z">
+  <meta content="https://habr.com/ru/companies/ruvds/articles/905648/" property="og:url">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="keywords" content="ruvds_статьи, css, верстка, фронтенд, лайфхаки">
+  <script type="application/ld+json" data-hid="1e0f0a2">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/companies\/ruvds\/articles\/905648\/"},"headline":"Как фронтендеру сделать интерфейс дружелюбнее к пользователю. Коллекция HTML\/CSS лайфхаков","datePublished":"2025-05-06T12:01:54+03:00","dateModified":"2025-05-07T00:45:43+03:00","author":{"@type":"Person","name":"Стас Мельников"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"Привет, Хабр. Мне всегда нравились красивые и удобные интерфейсы. Желая сделать лучше для пользователя, я потратил не один день. Так я начал коллекционировать...","url":"https:\/\/habr.com\/ru\/companies\/ruvds\/articles\/905648\/#post-content-body","about":["c_ruvds","h_css","h_html5","h_webdev","h_ui","f_develop","f_design"],"image":["https:\/\/habr.com\/share\/publication\/905648\/d518b8e9ced08c939d88de8d5aee2357\/","https:\/\/habrastorage.org\/webt\/3c\/pf\/b_\/3cpfb_yvb_trzdjl_owlitrqasm.png","https:\/\/habrastorage.org\/webt\/q9\/ej\/qo\/q9ejqon5yn2cidxyotyzktyzsdg.png","https:\/\/habrastorage.org\/webt\/1i\/y4\/a7\/1iy4a7j-k9i5raskbfo0mgvbeme.png","https:\/\/habrastorage.org\/webt\/yh\/xd\/_p\/yhxd_pposlfwoiilqkgzue71-44.jpeg","https:\/\/habrastorage.org\/webt\/8k\/dl\/5-\/8kdl5-91s0sksjicx5cggvkepu8.jpeg","https:\/\/habrastorage.org\/webt\/vm\/2q\/rd\/vm2qrdulfzmpp5msesr3jxfecc0.jpeg","https:\/\/habrastorage.org\/webt\/4j\/cp\/k-\/4jcpk-4c6s-knk2xhonfyhyklpe.jpeg","https:\/\/habrastorage.org\/webt\/kx\/2u\/rc\/kx2urcmgykqtka4yxlbvukl0qoo.png","https:\/\/habrastorage.org\/webt\/c7\/n1\/zp\/c7n1zpyku1enirh0vat2mup6pxm.png","https:\/\/habrastorage.org\/webt\/yo\/se\/km\/yosekm4h_f7y7oia-ghbbpc0phi.png"]}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1,user-scalable=0">
+  <meta name="referrer" content="unsafe-url">
+  <style>
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmojLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvk4jLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmYjLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" as="style" media="(prefers-color-scheme: light)">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" as="style" media="(prefers-color-scheme: dark)">
+  <link id="light-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" media="(prefers-color-scheme: light)">
+  <link id="dark-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" media="(prefers-color-scheme: dark)">
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.635b6c39236ebd33fa716c71ab0131a0.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script>
+  <style>
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+    </style>
+  <meta name="habr-version" content="2.241.0">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44">
+  <meta name="msapplication-TileColor" content="#629FBC">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png">
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png">
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg">
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest">
+  <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
+  <script>window.yaContextCb = window.yaContextCb || []</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.8599692f.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.58b8c457.js" as="script">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.8599692f.css">
+ </head>
+ <body>
+  <div id="mount">
+   <div id="app">
+    <div class="tm-layout__wrapper">
+     <!--[--><!---->
+     <div></div><!---->
+     <header class="tm-header" data-test-id="header">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-header__container">
+        <!----><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/">
+          <svg class="tm-svg-img tm-header__icon" height="16" width="16">
+           <title>
+            Хабр
+           </title><use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+          </svg></a><span style="display:none;" class="tm-header__beta-sign">β</span></span><!--[-->
+        <div class="tm-dropdown tm-header__projects">
+         <div class="tm-dropdown__head">
+          <!--[-->
+          <button class="tm-header__dropdown-toggle">
+           <svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16">
+            <title>
+             Открыть список
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#arrow-down"></use>
+           </svg></button><!--]-->
+         </div><!---->
+        </div><a href="/ru/sandbox/start/" class="tm-header__become-author-btn">Как стать автором</a>
+        <div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature">
+         <!---->
+        </div><!----><!--]--><!---->
+       </div><!--]-->
+      </div>
+     </header>
+     <div class="tm-layout">
+      <div class="tm-page-progress-bar"></div>
+      <div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true">
+       <div class="tm-page-width">
+        <!--[-->
+        <div class="tm-base-layout__header-wrapper">
+         <div class="tm-main-menu">
+          <div class="tm-main-menu__section">
+           <nav class="tm-main-menu__section-content">
+            <!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]-->
+           </nav>
+          </div>
+         </div>
+         <div class="tm-header-user-menu tm-base-layout__user-menu">
+          <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button">
+           <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24">
+            <title>
+             Поиск
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#search"></use>
+           </svg></a><!----><!---->
+          <div class="tm-header-user-menu__item tm-header-user-menu__write">
+           <div>
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Написать публикацию
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#write"></use>
+            </svg>
+           </div><!---->
+          </div><!--[-->
+          <div class="tm-header-user-menu__item">
+           <button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings">
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Настройки
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#page-settings"></use>
+            </svg></button>
+          </div><a href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/companies/ruvds/articles/905648/&amp;hl=ru" rel="nofollow" class="tm-header-user-menu__item"><!--[-->
+           <button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!----><!--teleport start--><!--teleport end--><!---->
+         </div>
+        </div><!--]-->
+       </div>
+      </div><!---->
+      <div class="tm-page-width">
+       <!--[--><!--]-->
+      </div>
+      <main class="tm-layout__container">
+       <div class="tm-page" hl="ru" companyname="ruvds" data-async-called="true" style="--5ab2e5a8:16px;--44c4f6f6:100%;--45ba7a3b:0;">
+        <div class="tm-page-width">
+         <!--[-->
+         <div class="tm-page__header">
+          <!--[-->
+          <div class="tm-company-card__branding tm-company-card__branding_loading tm-company-article__branding" data-test-id="company-card-branding">
+           <div class="tm-company-card__branding-placeholder">
+            <!---->
+           </div><a href="https://ruvds.com/ru/ispmanager?utm_source=habr&amp;utm_medium=banner&amp;utm_campaign=promo&amp;utm_content=link&amp;?erid=LjN8KAR3S"><img class="tm-company-card__branding-image" src="//habrastorage.org/getpro/habr/branding/fb6/ef6/713/fb6ef6713c7ac645ad9668af3b7aa161.png"></a>
+          </div><!--]-->
+         </div>
+         <div class="tm-page__wrapper">
+          <div class="tm-page__main_has-sidebar tm-page__main">
+           <div class="pull-down">
+            <!---->
+            <div class="pull-down__header" style="height:0px;">
+             <div class="pull-down__content" style="bottom:10px;">
+              <svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24">
+               <title>
+                Обновить
+               </title><use xlink:href="/img/megazord-v28.7909a852..svg#pull-arrow"></use>
+              </svg>
+             </div>
+            </div><!--[--><!--[-->
+            <div class="tm-article-presenter">
+             <!--[--><!--[--><!---->
+             <div class="tm-company-profile-card tm-company-article__profile-card">
+              <div class="tm-company-card tm-company-profile-card__info">
+               <div class="tm-company-card__header">
+                <a href="/ru/companies/ruvds/profile/" class="tm-company-card__avatar">
+                 <div class="tm-entity-image">
+                  <img alt="" class="tm-entity-image__pic" height="48" src="//habrastorage.org/getpro/habr/company/18c/bff/d8f/18cbffd8f66af293efcc352f43cdca35.png" width="48">
+                 </div></a><!--[--><!---->
+                <div class="tm-counter-container tm-company-card__rating">
+                 <div class="tm-counter-container__header">
+                  <!--[--><!--[--><!--]-->
+                  <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                   <!---->
+                   <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score_no-margin tm-votes-lever__score">
+                    <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">3398.53</span></span><!--]-->
+                   </div><!---->
+                  </div><!--]-->
+                 </div>
+                 <div class="tm-counter-container__footer">
+                  <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                 </div>
+                </div><!----><!--]-->
+               </div>
+               <div class="tm-company-card__info">
+                <a href="/ru/companies/ruvds/profile/" class="tm-company-card__name"><span>RUVDS.com</span></a>
+                <div class="tm-company-card__description">
+                 VDS/VPS-хостинг. Скидка 15% по коду <b>HABR15</b>
+                </div>
+               </div>
+              </div>
+              <div class="tm-company-profile-card__buttons">
+               <div class="tm-button-follow tm-company-profile-card__button tm-company-profile-card__button_follow">
+                <!---->
+                <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+               </div><!----><!----><!---->
+              </div>
+             </div><!----><!--]--><!--]-->
+             <div class="tm-article-presenter__body" data-test-id="article-body">
+              <div class="tm-misprint-area">
+               <div class="tm-misprint-area__wrapper">
+                <!--[-->
+                <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                 <!--[-->
+                 <div class="tm-article-presenter__header">
+                  <!--[--><!--]-->
+                  <div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet">
+                   <!--[--><!--]-->
+                   <div class="tm-article-snippet__meta-container">
+                    <div class="tm-article-snippet__meta">
+                     <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/melnik909/" class="tm-user-info__userpic" data-test-id="user-info-pic" title="melnik909">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" height="24" src="//habrastorage.org/r/w48/getpro/habr/avatars/420/e9b/e8d/420e9be8df5187d293139c622af2dd00.jpg" width="24">
+                       </div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a href="/ru/users/melnik909/" class="tm-user-info__username">melnik909 <!----></a><!--[--><span class="tm-article-datetime-published"><time datetime="2025-05-06T09:01:54.000Z" title="2025-05-06, 12:01">21 час назад</time></span><!--]--></span></span>
+                    </div><!---->
+                   </div>
+                   <h1 class="tm-title tm-title_h1" lang="ru" data-test-id="articleTitle"><span>Как фронтендеру сделать интерфейс дружелюбнее к пользователю. Коллекция HTML/CSS лайфхаков</span></h1>
+                   <div class="tm-article-snippet__stats" data-test-id="articleStats">
+                    <div class="tm-article-complexity tm-article-complexity_complexity-medium">
+                     <span class="tm-svg-icon__wrapper tm-article-complexity__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Уровень сложности
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#complexity-medium"></use>
+                      </svg></span><span class="tm-article-complexity__label">Средний</span>
+                    </div>
+                    <div class="tm-article-reading-time">
+                     <span class="tm-svg-icon__wrapper tm-article-reading-time__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Время на прочтение
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#clock"></use>
+                      </svg></span><span class="tm-article-reading-time__label">6 мин</span>
+                    </div><span class="tm-icon-counter tm-data-icons__item">
+                     <svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24">
+                      <title>
+                       Количество просмотров
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-views"></use>
+                     </svg><span class="tm-icon-counter__value" title="3614">3.6K</span></span>
+                   </div>
+                   <div class="tm-publication-hubs__container" data-test-id="articleHubsList">
+                    <div class="tm-publication-hubs">
+                     <!--[--><span class="tm-publication-hub__link-container"><a href="/ru/companies/ruvds/articles/" class="tm-publication-hub__link"><!--[--><span>Блог компании RUVDS.com</span><!----><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/css/" class="tm-publication-hub__link"><!--[--><span>CSS</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/html5/" class="tm-publication-hub__link"><!--[--><span>HTML</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/webdev/" class="tm-publication-hub__link"><!--[--><span>Веб-разработка</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/ui/" class="tm-publication-hub__link"><!--[--><span>Интерфейсы</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><!--]-->
+                    </div>
+                   </div>
+                   <div class="tm-article-labels" data-test-id="articleLabels">
+                    <div class="tm-article-labels__container">
+                     <div class="tm-publication-label tm-publication-label_variant-review">
+                      <span>Обзор</span>
+                     </div><!--[--><!--]-->
+                    </div>
+                   </div><!----><!---->
+                  </div>
+                 </div><!--[--><!---->
+                 <div class="tm-article-body" data-gallery-root lang="ru">
+                  <div>
+                   <!--[--><!--]-->
+                  </div>
+                  <div id="post-content-body">
+                   <div>
+                    <div class="article-formatted-body article-formatted-body article-formatted-body_version-1">
+                     <div xmlns="http://www.w3.org/1999/xhtml">
+                      <a href="https://habr.com/ru/companies/ruvds/articles/905648/"><img src="https://habrastorage.org/r/w1560/webt/3c/pf/b_/3cpfb_yvb_trzdjl_owlitrqasm.png" alt="image" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/webt/3c/pf/b_/3cpfb_yvb_trzdjl_owlitrqasm.png 780w,
+       https://habrastorage.org/r/w1560/webt/3c/pf/b_/3cpfb_yvb_trzdjl_owlitrqasm.png 781w" loading="lazy" decode="async"></a>
+                      <br>
+                      <br>
+                      <p>Привет, Хабр.</p>
+                      <br>
+                      <p>Мне всегда нравились красивые и удобные интерфейсы. Желая сделать лучше для пользователя, я потратил не один день. Так я начал коллекционировать HTML и CSS лайфхаки, которые улучшают впечатление пользователя от интерфейса. В итоге у меня получился внушительный список.</p>
+                      <br>
+                      <p>Сегодня хочу поделиться с вами некоторыми практиками из него. Я постарался собрать наиболее простые, чтобы вы могли быстро и безболезненно внедрить их.</p>
+                      <br>
+                      <p>Давайте посмотрим, что я вам подготовил.</p><a name="habracut"></a>
+                      <br>
+                      <h2><font color="#3AC1EF">▍ Шрифт по умолчанию тоже может быть красивым</font></h2>
+                      <br>
+                      <p>Я думаю, вы согласитесь, что классный интерфейс не может существовать без хорошей типографики. Дизайнеры настолько сильно заморачиваются, что задача фронтендера — не испортить их работу. В частности, при работе со шрифтами. Особенно с нестандартными.</p>
+                      <br>
+                      <p>Типичная задача фронтендера — это правильно их подключить. Нужно подумать над тем, как шрифт будет отображён, если он не загрузится. По этой причине долгое время существовала практика указывать семейство шрифтов. Например, <code>sans-serif</code>.</p>
+                      <br>
+                      <pre><code class="css">body {
+  font-family: "Roboto", sans-serif;
+}
+</code></pre>
+                      <br>
+                      <p>Если шрифт Roboto не загрузится, то браузеры применят шрифт из указанного семейства. Чаще всего, это шрифт Arial. Он некрасивый. Так что чаще всего текст будет выглядеть плохо. Я хочу предложить другой подход.</p>
+                      <br>
+                      <p>В CSS есть ключевое слово <code>system-ui</code>. Оно позволяет нам использовать для веб-контента шрифт, который встроен в операционную систему. В большинстве случаев он будет намного красивее.</p>
+                      <br>
+                      <p>Начать использовать ключевое слово <code>system-ui</code> очень просто. Нужно его добавить вторым значением для свойства <code>font-family</code>.</p>
+                      <br>
+                      <pre><code class="css">body {
+  font-family: "Roboto", system-ui, sans-serif;
+}
+</code></pre>
+                      <br>
+                      <p>Поддержка ключевого слова <code>system-ui</code> очень хорошая. Это позволяет оставить только его, убрав ключевое слово <code>sans-serif</code>.</p>
+                      <br>
+                      <pre><code class="css">body {
+  font-family: "Roboto", system-ui;
+}
+</code></pre>
+                      <br>
+                      <p>Но это я уже оставляю на ваше усмотрение. Главное, вы теперь знаете, как улучшить типографику на вашем проекте.</p>
+                      <br>
+                      <h2><font color="#3AC1EF">▍ Улучшаем отображение заголовков</font></h2>
+                      <br>
+                      <p>В типографике есть термин «вдовы». Под ним понимается ситуация, когда в блоке с текстом на последней строке остаётся одно слово. В вебе данное явление можно увидеть в заголовках. Я сразу покажу пример.</p>
+                      <br>
+                      <pre><code class="xml">&lt;body&gt;
+  &lt;main class="content"&gt;
+    &lt;h1&gt;Овечкин продолжает забивать! Но «Вашингтон» проиграл первый кубок в этом году&lt;/h1&gt;
+    &lt;p&gt;
+      «Вашингтон» ждал приезда «Коламбуса» с особыми чувствами.
+      &lt;!-- здесь оставшиеся текст --&gt;
+    &lt;/p&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+</code></pre>
+                      <br>
+                      <div style="text-align:center;">
+                       <img alt="Заголовок на 3 строки. Ниже отображается блок с текстом" src="https://habrastorage.org/r/w1560/webt/q9/ej/qo/q9ejqon5yn2cidxyotyzktyzsdg.png" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/webt/q9/ej/qo/q9ejqon5yn2cidxyotyzktyzsdg.png 780w,
+       https://habrastorage.org/r/w1560/webt/q9/ej/qo/q9ejqon5yn2cidxyotyzktyzsdg.png 781w" loading="lazy" decode="async">
+                      </div>
+                      <br>
+                      <p>На последней строке осталось одно слово «году». Вот такое отображение текста называется «вдовы». Согласитесь, выглядит некрасиво.</p>
+                      <br>
+                      <p>Для исправления ситуации мы можем использовать значение <code>balance</code> для свойства <code>text-wrap</code>. Таким образом браузеры начнут анализировать текст и будут его равномерно распределять по строкам. В итоге заголовки будут выглядеть лучше.</p>
+                      <br>
+                      <p>Давайте это проверим с помощью нашего примера.</p>
+                      <br>
+                      <pre><code class="css">h1 {
+  text-wrap: balance;
+}
+</code></pre>
+                      <br>
+                      <div style="text-align:center;">
+                       <img alt="Текст заголовка визуально распределился равномерно на 3 строки. На первой 3 слова, на второй 3 слова, на третьей 5 слов. Первая строка самая широкая. Вторая и третья примерно одинаковой ширины" src="https://habrastorage.org/r/w1560/webt/1i/y4/a7/1iy4a7j-k9i5raskbfo0mgvbeme.png" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/webt/1i/y4/a7/1iy4a7j-k9i5raskbfo0mgvbeme.png 780w,
+       https://habrastorage.org/r/w1560/webt/1i/y4/a7/1iy4a7j-k9i5raskbfo0mgvbeme.png 781w" loading="lazy" decode="async">
+                      </div>
+                      <br>
+                      <p>Круто же. Теперь текст смотрится более гармонично. А главное, что этот трюк очень легко внедрить. Дерзайте!</p>
+                      <br>
+                      <h2><font color="#3AC1EF">▍ Можно подобрать более подходящую надпись для кнопки «Перейти» на виртуальной клавиатуре</font></h2>
+                      <br>
+                      <p>У нас, как у фронтендеров, не так много возможностей, как-то изменять виртуальную клавиатуру. Но одна всё же есть. Вы слышали про атрибут <code>enterkeyhint</code>? Надеюсь, что нет, потому что я хочу рассказать о нём.</p>
+                      <br>
+                      <p>Сделаю я это сразу на примере. Мы посмотрим на виртуальную клавиатуру при заполнении формы авторизации.</p>
+                      <br>
+                      <pre><code class="xml">&lt;body&gt;
+  &lt;form&gt;
+    &lt;label for="un"&gt;Логин&lt;/label&gt;
+    &lt;input type="text" id="un"&gt;
+    &lt;label for="pw"&gt;Пароль&lt;/label&gt;
+    &lt;input type="password" id="pw"&gt;	
+    &lt;button&gt;Отправить&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+</code></pre>
+                      <br>
+                      <div style="text-align:center;">
+                       <img alt="Мне отображается клавиатура для ввода текста на смартфоне" height="500" src="https://habrastorage.org/r/w1560/webt/yh/xd/_p/yhxd_pposlfwoiilqkgzue71-44.jpeg" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/webt/yh/xd/_p/yhxd_pposlfwoiilqkgzue71-44.jpeg 780w,
+       https://habrastorage.org/r/w1560/webt/yh/xd/_p/yhxd_pposlfwoiilqkgzue71-44.jpeg 781w" loading="lazy" decode="async">
+                      </div>
+                      <br>
+                      <p>Обратите внимание на правый нижний угол. Там находится клавиша с надписью «Перейти». Вот мы можем её изменить. Это поможет нам сделать атрибут <code>enterkeyhint</code>.</p>
+                      <br>
+                      <p>Например, я задам значение <code>send</code> для поля ввода пароля.</p>
+                      <br>
+                      <pre><code class="xml">&lt;body&gt;
+  &lt;form&gt;
+    &lt;label for="un"&gt;Логин&lt;/label&gt;
+    &lt;input type="text" id="un"&gt;
+    &lt;label for="pw"&gt;Пароль&lt;/label&gt;
+    &lt;input type="password" id="pw" enterkeyhint="send"&gt;	
+    &lt;button&gt;Отправить&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+</code></pre>
+                      <br>
+                      <div style="text-align:center;">
+                       <img alt="Мне отображается клавиатура для ввода текста на смартфоне" height="500" src="https://habrastorage.org/r/w1560/webt/8k/dl/5-/8kdl5-91s0sksjicx5cggvkepu8.jpeg" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/webt/8k/dl/5-/8kdl5-91s0sksjicx5cggvkepu8.jpeg 780w,
+       https://habrastorage.org/r/w1560/webt/8k/dl/5-/8kdl5-91s0sksjicx5cggvkepu8.jpeg 781w" loading="lazy" decode="async">
+                      </div>
+                      <br>
+                      <p>Теперь мы видим сокращённое слово «Отправ.». На английском языке будет надписано «Send». Вот так атрибут помог использовать более подходящую надпись.</p>
+                      <br>
+                      <p>Когда я только узнал про атрибут, подумал, что можно задать любую надпись. Это не так. В качестве значения нам предоставляется ограниченный список. Всего есть 7 значений, а именно: <code>enter</code>, <code>done</code>, <code>go</code>, <code>next</code>, <code>previous</code>, <code>search</code> и <code>send</code>.</p>
+                      <br>
+                      <p>Конечно, не густо. Хочется больше надписей. Но в качестве микроулучшения мне нравится этот атрибут.</p>
+                      <br>
+                      <h2><font color="#3AC1EF">▍ Делаем удобный ввод цифрового кода при авторизации</font></h2>
+                      <br>
+                      <p>Мне часто встречаются интерфейсы, которые используют ввод цифрового кода при авторизации. Казалось бы, простая ситуация. Надо ввести код. Что может пойти не так?</p>
+                      <br>
+                      <p>Я хочу обратить ваше внимание на клавиатуру, которая появляется на смартфонах при вводе. Если мы используем элемент <code>&lt;input&gt;</code>, то она будет содержать буквы и цифры сразу. Но для ввода цифрового кода буквы явно не пригодятся. Нам нужны только цифры!</p>
+                      <br>
+                      <p>И так можно сделать. Я нашёл отличный пример.</p>
+                      <br>
+                      <div style="text-align:center;">
+                       <img alt="Отображена клавиатура только с числами" src="https://habrastorage.org/r/w1560/webt/vm/2q/rd/vm2qrdulfzmpp5msesr3jxfecc0.jpeg" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/webt/vm/2q/rd/vm2qrdulfzmpp5msesr3jxfecc0.jpeg 780w,
+       https://habrastorage.org/r/w1560/webt/vm/2q/rd/vm2qrdulfzmpp5msesr3jxfecc0.jpeg 781w" loading="lazy" decode="async">
+                      </div>
+                      <br>
+                      <p>Для достижения такого результата разработчики добавили атрибут <code>inputmode</code> со значением <code>numeric</code>.</p>
+                      <br>
+                      <div style="text-align:center;">
+                       <img alt="В инструментах разработчика я выделил атрибут" src="https://habrastorage.org/r/w1560/webt/4j/cp/k-/4jcpk-4c6s-knk2xhonfyhyklpe.jpeg" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/webt/4j/cp/k-/4jcpk-4c6s-knk2xhonfyhyklpe.jpeg 780w,
+       https://habrastorage.org/r/w1560/webt/4j/cp/k-/4jcpk-4c6s-knk2xhonfyhyklpe.jpeg 781w" loading="lazy" decode="async">
+                      </div>
+                      <br>
+                      <p>Ввод цифрового кода — не единственный сценарий, где полезно значение <code>numeric</code>. Ввод номера паспорта, даты рождения, да вообще все цифровые данные. Правильная клавиатура всегда упрощает взаимодействие. А лично меня она спасает от боли в кистях. Пожалуйста, обращайте внимание на этот аспект.</p>
+                      <br>
+                      <h2><font color="#3AC1EF">▍ Выделение текста может быть разным</font></h2>
+                      <br>
+                      <p>Подбирая темы для этой статьи, я сомневался, стоит ли включать псевдо-элемент <code>::selection</code>. Мне казалось, что его знают все. В таких случаях я делаю опрос среди своих подписчиков. Оказалось, что большая часть моей аудитории его не знает.</p>
+                      <br>
+                      <p>А зря. Этот псевдо-элемент поможет вам изменить стандартное выделение текста. Например, я так сделал для Хабра.</p>
+                      <br>
+                      <pre><code class="css">::selection {
+  background-color: #fce4ec;
+}
+</code></pre>
+                      <br>
+                      <div style="text-align:center;">
+                       <img alt="Выделен текст бледно красным цветом" src="https://habrastorage.org/r/w1560/webt/kx/2u/rc/kx2urcmgykqtka4yxlbvukl0qoo.png" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/webt/kx/2u/rc/kx2urcmgykqtka4yxlbvukl0qoo.png 780w,
+       https://habrastorage.org/r/w1560/webt/kx/2u/rc/kx2urcmgykqtka4yxlbvukl0qoo.png 781w" loading="lazy" decode="async">
+                      </div>
+                      <br>
+                      <p>Видите, браузеры используют более красивое выделение. Классно же! Вот так просто вы можете сделать выделения текста в фирменном стиле сайта.</p>
+                      <br>
+                      <h2><font color="#3AC1EF">▍ Добавить тёмную тему очень просто</font></h2>
+                      <br>
+                      <p>В прошлом году Яндекс провёл <a href="https://inclusion.yandex.ru/settingsresearch">исследование о настройках доступности в Яндекс Браузере для iOS и Android</a>. Оказывается, 27% пользователей, или примерно 11 миллионов людей, используют тёмную тему. Супер популярная функция!</p>
+                      <br>
+                      <p>Хорошо, что CSS позволяет просто её реализовать. Медиа-функция <code>prefers-color-scheme</code> сделает всю работу. Лично я использую её вместе с пользовательскими CSS-свойствами.</p>
+                      <br>
+                      <pre><code class="css">/* определяю цвета для светлой темы */
+:root {
+  --main-mode-color: #fcfcfc;
+  --accent-mode-color: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  /* определяю цвета для тёмной темы */
+  :root {
+    --main-mode-color: #1e2229;
+    --accent-mode-color: #ebecef;
+  } 
+}
+
+body {
+  color: var(--accent-mode-color);
+  background-color: var(--main-mode-color);
+}
+</code></pre>
+                      <br>
+                      <p>Вот и всё. Таким способом вы позволите своим пользователям использовать тёмную тему. Просто же. Надеюсь, вы её добавите в свои проекты.</p>
+                      <br>
+                      <h2><font color="#3AC1EF">▍ Расширяем кликабельную область с помощью псевдо-элементов</font></h2>
+                      <br>
+                      <p>Одна из главных задач дизайнера — продумать размеры интерактивных элементов так, чтобы по ним было удобно нажимать. К моему сожалению, так делают не все. Некоторые ставят красоту выше удобства. В результате получаются маленькие кнопки или ссылки.</p>
+                      <br>
+                      <p>Я много раз с этим сталкивался. Переубеждать дизайнеров я устал. Вместо этого начал думать, как ещё можно решить проблему. И мне пришла мысль: «Почему бы не увеличить интерактивную область?».</p>
+                      <br>
+                      <p>Реализовать такое решение можно с помощью псевдо-классов <code>::before</code> или <code>::after</code>. Я просто буду расширять их размеры так, чтобы они выходили за пределы родительского элемента. В итоге визуально элементы остались бы тех же размеров, а их область станет больше.</p>
+                      <br>
+                      <p>Покажу реализацию на примере кнопки размером шестнадцать на шестнадцать пикселей.</p>
+                      <br>
+                      <pre><code class="css">.button {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  isolation: isolate;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  z-index: -1;
+}
+</code></pre>
+                      <br>
+                      <p>Вся фишка заключается в свойстве <code>inset</code>. Именно оно расширяет интерактивную область элемента. В нашем примере я это сделал на <code>10px</code> с каждой стороны. В итоге кликабельная область стала размером <code>36px</code> на <code>36px</code>.</p>
+                      <br>
+                      <div style="text-align:center;">
+                       <img alt="В инструментах разработчика показывается область элемента" src="https://habrastorage.org/r/w1560/webt/c7/n1/zp/c7n1zpyku1enirh0vat2mup6pxm.png" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/webt/c7/n1/zp/c7n1zpyku1enirh0vat2mup6pxm.png 780w,
+       https://habrastorage.org/r/w1560/webt/c7/n1/zp/c7n1zpyku1enirh0vat2mup6pxm.png 781w" loading="lazy" decode="async">
+                      </div>
+                      <br>
+                      <p>Так же мы можем сделать этот код более универсальным. В моих проектах он используется с помощью отдельного класса.</p>
+                      <br>
+                      <pre><code class="css">.ha-clickable-area {
+  --_ha-clickable-area-expandable-ratio: var(--ha-clickable-area-expandable-ratio, 6px);
+   position: var(--ha-clickable-area-position, relative);
+  isolation: isolate;
+}
+
+.ha-clickable-area::before {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--_ha-clickable-area-expandable-ratio));
+  z-index: -1;
+}
+
+/* здесь объявляю значение для конкретного элемента */
+.button {
+  --ha-clickable-area-expandable-ratio: 10px;
+
+  width: 16px;
+  height: 16px; 
+}
+</code></pre>
+                      <br>
+                      <h2><font color="#3AC1EF">▍ Заключение</font></h2>
+                      <br>
+                      <p>Давайте подведём итог. В этой статье мы рассмотрели:</p>
+                      <ul>
+                       <li>использование ключевого слова <code>system-ui</code> в качестве объявления шрифта по умолчанию;</li>
+                       <li>значение <code>balance</code> для свойства <code>text-wrap</code> для улучшения отображения заголовков;</li>
+                       <li>атрибут <code>enterkeyhint</code>, позволяющий лучше адаптировать виртуальную клавиатуру под контекст использования;</li>
+                       <li>как атрибут <code>inputmode</code> со значением <code>numeric</code> делает ввод цифрового кода проще;</li>
+                       <li>псевдо-элемент <code>::selection</code> для стилизации выделенного текста в фирменном цвете;</li>
+                       <li>создание тёмной темы с помощью медиа-функции <code>prefers-color-scheme</code>;</li>
+                       <li>сниппет для расширения кликабельной области.</li>
+                      </ul>
+                      <p>Будете использовать эти лайфхаки в своих проектах? Или я зря написал эту статью? Делитесь своим мнением в комментариях. Спасибо за чтение!</p>
+                      <br>
+                      <p>P.S. Помогаю больше узнать про CSS в своём ТГ-канале CSS isn't magic. Присоединяйтесь. Ссылка в профиле.</p>
+                      <br>
+                       © 2025 ООО «МТ ФИНАНС»
+                      <br>
+                      <br>
+                      <blockquote>
+                       <b><font color="#3AC1EF"><a href="https://t.me/ruvds_community">Telegram-канал со скидками, розыгрышами призов и новостями IT 💻</a></font></b>
+                      </blockquote><a href="https://ruvds.com/ru-rub?utm_source=habr&amp;utm_medium=article&amp;utm_campaign=melnik909&amp;utm_content=kak_frontenderu_sdelat_interfejs_druzhelyubnee_k_polzovatelyu_kollekciya_html_css_lajfxakov"><img src="https://habrastorage.org/r/w1560/webt/yo/se/km/yosekm4h_f7y7oia-ghbbpc0phi.png" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/webt/yo/se/km/yosekm4h_f7y7oia-ghbbpc0phi.png 780w,
+       https://habrastorage.org/r/w1560/webt/yo/se/km/yosekm4h_f7y7oia-ghbbpc0phi.png 781w" loading="lazy" decode="async"></a>
+                     </div>
+                    </div>
+                   </div><!----><!---->
+                  </div><!----><!---->
+                 </div><!--]--><!---->
+                 <div class="tm-article-presenter__meta" data-test-id="article-meta-links">
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Теги:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[ruvds_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8]" class="tm-tags-list__link"><span>ruvds_статьи</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[css]" class="tm-tags-list__link"><span>css</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%B2%D0%B5%D1%80%D1%81%D1%82%D0%BA%D0%B0]" class="tm-tags-list__link"><span>верстка</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%84%D1%80%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D0%B4]" class="tm-tags-list__link"><span>фронтенд</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%BB%D0%B0%D0%B9%D1%84%D1%85%D0%B0%D0%BA%D0%B8]" class="tm-tags-list__link"><span>лайфхаки</span></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Хабы:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/companies/ruvds/articles/" class="tm-hubs-list__link"><!--[--><span>Блог компании RUVDS.com</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/css/" class="tm-hubs-list__link"><!--[--><span>CSS</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/html5/" class="tm-hubs-list__link"><!--[--><span>HTML</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/webdev/" class="tm-hubs-list__link"><!--[--><span>Веб-разработка</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/ui/" class="tm-hubs-list__link"><!--[--><span>Интерфейсы</span><!--]--></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                 </div><!----><!--]-->
+                </article><!--]-->
+               </div><!---->
+              </div>
+              <div style="" class="tm-article-sticky-panel" data-test-id="article-sticky-panel">
+               <div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons">
+                <div class="article-rating tm-data-icons__item" data-v-86aec4a7>
+                 <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-article votes-switcher" title="Всего голосов 37: ↑36 и ↓1" data-v-86aec4a7>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-upvote-button" title="Нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon" height="24" width="24">
+                    <title>
+                     Нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                  <div class="tm-votes-lever__score tm-votes-lever__score_appearance-article tm-votes-lever__score">
+                   <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_positive tm-votes-lever__score-counter" data-test-id="votes-score-counter">+42</span></span><!--]-->
+                  </div>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-downvote-button" title="Не нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon tm-votes-lever__icon_arrow-down" height="24" width="24">
+                    <title>
+                     Не нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                 </div><!--teleport start--><!--teleport end--><!---->
+                </div><!----><!---->
+                <button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon">
+                  <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                   <title>
+                    Добавить в закладки
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-favorite"></use>
+                  </svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">75</span></button>
+                <div class="tm-sharing tm-data-icons__item" title="Поделиться">
+                 <button class="tm-sharing__button" type="button">
+                  <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                   <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                  </svg></button><!--teleport start--><!--teleport end-->
+                </div>
+                <div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии">
+                 <a href="/ru/companies/ruvds/articles/905648/comments/" class="tm-article-comments-counter-link__link" data-test-id="counter-comments"><!--[-->
+                  <svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24">
+                   <title>
+                    Комментарии
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                  </svg><span class="tm-article-comments-counter-link__value">9</span><!--]--></a><!---->
+                </div><!--[--><!--[--><!--[--><!----><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!---->
+               </div>
+              </div>
+             </div><!--[--><!--]-->
+             <div class="tm-article-presenter__footer">
+              <!--[--><!--[-->
+              <div class="tm-article-blocks">
+               <!----><!--[-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <!----><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-balanced">
+                 <!--[-->
+                 <div class="tm-article-author" data-test-id="article-author-info" data-async-called="true">
+                  <!--[--><!--[-->
+                  <div class="tm-article-author__company">
+                   <div class="tm-article-author__company-card">
+                    <div class="tm-company-snippet">
+                     <a href="/ru/companies/ruvds/profile/" class="tm-company-snippet__logo-link">
+                      <div class="tm-entity-image">
+                       <img alt="" class="tm-entity-image__pic" height="40" src="//habrastorage.org/getpro/habr/company/18c/bff/d8f/18cbffd8f66af293efcc352f43cdca35.png" width="40">
+                      </div></a>
+                     <div class="tm-company-snippet__info">
+                      <a href="/ru/companies/ruvds/profile/" class="tm-company-snippet__title" data-test-id="company-title"><span>RUVDS.com</span></a>
+                      <div class="tm-company-snippet__description">
+                       VDS/VPS-хостинг. Скидка 15% по коду <b>HABR15</b>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-article-author__buttons">
+                     <!----><!---->
+                    </div>
+                   </div>
+                   <div class="tm-article-author__company-contacts">
+                    <!--[--><a class="tm-article-author__contact" href="https://telegram.me/ruvds_community" rel="noopener" target="_blank">Telegram</a><a class="tm-article-author__contact" href="https://vk.com/ru_vds" rel="noopener" target="_blank">ВКонтакте</a><a class="tm-article-author__contact" href="https://x.com/ru_vds" rel="noopener" target="_blank">X</a><!--]-->
+                   </div>
+                   <div class="tm-article-author__separator"></div>
+                  </div><!--]--><!--]-->
+                  <div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true">
+                   <div class="tm-user-card__info-container">
+                    <div class="tm-user-card__header">
+                     <div class="tm-user-card__header-data">
+                      <a href="/ru/users/melnik909/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" src="//habrastorage.org/getpro/habr/avatars/420/e9b/e8d/420e9be8df5187d293139c622af2dd00.jpg">
+                       </div></a>
+                      <div class="tm-user-card__meta">
+                       <div class="tm-counter-container karma" title=" 146 голосов " data-v-f7c0e283>
+                        <div class="tm-counter-container__header">
+                         <!--[-->
+                         <div class="karma-display positive" data-v-f7c0e283 data-v-7635202e>
+                          116
+                         </div><!----><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[-->
+                         <div class="karma-text" data-v-f7c0e283>
+                          Карма
+                         </div><!--teleport start--><!--teleport end--><!--]-->
+                        </div>
+                       </div>
+                       <div class="tm-counter-container" title="Рейтинг пользователя">
+                        <div class="tm-counter-container__header">
+                         <!--[--><!--[--><!--]-->
+                         <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                          <!---->
+                          <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score_no-margin tm-votes-lever__score">
+                           <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">207</span></span><!--]-->
+                          </div><!---->
+                         </div><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info">
+                     <div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title">
+                      <span class="tm-user-card__name tm-user-card__name_variant-article tm-user-card__name">Стас Мельников</span><a href="/ru/users/melnik909/" class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article"> @melnik909</a><!---->
+                     </div>
+                     <p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Помогаю узнать больше про Accessibility и CSS</p>
+                    </div>
+                   </div><!---->
+                   <div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons">
+                    <!---->
+                    <div class="tm-user-card__button">
+                     <div class="tm-button-follow tm-user-card__button-follow">
+                      <!---->
+                      <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+                     </div>
+                    </div><!---->
+                    <div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations">
+                     <svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16">
+                      <title>
+                       Отправить сообщение
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#mail"></use>
+                     </svg>
+                    </div><!---->
+                   </div><!---->
+                  </div>
+                  <div class="tm-article-author__user-contacts" data-test-id="author-contacts">
+                   <a class="tm-article-author__contact" data-test-id="author-contact-link" href="https://career.habr.com/melnik909?utm_source=habr&amp;utm_medium=profile_header&amp;utm_campaign=button_habr_career" rel="noopener" target="_blank">Хабр Карьера</a><a class="tm-article-author__contact" data-test-id="author-contact-link" href="https://career.habr.com/melnik909?utm_source=habr&amp;utm_medium=profile_header&amp;utm_campaign=button_experts" rel="noopener" target="_blank">Хабр Эксперты</a><!---->
+                  </div>
+                 </div><!--]-->
+                </div><!--]--><!---->
+               </section><!----><!--[--><!--]--><!--]-->
+               <div class="tm-article-blocks__comments">
+                <div id="publication-comments" class="tm-article-page-comments">
+                 <div>
+                  <!--[-->
+                  <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                   <a href="/ru/companies/ruvds/articles/905648/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments"><!--[-->
+                    <svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24">
+                     <title>
+                      Комментарии
+                     </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                    </svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 9 </span><!--]--></a><!---->
+                  </div><!--]-->
+                 </div>
+                </div>
+               </div><!--[--><!--[--><!--]-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <header class="tm-block__header tm-block__header tm-block__header_variant-borderless">
+                 <div class="tm-block__header-container">
+                  <h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]-->
+                 </div><!---->
+                </header><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim">
+                 <!--[--><!--[-->
+                 <div class="tm-tabs tm-tabs">
+                  <div class="">
+                   <!--[--><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]-->
+                  </div><!---->
+                 </div>
+                 <div class="similar-and-daily__tab-view">
+                  <div class="placeholder-wrapper">
+                   <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                   <div class="tm-placeholder-article-cards">
+                    <!--[-->
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div><!--]-->
+                   </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                  </div><!---->
+                 </div><!--]--><!--]-->
+                </div><!--]--><!---->
+               </section><!--[--><!--[-->
+               <div class="placeholder-wrapper" data-async-called="true">
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="tm-placeholder-inset tm-placeholder-vacancies">
+                 <div class="tm-placeholder-inset__header">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div>
+                 </div>
+                 <div class="tm-placeholder-inset__body">
+                  <ul class="tm-placeholder-list">
+                   <!--[-->
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li><!--]-->
+                  </ul>
+                 </div>
+                 <div class="tm-placeholder-inset__footer">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div>
+                 </div>
+                </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               </div><!--]--><!--]--><!----><!--[--><!--]--><!--]-->
+              </div><!--]--><!--]-->
+             </div>
+            </div><!--]--><!--]-->
+           </div>
+          </div>
+          <div class="tm-page__sidebar">
+           <!--[-->
+           <div class="tm-layout-sidebar">
+            <div class="tm-layout-sidebar__placeholder_initial"></div>
+            <div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;">
+             <!--[--><!--]--><!---->
+             <div class="tm-layout-sidebar__placeholder_initial"></div><!--[-->
+             <section class="tm-block tm-block tm-block_spacing-bottom">
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Информация</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[-->
+               <div class="tm-company-basic-info">
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Сайт
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[--><a class="tm-company-basic-info__link" href="https://ruvds.com" target="_blank">ruvds.com</a><!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Дата регистрации
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[--><time datetime="2016-03-18T05:43:01.000Z" title="2016-03-18, 08:43">18 марта 2016</time><!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Дата основания
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[--><time datetime="2015-07-26T21:00:00.000Z" title="2015-07-27, 00:00">27 июля 2015</time><!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Численность
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[-->11–30 человек<!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Местоположение
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[-->Россия<!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Представитель
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[--><a href="/ru/users/ruvds/" class="tm-company-basic-info__link">ruvds</a><!--]-->
+                 </dd>
+                </dl>
+               </div><!--]-->
+              </div><!--]--><!---->
+             </section>
+             <div class="tm-company-widgets">
+              <!--[--><!--]-->
+             </div><!----><!----><!--]--><!---->
+            </div>
+           </div><!--]-->
+          </div>
+         </div><!----><!--]-->
+        </div>
+       </div>
+      </main><!---->
+     </div>
+     <div class="tm-footer-menu">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer-menu__container">
+        <!--[-->
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Ваш аккаунт</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/companies/ruvds/articles/905648/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/companies/ruvds/articles/905648/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Разделы</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/articles/" class="footer-menu__item-link">Статьи</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link">Новости</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link">Хабы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link">Компании</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link">Авторы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link">Песочница</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Информация</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link">Устройство сайта</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link">Для авторов</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link">Для компаний</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link">Документы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Услуги</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]-->
+          </ul>
+         </div>
+        </div><!--]-->
+       </div><!--]-->
+      </div>
+     </div>
+     <div class="tm-footer">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer__container">
+        <!---->
+        <div class="tm-footer__social">
+         <!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Facebook
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Twitter
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            VK
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Telegram
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Youtube
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Яндекс Дзен
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use>
+          </svg></a><!--]-->
+        </div><!--teleport start--><!--teleport end-->
+        <button class="tm-footer__link"><!----> Настройка языка</button><a href="/ru/feedback/" class="tm-footer__link">Техническая поддержка</a>
+        <div class="tm-footer-copyright">
+         <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span>
+        </div>
+       </div><!--]-->
+      </div>
+     </div><!----><!--]-->
+    </div><!---->
+   </div>
+   <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"905648":{"id":"905648","timePublished":"2025-05-06T09:01:54+00:00","isCorporative":true,"lang":"ru","titleHtml":"Как фронтендеру сделать интерфейс дружелюбнее к пользователю. Коллекция HTML\u002FCSS лайфхаков","leadData":{"textHtml":"\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fcompanies\u002Fruvds\u002Farticles\u002F905648\u002F\"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002F3c\u002Fpf\u002Fb_\u002F3cpfb_yvb_trzdjl_owlitrqasm.png\" alt=\"image\"\u003E\u003C\u002Fa\u003E\u003Cbr\u003E\r\n\u003Cbr\u003E\r\n\u003Cp\u003EПривет, Хабр.\u003C\u002Fp\u003E\u003Cbr\u003E\r\n\u003Cp\u003EМне всегда нравились красивые и удобные интерфейсы. Желая сделать лучше для пользователя, я потратил не один день. Так я начал коллекционировать HTML и CSS лайфхаки, которые улучшают впечатление пользователя от интерфейса. В итоге у меня получился внушительный список.\u003C\u002Fp\u003E\u003Cbr\u003E\r\n\u003Cp\u003EСегодня хочу поделиться с вами некоторыми практиками из него. Я постарался собрать наиболее простые, чтобы вы могли быстро и безболезненно внедрить их. \u003C\u002Fp\u003E\u003Cbr\u003E\r\n\u003Cp\u003EДавайте посмотрим, что я вам подготовил.\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать дальше &rarr;","image":null},"editorVersion":"1.0","postType":"article","postLabels":[],"author":{"id":"207767","alias":"melnik909","fullname":"Стас Мельников","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F420\u002Fe9b\u002Fe8d\u002F420e9be8df5187d293139c622af2dd00.jpg","speciality":"Помогаю узнать больше про Accessibility и CSS","scoreStats":{"score":116,"votesCount":146},"rating":207,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"donationsMethod":null,"isInBlacklist":null,"careerProfile":{"careerProfileLink":"https:\u002F\u002Fcareer.habr.com\u002Fmelnik909?utm_source=habr&utm_medium=profile_header&utm_campaign=button_habr_career","expertProfileLink":"https:\u002F\u002Fcareer.habr.com\u002Fmelnik909?utm_source=habr&utm_medium=profile_header&utm_campaign=button_experts"}},"statistics":{"commentsCount":9,"favoritesCount":75,"readingCount":3614,"score":42,"votesCount":37,"votesCountPlus":36,"votesCountMinus":1},"hubs":[{"id":"19791","alias":"ruvds","type":"corporative","title":"Блог компании RUVDS.com","titleHtml":"Блог компании RUVDS.com","isProfiled":false,"relatedData":null},{"id":"307","alias":"css","type":"collective","title":"CSS","titleHtml":"CSS","isProfiled":true,"relatedData":null},{"id":"17103","alias":"html5","type":"collective","title":"HTML","titleHtml":"HTML","isProfiled":true,"relatedData":null},{"id":"91","alias":"webdev","type":"collective","title":"Веб-разработка","titleHtml":"Веб-разработка","isProfiled":true,"relatedData":null},{"id":"9188","alias":"ui","type":"collective","title":"Интерфейсы","titleHtml":"Интерфейсы","isProfiled":true,"relatedData":null}],"flows":[{"id":"1","alias":"develop","title":"Разработка","titleHtml":"Разработка"},{"id":"2","alias":"design","title":"Дизайн","titleHtml":"Дизайн"}],"relatedData":{"vote":null,"unreadCommentsCount":0,"bookmarked":false,"canComment":false,"canEdit":false,"canViewVotes":false,"votePlus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"voteMinus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"canModerateComments":false,"trackerSubscribed":false,"emailSubscribed":false},"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fcompanies\u002Fruvds\u002Farticles\u002F905648\u002F\"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002F3c\u002Fpf\u002Fb_\u002F3cpfb_yvb_trzdjl_owlitrqasm.png\" alt=\"image\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fwebt\u002F3c\u002Fpf\u002Fb_\u002F3cpfb_yvb_trzdjl_owlitrqasm.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002F3c\u002Fpf\u002Fb_\u002F3cpfb_yvb_trzdjl_owlitrqasm.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\n\u003Cbr\u002F\u003E\n\u003Cp\u003EПривет, Хабр.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EМне всегда нравились красивые и удобные интерфейсы. Желая сделать лучше для пользователя, я потратил не один день. Так я начал коллекционировать HTML и CSS лайфхаки, которые улучшают впечатление пользователя от интерфейса. В итоге у меня получился внушительный список.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EСегодня хочу поделиться с вами некоторыми практиками из него. Я постарался собрать наиболее простые, чтобы вы могли быстро и безболезненно внедрить их. \u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EДавайте посмотрим, что я вам подготовил.\u003C\u002Fp\u003E\u003Ca name=\"habracut\"\u003E\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\n\u003Ch2\u003E\u003Cfont color=\"#3AC1EF\"\u003E▍ Шрифт по умолчанию тоже может быть красивым\u003C\u002Ffont\u003E\u003C\u002Fh2\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EЯ думаю, вы согласитесь, что классный интерфейс не может существовать без хорошей типографики. Дизайнеры настолько сильно заморачиваются, что задача фронтендера — не испортить их работу. В частности, при работе со шрифтами. Особенно с нестандартными. \u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EТипичная задача фронтендера — это правильно их подключить. Нужно подумать над тем, как шрифт будет отображён, если он не загрузится. По этой причине долгое время существовала практика указывать семейство шрифтов. Например, \u003Ccode\u003Esans-serif\u003C\u002Fcode\u003E.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cpre\u003E\u003Ccode class=\"css\"\u003Ebody {\n  font-family: \"Roboto\", sans-serif;\n}\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EЕсли шрифт Roboto не загрузится, то браузеры применят шрифт из указанного семейства. Чаще всего, это шрифт Arial. Он некрасивый. Так что чаще всего текст будет выглядеть плохо. Я хочу предложить другой подход.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EВ CSS есть ключевое слово \u003Ccode\u003Esystem-ui\u003C\u002Fcode\u003E. Оно позволяет нам использовать для веб-контента шрифт, который встроен в операционную систему. В большинстве случаев он будет намного красивее.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EНачать использовать ключевое слово \u003Ccode\u003Esystem-ui\u003C\u002Fcode\u003E очень просто. Нужно его добавить вторым значением для свойства \u003Ccode\u003Efont-family\u003C\u002Fcode\u003E.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cpre\u003E\u003Ccode class=\"css\"\u003Ebody {\n  font-family: \"Roboto\", system-ui, sans-serif;\n}\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EПоддержка ключевого слова \u003Ccode\u003Esystem-ui\u003C\u002Fcode\u003E очень хорошая. Это позволяет оставить только его, убрав ключевое слово \u003Ccode\u003Esans-serif\u003C\u002Fcode\u003E. \u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cpre\u003E\u003Ccode class=\"css\"\u003Ebody {\n  font-family: \"Roboto\", system-ui;\n}\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EНо это я уже оставляю на ваше усмотрение. Главное, вы теперь знаете, как улучшить типографику на вашем проекте. \u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Ch2\u003E\u003Cfont color=\"#3AC1EF\"\u003E▍ Улучшаем отображение заголовков\u003C\u002Ffont\u003E\u003C\u002Fh2\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EВ типографике есть термин «вдовы». Под ним понимается ситуация, когда в блоке с текстом на последней строке остаётся одно слово. В вебе данное явление можно увидеть в заголовках. Я сразу покажу пример.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cpre\u003E\u003Ccode class=\"xml\"\u003E&lt;body&gt;\n  &lt;main class=\"content\"&gt;\n    &lt;h1&gt;Овечкин продолжает забивать! Но «Вашингтон» проиграл первый кубок в этом году&lt;\u002Fh1&gt;\n    &lt;p&gt;\n      «Вашингтон» ждал приезда «Коламбуса» с особыми чувствами.\n      &lt;!-- здесь оставшиеся текст --&gt;\n    &lt;\u002Fp&gt;\n  &lt;\u002Fmain&gt;\n&lt;\u002Fbody&gt;\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\n\u003Cdiv style=\"text-align:center;\"\u003E\u003Cimg alt=\"Заголовок на 3 строки. Ниже отображается блок с текстом\" src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fq9\u002Fej\u002Fqo\u002Fq9ejqon5yn2cidxyotyzktyzsdg.png\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fwebt\u002Fq9\u002Fej\u002Fqo\u002Fq9ejqon5yn2cidxyotyzktyzsdg.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fq9\u002Fej\u002Fqo\u002Fq9ejqon5yn2cidxyotyzktyzsdg.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Fdiv\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EНа последней строке осталось одно слово «году». Вот такое отображение текста называется «вдовы». Согласитесь, выглядит некрасиво. \u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EДля исправления ситуации мы можем использовать значение \u003Ccode\u003Ebalance\u003C\u002Fcode\u003E для свойства \u003Ccode\u003Etext-wrap\u003C\u002Fcode\u003E. Таким образом браузеры начнут анализировать текст и будут его равномерно распределять по строкам. В итоге заголовки будут выглядеть лучше.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EДавайте это проверим с помощью нашего примера.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cpre\u003E\u003Ccode class=\"css\"\u003Eh1 {\n  text-wrap: balance;\n}\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\n\u003Cdiv style=\"text-align:center;\"\u003E\u003Cimg alt=\"Текст заголовка визуально распределился равномерно на 3 строки. На первой 3 слова, на второй 3 слова, на третьей 5 слов. Первая строка самая широкая. Вторая и третья примерно одинаковой ширины\" src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002F1i\u002Fy4\u002Fa7\u002F1iy4a7j-k9i5raskbfo0mgvbeme.png\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fwebt\u002F1i\u002Fy4\u002Fa7\u002F1iy4a7j-k9i5raskbfo0mgvbeme.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002F1i\u002Fy4\u002Fa7\u002F1iy4a7j-k9i5raskbfo0mgvbeme.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Fdiv\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EКруто же. Теперь текст смотрится более гармонично. А главное, что этот трюк очень легко внедрить. Дерзайте!\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Ch2\u003E\u003Cfont color=\"#3AC1EF\"\u003E▍ Можно подобрать более подходящую надпись для кнопки «Перейти» на виртуальной клавиатуре\u003C\u002Ffont\u003E\u003C\u002Fh2\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EУ нас, как у фронтендеров, не так много возможностей, как-то изменять виртуальную клавиатуру. Но одна всё же есть. Вы слышали про атрибут \u003Ccode\u003Eenterkeyhint\u003C\u002Fcode\u003E? Надеюсь, что нет, потому что я хочу рассказать о нём. \u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EСделаю я это сразу на примере. Мы посмотрим на виртуальную клавиатуру при заполнении формы авторизации. \u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cpre\u003E\u003Ccode class=\"xml\"\u003E&lt;body&gt;\n  &lt;form&gt;\n    &lt;label for=\"un\"&gt;Логин&lt;\u002Flabel&gt;\n    &lt;input type=\"text\" id=\"un\"&gt;\n    &lt;label for=\"pw\"&gt;Пароль&lt;\u002Flabel&gt;\n    &lt;input type=\"password\" id=\"pw\"&gt;\t\n    &lt;button&gt;Отправить&lt;\u002Fbutton&gt;\n  &lt;\u002Fform&gt;\n&lt;\u002Fbody&gt;\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\n\u003Cdiv style=\"text-align:center;\"\u003E\u003Cimg alt=\"Мне отображается клавиатура для ввода текста на смартфоне\" height=\"500\" src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fyh\u002Fxd\u002F_p\u002Fyhxd_pposlfwoiilqkgzue71-44.jpeg\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fwebt\u002Fyh\u002Fxd\u002F_p\u002Fyhxd_pposlfwoiilqkgzue71-44.jpeg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fyh\u002Fxd\u002F_p\u002Fyhxd_pposlfwoiilqkgzue71-44.jpeg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Fdiv\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EОбратите внимание на правый нижний угол. Там находится клавиша с надписью «Перейти». Вот мы можем её изменить. Это поможет нам сделать атрибут \u003Ccode\u003Eenterkeyhint\u003C\u002Fcode\u003E.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EНапример, я задам значение \u003Ccode\u003Esend\u003C\u002Fcode\u003E для поля ввода пароля.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cpre\u003E\u003Ccode class=\"xml\"\u003E&lt;body&gt;\n  &lt;form&gt;\n    &lt;label for=\"un\"&gt;Логин&lt;\u002Flabel&gt;\n    &lt;input type=\"text\" id=\"un\"&gt;\n    &lt;label for=\"pw\"&gt;Пароль&lt;\u002Flabel&gt;\n    &lt;input type=\"password\" id=\"pw\" enterkeyhint=\"send\"&gt;\t\n    &lt;button&gt;Отправить&lt;\u002Fbutton&gt;\n  &lt;\u002Fform&gt;\n&lt;\u002Fbody&gt;\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\n\u003Cdiv style=\"text-align:center;\"\u003E\u003Cimg alt=\"Мне отображается клавиатура для ввода текста на смартфоне\" height=\"500\" src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002F8k\u002Fdl\u002F5-\u002F8kdl5-91s0sksjicx5cggvkepu8.jpeg\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fwebt\u002F8k\u002Fdl\u002F5-\u002F8kdl5-91s0sksjicx5cggvkepu8.jpeg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002F8k\u002Fdl\u002F5-\u002F8kdl5-91s0sksjicx5cggvkepu8.jpeg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Fdiv\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EТеперь мы видим сокращённое слово «Отправ.». На английском языке будет надписано «Send». Вот так атрибут помог использовать более подходящую надпись.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EКогда я только узнал про атрибут, подумал, что можно задать любую надпись. Это не так. В качестве значения нам предоставляется ограниченный список. Всего есть 7 значений, а именно: \u003Ccode\u003Eenter\u003C\u002Fcode\u003E, \u003Ccode\u003Edone\u003C\u002Fcode\u003E, \u003Ccode\u003Ego\u003C\u002Fcode\u003E, \u003Ccode\u003Enext\u003C\u002Fcode\u003E, \u003Ccode\u003Eprevious\u003C\u002Fcode\u003E, \u003Ccode\u003Esearch\u003C\u002Fcode\u003E и \u003Ccode\u003Esend\u003C\u002Fcode\u003E.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EКонечно, не густо. Хочется больше надписей. Но в качестве микроулучшения мне нравится этот атрибут.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Ch2\u003E\u003Cfont color=\"#3AC1EF\"\u003E▍ Делаем удобный ввод цифрового кода при авторизации\u003C\u002Ffont\u003E\u003C\u002Fh2\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EМне часто встречаются интерфейсы, которые используют ввод цифрового кода при авторизации. Казалось бы, простая ситуация. Надо ввести код. Что может пойти не так?\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EЯ хочу обратить ваше внимание на клавиатуру, которая появляется на смартфонах при вводе. Если мы используем элемент \u003Ccode\u003E&lt;input&gt;\u003C\u002Fcode\u003E, то она будет содержать буквы и цифры сразу. Но для ввода цифрового кода буквы явно не пригодятся. Нам нужны только цифры!\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EИ так можно сделать. Я нашёл отличный пример. \u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cdiv style=\"text-align:center;\"\u003E\u003Cimg alt=\"Отображена клавиатура только с числами\" src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fvm\u002F2q\u002Frd\u002Fvm2qrdulfzmpp5msesr3jxfecc0.jpeg\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fwebt\u002Fvm\u002F2q\u002Frd\u002Fvm2qrdulfzmpp5msesr3jxfecc0.jpeg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fvm\u002F2q\u002Frd\u002Fvm2qrdulfzmpp5msesr3jxfecc0.jpeg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Fdiv\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EДля достижения такого результата разработчики добавили атрибут \u003Ccode\u003Einputmode\u003C\u002Fcode\u003E со значением \u003Ccode\u003Enumeric\u003C\u002Fcode\u003E. \u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cdiv style=\"text-align:center;\"\u003E\u003Cimg alt=\"В инструментах разработчика я выделил атрибут\" src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002F4j\u002Fcp\u002Fk-\u002F4jcpk-4c6s-knk2xhonfyhyklpe.jpeg\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fwebt\u002F4j\u002Fcp\u002Fk-\u002F4jcpk-4c6s-knk2xhonfyhyklpe.jpeg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002F4j\u002Fcp\u002Fk-\u002F4jcpk-4c6s-knk2xhonfyhyklpe.jpeg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Fdiv\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EВвод цифрового кода — не единственный сценарий, где полезно значение \u003Ccode\u003Enumeric\u003C\u002Fcode\u003E. Ввод номера паспорта, даты рождения, да вообще все цифровые данные. Правильная клавиатура всегда упрощает взаимодействие. А лично меня она спасает от боли в кистях. Пожалуйста, обращайте внимание на этот аспект. \u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Ch2\u003E\u003Cfont color=\"#3AC1EF\"\u003E▍ Выделение текста может быть разным\u003C\u002Ffont\u003E\u003C\u002Fh2\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EПодбирая темы для этой статьи, я сомневался, стоит ли включать псевдо-элемент \u003Ccode\u003E::selection\u003C\u002Fcode\u003E. Мне казалось, что его знают все. В таких случаях я делаю опрос среди своих подписчиков. Оказалось, что большая часть моей аудитории его не знает.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EА зря. Этот псевдо-элемент поможет вам изменить стандартное выделение текста. Например, я так сделал для Хабра.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cpre\u003E\u003Ccode class=\"css\"\u003E::selection {\n  background-color: #fce4ec;\n}\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\n\u003Cdiv style=\"text-align:center;\"\u003E\u003Cimg alt=\"Выделен текст бледно красным цветом\" src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fkx\u002F2u\u002Frc\u002Fkx2urcmgykqtka4yxlbvukl0qoo.png\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fwebt\u002Fkx\u002F2u\u002Frc\u002Fkx2urcmgykqtka4yxlbvukl0qoo.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fkx\u002F2u\u002Frc\u002Fkx2urcmgykqtka4yxlbvukl0qoo.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Fdiv\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EВидите, браузеры используют более красивое выделение. Классно же! Вот так просто вы можете сделать выделения текста в фирменном стиле сайта.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Ch2\u003E\u003Cfont color=\"#3AC1EF\"\u003E▍ Добавить тёмную тему очень просто\u003C\u002Ffont\u003E\u003C\u002Fh2\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EВ прошлом году Яндекс провёл \u003Ca href=\"https:\u002F\u002Finclusion.yandex.ru\u002Fsettingsresearch\"\u003Eисследование о настройках доступности в Яндекс Браузере для iOS и Android\u003C\u002Fa\u003E. Оказывается, 27% пользователей, или примерно 11 миллионов людей, используют тёмную тему. Супер популярная функция!\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EХорошо, что CSS позволяет просто её реализовать. Медиа-функция \u003Ccode\u003Eprefers-color-scheme\u003C\u002Fcode\u003E сделает всю работу. Лично я использую её вместе с пользовательскими CSS-свойствами.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cpre\u003E\u003Ccode class=\"css\"\u003E\u002F* определяю цвета для светлой темы *\u002F\n:root {\n  --main-mode-color: #fcfcfc;\n  --accent-mode-color: #222;\n}\n\n@media (prefers-color-scheme: dark) {\n\n  \u002F* определяю цвета для тёмной темы *\u002F\n  :root {\n    --main-mode-color: #1e2229;\n    --accent-mode-color: #ebecef;\n  } \n}\n\nbody {\n  color: var(--accent-mode-color);\n  background-color: var(--main-mode-color);\n}\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EВот и всё. Таким способом вы позволите своим пользователям использовать тёмную тему. Просто же. Надеюсь, вы её добавите в свои проекты.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Ch2\u003E\u003Cfont color=\"#3AC1EF\"\u003E▍ Расширяем кликабельную область с помощью псевдо-элементов\u003C\u002Ffont\u003E\u003C\u002Fh2\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EОдна из главных задач дизайнера — продумать размеры интерактивных элементов так, чтобы по ним было удобно нажимать. К моему сожалению, так делают не все. Некоторые ставят красоту выше удобства. В результате получаются маленькие кнопки или ссылки.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EЯ много раз с этим сталкивался. Переубеждать дизайнеров я устал. Вместо этого начал думать, как ещё можно решить проблему. И мне пришла мысль: «Почему бы не увеличить интерактивную область?». \u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EРеализовать такое решение можно с помощью псевдо-классов \u003Ccode\u003E::before\u003C\u002Fcode\u003E или \u003Ccode\u003E::after\u003C\u002Fcode\u003E. Я просто буду расширять их размеры так, чтобы они выходили за пределы родительского элемента. В итоге визуально элементы остались бы тех же размеров, а их область станет больше.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EПокажу реализацию на примере кнопки размером шестнадцать на шестнадцать пикселей.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cpre\u003E\u003Ccode class=\"css\"\u003E.button {\n  width: 16px;\n  height: 16px;\n  position: relative;\n  isolation: isolate;\n}\n\n.button::before {\n  content: \"\";\n  position: absolute;\n  inset: -10px;\n  z-index: -1;\n}\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EВся фишка заключается в свойстве \u003Ccode\u003Einset\u003C\u002Fcode\u003E. Именно оно расширяет интерактивную область элемента. В нашем примере я это сделал на \u003Ccode\u003E10px\u003C\u002Fcode\u003E с каждой стороны. В итоге кликабельная область стала размером \u003Ccode\u003E36px\u003C\u002Fcode\u003E на \u003Ccode\u003E36px\u003C\u002Fcode\u003E.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cdiv style=\"text-align:center;\"\u003E\u003Cimg alt=\"В инструментах разработчика показывается область элемента\" src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fc7\u002Fn1\u002Fzp\u002Fc7n1zpyku1enirh0vat2mup6pxm.png\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fwebt\u002Fc7\u002Fn1\u002Fzp\u002Fc7n1zpyku1enirh0vat2mup6pxm.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fc7\u002Fn1\u002Fzp\u002Fc7n1zpyku1enirh0vat2mup6pxm.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Fdiv\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EТак же мы можем сделать этот код более универсальным. В моих проектах он используется с помощью отдельного класса.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cpre\u003E\u003Ccode class=\"css\"\u003E.ha-clickable-area {\n  --_ha-clickable-area-expandable-ratio: var(--ha-clickable-area-expandable-ratio, 6px);\n   position: var(--ha-clickable-area-position, relative);\n  isolation: isolate;\n}\n\n.ha-clickable-area::before {\n  content: \"\";\n  position: absolute;\n  inset: calc(-1 * var(--_ha-clickable-area-expandable-ratio));\n  z-index: -1;\n}\n\n\u002F* здесь объявляю значение для конкретного элемента *\u002F\n.button {\n  --ha-clickable-area-expandable-ratio: 10px;\n\n  width: 16px;\n  height: 16px; \n}\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\n\u003Ch2\u003E\u003Cfont color=\"#3AC1EF\"\u003E▍ Заключение\u003C\u002Ffont\u003E\u003C\u002Fh2\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EДавайте подведём итог. В этой статье мы рассмотрели:\u003C\u002Fp\u003E\u003Cul\u003E\n\u003Cli\u003Eиспользование ключевого слова \u003Ccode\u003Esystem-ui\u003C\u002Fcode\u003E в качестве объявления шрифта по умолчанию;\u003C\u002Fli\u003E\n\u003Cli\u003Eзначение \u003Ccode\u003Ebalance\u003C\u002Fcode\u003E для свойства \u003Ccode\u003Etext-wrap\u003C\u002Fcode\u003E для улучшения отображения заголовков;\u003C\u002Fli\u003E\n\u003Cli\u003Eатрибут \u003Ccode\u003Eenterkeyhint\u003C\u002Fcode\u003E, позволяющий лучше адаптировать виртуальную клавиатуру под контекст использования;\u003C\u002Fli\u003E\n\u003Cli\u003Eкак атрибут \u003Ccode\u003Einputmode\u003C\u002Fcode\u003E со значением \u003Ccode\u003Enumeric\u003C\u002Fcode\u003E делает ввод цифрового кода проще;\u003C\u002Fli\u003E\n\u003Cli\u003Eпсевдо-элемент \u003Ccode\u003E::selection\u003C\u002Fcode\u003E для стилизации выделенного текста в фирменном цвете;\u003C\u002Fli\u003E\n\u003Cli\u003Eсоздание тёмной темы с помощью медиа-функции \u003Ccode\u003Eprefers-color-scheme\u003C\u002Fcode\u003E;\u003C\u002Fli\u003E\n\u003Cli\u003Eсниппет для расширения кликабельной области. \u003C\u002Fli\u003E\n\u003C\u002Ful\u003E\u003Cp\u003EБудете использовать эти лайфхаки в своих проектах? Или я зря написал эту статью? Делитесь своим мнением в комментариях. Спасибо за чтение!\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n\u003Cp\u003EP.S. Помогаю больше узнать про CSS в своём ТГ-канале CSS isn't magic. Присоединяйтесь. Ссылка в профиле.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\n© 2025 ООО «МТ ФИНАНС»\u003Cbr\u002F\u003E\n \u003Cbr\u002F\u003E\n\u003Cblockquote\u003E\u003Cb\u003E\u003Cfont color=\"#3AC1EF\"\u003E\u003Ca href=\"https:\u002F\u002Ft.me\u002Fruvds_community\"\u003ETelegram-канал со скидками, розыгрышами призов и новостями IT 💻\u003C\u002Fa\u003E\u003C\u002Ffont\u003E\u003C\u002Fb\u003E\u003C\u002Fblockquote\u003E\u003Ca href=\"https:\u002F\u002Fruvds.com\u002Fru-rub?utm_source=habr&amp;utm_medium=article&amp;utm_campaign=melnik909&amp;utm_content=kak_frontenderu_sdelat_interfejs_druzhelyubnee_k_polzovatelyu_kollekciya_html_css_lajfxakov\"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fyo\u002Fse\u002Fkm\u002Fyosekm4h_f7y7oia-ghbbpc0phi.png\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fwebt\u002Fyo\u002Fse\u002Fkm\u002Fyosekm4h_f7y7oia-ghbbpc0phi.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fyo\u002Fse\u002Fkm\u002Fyosekm4h_f7y7oia-ghbbpc0phi.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"ruvds_статьи"},{"titleHtml":"css"},{"titleHtml":"верстка"},{"titleHtml":"фронтенд"},{"titleHtml":"лайфхаки"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002F3c\u002Fpf\u002Fb_\u002F3cpfb_yvb_trzdjl_owlitrqasm.png","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002F3c\u002Fpf\u002Fb_\u002F3cpfb_yvb_trzdjl_owlitrqasm.png","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fcompanies\\\u002Fruvds\\\u002Farticles\\\u002F905648\\\u002F\"},\"headline\":\"Как фронтендеру сделать интерфейс дружелюбнее к пользователю. Коллекция HTML\\\u002FCSS лайфхаков\",\"datePublished\":\"2025-05-06T12:01:54+03:00\",\"dateModified\":\"2025-05-07T00:45:43+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Стас Мельников\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Привет, Хабр. Мне всегда нравились красивые и удобные интерфейсы. Желая сделать лучше для пользователя, я потратил не один день. Так я начал коллекционировать...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fcompanies\\\u002Fruvds\\\u002Farticles\\\u002F905648\\\u002F#post-content-body\",\"about\":[\"c_ruvds\",\"h_css\",\"h_html5\",\"h_webdev\",\"h_ui\",\"f_develop\",\"f_design\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F905648\\\u002Fd518b8e9ced08c939d88de8d5aee2357\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002F3c\\\u002Fpf\\\u002Fb_\\\u002F3cpfb_yvb_trzdjl_owlitrqasm.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fq9\\\u002Fej\\\u002Fqo\\\u002Fq9ejqon5yn2cidxyotyzktyzsdg.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002F1i\\\u002Fy4\\\u002Fa7\\\u002F1iy4a7j-k9i5raskbfo0mgvbeme.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fyh\\\u002Fxd\\\u002F_p\\\u002Fyhxd_pposlfwoiilqkgzue71-44.jpeg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002F8k\\\u002Fdl\\\u002F5-\\\u002F8kdl5-91s0sksjicx5cggvkepu8.jpeg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fvm\\\u002F2q\\\u002Frd\\\u002Fvm2qrdulfzmpp5msesr3jxfecc0.jpeg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002F4j\\\u002Fcp\\\u002Fk-\\\u002F4jcpk-4c6s-knk2xhonfyhyklpe.jpeg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fkx\\\u002F2u\\\u002Frc\\\u002Fkx2urcmgykqtka4yxlbvukl0qoo.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fc7\\\u002Fn1\\\u002Fzp\\\u002Fc7n1zpyku1enirh0vat2mup6pxm.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fyo\\\u002Fse\\\u002Fkm\\\u002Fyosekm4h_f7y7oia-ghbbpc0phi.png\"]}","metaDescription":"Привет, Хабр. Мне всегда нравились красивые и удобные интерфейсы. Желая сделать лучше для пользователя, я потратил не один день. Так я начал коллекционировать HTML и CSS лайфхаки, которые улучшают...","mainImageUrl":null,"amp":false,"customTrackerLinks":[]},"polls":[],"commentsEnabled":{"status":true,"reason":null},"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"hasPinnedComments":false,"format":"review","banner":null,"multiwidget":null,"multiwidgetUuid":null,"readingTime":6,"complexity":"medium","isEditorial":false,"allowedFeatures":{"isTestTargetAllow":false}}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"postReasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"viewedPosts":[],"myFeedFilter":{"complexity":"all","score":"all","types":["articles","posts","news"]},"myFeedIsApplyFilters":false,"myFeedIsForce":false,"karma":{"userReasonsList":null}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":""},"comments":{"articleComments":{},"articlePinnedComments":{},"searchCommentsResults":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":"","idempotenceKey":""}},"companies":{"companyRefs":{"ruvds":{"alias":"ruvds","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fcompany\u002F18c\u002Fbff\u002Fd8f\u002F18cbffd8f66af293efcc352f43cdca35.png","titleHtml":"RUVDS.com","descriptionHtml":"VDS\u002FVPS-хостинг. Скидка 15% по коду \u003Cb\u003EHABR15\u003C\u002Fb\u003E","relatedData":null,"statistics":{"subscribersCount":129133,"rating":3398.53,"invest":null,"postsCount":4208,"threadsCount":43,"newsCount":277,"vacanciesCount":0,"employeesCount":69,"careerRating":null},"foundationDate":{"year":"2015","month":"07","day":"27"},"location":{"city":{"id":"447159","title":"Москва"},"region":{"id":"1885","title":"Москва и Московская обл."},"country":{"id":"168","title":"Россия"}},"siteUrl":"https:\u002F\u002Fruvds.com","staffNumber":"11–30 человек","registrationDate":"2016-03-18T05:43:01+00:00","representativeUser":{"alias":"ruvds","fullname":null},"contacts":[{"title":"Telegram","url":"https:\u002F\u002Ftelegram.me\u002Fruvds_community","siteTitle":"Telegram: View @ruvds_community","favicon":"https:\u002F\u002Ftelegram.org\u002Fimg\u002Fwebsite_icon.svg?4"},{"title":"ВКонтакте","url":"https:\u002F\u002Fvk.com\u002Fru_vds","siteTitle":"VK | VK","favicon":"https:\u002F\u002Fm.vk.com\u002Fimages\u002Ficons\u002Ffavicons\u002Ffav_logo.ico?10"},{"title":"X","url":"https:\u002F\u002Fx.com\u002Fru_vds","siteTitle":null,"favicon":null}],"settings":{"analyticsSettings":[{"type":"ym","trackingId":"33905479"}],"branding":{"imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fbranding\u002Ffb6\u002Fef6\u002F713\u002Ffb6ef6713c7ac645ad9668af3b7aa161.png","linkUrl":"https:\u002F\u002Fruvds.com\u002Fru\u002Fispmanager?utm_source=habr&utm_medium=banner&utm_campaign=promo&utm_content=link&?erid=LjN8KAR3S","pixelUrl":"https:\u002F\u002Fmc.yandex.ru\u002Fpixel\u002F3301778373576591035?rnd=%2525252525aw_random%2525252525","uuid":"0194bcef-8dc3-71b6-a518-964a55bc3150"},"status":"active","isStartup":false,"hasActivePolls":false,"shouldShowHabrAds":false},"metadata":{"titleHtml":"RUVDS.com, Москва - VDS\u002FVPS-хостинг. Скидка 15% по коду \u003Cb\u003EHABR15\u003C\u002Fb\u003E с 27 июля 2015 г.","title":"RUVDS.com, Москва - VDS\u002FVPS-хостинг. Скидка 15% по коду HABR15 с 27 июля 2015 г.","keywords":["ruvds_статьи","vds","vps","ruvds_перевод","html","дата-центр","королёв","виртуальные серверы","ruvds"],"descriptionHtml":"4 208 статей от авторов компании RUVDS.com","description":"4 208 статей от авторов компании RUVDS.com"},"aDeskSettings":null,"careerAlias":"ruvds","schoolAlias":null}},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"multiwidgets":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"multiwidgetLoading":false,"vacancies":{},"companiesGalleries":{},"companiesBanners":{},"companiesLandingVacancies":{},"companiesTechnologies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null,"jivoStatus":0,"adminNotifications":null,"availableInvitesCount":{}},"companyAdd":{"currentStep":"","stepsData":{},"uncompletedSteps":[],"isStepLoading":true,"isStepCommitting":false,"isInitialized":false,"agreementContent":""},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"pagesCount":0},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":true},"fixedBanner":{"isArticleStickyPanelVisible":false,"isArticleStickyPanelAtTheBottom":false,"isFixedBannerVisible":false,"isStickyPanelIconsHidden":false},"flows":{"updates":{}},"global":{"isPwa":false,"device":"desktop","isHabrCom":true,"requestId":"7396c89cdac1363e0916181ce936f4a5"},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"welcomePage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"query":{},"pathname":"\u002Fru\u002Fcompanies\u002Fruvds\u002Farticles\u002F905648\u002F","path":"\u002Fru\u002Fcompanies\u002Fruvds\u002Farticles\u002F905648\u002F","href":"\u002Fru\u002Fcompanies\u002Fruvds\u002Farticles\u002F905648\u002F"}},"me":{"user":null,"uuid":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null,"userUpdates":{"feeds":{"newPostsCount":null,"newThreadsCount":null,"newNewsCount":null,"newCount":null},"conversationUnreadCount":0},"features":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"onboarding":{"currentStep":null,"stepsData":{},"stepsErrors":{},"completedSteps":[],"isStepCommitting":false,"isCommitDisabled":true},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{"vacancies":"project-block-company-article"}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null,"sticker":null},"publicationStatistics":{"statsInfo":{},"statsFunnels":{},"statsGraph":{},"defaultSuggest":{},"suggest":{},"timeTracker":{},"isTrackingActivity":false,"isUserActive":true,"otherPublicationStats":{}},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":true,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"stories":{"stories":null},"technotext":{"years":[],"technotextDocForNominees":null,"technotextDocForWinners":null,"technotextInfo":{},"technotextInfoLoading":false,"technotextWinners":{},"technotextWinnersLoading":false},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"userVotes":{"karmaVotesList":[],"karmaVotesPagesCount":null,"karmaVotesListLoading":false,"commentsVotesList":[],"commentsVotesPagesCount":null,"commentsVotesListLoading":false,"postsVotesList":[],"postsVotesPagesCount":null,"postsVotesListLoading":false,"userVotesList":[],"userVotesPagesCount":null,"userVotesListLoading":false},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"notificationsLoading":false,"notificationsList":[],"notificationsPageCount":0,"pendingMarkNotificationsRead":[],"publicationsLoading":true,"publicationsList":[],"publicationsPageCount":0,"pendingDeletePublications":false,"pendingMarkPublicationsRead":false},"events":{"eventRefs":{},"eventIds":[],"pagesCount":0,"categories":[],"cities":[],"actualEvents":null,"currentEvent":null,"eventsFilter":{"city":"all","timeStarted":null,"timeEnded":null}},"wysiwyg":{"WYSIWYGRulesRefs":null},"refs":{"specializationRefs":[]},"hint":{"hints":{}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script>
+   <script src="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" defer></script>
+   <script src="https://assets.habr.com/habr-web/js/app.58b8c457.js" defer></script>
+  </div>
+  <div id="overlays">
+   <!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor-->
+  </div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S28W1WC23F"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  </script>
+  <script type="text/javascript">
+      window.addEventListener('load', function () {
+        setTimeout(() => {
+          const img = new Image();
+          img.src = 'https://vk.com/rtrg?p=VK-RTRG-421343-57vKE';
+        }, 0);
+      });
+    </script>
+ </body>
+</html>

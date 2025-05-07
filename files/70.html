@@ -1,0 +1,1197 @@
+<!doctype html>
+<html lang="ru">
+ <head>
+  <title>Как функциональщик в Go ушёл… и не вернулся / Хабр</title>
+  <meta property="fb:app_id" content="444736788986613">
+  <meta property="fb:pages" content="472597926099084">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@habr_com">
+  <meta property="og:site_name" content="Хабр">
+  <link href="https://habr.com/ru/rss/post/906052/?fl=ru" type="application/rss+xml" title rel="alternate" name="rss">
+  <link href="https://habr.com/ru/companies/2gis/articles/906052/" rel="canonical" data-hid="e3fa780">
+  <link rel="image_src" href="https://habrastorage.org/getpro/habr/upload_files/93b/ecd/294/93becd2949e1554e366014162e5b9029.png" data-hid="2a79c45">
+  <link rel="amphtml" href="https://habr.com/ru/amp/publications/906052/">
+  <meta property="og:title" content="Как функциональщик в Go ушёл… и не вернулся">
+  <meta name="twitter:title" content="Как функциональщик в Go ушёл… и не вернулся">
+  <meta name="aiturec:title" content="Как функциональщик в Go ушёл… и не вернулся">
+  <meta name="description" content="Хороших технических статей про Go было написано немало, и эта — не одна из них. Эта статья — графомания о моём субъективном и эмоциональном опыте перехода со Scala на Go. Руководитель : Хочешь...">
+  <meta itemprop="description" content="Хороших технических статей про Go было написано немало, и эта — не одна из них. Эта статья — графомания о моём субъективном и эмоциональном опыте перехода со Scala на Go. Руководитель : Хочешь...">
+  <meta property="og:description" content="Хороших технических статей про Go было написано немало, и эта — не одна из них. Эта статья — графомания о моём субъективном и эмоциональном опыте перехода со Scala на Go. Руководитель : Хочешь...">
+  <meta name="twitter:description" content="Хороших технических статей про Go было написано немало, и эта — не одна из них. Эта статья — графомания о моём субъективном и эмоциональном опыте перехода со Scala на Go. Руководитель : Хочешь...">
+  <meta property="aiturec:description" content="Хороших технических статей про Go было написано немало, и эта — не одна из них. Эта статья — графомания о моём субъективном и эмоциональном опыте перехода со Scala на Go. Руководитель : Хочешь...">
+  <meta itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/93b/ecd/294/93becd2949e1554e366014162e5b9029.png">
+  <meta property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/93b/ecd/294/93becd2949e1554e366014162e5b9029.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/93b/ecd/294/93becd2949e1554e366014162e5b9029.png">
+  <meta name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/93b/ecd/294/93becd2949e1554e366014162e5b9029.png">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/93b/ecd/294/93becd2949e1554e366014162e5b9029.png?format=vk">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/93b/ecd/294/93becd2949e1554e366014162e5b9029.png?format=vk">
+  <meta property="aiturec:item_id" content="906052">
+  <meta property="aiturec:datetime" content="2025-05-06T07:27:57.000Z">
+  <meta content="https://habr.com/ru/companies/2gis/articles/906052/" property="og:url">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="keywords" content="golang, go, scala, java, .net, functional programming, worse is better, мысли вслух">
+  <script type="application/ld+json" data-hid="1e0f0a2">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/companies\/2gis\/articles\/906052\/"},"headline":"Как функциональщик в Go ушёл… и не вернулся","datePublished":"2025-05-06T10:27:57+03:00","dateModified":"2025-05-07T00:53:57+03:00","author":{"@type":"Person","name":"xdCrafts"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"Хороших технических статей про Go было написано немало, и эта &mdash; не одна из них. Эта статья &mdash; графомания о моём субъективном и эмоциональном опыте перехода со Sca...","url":"https:\/\/habr.com\/ru\/companies\/2gis\/articles\/906052\/#post-content-body","about":["c_2gis","h_go","h_career","f_develop","f_management"],"image":["https:\/\/habr.com\/share\/publication\/906052\/82338fbd6cf08b0d3408046ce836f059\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/cb4\/a3f\/35f\/cb4a3f35f735f7f83c81babd8c4ff666.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/070\/d7a\/3d9\/070d7a3d938a98a4666cd1bf98e656b7.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/40f\/471\/e30\/40f471e303f17696c869ebb3fbc74d4c.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/caf\/033\/f25\/caf033f25644ab441f9535e84bbd8503.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/93b\/ecd\/294\/93becd2949e1554e366014162e5b9029.png"]}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1,user-scalable=0">
+  <meta name="referrer" content="unsafe-url">
+  <style>
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmojLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvk4jLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmYjLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" as="style" media="(prefers-color-scheme: light)">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" as="style" media="(prefers-color-scheme: dark)">
+  <link id="light-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" media="(prefers-color-scheme: light)">
+  <link id="dark-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" media="(prefers-color-scheme: dark)">
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.635b6c39236ebd33fa716c71ab0131a0.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script>
+  <style>
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+    </style>
+  <meta name="habr-version" content="2.241.0">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44">
+  <meta name="msapplication-TileColor" content="#629FBC">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png">
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png">
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg">
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest">
+  <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
+  <script>window.yaContextCb = window.yaContextCb || []</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.8599692f.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.58b8c457.js" as="script">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.8599692f.css">
+ </head>
+ <body>
+  <div id="mount">
+   <div id="app">
+    <div class="tm-layout__wrapper">
+     <!--[--><!---->
+     <div></div><!---->
+     <header class="tm-header" data-test-id="header">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-header__container">
+        <!----><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/">
+          <svg class="tm-svg-img tm-header__icon" height="16" width="16">
+           <title>
+            Хабр
+           </title><use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+          </svg></a><span style="display:none;" class="tm-header__beta-sign">β</span></span><!--[-->
+        <div class="tm-dropdown tm-header__projects">
+         <div class="tm-dropdown__head">
+          <!--[-->
+          <button class="tm-header__dropdown-toggle">
+           <svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16">
+            <title>
+             Открыть список
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#arrow-down"></use>
+           </svg></button><!--]-->
+         </div><!---->
+        </div><a href="/ru/sandbox/start/" class="tm-header__become-author-btn">Как стать автором</a>
+        <div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature">
+         <!---->
+        </div><!----><!--]--><!---->
+       </div><!--]-->
+      </div>
+     </header>
+     <div class="tm-layout">
+      <div class="tm-page-progress-bar"></div>
+      <div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true">
+       <div class="tm-page-width">
+        <!--[-->
+        <div class="tm-base-layout__header-wrapper">
+         <div class="tm-main-menu">
+          <div class="tm-main-menu__section">
+           <nav class="tm-main-menu__section-content">
+            <!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]-->
+           </nav>
+          </div>
+         </div>
+         <div class="tm-header-user-menu tm-base-layout__user-menu">
+          <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button">
+           <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24">
+            <title>
+             Поиск
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#search"></use>
+           </svg></a><!----><!---->
+          <div class="tm-header-user-menu__item tm-header-user-menu__write">
+           <div>
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Написать публикацию
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#write"></use>
+            </svg>
+           </div><!---->
+          </div><!--[-->
+          <div class="tm-header-user-menu__item">
+           <button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings">
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Настройки
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#page-settings"></use>
+            </svg></button>
+          </div><a href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/companies/2gis/articles/906052/&amp;hl=ru" rel="nofollow" class="tm-header-user-menu__item"><!--[-->
+           <button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!----><!--teleport start--><!--teleport end--><!---->
+         </div>
+        </div><!--]-->
+       </div>
+      </div><!---->
+      <div class="tm-page-width">
+       <!--[--><!--]-->
+      </div>
+      <main class="tm-layout__container">
+       <div class="tm-page" hl="ru" companyname="2gis" data-async-called="true" style="--5ab2e5a8:16px;--44c4f6f6:100%;--45ba7a3b:0;">
+        <div class="tm-page-width">
+         <!--[-->
+         <div class="tm-page__header">
+          <!--[--><!--]-->
+         </div>
+         <div class="tm-page__wrapper">
+          <div class="tm-page__main_has-sidebar tm-page__main">
+           <div class="pull-down">
+            <!---->
+            <div class="pull-down__header" style="height:0px;">
+             <div class="pull-down__content" style="bottom:10px;">
+              <svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24">
+               <title>
+                Обновить
+               </title><use xlink:href="/img/megazord-v28.7909a852..svg#pull-arrow"></use>
+              </svg>
+             </div>
+            </div><!--[--><!--[-->
+            <div class="tm-article-presenter">
+             <!--[--><!--[--><!---->
+             <div class="tm-company-profile-card tm-company-article__profile-card">
+              <div class="tm-company-card tm-company-profile-card__info">
+               <div class="tm-company-card__header">
+                <a href="/ru/companies/2gis/profile/" class="tm-company-card__avatar">
+                 <div class="tm-entity-image">
+                  <img alt="" class="tm-entity-image__pic" height="48" src="//habrastorage.org/getpro/habr/company/867/84a/fc6/86784afc66498e5825d289df9f3f391b.jpg" width="48">
+                 </div></a><!--[--><!---->
+                <div class="tm-counter-container tm-company-card__rating">
+                 <div class="tm-counter-container__header">
+                  <!--[--><!--[--><!--]-->
+                  <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                   <!---->
+                   <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score_no-margin tm-votes-lever__score">
+                    <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">156.32</span></span><!--]-->
+                   </div><!---->
+                  </div><!--]-->
+                 </div>
+                 <div class="tm-counter-container__footer">
+                  <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                 </div>
+                </div><!----><!--]-->
+               </div>
+               <div class="tm-company-card__info">
+                <a href="/ru/companies/2gis/profile/" class="tm-company-card__name"><span>2ГИС</span></a>
+                <div class="tm-company-card__description">
+                 Главные по городской навигации
+                </div>
+               </div>
+              </div>
+              <div class="tm-company-profile-card__buttons">
+               <div class="tm-button-follow tm-company-profile-card__button tm-company-profile-card__button_follow">
+                <!---->
+                <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+               </div><!----><!----><!---->
+              </div>
+             </div><!----><!--]--><!--]-->
+             <div class="tm-article-presenter__body" data-test-id="article-body">
+              <div class="tm-misprint-area">
+               <div class="tm-misprint-area__wrapper">
+                <!--[-->
+                <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                 <!--[-->
+                 <div class="tm-article-presenter__header">
+                  <!--[--><!--]-->
+                  <div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet">
+                   <!--[--><!--]-->
+                   <div class="tm-article-snippet__meta-container">
+                    <div class="tm-article-snippet__meta">
+                     <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/xdCrafts/" class="tm-user-info__userpic" data-test-id="user-info-pic" title="xdCrafts">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" height="24" src="//habrastorage.org/r/w48/getpro/habr/avatars/087/8c6/9be/0878c69befb4b3f7c3b032d5b07b656d.jpeg" width="24">
+                       </div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a href="/ru/users/xdCrafts/" class="tm-user-info__username">xdCrafts <!----></a><!--[--><span class="tm-article-datetime-published"><time datetime="2025-05-06T07:27:57.000Z" title="2025-05-06, 10:27">23 часа назад</time></span><!--]--></span></span>
+                    </div><!---->
+                   </div>
+                   <h1 class="tm-title tm-title_h1" lang="ru" data-test-id="articleTitle"><span>Как функциональщик в Go ушёл… и не вернулся</span></h1>
+                   <div class="tm-article-snippet__stats" data-test-id="articleStats">
+                    <div class="tm-article-complexity tm-article-complexity_complexity-medium">
+                     <span class="tm-svg-icon__wrapper tm-article-complexity__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Уровень сложности
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#complexity-medium"></use>
+                      </svg></span><span class="tm-article-complexity__label">Средний</span>
+                    </div>
+                    <div class="tm-article-reading-time">
+                     <span class="tm-svg-icon__wrapper tm-article-reading-time__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Время на прочтение
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#clock"></use>
+                      </svg></span><span class="tm-article-reading-time__label">7 мин</span>
+                    </div><span class="tm-icon-counter tm-data-icons__item">
+                     <svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24">
+                      <title>
+                       Количество просмотров
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-views"></use>
+                     </svg><span class="tm-icon-counter__value" title="6570">6.6K</span></span>
+                   </div>
+                   <div class="tm-publication-hubs__container" data-test-id="articleHubsList">
+                    <div class="tm-publication-hubs">
+                     <!--[--><span class="tm-publication-hub__link-container"><a href="/ru/companies/2gis/articles/" class="tm-publication-hub__link"><!--[--><span>Блог компании 2ГИС</span><!----><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/go/" class="tm-publication-hub__link"><!--[--><span>Go</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/career/" class="tm-publication-hub__link"><!--[--><span>Карьера в IT-индустрии</span><!----><!--]--></a></span><!--]-->
+                    </div>
+                   </div>
+                   <div class="tm-article-labels" data-test-id="articleLabels">
+                    <div class="tm-article-labels__container">
+                     <div class="tm-publication-label tm-publication-label_variant-opinion">
+                      <span>Мнение</span>
+                     </div><!--[--><!--]-->
+                    </div>
+                   </div><!----><!---->
+                  </div>
+                 </div><!--[--><!---->
+                 <div class="tm-article-body" data-gallery-root lang="ru">
+                  <div>
+                   <!--[--><!--]-->
+                  </div>
+                  <div id="post-content-body">
+                   <div>
+                    <div class="article-formatted-body article-formatted-body article-formatted-body_version-2">
+                     <div xmlns="http://www.w3.org/1999/xhtml">
+                      <p>Хороших технических статей про Go было написано немало, и эта — не одна из них. Эта статья — графомания о моём субъективном и эмоциональном опыте перехода со Scala на Go.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/cb4/a3f/35f/cb4a3f35f735f7f83c81babd8c4ff666.png" width="1920" height="1080" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/cb4/a3f/35f/cb4a3f35f735f7f83c81babd8c4ff666.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/cb4/a3f/35f/cb4a3f35f735f7f83c81babd8c4ff666.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p><strong><em><sub>Руководитель</sub></em></strong><em><sub>: Хочешь техлидить новый проект?</sub></em></p>
+                      <p><strong><em><sub>Я</sub></em></strong><em><sub>: Да, конечно. А что за проект?</sub></em></p>
+                      <p><strong><em><sub>Руководитель</sub></em></strong><em><sub>: Распределённые бэкенды на Go.</sub></em></p>
+                      <p><strong><em><sub>Я</sub></em></strong><em><sub>: Go? Но я же скалист-функциональщик...</sub></em></p>
+                      <p><em><sub>Чуть позже.</sub></em></p>
+                      <p><strong><em><sub>Коллега</sub></em></strong><em><sub>: Слышал, что ты будешь техлидить другой проект — вы там тоже Scala завозить будете?</sub></em></p>
+                      <p><strong><em><sub>Я</sub></em></strong><em><sub>: Нет, будем писать на Go.</sub></em></p>
+                      <p><strong><em><sub>Коллега</sub></em></strong><em><sub>: Ты что, бросаешь Scala?!</sub></em></p>
+                      <p>Этот момент мне запомнился очень хорошо. Когда ты долго работаешь с каким-то языком, накапливаешь экспертность, нюансы, грабли, привыкаешь жить в его экосистеме — смена стека кажется чем-то болезненным. Будто ты уезжаешь в другой город и оставляешь старых друзей.</p>
+                      <p>Да, конечно же, язык — просто инструмент, а реальная компетенция — в теории, паттернах и опыте решения определённого рода задач, которые копятся за годы работы. Тяжело менять классы задач, но менять инструментарий гораздо легче.</p>
+                      <h3>Go и моя первая реакция: раздражение</h3>
+                      <p>Go смог зарекомендовать себя как удобный и эргономичный инструмент, ориентированный на разработку веб-сервисов и инфраструктурных штук. На Go написаны инструменты, без которых сложно представить мир распределённых систем: Kubernetes, Docker, Istio, CockroachDB, Badger, Prometheus, VictoriaMetrics, Temporal, NATS. Меня всегда соблазняла мысль выкачать их репозитории к себе на машину и забуриться в их внутреннее устройство. Ведь что может быть интереснее распределённых систем и баз данных?</p>
+                      <p>Но всё равно долгое время меня отталкивала простота Go. Я несколько раз пробовал писать на нём, но каждый раз чувствовал, что меня держат за идиота. В мире, где языки развиваются стремительно, предлагают мощные системы типов и элегантные абстракции, Go выглядел упрямым и снисходительным к разработчику. Будто он не уважает разработчика и игнорирует весь прогресс за последние 30 лет. Дженериков на тот момент не было, обработка ошибок через какие-то&nbsp;<code>if err != nil</code>, ручками надо писать простейшие вещи, а язык явно поощряет максимально приземлённый императивный подход.</p>
+                      <p>Мне казалось, что будущее — в Haskell, Erlang, Smalltalk, Lisp. Там, где бóльшая выразительность и лучший контроль над абстракциями.</p>
+                      <h3>… и что-то поменялось</h3>
+                      <p>Однако чем гибче инструмент, тем больше ты тратишь времени и сил, чтобы придумать себе рамки. Без этого сложно управлять растущей сложностью решений.</p>
+                      <div class="floating-image">
+                       <figure class="float full-width ">
+                        <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/070/d7a/3d9/070d7a3d938a98a4666cd1bf98e656b7.png" width="1120" height="1080" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/070/d7a/3d9/070d7a3d938a98a4666cd1bf98e656b7.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/070/d7a/3d9/070d7a3d938a98a4666cd1bf98e656b7.png 781w" loading="lazy" decode="async">
+                       </figure>
+                       <p>Борьба с&nbsp;такой сложностью часто приносит удовольствие&nbsp;— и чувство собственной изобретательности. Но&nbsp;при&nbsp;этом ты теряешь фокус и забываешь, зачем вообще начал писать этот код. Как&nbsp;следствие, нередко на&nbsp;выходе получается то, про&nbsp;что&nbsp;можно сказать «ого, а&nbsp;так можно&nbsp;было?», но&nbsp;что&nbsp;точно не&nbsp;хочется поддерживать и как‑либо развивать в&nbsp;будущем.</p>
+                      </div>
+                      <p>Поэтому вскоре я понял простую вещь: сила в&nbsp;ограничениях.</p>
+                      <p>Раньше казалось, что&nbsp;если ты умеешь строить технически сложные системы, значит, ты хороший инженер. Но&nbsp;чем дальше, тем больше я видел другой тренд: хорошие инженеры не&nbsp;те, кто способен разобраться в&nbsp;хитросплетении моноидов и функторов, а&nbsp;те, кто может написать систему так, чтобы через полгода в&nbsp;ней&nbsp;было легко разбираться и адаптировать её под&nbsp;новые обстоятельства.</p>
+                      <p>И Go про&nbsp;это.</p>
+                      <p>Первые недели работы с&nbsp;Go&nbsp;были странными. Я написал простой императивный код, без&nbsp;монад и фреймворков, и он просто сработал. Без&nbsp;архитектурной выверенности и слоев абстракции, но&nbsp;с&nbsp;нужным результатом.</p>
+                      <div class="floating-image">
+                       <figure class="float full-width ">
+                        <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/40f/471/e30/40f471e303f17696c869ebb3fbc74d4c.png" width="1120" height="1080" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/40f/471/e30/40f471e303f17696c869ebb3fbc74d4c.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/40f/471/e30/40f471e303f17696c869ebb3fbc74d4c.png 781w" loading="lazy" decode="async">
+                       </figure>
+                       <p>Ровно в этот момент я ощутил свободу и удовольствие от того, что делаю. Я могу просто писать код и решать свою задачу, не думая о том, как работают 20 слоёв абстракций между мной и отправкой запроса в базу данных или в соседний сервис. Я больше не ломаю голову, какие абстракции использовать. Нет ощущения выбора «из десяти правильных способов». В Go код будто сам говорит, каким ему быть.</p>
+                      </div>
+                      <h2>Go: философия прагматизма</h2>
+                      <p>Есть&nbsp;<a href="https://www.dreamsongs.com/RiseOfWorseIsBetter.html">отличная статья</a>&nbsp;(<a href="https://habr.com/ru/companies/otus/articles/597427/">перевод</a>), в которой сравниваются два принципиально разных инженерных подхода:</p>
+                      <ol>
+                       <li>
+                        <p><strong>The right thing</strong> — о том, что простота интерфейсов важнее простоты реализации, корректность поведения обязательна во всех возможных сценариях, усложнение интерфейса допустимо для сохранения консистентности дизайна. Один из эталонных примеров — Haskell, девиз которого — фраза-мем “Avoid success at all costs”. Нет, тут не про то, чтобы всеми силами избегать успеха, а про то, чтобы не идти на компромисс с тем, как правильно.</p></li>
+                       <li>
+                        <p><strong>Worse is better </strong>делает ставку на простоту реализации. Интерфейс может быть неидеальным — главное, чтобы код был прост в поддержке. Корректность — желательна, но допустимы компромиссы. Консистентность — хорошо, но не всегда обязательна. Главное — закрыть большинство ситуаций минимальными усилиями. Worse-is-better сильно пересекается с принципом Парето и предпочитает простую 20% реализацию 80% релевантных кейсов. И Go — целиком и полностью язык про это.</p></li>
+                      </ol>
+                      <p>По большому счёту, Go вообще не претендует на умность и красоту. Он про: «Сделай дело. Просто напиши код. Возможно, потом исправишь, но не надо превращать его в искусство ради искусства».</p>
+                      <p>Несколько примеров:</p>
+                      <ul>
+                       <li>
+                        <p>Обработка ошибок. В других языках у тебя исключения,&nbsp;<code>try/catch</code>, иногда монады (<code>Either</code>&nbsp;или&nbsp;<code>Try</code>). В Go у тебя&nbsp;<code>if err != nil</code>. И всё — максимально простая концепция с точки зрения реализации языка, закрывающая 80% потребностей. Сначала ты думаешь: «Да вы шутите?», потом смиряешься, а потом вообще перестаёшь об этом думать — потому что это просто работает.</p></li>
+                       <li>
+                        <p>Асинхронщина и планировщик. В Go не стали тащить концепцию «окрашивания функций» (подробнее —&nbsp;<a href="https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/">статья</a>&nbsp;и&nbsp;<a href="https://habr.com/ru/articles/466337/">перевод</a>), когда функции делятся на синхронные и асинхронные, и первые могут вызывать только себе подобных. В других языках это часто приводит к «заражению» кода асинхронностью и дублированию API для синхронных и асинхронных вариантов. В Go же любая функция может быть вызвана как синхронно, так и асинхронно, что упрощает понимание кода и избавляет архитектуру от лишней сложности, связанной с async/await-логикой. Взамен разработчикам нужно разбираться в нюансах работы горутин, каналов и примитивов синхронизации, но эти знания требуются не так часто и не усложняют основную часть кода.</p></li>
+                      </ul>
+                      <h2>А как я приспособился?</h2>
+                      <p>Я всегда считал себя человеком, который ценит функциональный стиль. Иммутабельность, безопасная работа с состоянием, никаких побочных эффектов, чистые функции, простота — вот это вот всё. И мне казалось, что Go — это чистый императив, и ради него мне придётся отказаться от всего, что я любил в Scala.</p>
+                      <p>Неожиданно для себя я нашёл в Go знакомые подходы, во многом похожие на Rust.</p>
+                      <p>Во-первых — иммутабельность.</p>
+                      <p>В Rust есть концепция владения (ownership), которая заставляет разработчика принять явное решение: разрешать функции менять переданный параметр или нет, передать право владения значением или не передавать. Но Rust — это про the right thing. В Go мы же про worse-is-better. Здесь нет жёстких гарантий, но можно придумать практику: если структура передаётся по значению, то это негласное обещание — не менять её внутри функции. Если функция возвращает значение, а не указатель, то она отдаёт свой результат целиком и полностью во владение получателя, гарантируя, что никто другой не будет менять это значение.</p>
+                      <p>Почему сам язык не может дать таких гарантий? Потому что даже при передаче структуры по значению, внутри неё могут быть ссылочные поля — например, слайсы. А они всё ещё остаются общими: копируется указатель, но не содержимое. Так что функция может изменить данные «по ссылке», нарушив идею иммутабельности.</p>
+                      <p><code>func PureFunc(value T) U</code></p>
+                      <p>Сомнительно, но окей. Мы получили способ сказать другим разработчикам: «Эти данные неизменны, не трогайте их». Чистые функции по договорённости на месте, и это уже замечательно.</p>
+                      <p>Вторая идея касается «окраски функций».</p>
+                      <p>Да, её отсутствие — это плюс. Но всё же иногда хочется явно отделять функции, которые делают IO и работают с внешним миром. Это помогает держать в голове архитектурные границы. И это тоже можно получить через договорённость и конвенцию. В стандартной библиотеке Go есть замечательный&nbsp;<code>context.Context</code>, который как раз и нужен для обработки таймаутов и отмены IO-операций.</p>
+                      <p><code>func IOFunc(ctx context.Context, val T) (U, error)</code></p>
+                      <p>Я это осознал только спустя некоторое время. Но когда понял, у меня щёлкнуло: в Go я всё ещё могу писать код, который легко тестируется, которым просто оперировать, с чётким разграничением между чистыми и функциями с побочными эффектами — и всё это делать без монад и tagless final (со всем уважением к ним).</p>
+                      <p>Вот тогда Go окончательно меня убедил.</p>
+                      <h2>Но есть нюанс ...</h2>
+                      <p>Go действительно простой и понятный — на первый взгляд. Но есть тонкости, в которых интуиция новичка легко подведёт. Например, слайсы, мапы и каналы в Go — ссылочные типы. В их объявлении это не отображается, и об этом нужно просто помнить. Как следствие: из nil-мапы можно получить значение, но попытка записать в неё вызовет панику.</p>
+                      <p>Да, такие вещи прописаны в документации, но это часто не помогает. Всё-таки мы лучше всего учимся через взаимодействие и ошибки.</p>
+                      <div class="floating-image">
+                       <figure class="float full-width ">
+                        <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/caf/033/f25/caf033f25644ab441f9535e84bbd8503.png" width="1120" height="1080" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/caf/033/f25/caf033f25644ab441f9535e84bbd8503.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/caf/033/f25/caf033f25644ab441f9535e84bbd8503.png 781w" loading="lazy" decode="async">
+                       </figure>
+                       <p>Другой пример боли: это если тебе нужно построить хоть сколько-нибудь нетривиальный асинхронный пайплайн обработки данных на каналах. Горутины и каналы — мощный инструмент. Но вместе с ними приходят сложности: утечки, гонки, непредсказуемая синхронизация. А если добавить WaitGroup, Mutex и context — становится совсем непросто. Всё это требует дисциплины, иначе легко наступить на грабли.</p>
+                       <p>Go даёт простые примитивы конкурентности, но готовить их правильно — задачка не из лёгких. Редко когда можно увидеть действительно полностью корректную реализацию алгоритма, задействующего context.Context, sync.WaitGroup, sync.Mutex и несколько каналов для обработки данных и агрегации ошибок.</p>
+                      </div>
+                      <p>Главная сила Go — в отсутствии магии и абстракций. Но от разработчика требуется зрелость.</p>
+                      <h2>Просто попробуй (возможно, ещё раз)</h2>
+                      <p>Недавно я попробовал снова запустить проект на Java и Spring. Зашёл на&nbsp;<a href="http://start.spring.io">start.spring.io</a>, создал скелет, поднял всё у себя на машине. JVM там уже давно не было, пришлось повозиться. И уже в процессе я понял — продолжать не хочется. Go успел меня избаловать быстрой обратной связью. От идеи до работающего результата — всего пара шагов: простой запуск, моментальная компиляция, отсутствие лишних абстракций.</p>
+                      <p>Надо ли срочно всё бросать и уходить в Go? Конечно, нет, любая смена инструмента должна быть осмысленной. Но если ты работаешь с Java или .NET — просто попробуй. Не подходи к этому с позиции «Что здесь не так?», а просто дай себе время привыкнуть, почувствовать, как меняется твой стиль работы.</p>
+                      <p>Для меня Go стал языком, который освободил голову от лишнего. Он помог мне сосредоточиться на архитектуре, продуктах, бизнес-логике, не тратя ресурс на борьбу с языком.</p>
+                      <p>В Go я перестал усложнять. Ушли лишние слои, мысли стали яснее. Я всё ещё люблю функциональное программирование. Но Go помогает сосредоточиться на главном: создавать ценность и не мешать себе это делать.</p>
+                      <p>Может быть, тебе тоже зайдёт?</p>
+                     </div>
+                    </div>
+                   </div><!----><!---->
+                  </div><!----><!---->
+                 </div><!--]--><!---->
+                 <div class="tm-article-presenter__meta" data-test-id="article-meta-links">
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Теги:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[golang]" class="tm-tags-list__link"><span>golang</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[go]" class="tm-tags-list__link"><span>go</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[scala]" class="tm-tags-list__link"><span>scala</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[java]" class="tm-tags-list__link"><span>java</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[.net]" class="tm-tags-list__link"><span>.net</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[functional+programming]" class="tm-tags-list__link"><span>functional programming</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[worse+is+better]" class="tm-tags-list__link"><span>worse is better</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%BC%D1%8B%D1%81%D0%BB%D0%B8+%D0%B2%D1%81%D0%BB%D1%83%D1%85]" class="tm-tags-list__link"><span>мысли вслух</span></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Хабы:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/companies/2gis/articles/" class="tm-hubs-list__link"><!--[--><span>Блог компании 2ГИС</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/go/" class="tm-hubs-list__link"><!--[--><span>Go</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/career/" class="tm-hubs-list__link"><!--[--><span>Карьера в IT-индустрии</span><!--]--></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                 </div><!----><!--]-->
+                </article><!--]-->
+               </div><!---->
+              </div>
+              <div style="" class="tm-article-sticky-panel" data-test-id="article-sticky-panel">
+               <div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons">
+                <div class="article-rating tm-data-icons__item" data-v-86aec4a7>
+                 <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-article votes-switcher" title="Всего голосов 35: ↑32 и ↓3" data-v-86aec4a7>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-upvote-button" title="Нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon" height="24" width="24">
+                    <title>
+                     Нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                  <div class="tm-votes-lever__score tm-votes-lever__score_appearance-article tm-votes-lever__score">
+                   <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_positive tm-votes-lever__score-counter" data-test-id="votes-score-counter">+34</span></span><!--]-->
+                  </div>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-downvote-button" title="Не нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon tm-votes-lever__icon_arrow-down" height="24" width="24">
+                    <title>
+                     Не нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                 </div><!--teleport start--><!--teleport end--><!---->
+                </div><!----><!---->
+                <button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon">
+                  <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                   <title>
+                    Добавить в закладки
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-favorite"></use>
+                  </svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">30</span></button>
+                <div class="tm-sharing tm-data-icons__item" title="Поделиться">
+                 <button class="tm-sharing__button" type="button">
+                  <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                   <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                  </svg></button><!--teleport start--><!--teleport end-->
+                </div>
+                <div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии">
+                 <a href="/ru/companies/2gis/articles/906052/comments/" class="tm-article-comments-counter-link__link" data-test-id="counter-comments"><!--[-->
+                  <svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24">
+                   <title>
+                    Комментарии
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                  </svg><span class="tm-article-comments-counter-link__value">37</span><!--]--></a><!---->
+                </div><!--[--><!--[--><!--[--><!----><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!---->
+               </div>
+              </div>
+             </div><!--[--><!--]-->
+             <div class="tm-article-presenter__footer">
+              <!--[--><!--[-->
+              <div class="tm-article-blocks">
+               <!----><!--[-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <!----><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-balanced">
+                 <!--[-->
+                 <div class="tm-article-author" data-test-id="article-author-info" data-async-called="true">
+                  <!--[--><!--[-->
+                  <div class="tm-article-author__company">
+                   <div class="tm-article-author__company-card">
+                    <div class="tm-company-snippet">
+                     <a href="/ru/companies/2gis/profile/" class="tm-company-snippet__logo-link">
+                      <div class="tm-entity-image">
+                       <img alt="" class="tm-entity-image__pic" height="40" src="//habrastorage.org/getpro/habr/company/867/84a/fc6/86784afc66498e5825d289df9f3f391b.jpg" width="40">
+                      </div></a>
+                     <div class="tm-company-snippet__info">
+                      <a href="/ru/companies/2gis/profile/" class="tm-company-snippet__title" data-test-id="company-title"><span>2ГИС</span></a>
+                      <div class="tm-company-snippet__description">
+                       Главные по городской навигации
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-article-author__buttons">
+                     <!----><!---->
+                    </div>
+                   </div><!---->
+                   <div class="tm-article-author__separator"></div>
+                  </div><!--]--><!--]-->
+                  <div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true">
+                   <div class="tm-user-card__info-container">
+                    <div class="tm-user-card__header">
+                     <div class="tm-user-card__header-data">
+                      <a href="/ru/users/xdCrafts/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" src="//habrastorage.org/getpro/habr/avatars/087/8c6/9be/0878c69befb4b3f7c3b032d5b07b656d.jpeg">
+                       </div></a>
+                      <div class="tm-user-card__meta">
+                       <div class="tm-counter-container karma" title=" 9 голосов " data-v-f7c0e283>
+                        <div class="tm-counter-container__header">
+                         <!--[-->
+                         <div class="karma-display positive" data-v-f7c0e283 data-v-7635202e>
+                          9
+                         </div><!----><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[-->
+                         <div class="karma-text" data-v-f7c0e283>
+                          Карма
+                         </div><!--teleport start--><!--teleport end--><!--]-->
+                        </div>
+                       </div>
+                       <div class="tm-counter-container" title="Рейтинг пользователя">
+                        <div class="tm-counter-container__header">
+                         <!--[--><!--[--><!--]-->
+                         <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                          <!---->
+                          <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score">
+                           <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">34.1</span></span><!--]-->
+                          </div><!---->
+                         </div><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info">
+                     <div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title">
+                      <!----><a href="/ru/users/xdCrafts/" class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article"> @xdCrafts</a><!---->
+                     </div>
+                     <p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Пользователь</p>
+                    </div>
+                   </div><!---->
+                   <div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons">
+                    <!---->
+                    <div class="tm-user-card__button">
+                     <div class="tm-button-follow tm-user-card__button-follow">
+                      <!---->
+                      <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+                     </div>
+                    </div><!---->
+                    <div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations">
+                     <svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16">
+                      <title>
+                       Отправить сообщение
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#mail"></use>
+                     </svg>
+                    </div><!---->
+                   </div><!---->
+                  </div>
+                  <div class="tm-article-author__user-contacts" data-test-id="author-contacts">
+                   <!----><!----><!---->
+                  </div>
+                 </div><!--]-->
+                </div><!--]--><!---->
+               </section><!----><!--[-->
+               <div class="banner-wrapper leaderboard tm-company-article__banner" style="--38f3d936:200px;--78a3cd06:auto;" data-v-f4bf0d24>
+                <!--[-->
+                <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="adfox-banner-placeholder leaderboard" data-v-12f7bcca>
+                  <div class="image loads" data-v-12f7bcca></div>
+                  <div class="lines" data-v-12f7bcca>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                  </div>
+                 </div><!----><!----><!---->
+                </div>
+                <div id="adfox_164725660339535756" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+               </div><!----><!--]--><!--]-->
+               <div class="tm-article-blocks__comments">
+                <div id="publication-comments" class="tm-article-page-comments">
+                 <div>
+                  <!--[-->
+                  <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                   <a href="/ru/companies/2gis/articles/906052/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments"><!--[-->
+                    <svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24">
+                     <title>
+                      Комментарии
+                     </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                    </svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 37 </span><!--]--></a><!---->
+                  </div><!--]-->
+                 </div>
+                </div>
+               </div><!--[--><!--[--><!--]-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <header class="tm-block__header tm-block__header tm-block__header_variant-borderless">
+                 <div class="tm-block__header-container">
+                  <h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]-->
+                 </div><!---->
+                </header><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim">
+                 <!--[--><!--[-->
+                 <div class="tm-tabs tm-tabs">
+                  <div class="">
+                   <!--[--><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]-->
+                  </div><!---->
+                 </div>
+                 <div class="similar-and-daily__tab-view">
+                  <div class="placeholder-wrapper">
+                   <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                   <div class="tm-placeholder-article-cards">
+                    <!--[-->
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div><!--]-->
+                   </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                  </div><!---->
+                 </div><!--]--><!--]-->
+                </div><!--]--><!---->
+               </section><!--[--><!--[-->
+               <div>
+                <div class="placeholder-wrapper">
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="tm-placeholder-promo">
+                  <div class="tm-placeholder-promo__header">
+                   <div class="tm-placeholder__line tm-placeholder__line_promo-title"></div>
+                  </div>
+                  <div class="tm-placeholder-promo__body">
+                   <div class="tm-placeholder-promo__posts">
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                   </div>
+                   <div class="tm-placeholder-promo__dots">
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                   </div>
+                  </div>
+                 </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                </div>
+               </div>
+               <div>
+                <div class="placeholder-wrapper">
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="tm-placeholder-inset tm-placeholder-salary">
+                  <div class="tm-placeholder-inset__header">
+                   <div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div>
+                  </div>
+                  <div class="tm-placeholder-salary__body">
+                   <div class="tm-placeholder-salary__text">
+                    <div class="tm-placeholder__line tm-placeholder__line_salary_average"></div>
+                    <div class="tm-placeholder-salary__description">
+                     <div class="tm-placeholder__line loads"></div>
+                     <div class="tm-placeholder__line loads"></div>
+                     <div class="tm-placeholder__line loads"></div>
+                     <div class="tm-placeholder__line loads"></div>
+                    </div>
+                   </div>
+                   <div class="tm-placeholder-salary__image loads"></div>
+                  </div>
+                  <div class="tm-placeholder-inset__footer tm-placeholder-inset__footer_salary">
+                   <div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div>
+                  </div>
+                 </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                </div>
+               </div><!--]--><!--]--><!----><!--[--><!--]--><!--]-->
+              </div><!--]--><!--]-->
+             </div>
+            </div><!--]--><!--]-->
+           </div>
+          </div>
+          <div class="tm-page__sidebar">
+           <!--[-->
+           <div class="tm-layout-sidebar">
+            <div class="tm-layout-sidebar__placeholder_initial"></div>
+            <div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;">
+             <!--[--><!--]--><!---->
+             <div class="tm-layout-sidebar__ads_initial tm-layout-sidebar__ads">
+              <div class="banner-wrapper half-page tm-layout-sidebar__banner tm-layout-sidebar__banner_top" style="--38f3d936:600px;--78a3cd06:auto;" data-v-f4bf0d24>
+               <!--[-->
+               <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="adfox-banner-placeholder half-page" data-v-12f7bcca>
+                 <div class="image loads" data-v-12f7bcca></div>
+                 <div class="lines" data-v-12f7bcca>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                 </div>
+                </div><!----><!----><!---->
+               </div>
+               <div id="adfox_164725680533065327" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+              </div>
+             </div><!--[-->
+             <section class="tm-block tm-block tm-block_spacing-bottom">
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Информация</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[-->
+               <div class="tm-company-basic-info">
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Сайт
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[--><a class="tm-company-basic-info__link" href="http://2gis.ru/" target="_blank">2gis.ru</a><!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Дата регистрации
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[--><time datetime="2008-08-09T07:43:03.000Z" title="2008-08-09, 11:43">9 августа 2008</time><!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Дата основания
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[--><time datetime="1999-04-24T20:00:00.000Z" title="1999-04-25, 00:00">25 апреля 1999</time><!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Численность
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[-->1 001–5 000 человек<!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Местоположение
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[-->Россия<!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Представитель
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[--><a href="/ru/users/NataliaZheltova/" class="tm-company-basic-info__link">Наталья Акберова</a><!--]-->
+                 </dd>
+                </dl>
+               </div><!--]-->
+              </div><!--]--><!---->
+             </section>
+             <div class="tm-company-widgets">
+              <!--[--><!--]-->
+             </div><!---->
+             <div></div><!--]-->
+             <div class="banner-wrapper medium-rectangle tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom" style="--38f3d936:250px;--78a3cd06:auto;" data-v-f4bf0d24>
+              <!--[-->
+              <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+               <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               <div class="adfox-banner-placeholder medium-rectangle" data-v-12f7bcca>
+                <div class="image loads" data-v-12f7bcca></div>
+                <div class="lines" data-v-12f7bcca>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                </div>
+               </div><!----><!----><!---->
+              </div>
+              <div id="adfox_164725691003361602" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+             </div>
+            </div>
+           </div><!--]-->
+          </div>
+         </div><!----><!--]-->
+        </div>
+       </div>
+      </main><!---->
+     </div>
+     <div class="tm-footer-menu">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer-menu__container">
+        <!--[-->
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Ваш аккаунт</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/companies/2gis/articles/906052/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/companies/2gis/articles/906052/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Разделы</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/articles/" class="footer-menu__item-link">Статьи</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link">Новости</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link">Хабы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link">Компании</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link">Авторы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link">Песочница</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Информация</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link">Устройство сайта</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link">Для авторов</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link">Для компаний</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link">Документы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Услуги</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]-->
+          </ul>
+         </div>
+        </div><!--]-->
+       </div><!--]-->
+      </div>
+     </div>
+     <div class="tm-footer">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer__container">
+        <!---->
+        <div class="tm-footer__social">
+         <!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Facebook
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Twitter
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            VK
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Telegram
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Youtube
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Яндекс Дзен
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use>
+          </svg></a><!--]-->
+        </div><!--teleport start--><!--teleport end-->
+        <button class="tm-footer__link"><!----> Настройка языка</button><a href="/ru/feedback/" class="tm-footer__link">Техническая поддержка</a>
+        <div class="tm-footer-copyright">
+         <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span>
+        </div>
+       </div><!--]-->
+      </div>
+     </div><!----><!--]-->
+    </div><!---->
+   </div>
+   <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"906052":{"id":"906052","timePublished":"2025-05-06T07:27:57+00:00","isCorporative":true,"lang":"ru","titleHtml":"Как функциональщик в Go ушёл… и не вернулся","leadData":{"textHtml":"\u003Cp\u003EХороших технических статей про Go было написано немало, и эта — не одна из них. Эта статья — графомания о моём субъективном и эмоциональном опыте перехода со Scala на Go.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cem\u003E\u003Csup\u003EРуководитель\u003C\u002Fsup\u003E\u003C\u002Fem\u003E\u003C\u002Fstrong\u003E\u003Cem\u003E\u003Csup\u003E: Хочешь техлидить новый проект?\u003C\u002Fsup\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cem\u003E\u003Csup\u003EЯ\u003C\u002Fsup\u003E\u003C\u002Fem\u003E\u003C\u002Fstrong\u003E\u003Cem\u003E\u003Csup\u003E: Да, конечно. А что за проект?\u003C\u002Fsup\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cem\u003E\u003Csup\u003EРуководитель\u003C\u002Fsup\u003E\u003C\u002Fem\u003E\u003C\u002Fstrong\u003E\u003Cem\u003E\u003Csup\u003E: Распределённые бэкенды на Go.\u003C\u002Fsup\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cem\u003E\u003Csup\u003EЯ\u003C\u002Fsup\u003E\u003C\u002Fem\u003E\u003C\u002Fstrong\u003E\u003Cem\u003E\u003Csup\u003E: Go? Но я же скалист-функциональщик…\u003C\u002Fsup\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cem\u003E\u003Csup\u003EЧуть позже\u003C\u002Fsup\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cem\u003E\u003Csup\u003EКоллега\u003C\u002Fsup\u003E\u003C\u002Fem\u003E\u003C\u002Fstrong\u003E\u003Cem\u003E\u003Csup\u003E: Слышал, что ты будешь техлидить другой проект — вы там тоже Scala завозить будете?\u003C\u002Fsup\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cem\u003E\u003Csup\u003EЯ\u003C\u002Fsup\u003E\u003C\u002Fem\u003E\u003C\u002Fstrong\u003E\u003Cem\u003E\u003Csup\u003E: Нет, будем писать на Go.\u003C\u002Fsup\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cem\u003E\u003Csup\u003EКоллега\u003C\u002Fsup\u003E\u003C\u002Fem\u003E\u003C\u002Fstrong\u003E\u003Cem\u003E\u003Csup\u003E: Ты что, бросаешь Scala и нашу тусовку?!\u003C\u002Fsup\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003EЭтот момент мне запомнился очень хорошо. Когда ты долго работаешь с каким-то языком, накапливаешь экспертность, нюансы, грабли, привыкаешь жить в его экосистеме — смена стека кажется чем-то болезненным. Будто ты уезжаешь в другой город и оставляешь старых друзей.\u003C\u002Fp\u003E\u003Cp\u003EДа, конечно же, язык — просто инструмент, а реальная компетенция — в теории, паттернах и опыте решения определённого рода задач, которые копятся за годы работы. Тяжело менять классы задач, но менять инструментарий гораздо легче...\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F93b\u002Fecd\u002F294\u002F93becd2949e1554e366014162e5b9029.png","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F93b\u002Fecd\u002F294\u002F93becd2949e1554e366014162e5b9029.png","fit":"cover","positionY":0,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"id":"735271","alias":"xdCrafts","fullname":null,"avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F087\u002F8c6\u002F9be\u002F0878c69befb4b3f7c3b032d5b07b656d.jpeg","speciality":null,"scoreStats":{"score":9,"votesCount":9},"rating":34.1,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"donationsMethod":null,"isInBlacklist":null,"careerProfile":null},"statistics":{"commentsCount":37,"favoritesCount":30,"readingCount":6570,"score":34,"votesCount":35,"votesCountPlus":32,"votesCountMinus":3},"hubs":[{"id":"5374","alias":"2gis","type":"corporative","title":"Блог компании 2ГИС","titleHtml":"Блог компании 2ГИС","isProfiled":false,"relatedData":null},{"id":"17748","alias":"go","type":"collective","title":"Go","titleHtml":"Go","isProfiled":true,"relatedData":null},{"id":"20740","alias":"career","type":"collective","title":"Карьера в IT-индустрии","titleHtml":"Карьера в IT-индустрии","isProfiled":false,"relatedData":null}],"flows":[{"id":"1","alias":"develop","title":"Разработка","titleHtml":"Разработка"},{"id":"3","alias":"management","title":"Менеджмент","titleHtml":"Менеджмент"}],"relatedData":{"vote":null,"unreadCommentsCount":0,"bookmarked":false,"canComment":false,"canEdit":false,"canViewVotes":false,"votePlus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"voteMinus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"canModerateComments":false,"trackerSubscribed":false,"emailSubscribed":false},"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EХороших технических статей про Go было написано немало, и эта — не одна из них. Эта статья — графомания о моём субъективном и эмоциональном опыте перехода со Scala на Go.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fcb4\u002Fa3f\u002F35f\u002Fcb4a3f35f735f7f83c81babd8c4ff666.png\" width=\"1920\" height=\"1080\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fcb4\u002Fa3f\u002F35f\u002Fcb4a3f35f735f7f83c81babd8c4ff666.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fcb4\u002Fa3f\u002F35f\u002Fcb4a3f35f735f7f83c81babd8c4ff666.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cem\u003E\u003Csub\u003EРуководитель\u003C\u002Fsub\u003E\u003C\u002Fem\u003E\u003C\u002Fstrong\u003E\u003Cem\u003E\u003Csub\u003E: Хочешь техлидить новый проект?\u003C\u002Fsub\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cem\u003E\u003Csub\u003EЯ\u003C\u002Fsub\u003E\u003C\u002Fem\u003E\u003C\u002Fstrong\u003E\u003Cem\u003E\u003Csub\u003E: Да, конечно. А что за проект?\u003C\u002Fsub\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cem\u003E\u003Csub\u003EРуководитель\u003C\u002Fsub\u003E\u003C\u002Fem\u003E\u003C\u002Fstrong\u003E\u003Cem\u003E\u003Csub\u003E: Распределённые бэкенды на Go.\u003C\u002Fsub\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cem\u003E\u003Csub\u003EЯ\u003C\u002Fsub\u003E\u003C\u002Fem\u003E\u003C\u002Fstrong\u003E\u003Cem\u003E\u003Csub\u003E: Go? Но я же скалист-функциональщик...\u003C\u002Fsub\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cem\u003E\u003Csub\u003EЧуть позже.\u003C\u002Fsub\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cem\u003E\u003Csub\u003EКоллега\u003C\u002Fsub\u003E\u003C\u002Fem\u003E\u003C\u002Fstrong\u003E\u003Cem\u003E\u003Csub\u003E: Слышал, что ты будешь техлидить другой проект — вы там тоже Scala завозить будете?\u003C\u002Fsub\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cem\u003E\u003Csub\u003EЯ\u003C\u002Fsub\u003E\u003C\u002Fem\u003E\u003C\u002Fstrong\u003E\u003Cem\u003E\u003Csub\u003E: Нет, будем писать на Go.\u003C\u002Fsub\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E\u003Cem\u003E\u003Csub\u003EКоллега\u003C\u002Fsub\u003E\u003C\u002Fem\u003E\u003C\u002Fstrong\u003E\u003Cem\u003E\u003Csub\u003E: Ты что, бросаешь Scala?!\u003C\u002Fsub\u003E\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003EЭтот момент мне запомнился очень хорошо. Когда ты долго работаешь с каким-то языком, накапливаешь экспертность, нюансы, грабли, привыкаешь жить в его экосистеме — смена стека кажется чем-то болезненным. Будто ты уезжаешь в другой город и оставляешь старых друзей.\u003C\u002Fp\u003E\u003Cp\u003EДа, конечно же, язык — просто инструмент, а реальная компетенция — в теории, паттернах и опыте решения определённого рода задач, которые копятся за годы работы. Тяжело менять классы задач, но менять инструментарий гораздо легче.\u003C\u002Fp\u003E\u003Ch3\u003EGo и моя первая реакция: раздражение\u003C\u002Fh3\u003E\u003Cp\u003EGo смог зарекомендовать себя как удобный и эргономичный инструмент, ориентированный на разработку веб-сервисов и инфраструктурных штук. На Go написаны инструменты, без которых сложно представить мир распределённых систем: Kubernetes, Docker, Istio, CockroachDB, Badger, Prometheus, VictoriaMetrics, Temporal, NATS. Меня всегда соблазняла мысль выкачать их репозитории к себе на машину и забуриться в их внутреннее устройство. Ведь что может быть интереснее распределённых систем и баз данных?\u003C\u002Fp\u003E\u003Cp\u003EНо всё равно долгое время меня отталкивала простота Go. Я несколько раз пробовал писать на нём, но каждый раз чувствовал, что меня держат за идиота. В мире, где языки развиваются стремительно, предлагают мощные системы типов и элегантные абстракции, Go выглядел упрямым и снисходительным к разработчику. Будто он не уважает разработчика и игнорирует весь прогресс за последние 30 лет. Дженериков на тот момент не было, обработка ошибок через какие-то \u003Ccode\u003Eif err != nil\u003C\u002Fcode\u003E, ручками надо писать простейшие вещи, а язык явно поощряет максимально приземлённый императивный подход.\u003C\u002Fp\u003E\u003Cp\u003EМне казалось, что будущее — в Haskell, Erlang, Smalltalk, Lisp. Там, где бóльшая выразительность и лучший контроль над абстракциями.\u003C\u002Fp\u003E\u003Ch3\u003E… и что-то поменялось\u003C\u002Fh3\u003E\u003Cp\u003EОднако чем гибче инструмент, тем больше ты тратишь времени и сил, чтобы придумать себе рамки. Без этого сложно управлять растущей сложностью решений.\u003C\u002Fp\u003E\u003Cdiv class=\"floating-image\"\u003E\u003Cfigure class=\"float full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F070\u002Fd7a\u002F3d9\u002F070d7a3d938a98a4666cd1bf98e656b7.png\" width=\"1120\" height=\"1080\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F070\u002Fd7a\u002F3d9\u002F070d7a3d938a98a4666cd1bf98e656b7.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F070\u002Fd7a\u002F3d9\u002F070d7a3d938a98a4666cd1bf98e656b7.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EБорьба с такой сложностью часто приносит удовольствие — и чувство собственной изобретательности. Но при этом ты теряешь фокус и забываешь, зачем вообще начал писать этот код. Как следствие, нередко на выходе получается то, про что можно сказать «ого, а так можно было?», но что точно не хочется поддерживать и как‑либо развивать в будущем.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003Cp\u003EПоэтому вскоре я понял простую вещь: сила в ограничениях.\u003C\u002Fp\u003E\u003Cp\u003EРаньше казалось, что если ты умеешь строить технически сложные системы, значит, ты хороший инженер. Но чем дальше, тем больше я видел другой тренд: хорошие инженеры не те, кто способен разобраться в хитросплетении моноидов и функторов, а те, кто может написать систему так, чтобы через полгода в ней было легко разбираться и адаптировать её под новые обстоятельства. \u003C\u002Fp\u003E\u003Cp\u003EИ Go про это.\u003C\u002Fp\u003E\u003Cp\u003EПервые недели работы с Go были странными. Я написал простой императивный код, без монад и фреймворков, и он просто сработал. Без архитектурной выверенности и слоев абстракции, но с нужным результатом.\u003C\u002Fp\u003E\u003Cdiv class=\"floating-image\"\u003E\u003Cfigure class=\"float full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F40f\u002F471\u002Fe30\u002F40f471e303f17696c869ebb3fbc74d4c.png\" width=\"1120\" height=\"1080\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F40f\u002F471\u002Fe30\u002F40f471e303f17696c869ebb3fbc74d4c.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F40f\u002F471\u002Fe30\u002F40f471e303f17696c869ebb3fbc74d4c.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EРовно в этот момент я ощутил свободу и удовольствие от того, что делаю. Я могу просто писать код и решать свою задачу, не думая о том, как работают 20 слоёв абстракций между мной и отправкой запроса в базу данных или в соседний сервис. Я больше не ломаю голову, какие абстракции использовать. Нет ощущения выбора «из десяти правильных способов». В Go код будто сам говорит, каким ему быть.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003Ch2\u003EGo: философия прагматизма\u003C\u002Fh2\u003E\u003Cp\u003EЕсть \u003Ca href=\"https:\u002F\u002Fwww.dreamsongs.com\u002FRiseOfWorseIsBetter.html\"\u003Eотличная статья\u003C\u002Fa\u003E (\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fcompanies\u002Fotus\u002Farticles\u002F597427\u002F\"\u003Eперевод\u003C\u002Fa\u003E), в которой сравниваются два принципиально разных инженерных подхода:\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EThe right thing\u003C\u002Fstrong\u003E — о том, что простота интерфейсов важнее простоты реализации, корректность поведения обязательна во всех возможных сценариях, усложнение интерфейса допустимо для сохранения консистентности дизайна. Один из эталонных примеров — Haskell, девиз которого — фраза-мем “Avoid success at all costs”. Нет, тут не про то, чтобы всеми силами избегать успеха, а про то, чтобы не идти на компромисс с тем, как правильно.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EWorse is better \u003C\u002Fstrong\u003Eделает ставку на простоту реализации. Интерфейс может быть неидеальным — главное, чтобы код был прост в поддержке. Корректность — желательна, но допустимы компромиссы. Консистентность — хорошо, но не всегда обязательна. Главное — закрыть большинство ситуаций минимальными усилиями. Worse-is-better сильно пересекается с принципом Парето и предпочитает простую 20% реализацию 80% релевантных кейсов. И Go — целиком и полностью язык про это.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003EПо большому счёту, Go вообще не претендует на умность и красоту. Он про: «Сделай дело. Просто напиши код. Возможно, потом исправишь, но не надо превращать его в искусство ради искусства».\u003C\u002Fp\u003E\u003Cp\u003EНесколько примеров:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EОбработка ошибок. В других языках у тебя исключения, \u003Ccode\u003Etry\u002Fcatch\u003C\u002Fcode\u003E, иногда монады (\u003Ccode\u003EEither\u003C\u002Fcode\u003E или \u003Ccode\u003ETry\u003C\u002Fcode\u003E). В Go у тебя \u003Ccode\u003Eif err != nil\u003C\u002Fcode\u003E. И всё — максимально простая концепция с точки зрения реализации языка, закрывающая 80% потребностей. Сначала ты думаешь: «Да вы шутите?», потом смиряешься, а потом вообще перестаёшь об этом думать — потому что это просто работает.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EАсинхронщина и планировщик. В Go не стали тащить концепцию «окрашивания функций» (подробнее — \u003Ca href=\"https:\u002F\u002Fjournal.stuffwithstuff.com\u002F2015\u002F02\u002F01\u002Fwhat-color-is-your-function\u002F\"\u003Eстатья\u003C\u002Fa\u003E и \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Farticles\u002F466337\u002F\"\u003Eперевод\u003C\u002Fa\u003E), когда функции делятся на синхронные и асинхронные, и первые могут вызывать только себе подобных. В других языках это часто приводит к «заражению» кода асинхронностью и дублированию API для синхронных и асинхронных вариантов. В Go же любая функция может быть вызвана как синхронно, так и асинхронно, что упрощает понимание кода и избавляет архитектуру от лишней сложности, связанной с async\u002Fawait-логикой. Взамен разработчикам нужно разбираться в нюансах работы горутин, каналов и примитивов синхронизации, но эти знания требуются не так часто и не усложняют основную часть кода.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Ch2\u003EА как я приспособился?\u003C\u002Fh2\u003E\u003Cp\u003EЯ всегда считал себя человеком, который ценит функциональный стиль. Иммутабельность, безопасная работа с состоянием, никаких побочных эффектов, чистые функции, простота — вот это вот всё. И мне казалось, что Go — это чистый императив, и ради него мне придётся отказаться от всего, что я любил в Scala.\u003C\u002Fp\u003E\u003Cp\u003EНеожиданно для себя я нашёл в Go знакомые подходы, во многом похожие на Rust.\u003C\u002Fp\u003E\u003Cp\u003EВо-первых — иммутабельность.\u003C\u002Fp\u003E\u003Cp\u003EВ Rust есть концепция владения (ownership), которая заставляет разработчика принять явное решение: разрешать функции менять переданный параметр или нет, передать право владения значением или не передавать. Но Rust — это про the right thing. В Go мы же про worse-is-better. Здесь нет жёстких гарантий, но можно придумать практику: если структура передаётся по значению, то это негласное обещание — не менять её внутри функции. Если функция возвращает значение, а не указатель, то она отдаёт свой результат целиком и полностью во владение получателя, гарантируя, что никто другой не будет менять это значение.\u003C\u002Fp\u003E\u003Cp\u003EПочему сам язык не может дать таких гарантий? Потому что даже при передаче структуры по значению, внутри неё могут быть ссылочные поля — например, слайсы. А они всё ещё остаются общими: копируется указатель, но не содержимое. Так что функция может изменить данные «по ссылке», нарушив идею иммутабельности.\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Efunc PureFunc(value T) U\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EСомнительно, но окей. Мы получили способ сказать другим разработчикам: «Эти данные неизменны, не трогайте их». Чистые функции по договорённости на месте, и это уже замечательно.\u003C\u002Fp\u003E\u003Cp\u003EВторая идея касается «окраски функций».\u003C\u002Fp\u003E\u003Cp\u003EДа, её отсутствие — это плюс. Но всё же иногда хочется явно отделять функции, которые делают IO и работают с внешним миром. Это помогает держать в голове архитектурные границы. И это тоже можно получить через договорённость и конвенцию. В стандартной библиотеке Go есть замечательный \u003Ccode\u003Econtext.Context\u003C\u002Fcode\u003E, который как раз и нужен для обработки таймаутов и отмены IO-операций.\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Efunc IOFunc(ctx context.Context, val T) (U, error)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EЯ это осознал только спустя некоторое время. Но когда понял, у меня щёлкнуло: в Go я всё ещё могу писать код, который легко тестируется, которым просто оперировать, с чётким разграничением между чистыми и функциями с побочными эффектами — и всё это делать без монад и tagless final (со всем уважением к ним).\u003C\u002Fp\u003E\u003Cp\u003EВот тогда Go окончательно меня убедил.\u003C\u002Fp\u003E\u003Ch2\u003EНо есть нюанс ...\u003C\u002Fh2\u003E\u003Cp\u003EGo действительно простой и понятный — на первый взгляд. Но есть тонкости, в которых интуиция новичка легко подведёт. Например, слайсы, мапы и каналы в Go — ссылочные типы. В их объявлении это не отображается, и об этом нужно просто помнить. Как следствие: из nil-мапы можно получить значение, но попытка записать в неё вызовет панику.\u003C\u002Fp\u003E\u003Cp\u003EДа, такие вещи прописаны в документации, но это часто не помогает. Всё-таки мы лучше всего учимся через взаимодействие и ошибки.\u003C\u002Fp\u003E\u003Cdiv class=\"floating-image\"\u003E\u003Cfigure class=\"float full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fcaf\u002F033\u002Ff25\u002Fcaf033f25644ab441f9535e84bbd8503.png\" width=\"1120\" height=\"1080\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fcaf\u002F033\u002Ff25\u002Fcaf033f25644ab441f9535e84bbd8503.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fcaf\u002F033\u002Ff25\u002Fcaf033f25644ab441f9535e84bbd8503.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EДругой пример боли: это если тебе нужно построить хоть сколько-нибудь нетривиальный асинхронный пайплайн обработки данных на каналах. Горутины и каналы — мощный инструмент. Но вместе с ними приходят сложности: утечки, гонки, непредсказуемая синхронизация. А если добавить WaitGroup, Mutex и context — становится совсем непросто. Всё это требует дисциплины, иначе легко наступить на грабли. \u003C\u002Fp\u003E\u003Cp\u003EGo даёт простые примитивы конкурентности, но готовить их правильно — задачка не из лёгких. Редко когда можно увидеть действительно полностью корректную реализацию алгоритма, задействующего context.Context, sync.WaitGroup, sync.Mutex и несколько каналов для обработки данных и агрегации ошибок.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003Cp\u003EГлавная сила Go — в отсутствии магии и абстракций. Но от разработчика требуется зрелость.\u003C\u002Fp\u003E\u003Ch2\u003EПросто попробуй (возможно, ещё раз)\u003C\u002Fh2\u003E\u003Cp\u003EНедавно я попробовал снова запустить проект на Java и Spring. Зашёл на \u003Ca href=\"http:\u002F\u002Fstart.spring.io\"\u003Estart.spring.io\u003C\u002Fa\u003E, создал скелет, поднял всё у себя на машине. JVM там уже давно не было, пришлось повозиться. И уже в процессе я понял — продолжать не хочется. Go успел меня избаловать быстрой обратной связью. От идеи до работающего результата — всего пара шагов: простой запуск, моментальная компиляция, отсутствие лишних абстракций.\u003C\u002Fp\u003E\u003Cp\u003EНадо ли срочно всё бросать и уходить в Go? Конечно, нет, любая смена инструмента должна быть осмысленной. Но если ты работаешь с Java или .NET — просто попробуй. Не подходи к этому с позиции «Что здесь не так?», а просто дай себе время привыкнуть, почувствовать, как меняется твой стиль работы.\u003C\u002Fp\u003E\u003Cp\u003EДля меня Go стал языком, который освободил голову от лишнего. Он помог мне сосредоточиться на архитектуре, продуктах, бизнес-логике, не тратя ресурс на борьбу с языком.\u003C\u002Fp\u003E\u003Cp\u003EВ Go я перестал усложнять. Ушли лишние слои, мысли стали яснее. Я всё ещё люблю функциональное программирование. Но Go помогает сосредоточиться на главном: создавать ценность и не мешать себе это делать.\u003C\u002Fp\u003E\u003Cp\u003EМожет быть, тебе тоже зайдёт?\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"golang"},{"titleHtml":"go"},{"titleHtml":"scala"},{"titleHtml":"java"},{"titleHtml":".net"},{"titleHtml":"functional programming"},{"titleHtml":"worse is better"},{"titleHtml":"мысли вслух"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F93b\u002Fecd\u002F294\u002F93becd2949e1554e366014162e5b9029.png","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F93b\u002Fecd\u002F294\u002F93becd2949e1554e366014162e5b9029.png","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fcompanies\\\u002F2gis\\\u002Farticles\\\u002F906052\\\u002F\"},\"headline\":\"Как функциональщик в Go ушёл… и не вернулся\",\"datePublished\":\"2025-05-06T10:27:57+03:00\",\"dateModified\":\"2025-05-07T00:53:57+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"xdCrafts\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Хороших технических статей про Go было написано немало, и эта &mdash; не одна из них. Эта статья &mdash; графомания о моём субъективном и эмоциональном опыте перехода со Sca...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fcompanies\\\u002F2gis\\\u002Farticles\\\u002F906052\\\u002F#post-content-body\",\"about\":[\"c_2gis\",\"h_go\",\"h_career\",\"f_develop\",\"f_management\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F906052\\\u002F82338fbd6cf08b0d3408046ce836f059\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fcb4\\\u002Fa3f\\\u002F35f\\\u002Fcb4a3f35f735f7f83c81babd8c4ff666.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F070\\\u002Fd7a\\\u002F3d9\\\u002F070d7a3d938a98a4666cd1bf98e656b7.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F40f\\\u002F471\\\u002Fe30\\\u002F40f471e303f17696c869ebb3fbc74d4c.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fcaf\\\u002F033\\\u002Ff25\\\u002Fcaf033f25644ab441f9535e84bbd8503.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F93b\\\u002Fecd\\\u002F294\\\u002F93becd2949e1554e366014162e5b9029.png\"]}","metaDescription":"Хороших технических статей про Go было написано немало, и эта — не одна из них. Эта статья — графомания о моём субъективном и эмоциональном опыте перехода со Scala на Go. Руководитель : Хочешь...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":{"status":true,"reason":null},"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"hasPinnedComments":false,"format":"opinion","banner":null,"multiwidget":null,"multiwidgetUuid":null,"readingTime":7,"complexity":"medium","isEditorial":false,"allowedFeatures":{"isTestTargetAllow":true}}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"postReasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"viewedPosts":[],"myFeedFilter":{"complexity":"all","score":"all","types":["articles","posts","news"]},"myFeedIsApplyFilters":false,"myFeedIsForce":false,"karma":{"userReasonsList":null}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":""},"comments":{"articleComments":{},"articlePinnedComments":{},"searchCommentsResults":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":"","idempotenceKey":""}},"companies":{"companyRefs":{"2gis":{"alias":"2gis","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fcompany\u002F867\u002F84a\u002Ffc6\u002F86784afc66498e5825d289df9f3f391b.jpg","titleHtml":"2ГИС","descriptionHtml":"Главные по городской навигации","relatedData":null,"statistics":{"subscribersCount":133711,"rating":156.32,"invest":null,"postsCount":265,"threadsCount":3,"newsCount":10,"vacanciesCount":23,"employeesCount":126,"careerRating":null},"foundationDate":{"year":"1999","month":"04","day":"25"},"location":{"city":{"id":"447315","title":"Новосибирск"},"region":{"id":"1906","title":"Новосибирская обл."},"country":{"id":"168","title":"Россия"}},"siteUrl":"http:\u002F\u002F2gis.ru\u002F","staffNumber":"1 001–5 000 человек","registrationDate":"2008-08-09T07:43:03+00:00","representativeUser":{"alias":"NataliaZheltova","fullname":"Наталья Акберова"},"contacts":[],"settings":{"analyticsSettings":[{"type":"ym","trackingId":"96159251"}],"branding":null,"status":"active","isStartup":false,"hasActivePolls":false,"shouldShowHabrAds":true},"metadata":{"titleHtml":"2ГИС, Новосибирск - Главные по городской навигации с 25 апреля 1999 г.","title":"2ГИС, Новосибирск - Главные по городской навигации с 25 апреля 1999 г.","keywords":["2гис","тестирование","qa automation","qa","локаторы","shift-left"],"descriptionHtml":"265 статей от авторов компании 2ГИС","description":"265 статей от авторов компании 2ГИС"},"aDeskSettings":null,"careerAlias":"2gis","schoolAlias":null}},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"multiwidgets":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"multiwidgetLoading":false,"vacancies":{},"companiesGalleries":{},"companiesBanners":{},"companiesLandingVacancies":{},"companiesTechnologies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null,"jivoStatus":0,"adminNotifications":null,"availableInvitesCount":{}},"companyAdd":{"currentStep":"","stepsData":{},"uncompletedSteps":[],"isStepLoading":true,"isStepCommitting":false,"isInitialized":false,"agreementContent":""},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"pagesCount":0},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":true},"fixedBanner":{"isArticleStickyPanelVisible":false,"isArticleStickyPanelAtTheBottom":false,"isFixedBannerVisible":false,"isStickyPanelIconsHidden":false},"flows":{"updates":{}},"global":{"isPwa":false,"device":"desktop","isHabrCom":true,"requestId":"15c67c8c404a3cc50cd38997db388b54"},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"welcomePage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"query":{},"pathname":"\u002Fru\u002Fcompanies\u002F2gis\u002Farticles\u002F906052\u002F","path":"\u002Fru\u002Fcompanies\u002F2gis\u002Farticles\u002F906052\u002F","href":"\u002Fru\u002Fcompanies\u002F2gis\u002Farticles\u002F906052\u002F"}},"me":{"user":null,"uuid":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null,"userUpdates":{"feeds":{"newPostsCount":null,"newThreadsCount":null,"newNewsCount":null,"newCount":null},"conversationUnreadCount":0},"features":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"onboarding":{"currentStep":null,"stepsData":{},"stepsErrors":{},"completedSteps":[],"isStepCommitting":false,"isCommitDisabled":true},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{"salary":"project-block-company-article"}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null,"sticker":null},"publicationStatistics":{"statsInfo":{},"statsFunnels":{},"statsGraph":{},"defaultSuggest":{},"suggest":{},"timeTracker":{},"isTrackingActivity":false,"isUserActive":true,"otherPublicationStats":{}},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":true,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"stories":{"stories":null},"technotext":{"years":[],"technotextDocForNominees":null,"technotextDocForWinners":null,"technotextInfo":{},"technotextInfoLoading":false,"technotextWinners":{},"technotextWinnersLoading":false},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"userVotes":{"karmaVotesList":[],"karmaVotesPagesCount":null,"karmaVotesListLoading":false,"commentsVotesList":[],"commentsVotesPagesCount":null,"commentsVotesListLoading":false,"postsVotesList":[],"postsVotesPagesCount":null,"postsVotesListLoading":false,"userVotesList":[],"userVotesPagesCount":null,"userVotesListLoading":false},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"notificationsLoading":false,"notificationsList":[],"notificationsPageCount":0,"pendingMarkNotificationsRead":[],"publicationsLoading":true,"publicationsList":[],"publicationsPageCount":0,"pendingDeletePublications":false,"pendingMarkPublicationsRead":false},"events":{"eventRefs":{},"eventIds":[],"pagesCount":0,"categories":[],"cities":[],"actualEvents":null,"currentEvent":null,"eventsFilter":{"city":"all","timeStarted":null,"timeEnded":null}},"wysiwyg":{"WYSIWYGRulesRefs":null},"refs":{"specializationRefs":[]},"hint":{"hints":{}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script>
+   <script src="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" defer></script>
+   <script src="https://assets.habr.com/habr-web/js/app.58b8c457.js" defer></script>
+  </div>
+  <div id="overlays">
+   <!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor-->
+  </div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S28W1WC23F"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  </script>
+  <script type="text/javascript">
+      window.addEventListener('load', function () {
+        setTimeout(() => {
+          const img = new Image();
+          img.src = 'https://vk.com/rtrg?p=VK-RTRG-421343-57vKE';
+        }, 0);
+      });
+    </script>
+ </body>
+</html>

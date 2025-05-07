@@ -1,0 +1,1623 @@
+<!doctype html>
+<html lang="ru">
+ <head>
+  <title>Новый ЕМИСС 2.0 со сводными таблицами, API и погодой? / Хабр</title>
+  <meta property="fb:app_id" content="444736788986613">
+  <meta property="fb:pages" content="472597926099084">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@habr_com">
+  <meta property="og:site_name" content="Хабр">
+  <link href="https://habr.com/ru/rss/post/907124/?fl=ru" type="application/rss+xml" title rel="alternate" name="rss">
+  <link href="https://habr.com/ru/articles/907124/" rel="canonical" data-hid="e3fa780">
+  <link rel="image_src" href="https://habrastorage.org/getpro/habr/upload_files/173/0ec/d9d/1730ecd9d4685ddf0437e1cc647b8766.png" data-hid="2a79c45">
+  <meta property="og:title" content="Новый ЕМИСС 2.0 со сводными таблицами, API и погодой?">
+  <meta name="twitter:title" content="Новый ЕМИСС 2.0 со сводными таблицами, API и погодой?">
+  <meta name="aiturec:title" content="Новый ЕМИСС 2.0 со сводными таблицами, API и погодой?">
+  <meta name="description" content="Привет, Хабр! Около года назад мне пришла странная идея: а что, если сделать новую версию ЕМИСС, хранилища российской статистики, чтобы наконец-то было удобно сводить данные. А то постоянно...">
+  <meta itemprop="description" content="Привет, Хабр! Около года назад мне пришла странная идея: а что, если сделать новую версию ЕМИСС, хранилища российской статистики, чтобы наконец-то было удобно сводить данные. А то постоянно...">
+  <meta property="og:description" content="Привет, Хабр! Около года назад мне пришла странная идея: а что, если сделать новую версию ЕМИСС, хранилища российской статистики, чтобы наконец-то было удобно сводить данные. А то постоянно...">
+  <meta name="twitter:description" content="Привет, Хабр! Около года назад мне пришла странная идея: а что, если сделать новую версию ЕМИСС, хранилища российской статистики, чтобы наконец-то было удобно сводить данные. А то постоянно...">
+  <meta property="aiturec:description" content="Привет, Хабр! Около года назад мне пришла странная идея: а что, если сделать новую версию ЕМИСС, хранилища российской статистики, чтобы наконец-то было удобно сводить данные. А то постоянно...">
+  <meta itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/173/0ec/d9d/1730ecd9d4685ddf0437e1cc647b8766.png">
+  <meta property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/173/0ec/d9d/1730ecd9d4685ddf0437e1cc647b8766.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/173/0ec/d9d/1730ecd9d4685ddf0437e1cc647b8766.png">
+  <meta name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/173/0ec/d9d/1730ecd9d4685ddf0437e1cc647b8766.png">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/173/0ec/d9d/1730ecd9d4685ddf0437e1cc647b8766.png?format=vk">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/173/0ec/d9d/1730ecd9d4685ddf0437e1cc647b8766.png?format=vk">
+  <meta property="aiturec:item_id" content="907124">
+  <meta property="aiturec:datetime" content="2025-05-05T18:21:39.000Z">
+  <meta content="https://habr.com/ru/articles/907124/" property="og:url">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="keywords" content="ЕМИСС, статистика, StatKit, росстат">
+  <script type="application/ld+json" data-hid="1e0f0a2">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/articles\/907124\/"},"headline":"Новый ЕМИСС 2.0 со сводными таблицами, API и погодой?","datePublished":"2025-05-05T21:21:39+03:00","dateModified":"2025-05-06T00:22:24+03:00","author":{"@type":"Person","name":"create_your_view"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"Привет, Хабр! Около года назад мне пришла странная идея: а что, если сделать новую версию ЕМИСС, хранилища российской статистики, чтобы наконец-то было удобно св...","url":"https:\/\/habr.com\/ru\/articles\/907124\/#post-content-body","about":["h_statistics","h_webdev","h_web_design","f_develop","f_design","f_popsci"],"image":["https:\/\/habr.com\/share\/publication\/907124\/f82217e905a2d0907cee4a4d208a2bf2\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/173\/0ec\/d9d\/1730ecd9d4685ddf0437e1cc647b8766.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/260\/e1e\/47d\/260e1e47d295758681166968dbccae77.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/b7d\/1b0\/ac1\/b7d1b0ac1b96db21abd74177a655cdd1.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/f7a\/2c0\/481\/f7a2c0481769a539d483c32a6c94493d.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/a75\/899\/a35\/a75899a356037e32c91ba371f8736b38.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/285\/db4\/457\/285db4457768e59aa7cf7256d39455c3.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/274\/d2e\/4e0\/274d2e4e065a917517ff270d83644d65.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/460\/653\/ccf\/460653ccfac57a03279da480ce6a8018.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/4a0\/81d\/4c0\/4a081d4c03c89d1934508c733a5bf5c4.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/491\/368\/c7c\/491368c7ce7c00e806c21720dbf782cf.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/dbd\/543\/46a\/dbd54346adf58602d8c3ffd91de60076.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/f9e\/c84\/fe7\/f9ec84fe7e5705e0d61afc9cc165a735.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/c41\/1c7\/a29\/c411c7a29e974085e8e7a66887f393ce.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/0ca\/844\/100\/0ca844100aec07bd0cd752530980a690.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/301\/1ee\/7ed\/3011ee7edc4e4b4683e9a57cbba5bcb5.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/33f\/ff4\/819\/33fff4819c6e9c29532e05d7dbb44250.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/e39\/dd1\/f3b\/e39dd1f3b977aedb2fff395175c3fd0c.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/c0a\/148\/7a8\/c0a1487a8bc1d44d538d559ca157e89d.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/a75\/32a\/bbd\/a7532abbd1366cb8bb9f6f37753237cb.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/d0b\/0c0\/974\/d0b0c09746fc8b88654722479d397a75.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/bc4\/b81\/4e9\/bc4b814e9e2b1fa08b76020f39293910.png"]}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1,user-scalable=0">
+  <meta name="referrer" content="unsafe-url">
+  <style>
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmojLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvk4jLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmYjLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" as="style" media="(prefers-color-scheme: light)">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" as="style" media="(prefers-color-scheme: dark)">
+  <link id="light-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" media="(prefers-color-scheme: light)">
+  <link id="dark-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" media="(prefers-color-scheme: dark)">
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.635b6c39236ebd33fa716c71ab0131a0.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script>
+  <style>
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+    </style>
+  <meta name="habr-version" content="2.241.0">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44">
+  <meta name="msapplication-TileColor" content="#629FBC">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png">
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png">
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg">
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest">
+  <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
+  <script>window.yaContextCb = window.yaContextCb || []</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.8599692f.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.58b8c457.js" as="script">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.8599692f.css">
+ </head>
+ <body>
+  <div id="mount">
+   <div id="app">
+    <div class="tm-layout__wrapper">
+     <!--[--><!---->
+     <div></div><!---->
+     <header class="tm-header" data-test-id="header">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-header__container">
+        <!----><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/">
+          <svg class="tm-svg-img tm-header__icon" height="16" width="16">
+           <title>
+            Хабр
+           </title><use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+          </svg></a><span style="display:none;" class="tm-header__beta-sign">β</span></span><!--[-->
+        <div class="tm-dropdown tm-header__projects">
+         <div class="tm-dropdown__head">
+          <!--[-->
+          <button class="tm-header__dropdown-toggle">
+           <svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16">
+            <title>
+             Открыть список
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#arrow-down"></use>
+           </svg></button><!--]-->
+         </div><!---->
+        </div><a href="/ru/sandbox/start/" class="tm-header__become-author-btn">Как стать автором</a>
+        <div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature">
+         <!---->
+        </div><!----><!--]--><!---->
+       </div><!--]-->
+      </div>
+     </header>
+     <div class="tm-layout">
+      <div class="tm-page-progress-bar"></div>
+      <div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true">
+       <div class="tm-page-width">
+        <!--[-->
+        <div class="tm-base-layout__header-wrapper">
+         <div class="tm-main-menu">
+          <div class="tm-main-menu__section">
+           <nav class="tm-main-menu__section-content">
+            <!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]-->
+           </nav>
+          </div>
+         </div>
+         <div class="tm-header-user-menu tm-base-layout__user-menu">
+          <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button">
+           <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24">
+            <title>
+             Поиск
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#search"></use>
+           </svg></a><!----><!---->
+          <div class="tm-header-user-menu__item tm-header-user-menu__write">
+           <div>
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Написать публикацию
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#write"></use>
+            </svg>
+           </div><!---->
+          </div><!--[-->
+          <div class="tm-header-user-menu__item">
+           <button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings">
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Настройки
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#page-settings"></use>
+            </svg></button>
+          </div><a href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/articles/907124/&amp;hl=ru" rel="nofollow" class="tm-header-user-menu__item"><!--[-->
+           <button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!----><!--teleport start--><!--teleport end--><!---->
+         </div>
+        </div><!--]-->
+       </div>
+      </div><!---->
+      <div class="tm-page-width">
+       <!--[--><!--]-->
+      </div>
+      <main class="tm-layout__container">
+       <div class="tm-page" hl="ru" data-async-called="true" style="--5ab2e5a8:16px;--44c4f6f6:100%;--45ba7a3b:0;">
+        <div class="tm-page-width">
+         <!--[--><!---->
+         <div class="tm-page__wrapper">
+          <div class="tm-page__main_has-sidebar tm-page__main">
+           <div class="pull-down">
+            <!---->
+            <div class="pull-down__header" style="height:0px;">
+             <div class="pull-down__content" style="bottom:10px;">
+              <svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24">
+               <title>
+                Обновить
+               </title><use xlink:href="/img/megazord-v28.7909a852..svg#pull-arrow"></use>
+              </svg>
+             </div>
+            </div><!--[--><!--[--><!---->
+            <div class="tm-article-presenter">
+             <!--[--><!--]-->
+             <div class="tm-article-presenter__body" data-test-id="article-body">
+              <div class="tm-misprint-area">
+               <div class="tm-misprint-area__wrapper">
+                <!--[-->
+                <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                 <!--[-->
+                 <div class="tm-article-presenter__header">
+                  <!--[--><!--]-->
+                  <div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet">
+                   <!--[--><!--]-->
+                   <div class="tm-article-snippet__meta-container">
+                    <div class="tm-article-snippet__meta">
+                     <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/create_your_view/" class="tm-user-info__userpic" data-test-id="user-info-pic" title="create_your_view">
+                       <div class="tm-entity-image">
+                        <!--[--><img alt="" class="tm-entity-image__pic" height="24" src="https://assets.habr.com/habr-web/img/avatars/125.png" width="24"><!--]-->
+                       </div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a href="/ru/users/create_your_view/" class="tm-user-info__username">create_your_view <!----></a><!--[--><span class="tm-article-datetime-published"><time datetime="2025-05-05T18:21:39.000Z" title="2025-05-05, 21:21">5 мая в 21:21</time></span><!--]--></span></span>
+                    </div><!---->
+                   </div>
+                   <h1 class="tm-title tm-title_h1" lang="ru" data-test-id="articleTitle"><span>Новый ЕМИСС 2.0 со сводными таблицами, API и погодой?</span></h1>
+                   <div class="tm-article-snippet__stats" data-test-id="articleStats">
+                    <div class="tm-article-complexity tm-article-complexity_complexity-medium">
+                     <span class="tm-svg-icon__wrapper tm-article-complexity__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Уровень сложности
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#complexity-medium"></use>
+                      </svg></span><span class="tm-article-complexity__label">Средний</span>
+                    </div>
+                    <div class="tm-article-reading-time">
+                     <span class="tm-svg-icon__wrapper tm-article-reading-time__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Время на прочтение
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#clock"></use>
+                      </svg></span><span class="tm-article-reading-time__label">12 мин</span>
+                    </div><span class="tm-icon-counter tm-data-icons__item">
+                     <svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24">
+                      <title>
+                       Количество просмотров
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-views"></use>
+                     </svg><span class="tm-icon-counter__value" title="786">786</span></span>
+                   </div>
+                   <div class="tm-publication-hubs__container" data-test-id="articleHubsList">
+                    <div class="tm-publication-hubs">
+                     <!--[--><span class="tm-publication-hub__link-container"><a href="/ru/hubs/statistics/" class="tm-publication-hub__link"><!--[--><span>Статистика в IT</span><!----><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/webdev/" class="tm-publication-hub__link"><!--[--><span>Веб-разработка</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/web_design/" class="tm-publication-hub__link"><!--[--><span>Веб-дизайн</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><!--]-->
+                    </div>
+                   </div>
+                   <div class="tm-article-labels" data-test-id="articleLabels">
+                    <div class="tm-article-labels__container">
+                     <div class="tm-publication-label tm-publication-label_variant-tutorial">
+                      <span>Туториал</span>
+                     </div><!--[--><!--]-->
+                    </div>
+                   </div><!----><!---->
+                  </div>
+                 </div><!--[--><!---->
+                 <div class="tm-article-body" data-gallery-root lang="ru">
+                  <div>
+                   <!--[--><!--]-->
+                  </div>
+                  <div id="post-content-body">
+                   <div>
+                    <div class="article-formatted-body article-formatted-body article-formatted-body_version-2">
+                     <div xmlns="http://www.w3.org/1999/xhtml">
+                      <p>Привет, Хабр! Около года назад мне пришла странная идея: а что, если сделать новую версию ЕМИСС, хранилища российской статистики, чтобы наконец-то было удобно сводить данные. А то постоянно сопоставлять несколько показателей из множества Excel файлов – сущий ад. И вот уже год прошел с момента создания и написания первой версии и сайта, и <a href="https://habr.com/ru/articles/812123/" rel="noopener noreferrer nofollow">статьи</a> (недавно был небольшой <a href="https://habr.com/ru/posts/902254/" rel="noopener noreferrer nofollow">пост</a>).</p>
+                      <h3>Что нового теперь в созданном приложении StatKit?</h3>
+                      <p><strong>Обновление поиска: </strong>теперь поиск понимает и семантику за счет векторизации и сортировки по косинусной близости:</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/173/0ec/d9d/1730ecd9d4685ddf0437e1cc647b8766.png" alt="Поиск показателей" title="Поиск показателей" width="1919" height="1025" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/173/0ec/d9d/1730ecd9d4685ddf0437e1cc647b8766.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/173/0ec/d9d/1730ecd9d4685ddf0437e1cc647b8766.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Поиск показателей
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p><strong>Добавлено несколько фильтров для поиска:</strong> фильтр по справочникам, по единицам измерения и по временным границам данных в годах:</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/260/e1e/47d/260e1e47d295758681166968dbccae77.png" alt="Фильтр по годам" title="Фильтр по годам" width="625" height="288" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/260/e1e/47d/260e1e47d295758681166968dbccae77.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/260/e1e/47d/260e1e47d295758681166968dbccae77.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Фильтр по годам
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/b7d/1b0/ac1/b7d1b0ac1b96db21abd74177a655cdd1.png" alt="Фильтр по справочникам" title="Фильтр по справочникам" width="630" height="613" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/b7d/1b0/ac1/b7d1b0ac1b96db21abd74177a655cdd1.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/b7d/1b0/ac1/b7d1b0ac1b96db21abd74177a655cdd1.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Фильтр по справочникам
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/f7a/2c0/481/f7a2c0481769a539d483c32a6c94493d.png" alt="Фильтр по единицам измерения" title="Фильтр по единицам измерения" width="629" height="642" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/f7a/2c0/481/f7a2c0481769a539d483c32a6c94493d.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/f7a/2c0/481/f7a2c0481769a539d483c32a6c94493d.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Фильтр по единицам измерения
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p><strong>Свободные таблицы</strong> теперь позволяют объединить несколько показателей (я для примера выбрал население и число преступлений в целом и среди несовершеннолетних)</p>
+                      <p><em>по субъектам РФ:</em></p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/a75/899/a35/a75899a356037e32c91ba371f8736b38.png" alt="Кросс-секционный вид данных (все субъекты за один конкретный год)" title="Кросс-секционный вид данных (все субъекты за один конкретный год)" width="1919" height="1025" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/a75/899/a35/a75899a356037e32c91ba371f8736b38.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/a75/899/a35/a75899a356037e32c91ba371f8736b38.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Кросс-секционный вид данных (все субъекты за один конкретный год)
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p><em>по одному субъекту в динамике:</em></p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/285/db4/457/285db4457768e59aa7cf7256d39455c3.png" alt="Временной вид данных (за все годы по одному субъекту)" title="Временной вид данных (за все годы по одному субъекту)" width="1919" height="1026" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/285/db4/457/285db4457768e59aa7cf7256d39455c3.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/285/db4/457/285db4457768e59aa7cf7256d39455c3.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Временной вид данных (за все годы по одному субъекту)
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p><em>все субъекты в динамике:</em></p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/274/d2e/4e0/274d2e4e065a917517ff270d83644d65.png" alt="Панельный вид данных (все субъекты за все доступные годы)" title="Панельный вид данных (все субъекты за все доступные годы)" width="1919" height="1025" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/274/d2e/4e0/274d2e4e065a917517ff270d83644d65.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/274/d2e/4e0/274d2e4e065a917517ff270d83644d65.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Панельный вид данных (все субъекты за все доступные годы)
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>И для меня менее интересный вид, как в ЕМИСС, для одного показателя:</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/460/653/ccf/460653ccfac57a03279da480ce6a8018.png" alt="Один показатель в разрезе субъектов и по всем годам" title="Один показатель в разрезе субъектов и по всем годам" width="1919" height="1025" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/460/653/ccf/460653ccfac57a03279da480ce6a8018.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/460/653/ccf/460653ccfac57a03279da480ce6a8018.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Один показатель в разрезе субъектов и по всем годам
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>И, наверное, самое интересное теперь появился API для доступа к данным.&nbsp;</p>
+                      <h3>Как начать работу с API StatKit?</h3>
+                      <p><strong>1. Установка зависимостей</strong></p>
+                      <p>Откройте&nbsp;<a href="https://jupyter.org/install" rel="noopener noreferrer nofollow">Jupyter Notebook</a>. Убедитесь, что у вас установлены библиотеки&nbsp;<code>requests</code>&nbsp;и&nbsp;<code>pandas</code>:&nbsp;</p>
+                      <pre><code class="python"># установка и импорт зависимостей
+!pip install requests pandas
+
+import pandas as pd
+import requests</code></pre>
+                      <p><strong>2. Подготовка авторизации</strong></p>
+                      <p>Замените&nbsp;<code>username</code>&nbsp;и&nbsp;<code>token</code>&nbsp;на&nbsp;<a href="https://go.statkit.ru/profile" rel="noopener noreferrer nofollow">свои учетные данные API</a>:</p>
+                      <pre><code class="python"># получить имя пользователя и токен можно по адресу: https://go.statkit.ru/profile
+username = "your_username"  # замените на Ваш username API
+token = "your_token"        # замените на Ваш токен доступа</code></pre>
+                      <p><strong>3. Настройка заголовков запроса</strong></p>
+                      <p>Добавьте headers для авторизации:</p>
+                      <pre><code class="python">headers = {
+    "X-API-User": username,              # username API
+    "Authorization": f"Bearer {token}",  # токен
+    "Content-Type": "application/json"   # Формат данных (JSON)
+}</code></pre>
+                      <p><strong>Получим список всех статистических показателей из API, преобразуем их в таблицу pandas:</strong></p>
+                      <pre><code class="python">api_url = "https://api.alexstat.ru/api/v1/indicators"
+
+try:
+    # Выполняем GET-запрос к API
+    response = requests.get(api_url, headers=headers)
+
+    data = None
+    
+    # Проверяем статус ответа сервера
+    if response.status_code == 200:
+        data = response.json()
+        print("Данные успешно получены!")
+    else:
+        print(f"Ошибка запроса. Код состояния: {response.status_code}")
+        print(f"Текст ответа сервера: {response.text}")
+
+except requests.exceptions.RequestException as e:
+    print(f"Произошла ошибка при выполнении запроса: {e}")
+
+# Преобразуем полученные данные в DataFrame
+df = pd.DataFrame(data)
+# Конвертируем строковые даты в формат datetime
+df['add_date'] = pd.to_datetime(df['add_date'])
+df['lastmod_date'] = pd.to_datetime(df['lastmod_date'])
+df</code></pre>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/4a0/81d/4c0/4a081d4c03c89d1934508c733a5bf5c4.png" alt="Результат запроса всех показателей" title="Результат запроса всех показателей" width="1782" height="551" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/4a0/81d/4c0/4a081d4c03c89d1934508c733a5bf5c4.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/4a0/81d/4c0/4a081d4c03c89d1934508c733a5bf5c4.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Результат запроса всех показателей
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p><strong>Можно сузить поиск, указав ключевые слова в запросе. Найдем показатели по ID или ключевому слову&nbsp;</strong><code><strong>доля</strong></code><strong>:</strong></p>
+                      <pre><code class="python"># URL API для получения данных о показателе "доля"
+api_url = "https://api.alexstat.ru/api/v1/indicators/доля"
+
+try:
+    # Отправляем GET-запрос к API с указанными заголовками
+    response = requests.get(api_url, headers=headers)
+
+    # Инициализируем переменную для хранения данных
+    data = None
+    
+    # Проверяем код статуса ответа
+    if response.status_code == 200:
+        # Если запрос успешен (код 200), преобразуем ответ в JSON
+        data = response.json()
+        print("Успешный запрос!")
+    else:
+        # Если сервер вернул ошибку, выводим код статуса и текст ответа
+        print(f"Ошибка запроса. Код статуса: {response.status_code}")
+        print(f"Ответ сервера: {response.text}")
+
+# Обрабатываем возможные исключения при выполнении запроса
+except requests.exceptions.RequestException as e:
+    print(f"Ошибка при выполнении запроса: {e}")
+
+# Преобразуем полученные данные в DataFrame pandas
+df = pd.DataFrame(data)
+df</code></pre>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/491/368/c7c/491368c7ce7c00e806c21720dbf782cf.png" alt="Результат запроса всех показателей и указания ключевого слова" title="Результат запроса всех показателей и указания ключевого слова" width="1788" height="540" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/491/368/c7c/491368c7ce7c00e806c21720dbf782cf.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/491/368/c7c/491368c7ce7c00e806c21720dbf782cf.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Результат запроса всех показателей и указания ключевого слова
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p><strong>Получить данные самого показателя можно, обратившись по&nbsp;</strong><code><strong>ID</strong></code><strong>:</strong></p>
+                      <pre><code class="python"># URL API для получения данных показателя с ID = 100
+api_url = "https://api.alexstat.ru/api/v1/get_indicator/100"
+
+try:
+    # Отправляем GET-запрос к API с указанными заголовками
+    response = requests.get(api_url, headers=headers)
+
+    # Инициализируем переменную для хранения данных
+    data = None
+    
+    # Проверяем статус ответа сервера
+    if response.status_code == 200:
+        # При успешном ответе преобразуем в JSON
+        data = response.json()
+        print("Данные успешно получены!")
+    else:
+        # Выводим информацию об ошибке, если статус не 200
+        print(f"Ошибка запроса. Код статуса: {response.status_code}")
+        print(f"Текст ответа: {response.text}")
+
+# Обрабатываем возможные исключения при выполнении запроса
+except requests.exceptions.RequestException as e:
+    print(f"Ошибка при выполнении запроса: {e}")
+
+# Преобразуем данные в pandas DataFrame
+df = pd.DataFrame(data)
+
+# Преобразуем значения показателя в числовой формат (float)
+df['ObsValue'] = df['ObsValue'].astype(float)
+
+df</code></pre>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/dbd/543/46a/dbd54346adf58602d8c3ffd91de60076.png" alt="Результат запроса данных по конкретному показателю" title="Результат запроса данных по конкретному показателю" width="1186" height="547" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/dbd/543/46a/dbd54346adf58602d8c3ffd91de60076.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/dbd/543/46a/dbd54346adf58602d8c3ffd91de60076.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Результат запроса данных по конкретному показателю
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Полный код и готовый Jupyter Notebook в интерактивном Colab размещены по ссылке: <a href="https://go.statkit.ru/api" rel="noopener noreferrer nofollow">https://go.statkit.ru/api</a></p>
+                      <p>Также там в коде по ссылке я предлагаю вариант, как из нескольких эндпоинтов API провести мини-исследование и построить регрессию: исследовать зависимость между показателями населения и преступности по субъектам в разрезе ОКАТО:</p>
+                      <p>Найдем интересующие нас показатели для исследования:</p>
+                      <pre><code class="python"># URL API для получения показателей по ключевому слову "численность"
+api_url = "https://api.alexstat.ru/api/v1/indicators/численность"
+
+try:
+    # Отправляем GET-запрос к API с указанными заголовками
+    response = requests.get(api_url, headers=headers)
+
+    # Инициализируем переменную для хранения данных ответа
+    data = None
+
+    # Проверяем статус ответа сервера
+    if response.status_code == 200:
+        # При успешном ответе преобразуем в JSON
+        data = response.json()
+        print("Данные успешно получены!")
+    else:
+        # Выводим информацию об ошибке, если статус не 200
+        print(f"Ошибка запроса. Код статуса: {response.status_code}")
+        print(f"Текст ответа сервера: {response.text}")
+
+# Обрабатываем возможные исключения при выполнении запроса
+except requests.exceptions.RequestException as e:
+    print(f"Произошла ошибка при выполнении запроса: {e}")
+
+# Преобразуем полученные данные в DataFrame
+df = pd.DataFrame(data)
+df</code></pre>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/f9e/c84/fe7/f9ec84fe7e5705e0d61afc9cc165a735.png" alt="Показатели по ключевому слову &quot;численность&quot;" title="Показатели по ключевому слову &quot;численность&quot;" width="1768" height="717" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/f9e/c84/fe7/f9ec84fe7e5705e0d61afc9cc165a735.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/f9e/c84/fe7/f9ec84fe7e5705e0d61afc9cc165a735.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Показатели по ключевому слову "численность"
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Численность постоянного населения имеет ID <code>1278</code>.</p>
+                      <pre><code class="python"># URL API для получения показателей по ключевому слову "преступ"
+api_url = "https://api.alexstat.ru/api/v1/indicators/преступ"
+
+try:
+    # Отправляем GET-запрос с заголовками
+    response = requests.get(api_url, headers=headers)
+
+    # Переменная для хранения данных
+    data = None
+
+    # Проверяем статус ответа
+    if response.status_code == 200:
+        # Если успешно, преобразуем JSON
+        data = response.json()
+        print("Успешно!")
+    else:
+        # Выводим ошибку, если статус не 200
+        print(f"Ошибка запроса. Код: {response.status_code}")
+        print(f"Ответ: {response.text}")
+
+# Обрабатываем ошибки запроса
+except requests.exceptions.RequestException as e:
+    print(f"Ошибка запроса: {e}")
+
+# Создаем DataFrame из полученных данных
+df = pd.DataFrame(data)
+df</code></pre>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/c41/1c7/a29/c411c7a29e974085e8e7a66887f393ce.png" alt="Показатели по ключевому слову &quot;преступ&quot;" title="Показатели по ключевому слову &quot;преступ&quot;" width="1717" height="324" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/c41/1c7/a29/c411c7a29e974085e8e7a66887f393ce.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/c41/1c7/a29/c411c7a29e974085e8e7a66887f393ce.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Показатели по ключевому слову "преступ"
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Далее, возьмем доля лиц, совершивших преступления, с ID = <code>232</code>. Получим данные по показателю численность населения:</p>
+                      <pre><code class="python"># URL для получения показателя с ID 1278 (численность постоянного населения)
+api_url = "https://api.alexstat.ru/api/v1/get_indicator/1278"
+
+try:
+    # Отправка GET-запроса к API с указанными заголовками
+    response = requests.get(api_url, headers=headers)
+
+    # Инициализация переменной для хранения данных
+    data = None
+
+    # Проверка статуса ответа сервера
+    if response.status_code == 200:
+        # Успешный ответ - преобразуем в JSON
+        data = response.json()
+        print("Данные успешно получены!")
+    else:
+        # Вывод информации об ошибке, если статус не 200
+        print(f"Ошибка запроса. Код статуса: {response.status_code}")
+        print(f"Текст ответа: {response.text}")
+
+# Обработка возможных ошибок при выполнении запроса
+except requests.exceptions.RequestException as e:
+    print(f"Ошибка выполнения запроса: {e}")
+
+# Создание DataFrame из полученных данных
+population = pd.DataFrame(data)
+
+# Преобразование значений показателя в числовой формат float
+population['ObsValue'] = population['ObsValue'].astype(float)
+
+population</code></pre>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/0ca/844/100/0ca844100aec07bd0cd752530980a690.png" alt="Данные показателя постоянного населения по субъектам РФ" title="Данные показателя постоянного населения по субъектам РФ" width="1193" height="543" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/0ca/844/100/0ca844100aec07bd0cd752530980a690.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/0ca/844/100/0ca844100aec07bd0cd752530980a690.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Данные показателя постоянного населения по субъектам РФ
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Обратимся к справочникам ОКАТО (1) и Тип поселения (17):</p>
+                      <pre><code class="python"># Находим все колонки, содержащие справочники (начинающиеся с index_)
+print("Идентификация колонок со справочниками...")
+index_columns = [col for col in population.columns if col.startswith('index_')]
+print(f"Найдены колонки со справочниками: {index_columns}")
+
+# Извлекаем ID справочников из названий колонок
+index_ids = [col.split('_')[1] for col in index_columns]
+print(f"Извлеченные ID справочников: {index_ids}")
+
+# Функция для получения соответствия между кодами и их текстовыми описаниями
+def get_index_mapping(index_id):
+    """Получает маппинг кодов в текстовые описания для указанного справочника"""
+    api_url = f"https://api.alexstat.ru/api/v1/get_index/{index_id}"
+    try:
+        print(f"Запрашиваем маппинг для справочника {index_id}...")
+        response = requests.get(api_url, headers=headers)
+
+        if response.status_code == 200:
+            data = response.json()
+            # Создаем словарь {код: описание}
+            mapping = {str(item['code_value']): item['code_text'] for item in data}
+            print(f"Найдено {len(mapping)} соответствий для справочника {index_id}")
+            return mapping
+        else:
+            print(f"Ошибка получения справочника {index_id}: статус {response.status_code}")
+            return None
+    except requests.exceptions.RequestException as e:
+        print(f"Ошибка запроса для справочника {index_id}: {e}")
+        return None
+    except KeyError as e:
+        print(f"Неожиданный формат данных для справочника {index_id}: {e}")
+        return None
+
+# Получаем маппинги для всех найденных справочников
+index_mappings = {}
+for index_id in index_ids:
+    mapping = get_index_mapping(index_id)
+    if mapping:
+        index_mappings[index_id] = mapping
+
+print(f"Созданы маппинги для {len(index_mappings)} из {len(index_ids)} справочников")
+
+# Заменяем коды на текстовые описания в основном DataFrame
+for col in index_columns:
+    index_id = col.split('_')[1]
+    if index_id in index_mappings:
+        mapping = index_mappings[index_id]
+        # Преобразуем к строковому типу, применяем маппинг, оставляем оригинальные значения при отсутствии маппинга
+        population[col] = population[col].astype(str).map(mapping).fillna(population[col])
+        print(f"Обработана колонка {col} (справочник {index_id})")
+    else:
+        print(f"Не найден маппинг для колонки {col} (справочник {index_id})")
+
+# Выводим результат
+population</code></pre>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/301/1ee/7ed/3011ee7edc4e4b4683e9a57cbba5bcb5.png" alt="Добавили текстовые значения вместо кодов из справочников" title="Добавили текстовые значения вместо кодов из справочников" width="1533" height="712" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/301/1ee/7ed/3011ee7edc4e4b4683e9a57cbba5bcb5.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/301/1ee/7ed/3011ee7edc4e4b4683e9a57cbba5bcb5.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Добавили текстовые значения вместо кодов из справочников
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Исследуем показатель, что он содержит:</p>
+                      <pre><code class="python"># Проходим по всем колонкам в DataFrame population
+for col in population.columns:
+    # Пропускаем числовые колонки и идентификаторы
+    if col in ['ObsValue', 'id']:
+        continue
+
+    # Выводим название колонки
+    print(f'Уникальные значения в колонке {col}:')
+
+    # Выводим все уникальные значения в колонке
+    print(population[col].unique())
+
+    # Пустая строка для разделения
+    print()</code></pre>
+                      <p>Отфильтруем датафрейм со значениями показателя по населению. И возьмем статистику только с одного уровня – субъектного, исключив дублирования в виде РФ, федеральных округов, частей, входящих в состав субъектов:</p>
+                      <pre><code class="python">OKATO_to_be_excluded = ['Российская Федерация',
+                        'Российская Федерация в границах до 04.10.2022',
+                        'Центральный федеральный округ',
+                        'Северо-Западный федеральный округ',
+                        'Ненецкий автономный округ (Архангельская область)',
+                        'Архангельская область (без АО)',
+                        'Архангельская область (кроме Ненецкого автономного округа)',
+                        'Южный федеральный округ (с 2010 года)',
+                        'Южный федеральный округ (с 29.07.2016)',
+                        'Северо-Кавказский федеральный округ',
+                        'Приволжский федеральный округ',
+                        'Коми-Пермяцкий округ, входящий в состав Пермского края',
+                        'Ханты-Мансийский автономный округ - Югра (Тюменская область)',
+                        'Ямало-Ненецкий автономный округ (Тюменская область)',
+                        'Тюменская область (без АО)',
+                        'Тюменская область (кроме Ханты-Мансийского автономного округа-Югры и Ямало-Ненецкого автономного округа)',
+                        'Сибирский федеральный округ',
+                        'Таймырский (Долгано-Ненецкий) автономный округ (Красноярский край)',
+                        'Эвенкийский автономный округ (Красноярский край)',
+                        'Усть-Ордынский Бурятский округ' ,
+                        'Агинский Бурятский округ (Забайкальский край)',
+                        'Корякский округ, входящий в состав Камчатского края',
+                        'Чеченская и Ингушская Республики',
+                        'Северный район' 'Северо-Западный район' 'Центральный район',
+                        'Волго-Вятский район',
+                        'Центрально-Черноземный район',
+                        'Поволжский район',
+                        'Северо-Кавказский район',
+                        'Уральский район',
+                        'Западно-Сибирский район',
+                        'Восточно-Сибирский район',
+                        'Дальневосточный район']
+
+# Фильтрация данных о населении по нескольким условиям:
+population_filtered = population[
+    # 1. Выбираем только данные за 2024 год
+    (population['Time'] == 2024) &amp;
+
+    # 2. Выбираем только записи, где указано "все население" (из справочника index_17)
+    (population['index_17'] == 'все население') &amp;
+
+    # 3. Исключаем записи, где код региона (index_1) находится в списке исключений OKATO_to_be_excluded
+    # Оператор ~ означает отрицание (NOT IN)
+    (~population['index_1'].isin(OKATO_to_be_excluded))
+]
+
+# Результат фильтрации сохраняется в новый DataFrame population_filtered
+population_filtered</code></pre>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/33f/ff4/819/33fff4819c6e9c29532e05d7dbb44250.png" alt="Результат фильтрации показателя по населению" title="Результат фильтрации показателя по населению" width="1483" height="536" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/33f/ff4/819/33fff4819c6e9c29532e05d7dbb44250.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/33f/ff4/819/33fff4819c6e9c29532e05d7dbb44250.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Результат фильтрации показателя по населению
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Сделаем тоже самое для показателя по числу преступлений:</p>
+                      <p>Делай раз:</p>
+                      <pre><code class="python">api_url = "https://api.alexstat.ru/api/v1/get_indicator/232"
+
+try:
+    response = requests.get(api_url, headers=headers)
+
+    data = None
+
+    if response.status_code == 200:
+        data = response.json()
+        print("Success!")
+    else:
+        print(f"Request failed with status code: {response.status_code}")
+        print(f"Response: {response.text}")
+
+except requests.exceptions.RequestException as e:
+    print(f"Request failed: {e}")
+
+crime = pd.DataFrame(data)
+crime['ObsValue'] = crime['ObsValue'].astype(float)
+crime</code></pre>
+                      <p>Делай два:</p>
+                      <pre><code class="python">for col in crime.columns:
+    if col in ['ObsValue', 'id']:
+        continue
+    print(f'{col} unique values:')
+    print(crime[col].unique())
+    print()</code></pre>
+                      <p>Делай три:</p>
+                      <pre><code class="python">for col in crime.columns:
+    if col in ['ObsValue', 'id']:
+        continue
+    print(f'{col} unique values:')
+    print(crime[col].unique())
+    print()</code></pre>
+                      <p>Делай четыре:</p>
+                      <pre><code class="python">crime_filtered = crime[
+    (crime['Time'] == 2024) &amp;
+    (crime['PERIOD'] == 'январь-декабрь') &amp;
+    (crime['index_1'].isin(population_filtered['index_1'].tolist() ))]
+crime_filtered</code></pre>
+                      <p>И готово:</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/e39/dd1/f3b/e39dd1f3b977aedb2fff395175c3fd0c.png" alt="Результат фильтрации показателя по преступности" title="Результат фильтрации показателя по преступности" width="1254" height="515" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/e39/dd1/f3b/e39dd1f3b977aedb2fff395175c3fd0c.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/e39/dd1/f3b/e39dd1f3b977aedb2fff395175c3fd0c.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Результат фильтрации показателя по преступности
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Объединим два показателя по ОКАТО (субъектам РФ):</p>
+                      <pre><code class="python"># Объединение данных о населении и преступности в один DataFrame
+population_crime = pd.merge(
+    # Левый DataFrame - данные о населении:
+    population_filtered[['ObsValue', 'Time', 'index_1']].rename(columns={'ObsValue': 'population'}),
+
+    # Правый DataFrame - данные о преступности:
+    crime_filtered[['ObsValue', 'Time', 'index_1']].rename(columns={'ObsValue': 'crime'}),
+
+    # Параметры объединения:
+    on=['Time', 'index_1'],  # Ключи для объединения (год и код региона)
+    how='outer'              # Тип объединения (внешнее)
+)
+
+# Результат объединения:
+population_crime</code></pre>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/c0a/148/7a8/c0a1487a8bc1d44d538d559ca157e89d.png" alt="Объединили показатели &quot;Преступность&quot; и &quot;Население&quot;" title="Объединили показатели &quot;Преступность&quot; и &quot;Население&quot;" width="715" height="522" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/c0a/148/7a8/c0a1487a8bc1d44d538d559ca157e89d.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/c0a/148/7a8/c0a1487a8bc1d44d538d559ca157e89d.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Объединили показатели "Преступность" и "Население"
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Рассмотрим зависимость между численностью населения и преступлениями:</p>
+                      <pre><code class="python"># раскомментируйте строчку ниже, чтобы установить библиотеку для рисования
+#!pip install matplotlib
+import matplotlib.pyplot as plt
+
+plt.scatter(population_crime['population'], population_crime['crime'])
+plt.xlabel('Population')
+plt.ylabel('Crime')
+plt.show()</code></pre>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/a75/32a/bbd/a7532abbd1366cb8bb9f6f37753237cb.png" alt="График разброса значений показателей населения и преступности" title="График разброса значений показателей населения и преступности" width="921" height="555" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/a75/32a/bbd/a7532abbd1366cb8bb9f6f37753237cb.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/a75/32a/bbd/a7532abbd1366cb8bb9f6f37753237cb.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         График разброса значений показателей населения и преступности
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Регрессия:</p>
+                      <pre><code class="python"># раскомментируйте строчку ниже, чтобы установить библиотеку для построения стат. моделей
+#!pip install statsmodels
+
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+import numpy as np
+
+X = population_crime['population']  # независимая переменная
+y = population_crime['crime']       # зависимая переменная
+
+# добавим константу в уравнение
+X = sm.add_constant(X)
+
+# регрессионная модель
+model = sm.OLS(y, X).fit()
+
+# статистики модели
+print(model.summary())
+print("\nCoefficients:")
+print(f"Intercept: {model.params[0]:.2f}")
+print(f"Population Coefficient: {model.params[1]:.4f}")
+print(f"R-squared: {model.rsquared:.3f}")
+print(f"P-value for Population: {model.pvalues[1]:.4f}")
+
+# построим график
+plt.figure(figsize=(10, 6))
+
+# график разброса наблюдаемых данных
+plt.scatter(
+    population_crime['population'],
+    population_crime['crime'],
+    color='blue',
+    alpha=0.6,
+    label='Фактические данные'
+)
+
+# линия регрессии
+regression_line = model.params[0] + model.params[1] * population_crime['population']
+plt.plot(
+    population_crime['population'],
+    regression_line,
+    color='red',
+    linewidth=2,
+    label=f'Regression Line\ny = {model.params[0]:.2f} + {model.params[1]:.4f}x'
+)
+
+# уравнение регрессии
+equation_text = f'y = {model.params[0]:.2f} + {model.params[1]:.4f}x\nR² = {model.rsquared:.3f}'
+plt.text(
+    0.05, 0.95,
+    equation_text,
+    transform=plt.gca().transAxes,
+    fontsize=12,
+    verticalalignment='top',
+    bbox=dict(boxstyle='round', facecolor='white', alpha=0.8)
+)
+
+plt.xlabel('Population', fontsize=12)
+plt.ylabel('Crime', fontsize=12)
+plt.title('Линейная регрессия', fontsize=14)
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()</code></pre>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/d0b/0c0/974/d0b0c09746fc8b88654722479d397a75.png" alt="Коэффициенты и метрики регрессии" title="Коэффициенты и метрики регрессии" width="865" height="524" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/d0b/0c0/974/d0b0c09746fc8b88654722479d397a75.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/d0b/0c0/974/d0b0c09746fc8b88654722479d397a75.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Коэффициенты и метрики регрессии
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Модель показывает сильную зависимость уровня преступности от численности населения с R² = 0,829, что означает, что 82,9 % дисперсии преступности объясняется показателем населения. Коэффициент регрессии статистически значим: при росте населения на 1 000 человек число преступников увеличивается в среднем на 4 человека (как бы 4 человека из 1 000 значимо статистически могут стать преступниками). Однако, константа незначима (при "нулевом" населении). Такая вот псевдо-зависимость, но как пример использования API StatKit вполне себе подойдет.</p>
+                      <p>И картинка:</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/bc4/b81/4e9/bc4b814e9e2b1fa08b76020f39293910.png" alt="Линейная регрессия" title="Линейная регрессия" width="1342" height="729" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/bc4/b81/4e9/bc4b814e9e2b1fa08b76020f39293910.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/bc4/b81/4e9/bc4b814e9e2b1fa08b76020f39293910.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Линейная регрессия
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>И причем здесь погода скажите Вы? Хочу сообщить о запуске разработки нового формата – больших погодных массивов по Российской Федерации от ВНИИГМИ-МЦД в совместимом с ЕМИСС формате SDMX. Что скоро будет внедрено (по некоторым городам РФ данные доступны аж с конца 1800 годов!):</p>
+                      <ul>
+                       <li>
+                        <p>суточные данные о температуре почвы по станциям в РФ;</p></li>
+                       <li>
+                        <p>суточные данные о температуре атмосферного воздуха и осадках по станциям в РФ;</p></li>
+                       <li>
+                        <p>суточные данные о снежном покрове по станциям в РФ.</p></li>
+                      </ul>
+                      <h3>Заключительные положения</h3>
+                      <p>Проект изначально был моим личным небольшим кодом, который помогал мне работать с ЕМИСС, но, как мне кажется, может он поможет и Вам.</p>
+                      <p>Сейчас не все показатели есть у меня по сравнению с ЕМИСС, но я стараюсь добавлять с ЕМИСС новые данные, и, как я указывал в посте, если Вы напиши мне с указанием, какой показатель добавить (а еще лучше прямая ссылка на этот показатель в ЕМИСС), я его постараюсь оперативно добавить.</p>
+                      <p><em>Еще раз положу здесь:</em></p>
+                      <ul>
+                       <li>
+                        <p>ссылка на проект: <a href="https://go.statkit.ru/" rel="noopener noreferrer nofollow">https://go.statkit.ru/</a></p></li>
+                       <li>
+                        <p>ссылки на Colab: <a href="https://colab.research.google.com/drive/1yp37jkFGpFpphehHxakxd0dgCtvFkAPH?usp=sharing" rel="noopener noreferrer nofollow">https://colab.research.google.com/drive/1yp37jkFGpFpphehHxakxd0dgCtvFkAPH?usp=sharing</a> и <a href="https://colab.research.google.com/drive/1TRy3vILhplamlXnC_K_0TdlkGOZ0U46K?usp=sharing" rel="noopener noreferrer nofollow">https://colab.research.google.com/drive/1TRy3vILhplamlXnC_K_0TdlkGOZ0U46K?usp=sharing</a></p></li>
+                       <li>
+                        <p>ссылки на <a href="https://habr.com/ru/articles/812123/" rel="noopener noreferrer nofollow">часть 1</a> и <a href="https://habr.com/ru/posts/902254/" rel="noopener noreferrer nofollow">часть 2</a> на Хабре.</p></li>
+                      </ul>
+                     </div>
+                    </div>
+                   </div><!----><!---->
+                  </div><!---->
+                  <div class="tm-article-poll-container">
+                   <!--[-->
+                   <div class="tm-article-poll tm-article-poll_variant-bordered">
+                    <div class="tm-notice tm-notice_positive tm-article-poll__notice">
+                     <!---->
+                     <div class="tm-notice__inner">
+                      <!---->
+                      <div class="tm-notice__content" data-test-id="notice-content">
+                       <!--[--><span>Только зарегистрированные пользователи могут участвовать в опросе. <a rel="nofollow" href="/kek/v1/auth/habrahabr/?back=/ru/articles/907124/&amp;hl=ru">Войдите</a>, пожалуйста.</span><!--]-->
+                      </div>
+                     </div>
+                    </div><!--[-->
+                    <div class="tm-article-poll__header">
+                     А Вы чем пользуетесь для доступа к статистике?
+                    </div>
+                    <div class="tm-article-poll__answers">
+                     <!--[-->
+                     <div class="tm-article-poll__answer">
+                      <div class="tm-article-poll__answer-data">
+                       <span class="tm-article-poll__answer-percent">0% </span><span class="tm-article-poll__answer-label">ЕМИСС</span><span class="tm-article-poll__answer-votes">0</span>
+                      </div>
+                      <div class="tm-article-poll__answer-bar">
+                       <div class="tm-article-poll__answer-progress" style="width: 0%"></div>
+                      </div>
+                     </div>
+                     <div class="tm-article-poll__answer">
+                      <div class="tm-article-poll__answer-data">
+                       <span class="tm-article-poll__answer-percent">0% </span><span class="tm-article-poll__answer-label">Витрина данных Росстата</span><span class="tm-article-poll__answer-votes">0</span>
+                      </div>
+                      <div class="tm-article-poll__answer-bar">
+                       <div class="tm-article-poll__answer-progress" style="width: 0%"></div>
+                      </div>
+                     </div>
+                     <div class="tm-article-poll__answer">
+                      <div class="tm-article-poll__answer-data">
+                       <span class="tm-article-poll__answer-percent">0% </span><span class="tm-article-poll__answer-label">Статистика с сайта Росстата</span><span class="tm-article-poll__answer-votes">0</span>
+                      </div>
+                      <div class="tm-article-poll__answer-bar">
+                       <div class="tm-article-poll__answer-progress" style="width: 0%"></div>
+                      </div>
+                     </div>
+                     <div class="tm-article-poll__answer">
+                      <div class="tm-article-poll__answer-data">
+                       <span class="tm-article-poll__answer-percent tm-article-poll__answer-percent_winning">0% </span><span class="tm-article-poll__answer-label">Другое</span><span class="tm-article-poll__answer-votes">0</span>
+                      </div>
+                      <div class="tm-article-poll__answer-bar">
+                       <div class="tm-article-poll__answer-progress tm-article-poll__answer-progress_winning" style="width: 0%"></div>
+                      </div>
+                     </div><!--]-->
+                    </div>
+                    <div class="tm-article-poll__stats">
+                     Никто еще не голосовал. Воздержавшихся нет.
+                    </div><!--]-->
+                   </div><!--]-->
+                  </div>
+                 </div><!--]--><!---->
+                 <div class="tm-article-presenter__meta" data-test-id="article-meta-links">
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Теги:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%95%D0%9C%D0%98%D0%A1%D0%A1]" class="tm-tags-list__link"><span>ЕМИСС</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0]" class="tm-tags-list__link"><span>статистика</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[StatKit]" class="tm-tags-list__link"><span>StatKit</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%80%D0%BE%D1%81%D1%81%D1%82%D0%B0%D1%82]" class="tm-tags-list__link"><span>росстат</span></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Хабы:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/statistics/" class="tm-hubs-list__link"><!--[--><span>Статистика в IT</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/webdev/" class="tm-hubs-list__link"><!--[--><span>Веб-разработка</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/web_design/" class="tm-hubs-list__link"><!--[--><span>Веб-дизайн</span><!--]--></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                 </div><!----><!--]-->
+                </article><!--]-->
+               </div><!---->
+              </div>
+              <div style="" class="tm-article-sticky-panel" data-test-id="article-sticky-panel">
+               <div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons">
+                <div class="article-rating tm-data-icons__item" data-v-86aec4a7>
+                 <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-article votes-switcher" title="Всего голосов 4: ↑3 и ↓1" data-v-86aec4a7>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-upvote-button" title="Нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon" height="24" width="24">
+                    <title>
+                     Нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                  <div class="tm-votes-lever__score tm-votes-lever__score_appearance-article tm-votes-lever__score">
+                   <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_positive tm-votes-lever__score-counter" data-test-id="votes-score-counter">+2</span></span><!--]-->
+                  </div>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-downvote-button" title="Не нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon tm-votes-lever__icon_arrow-down" height="24" width="24">
+                    <title>
+                     Не нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                 </div><!--teleport start--><!--teleport end--><!---->
+                </div><!----><!---->
+                <button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon">
+                  <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                   <title>
+                    Добавить в закладки
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-favorite"></use>
+                  </svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">5</span></button>
+                <div class="tm-sharing tm-data-icons__item" title="Поделиться">
+                 <button class="tm-sharing__button" type="button">
+                  <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                   <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                  </svg></button><!--teleport start--><!--teleport end-->
+                </div>
+                <div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии">
+                 <a href="/ru/articles/907124/comments/" class="tm-article-comments-counter-link__link" data-test-id="counter-comments"><!--[-->
+                  <svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24">
+                   <title>
+                    Комментарии
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                  </svg><span class="tm-article-comments-counter-link__value">2</span><!--]--></a><!---->
+                </div><!--[--><!--[--><!--[--><!----><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!---->
+               </div>
+              </div>
+             </div><!--[--><!--]-->
+             <div class="tm-article-presenter__footer">
+              <!--[--><!--[-->
+              <div class="tm-article-blocks">
+               <!----><!--[-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <!----><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-balanced">
+                 <!--[-->
+                 <div class="tm-article-author" data-test-id="article-author-info" data-async-called="true">
+                  <!--[--><!--]-->
+                  <div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true">
+                   <div class="tm-user-card__info-container">
+                    <div class="tm-user-card__header">
+                     <div class="tm-user-card__header-data">
+                      <a href="/ru/users/create_your_view/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                       <div class="tm-entity-image">
+                        <!--[--><img alt="" class="tm-entity-image__pic" src="https://assets.habr.com/habr-web/img/avatars/125.png"><!--]-->
+                       </div></a>
+                      <div class="tm-user-card__meta">
+                       <div class="tm-counter-container karma" title=" 9 голосов " data-v-f7c0e283>
+                        <div class="tm-counter-container__header">
+                         <!--[-->
+                         <div class="karma-display positive" data-v-f7c0e283 data-v-7635202e>
+                          5
+                         </div><!----><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[-->
+                         <div class="karma-text" data-v-f7c0e283>
+                          Карма
+                         </div><!--teleport start--><!--teleport end--><!--]-->
+                        </div>
+                       </div>
+                       <div class="tm-counter-container" title="Рейтинг пользователя">
+                        <div class="tm-counter-container__header">
+                         <!--[--><!--[--><!--]-->
+                         <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                          <!---->
+                          <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score">
+                           <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">2.2</span></span><!--]-->
+                          </div><!---->
+                         </div><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info">
+                     <div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title">
+                      <!----><a href="/ru/users/create_your_view/" class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article"> @create_your_view</a><!---->
+                     </div>
+                     <p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Пользователь</p>
+                    </div>
+                   </div><!---->
+                   <div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons">
+                    <!---->
+                    <div class="tm-user-card__button">
+                     <div class="tm-button-follow tm-user-card__button-follow">
+                      <!---->
+                      <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+                     </div>
+                    </div><!---->
+                    <div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations">
+                     <svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16">
+                      <title>
+                       Отправить сообщение
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#mail"></use>
+                     </svg>
+                    </div><!---->
+                   </div><!---->
+                  </div>
+                  <div class="tm-article-author__user-contacts" data-test-id="author-contacts">
+                   <!----><!----><!---->
+                  </div>
+                 </div><!--]-->
+                </div><!--]--><!---->
+               </section><!----><!--[-->
+               <div class="banner-wrapper leaderboard tm-page-article__banner" style="--38f3d936:200px;--78a3cd06:auto;" data-v-f4bf0d24>
+                <!--[-->
+                <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="adfox-banner-placeholder leaderboard" data-v-12f7bcca>
+                  <div class="image loads" data-v-12f7bcca></div>
+                  <div class="lines" data-v-12f7bcca>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                  </div>
+                 </div><!----><!----><!---->
+                </div>
+                <div id="adfox_164725660339535756" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+               </div><!--]--><!--]-->
+               <div class="tm-article-blocks__comments">
+                <div id="publication-comments" class="tm-article-page-comments">
+                 <div>
+                  <!--[-->
+                  <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                   <a href="/ru/articles/907124/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments"><!--[-->
+                    <svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24">
+                     <title>
+                      Комментарии
+                     </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                    </svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 2 </span><!--]--></a><!---->
+                  </div><!--]-->
+                 </div>
+                </div>
+               </div><!--[--><!--[--><!--]-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <header class="tm-block__header tm-block__header tm-block__header_variant-borderless">
+                 <div class="tm-block__header-container">
+                  <h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]-->
+                 </div><!---->
+                </header><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim">
+                 <!--[--><!--[-->
+                 <div class="tm-tabs tm-tabs">
+                  <div class="">
+                   <!--[--><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]-->
+                  </div><!---->
+                 </div>
+                 <div class="similar-and-daily__tab-view">
+                  <div class="daily-articles-list">
+                   <ul class="tm-article-card-list">
+                    <!--[--><!--]-->
+                    <div class="tm-bordered-card">
+                     <!----><!--[--><!--]-->
+                    </div>
+                   </ul>
+                   <div class="daily-articles-block__button-container">
+                    <button class="btn btn_transparent btn_small tm-button tm-button_color-horizon" type="button"><!--[--><!--[-->Показать лучшие за всё время<!--]--><!--]--></button>
+                   </div>
+                  </div><!---->
+                 </div><!--]--><!--]-->
+                </div><!--]--><!---->
+               </section><!--[-->
+               <div>
+                <div class="placeholder-wrapper">
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="tm-placeholder-promo">
+                  <div class="tm-placeholder-promo__header">
+                   <div class="tm-placeholder__line tm-placeholder__line_promo-title"></div>
+                  </div>
+                  <div class="tm-placeholder-promo__body">
+                   <div class="tm-placeholder-promo__posts">
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                   </div>
+                   <div class="tm-placeholder-promo__dots">
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                   </div>
+                  </div>
+                 </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                </div>
+               </div>
+               <div>
+                <div class="placeholder-wrapper">
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="tm-placeholder-inset tm-placeholder-salary">
+                  <div class="tm-placeholder-inset__header">
+                   <div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div>
+                  </div>
+                  <div class="tm-placeholder-salary__body">
+                   <div class="tm-placeholder-salary__text">
+                    <div class="tm-placeholder__line tm-placeholder__line_salary_average"></div>
+                    <div class="tm-placeholder-salary__description">
+                     <div class="tm-placeholder__line loads"></div>
+                     <div class="tm-placeholder__line loads"></div>
+                     <div class="tm-placeholder__line loads"></div>
+                     <div class="tm-placeholder__line loads"></div>
+                    </div>
+                   </div>
+                   <div class="tm-placeholder-salary__image loads"></div>
+                  </div>
+                  <div class="tm-placeholder-inset__footer tm-placeholder-inset__footer_salary">
+                   <div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div>
+                  </div>
+                 </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                </div>
+               </div><!--]--><!----><!--[--><!--]--><!--]-->
+              </div><!--]--><!--]-->
+             </div>
+            </div><!--]--><!--]-->
+           </div>
+          </div>
+          <div class="tm-page__sidebar">
+           <!--[-->
+           <div class="tm-layout-sidebar">
+            <div class="tm-layout-sidebar__placeholder_initial"></div>
+            <div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;">
+             <!--[--><!--]--><!---->
+             <div class="tm-layout-sidebar__ads_initial tm-layout-sidebar__ads">
+              <div class="banner-wrapper half-page tm-layout-sidebar__banner tm-layout-sidebar__banner_top" style="--38f3d936:600px;--78a3cd06:auto;" data-v-f4bf0d24>
+               <!--[-->
+               <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="adfox-banner-placeholder half-page" data-v-12f7bcca>
+                 <div class="image loads" data-v-12f7bcca></div>
+                 <div class="lines" data-v-12f7bcca>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                 </div>
+                </div><!----><!----><!---->
+               </div>
+               <div id="adfox_164725680533065327" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+              </div>
+             </div><!--[--><!---->
+             <div></div>
+             <section class="tm-block tm-block tm-block_spacing-around" data-async-called="true">
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Работа</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[--><!--[-->
+               <div class="tm-vacancies-block__item">
+                <a class="tm-vacancies-block__vacancy-title" href="https://career.habr.com/vacancies/veb_dizajner" target="_blank">Веб дизайнер</a>
+                <div class="tm-vacancies-block__vacancies-count">
+                 18 вакансий
+                </div>
+               </div><!--]--><!--]-->
+              </div><!--]-->
+              <footer class="tm-block__footer">
+               <!--[--><a class="tm-block-extralink" href="https://career.habr.com/catalog">Все вакансии</a><!--]-->
+              </footer>
+             </section>
+             <section class="tm-block tm-block tm-block_spacing-around block" data-v-6f380946>
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Ближайшие события</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[-->
+               <div class="placeholder-wrapper" data-v-6f380946>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <section class="tm-block tm-block tm-block_spacing-none" tabindex="-1" data-v-9caf0b82>
+                 <!----><!--[-->
+                 <div class="event-card-placeholder is-widget" data-v-9caf0b82>
+                  <div class="image loads" data-v-9caf0b82></div>
+                  <div class="info" data-v-9caf0b82>
+                   <div class="date line" data-v-9caf0b82></div>
+                   <div class="title line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                  </div>
+                  <div class="footer widget" data-v-9caf0b82>
+                   <div class="link line" data-v-9caf0b82></div>
+                   <div class="categories" data-v-9caf0b82>
+                    <!--[-->
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div><!--]-->
+                   </div>
+                  </div>
+                 </div><!--]--><!---->
+                </section><!---->
+               </div><!--]-->
+              </div><!--]--><!---->
+             </section><!--]-->
+             <div class="banner-wrapper medium-rectangle tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom" style="--38f3d936:250px;--78a3cd06:auto;" data-v-f4bf0d24>
+              <!--[-->
+              <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+               <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               <div class="adfox-banner-placeholder medium-rectangle" data-v-12f7bcca>
+                <div class="image loads" data-v-12f7bcca></div>
+                <div class="lines" data-v-12f7bcca>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                </div>
+               </div><!----><!----><!---->
+              </div>
+              <div id="adfox_164725691003361602" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+             </div>
+            </div>
+           </div><!--]-->
+          </div>
+         </div><!----><!--]-->
+        </div>
+       </div>
+      </main><!---->
+     </div>
+     <div class="tm-footer-menu">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer-menu__container">
+        <!--[-->
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Ваш аккаунт</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/articles/907124/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/articles/907124/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Разделы</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/articles/" class="footer-menu__item-link">Статьи</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link">Новости</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link">Хабы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link">Компании</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link">Авторы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link">Песочница</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Информация</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link">Устройство сайта</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link">Для авторов</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link">Для компаний</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link">Документы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Услуги</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]-->
+          </ul>
+         </div>
+        </div><!--]-->
+       </div><!--]-->
+      </div>
+     </div>
+     <div class="tm-footer">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer__container">
+        <!---->
+        <div class="tm-footer__social">
+         <!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Facebook
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Twitter
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            VK
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Telegram
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Youtube
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Яндекс Дзен
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use>
+          </svg></a><!--]-->
+        </div><!--teleport start--><!--teleport end-->
+        <button class="tm-footer__link"><!----> Настройка языка</button><a href="/ru/feedback/" class="tm-footer__link">Техническая поддержка</a>
+        <div class="tm-footer-copyright">
+         <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span>
+        </div>
+       </div><!--]-->
+      </div>
+     </div><!----><!--]-->
+    </div><!---->
+   </div>
+   <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"907124":{"id":"907124","timePublished":"2025-05-05T18:21:39+00:00","isCorporative":false,"lang":"ru","titleHtml":"Новый ЕМИСС 2.0 со сводными таблицами, API и погодой?","leadData":{"textHtml":"\u003Cp\u003EПривет, Хабр! Около года назад мне пришла странная идея: а что, если сделать новую версию ЕМИСС, хранилища российской статистики, чтобы наконец-то было удобно сводить данные. А то постоянно сопоставлять несколько показателей из множества Excel файлов – сущий ад. И вот уже год прошел с момента создания и написания первой версии и сайта, и статьи (недавно был небольшой пост).\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F173\u002F0ec\u002Fd9d\u002F1730ecd9d4685ddf0437e1cc647b8766.png","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F173\u002F0ec\u002Fd9d\u002F1730ecd9d4685ddf0437e1cc647b8766.png","fit":"cover","positionY":0,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"id":"4161042","alias":"create_your_view","fullname":null,"avatarUrl":null,"speciality":null,"scoreStats":{"score":5,"votesCount":9},"rating":2.2,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"donationsMethod":null,"isInBlacklist":null,"careerProfile":null},"statistics":{"commentsCount":2,"favoritesCount":5,"readingCount":786,"score":2,"votesCount":4,"votesCountPlus":3,"votesCountMinus":1},"hubs":[{"id":"21890","alias":"statistics","type":"collective","title":"Статистика в IT","titleHtml":"Статистика в IT","isProfiled":false,"relatedData":null},{"id":"91","alias":"webdev","type":"collective","title":"Веб-разработка","titleHtml":"Веб-разработка","isProfiled":true,"relatedData":null},{"id":"47","alias":"web_design","type":"collective","title":"Веб-дизайн","titleHtml":"Веб-дизайн","isProfiled":true,"relatedData":null}],"flows":[{"id":"1","alias":"develop","title":"Разработка","titleHtml":"Разработка"},{"id":"2","alias":"design","title":"Дизайн","titleHtml":"Дизайн"},{"id":"7","alias":"popsci","title":"Научпоп","titleHtml":"Научпоп"}],"relatedData":{"vote":null,"unreadCommentsCount":0,"bookmarked":false,"canComment":false,"canEdit":false,"canViewVotes":false,"votePlus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"voteMinus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"canModerateComments":false,"trackerSubscribed":false,"emailSubscribed":false},"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EПривет, Хабр! Около года назад мне пришла странная идея: а что, если сделать новую версию ЕМИСС, хранилища российской статистики, чтобы наконец-то было удобно сводить данные. А то постоянно сопоставлять несколько показателей из множества Excel файлов – сущий ад. И вот уже год прошел с момента создания и написания первой версии и сайта, и \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Farticles\u002F812123\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eстатьи\u003C\u002Fa\u003E (недавно был небольшой \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fposts\u002F902254\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eпост\u003C\u002Fa\u003E).\u003C\u002Fp\u003E\u003Ch3\u003EЧто нового теперь в созданном приложении StatKit?\u003C\u002Fh3\u003E\u003Cp\u003E\u003Cstrong\u003EОбновление поиска: \u003C\u002Fstrong\u003Eтеперь поиск понимает и семантику за счет векторизации и сортировки по косинусной близости:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F173\u002F0ec\u002Fd9d\u002F1730ecd9d4685ddf0437e1cc647b8766.png\" alt=\"Поиск показателей\" title=\"Поиск показателей\" width=\"1919\" height=\"1025\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F173\u002F0ec\u002Fd9d\u002F1730ecd9d4685ddf0437e1cc647b8766.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F173\u002F0ec\u002Fd9d\u002F1730ecd9d4685ddf0437e1cc647b8766.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EПоиск показателей\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E\u003Cstrong\u003EДобавлено несколько фильтров для поиска:\u003C\u002Fstrong\u003E фильтр по справочникам, по единицам измерения и по временным границам данных в годах:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F260\u002Fe1e\u002F47d\u002F260e1e47d295758681166968dbccae77.png\" alt=\"Фильтр по годам\" title=\"Фильтр по годам\" width=\"625\" height=\"288\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F260\u002Fe1e\u002F47d\u002F260e1e47d295758681166968dbccae77.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F260\u002Fe1e\u002F47d\u002F260e1e47d295758681166968dbccae77.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EФильтр по годам\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb7d\u002F1b0\u002Fac1\u002Fb7d1b0ac1b96db21abd74177a655cdd1.png\" alt=\"Фильтр по справочникам\" title=\"Фильтр по справочникам\" width=\"630\" height=\"613\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb7d\u002F1b0\u002Fac1\u002Fb7d1b0ac1b96db21abd74177a655cdd1.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb7d\u002F1b0\u002Fac1\u002Fb7d1b0ac1b96db21abd74177a655cdd1.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EФильтр по справочникам\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff7a\u002F2c0\u002F481\u002Ff7a2c0481769a539d483c32a6c94493d.png\" alt=\"Фильтр по единицам измерения\" title=\"Фильтр по единицам измерения\" width=\"629\" height=\"642\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff7a\u002F2c0\u002F481\u002Ff7a2c0481769a539d483c32a6c94493d.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff7a\u002F2c0\u002F481\u002Ff7a2c0481769a539d483c32a6c94493d.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EФильтр по единицам измерения\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E\u003Cstrong\u003EСвободные таблицы\u003C\u002Fstrong\u003E теперь позволяют объединить несколько показателей (я для примера выбрал население и число преступлений в целом и среди несовершеннолетних)\u003C\u002Fp\u003E\u003Cp\u003E\u003Cem\u003Eпо субъектам РФ:\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa75\u002F899\u002Fa35\u002Fa75899a356037e32c91ba371f8736b38.png\" alt=\"Кросс-секционный вид данных (все субъекты за один конкретный год)\" title=\"Кросс-секционный вид данных (все субъекты за один конкретный год)\" width=\"1919\" height=\"1025\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa75\u002F899\u002Fa35\u002Fa75899a356037e32c91ba371f8736b38.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa75\u002F899\u002Fa35\u002Fa75899a356037e32c91ba371f8736b38.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EКросс-секционный вид данных (все субъекты за один конкретный год)\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E\u003Cem\u003Eпо одному субъекту в динамике:\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F285\u002Fdb4\u002F457\u002F285db4457768e59aa7cf7256d39455c3.png\" alt=\"Временной вид данных (за все годы по одному субъекту)\" title=\"Временной вид данных (за все годы по одному субъекту)\" width=\"1919\" height=\"1026\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F285\u002Fdb4\u002F457\u002F285db4457768e59aa7cf7256d39455c3.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F285\u002Fdb4\u002F457\u002F285db4457768e59aa7cf7256d39455c3.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EВременной вид данных (за все годы по одному субъекту)\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E\u003Cem\u003Eвсе субъекты в динамике:\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F274\u002Fd2e\u002F4e0\u002F274d2e4e065a917517ff270d83644d65.png\" alt=\"Панельный вид данных (все субъекты за все доступные годы)\" title=\"Панельный вид данных (все субъекты за все доступные годы)\" width=\"1919\" height=\"1025\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F274\u002Fd2e\u002F4e0\u002F274d2e4e065a917517ff270d83644d65.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F274\u002Fd2e\u002F4e0\u002F274d2e4e065a917517ff270d83644d65.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EПанельный вид данных (все субъекты за все доступные годы)\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EИ для меня менее интересный вид, как в ЕМИСС, для одного показателя:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F460\u002F653\u002Fccf\u002F460653ccfac57a03279da480ce6a8018.png\" alt=\"Один показатель в разрезе субъектов и по всем годам\" title=\"Один показатель в разрезе субъектов и по всем годам\" width=\"1919\" height=\"1025\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F460\u002F653\u002Fccf\u002F460653ccfac57a03279da480ce6a8018.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F460\u002F653\u002Fccf\u002F460653ccfac57a03279da480ce6a8018.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EОдин показатель в разрезе субъектов и по всем годам\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EИ, наверное, самое интересное теперь появился API для доступа к данным. \u003C\u002Fp\u003E\u003Ch3\u003EКак начать работу с API StatKit?\u003C\u002Fh3\u003E\u003Cp\u003E\u003Cstrong\u003E1. Установка зависимостей\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EОткройте \u003Ca href=\"https:\u002F\u002Fjupyter.org\u002Finstall\" rel=\"noopener noreferrer nofollow\"\u003EJupyter Notebook\u003C\u002Fa\u003E. Убедитесь, что у вас установлены библиотеки \u003Ccode\u003Erequests\u003C\u002Fcode\u003E и \u003Ccode\u003Epandas\u003C\u002Fcode\u003E: \u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E# установка и импорт зависимостей\n!pip install requests pandas\n\nimport pandas as pd\nimport requests\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003E\u003Cstrong\u003E2. Подготовка авторизации\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EЗамените \u003Ccode\u003Eusername\u003C\u002Fcode\u003E и \u003Ccode\u003Etoken\u003C\u002Fcode\u003E на \u003Ca href=\"https:\u002F\u002Fgo.statkit.ru\u002Fprofile\" rel=\"noopener noreferrer nofollow\"\u003Eсвои учетные данные API\u003C\u002Fa\u003E:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E# получить имя пользователя и токен можно по адресу: https:\u002F\u002Fgo.statkit.ru\u002Fprofile\nusername = \"your_username\"  # замените на Ваш username API\ntoken = \"your_token\"        # замените на Ваш токен доступа\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003E\u003Cstrong\u003E3. Настройка заголовков запроса\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EДобавьте headers для авторизации:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003Eheaders = {\n    \"X-API-User\": username,              # username API\n    \"Authorization\": f\"Bearer {token}\",  # токен\n    \"Content-Type\": \"application\u002Fjson\"   # Формат данных (JSON)\n}\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003E\u003Cstrong\u003EПолучим список всех статистических показателей из API, преобразуем их в таблицу pandas:\u003C\u002Fstrong\u003E  \u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003Eapi_url = \"https:\u002F\u002Fapi.alexstat.ru\u002Fapi\u002Fv1\u002Findicators\"\n\ntry:\n    # Выполняем GET-запрос к API\n    response = requests.get(api_url, headers=headers)\n\n    data = None\n    \n    # Проверяем статус ответа сервера\n    if response.status_code == 200:\n        data = response.json()\n        print(\"Данные успешно получены!\")\n    else:\n        print(f\"Ошибка запроса. Код состояния: {response.status_code}\")\n        print(f\"Текст ответа сервера: {response.text}\")\n\nexcept requests.exceptions.RequestException as e:\n    print(f\"Произошла ошибка при выполнении запроса: {e}\")\n\n# Преобразуем полученные данные в DataFrame\ndf = pd.DataFrame(data)\n# Конвертируем строковые даты в формат datetime\ndf['add_date'] = pd.to_datetime(df['add_date'])\ndf['lastmod_date'] = pd.to_datetime(df['lastmod_date'])\ndf\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F4a0\u002F81d\u002F4c0\u002F4a081d4c03c89d1934508c733a5bf5c4.png\" alt=\"Результат запроса всех показателей\" title=\"Результат запроса всех показателей\" width=\"1782\" height=\"551\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F4a0\u002F81d\u002F4c0\u002F4a081d4c03c89d1934508c733a5bf5c4.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F4a0\u002F81d\u002F4c0\u002F4a081d4c03c89d1934508c733a5bf5c4.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EРезультат запроса всех показателей\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E\u003Cstrong\u003EМожно сузить поиск, указав ключевые слова в запросе. Найдем показатели по ID или ключевому слову \u003C\u002Fstrong\u003E\u003Ccode\u003E\u003Cstrong\u003Eдоля\u003C\u002Fstrong\u003E\u003C\u002Fcode\u003E\u003Cstrong\u003E:\u003C\u002Fstrong\u003E  \u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E# URL API для получения данных о показателе \"доля\"\napi_url = \"https:\u002F\u002Fapi.alexstat.ru\u002Fapi\u002Fv1\u002Findicators\u002Fдоля\"\n\ntry:\n    # Отправляем GET-запрос к API с указанными заголовками\n    response = requests.get(api_url, headers=headers)\n\n    # Инициализируем переменную для хранения данных\n    data = None\n    \n    # Проверяем код статуса ответа\n    if response.status_code == 200:\n        # Если запрос успешен (код 200), преобразуем ответ в JSON\n        data = response.json()\n        print(\"Успешный запрос!\")\n    else:\n        # Если сервер вернул ошибку, выводим код статуса и текст ответа\n        print(f\"Ошибка запроса. Код статуса: {response.status_code}\")\n        print(f\"Ответ сервера: {response.text}\")\n\n# Обрабатываем возможные исключения при выполнении запроса\nexcept requests.exceptions.RequestException as e:\n    print(f\"Ошибка при выполнении запроса: {e}\")\n\n# Преобразуем полученные данные в DataFrame pandas\ndf = pd.DataFrame(data)\ndf\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F491\u002F368\u002Fc7c\u002F491368c7ce7c00e806c21720dbf782cf.png\" alt=\"Результат запроса всех показателей и указания ключевого слова\" title=\"Результат запроса всех показателей и указания ключевого слова\" width=\"1788\" height=\"540\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F491\u002F368\u002Fc7c\u002F491368c7ce7c00e806c21720dbf782cf.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F491\u002F368\u002Fc7c\u002F491368c7ce7c00e806c21720dbf782cf.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EРезультат запроса всех показателей и указания ключевого слова\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E\u003Cstrong\u003EПолучить данные самого показателя можно, обратившись по \u003C\u002Fstrong\u003E\u003Ccode\u003E\u003Cstrong\u003EID\u003C\u002Fstrong\u003E\u003C\u002Fcode\u003E\u003Cstrong\u003E:\u003C\u002Fstrong\u003E  \u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E# URL API для получения данных показателя с ID = 100\napi_url = \"https:\u002F\u002Fapi.alexstat.ru\u002Fapi\u002Fv1\u002Fget_indicator\u002F100\"\n\ntry:\n    # Отправляем GET-запрос к API с указанными заголовками\n    response = requests.get(api_url, headers=headers)\n\n    # Инициализируем переменную для хранения данных\n    data = None\n    \n    # Проверяем статус ответа сервера\n    if response.status_code == 200:\n        # При успешном ответе преобразуем в JSON\n        data = response.json()\n        print(\"Данные успешно получены!\")\n    else:\n        # Выводим информацию об ошибке, если статус не 200\n        print(f\"Ошибка запроса. Код статуса: {response.status_code}\")\n        print(f\"Текст ответа: {response.text}\")\n\n# Обрабатываем возможные исключения при выполнении запроса\nexcept requests.exceptions.RequestException as e:\n    print(f\"Ошибка при выполнении запроса: {e}\")\n\n# Преобразуем данные в pandas DataFrame\ndf = pd.DataFrame(data)\n\n# Преобразуем значения показателя в числовой формат (float)\ndf['ObsValue'] = df['ObsValue'].astype(float)\n\ndf\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fdbd\u002F543\u002F46a\u002Fdbd54346adf58602d8c3ffd91de60076.png\" alt=\"Результат запроса данных по конкретному показателю\" title=\"Результат запроса данных по конкретному показателю\" width=\"1186\" height=\"547\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fdbd\u002F543\u002F46a\u002Fdbd54346adf58602d8c3ffd91de60076.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fdbd\u002F543\u002F46a\u002Fdbd54346adf58602d8c3ffd91de60076.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EРезультат запроса данных по конкретному показателю\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EПолный код и готовый Jupyter Notebook в интерактивном Colab размещены по ссылке: \u003Ca href=\"https:\u002F\u002Fgo.statkit.ru\u002Fapi\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fgo.statkit.ru\u002Fapi\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003Cp\u003EТакже там в коде по ссылке я предлагаю вариант, как из нескольких эндпоинтов API провести мини-исследование и построить регрессию: исследовать зависимость между показателями населения и преступности по субъектам в разрезе ОКАТО:\u003C\u002Fp\u003E\u003Cp\u003EНайдем интересующие нас показатели для исследования:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E# URL API для получения показателей по ключевому слову \"численность\"\napi_url = \"https:\u002F\u002Fapi.alexstat.ru\u002Fapi\u002Fv1\u002Findicators\u002Fчисленность\"\n\ntry:\n    # Отправляем GET-запрос к API с указанными заголовками\n    response = requests.get(api_url, headers=headers)\n\n    # Инициализируем переменную для хранения данных ответа\n    data = None\n\n    # Проверяем статус ответа сервера\n    if response.status_code == 200:\n        # При успешном ответе преобразуем в JSON\n        data = response.json()\n        print(\"Данные успешно получены!\")\n    else:\n        # Выводим информацию об ошибке, если статус не 200\n        print(f\"Ошибка запроса. Код статуса: {response.status_code}\")\n        print(f\"Текст ответа сервера: {response.text}\")\n\n# Обрабатываем возможные исключения при выполнении запроса\nexcept requests.exceptions.RequestException as e:\n    print(f\"Произошла ошибка при выполнении запроса: {e}\")\n\n# Преобразуем полученные данные в DataFrame\ndf = pd.DataFrame(data)\ndf\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff9e\u002Fc84\u002Ffe7\u002Ff9ec84fe7e5705e0d61afc9cc165a735.png\" alt=\"Показатели по ключевому слову &quot;численность&quot;\" title=\"Показатели по ключевому слову &quot;численность&quot;\" width=\"1768\" height=\"717\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff9e\u002Fc84\u002Ffe7\u002Ff9ec84fe7e5705e0d61afc9cc165a735.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff9e\u002Fc84\u002Ffe7\u002Ff9ec84fe7e5705e0d61afc9cc165a735.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EПоказатели по ключевому слову \"численность\"\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EЧисленность постоянного населения имеет ID \u003Ccode\u003E1278\u003C\u002Fcode\u003E.\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E# URL API для получения показателей по ключевому слову \"преступ\"\napi_url = \"https:\u002F\u002Fapi.alexstat.ru\u002Fapi\u002Fv1\u002Findicators\u002Fпреступ\"\n\ntry:\n    # Отправляем GET-запрос с заголовками\n    response = requests.get(api_url, headers=headers)\n\n    # Переменная для хранения данных\n    data = None\n\n    # Проверяем статус ответа\n    if response.status_code == 200:\n        # Если успешно, преобразуем JSON\n        data = response.json()\n        print(\"Успешно!\")\n    else:\n        # Выводим ошибку, если статус не 200\n        print(f\"Ошибка запроса. Код: {response.status_code}\")\n        print(f\"Ответ: {response.text}\")\n\n# Обрабатываем ошибки запроса\nexcept requests.exceptions.RequestException as e:\n    print(f\"Ошибка запроса: {e}\")\n\n# Создаем DataFrame из полученных данных\ndf = pd.DataFrame(data)\ndf\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fc41\u002F1c7\u002Fa29\u002Fc411c7a29e974085e8e7a66887f393ce.png\" alt=\"Показатели по ключевому слову &quot;преступ&quot;\" title=\"Показатели по ключевому слову &quot;преступ&quot;\" width=\"1717\" height=\"324\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fc41\u002F1c7\u002Fa29\u002Fc411c7a29e974085e8e7a66887f393ce.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fc41\u002F1c7\u002Fa29\u002Fc411c7a29e974085e8e7a66887f393ce.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EПоказатели по ключевому слову \"преступ\"\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EДалее, возьмем доля лиц, совершивших преступления, с ID = \u003Ccode\u003E232\u003C\u002Fcode\u003E. Получим данные по показателю численность населения:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E# URL для получения показателя с ID 1278 (численность постоянного населения)\napi_url = \"https:\u002F\u002Fapi.alexstat.ru\u002Fapi\u002Fv1\u002Fget_indicator\u002F1278\"\n\ntry:\n    # Отправка GET-запроса к API с указанными заголовками\n    response = requests.get(api_url, headers=headers)\n\n    # Инициализация переменной для хранения данных\n    data = None\n\n    # Проверка статуса ответа сервера\n    if response.status_code == 200:\n        # Успешный ответ - преобразуем в JSON\n        data = response.json()\n        print(\"Данные успешно получены!\")\n    else:\n        # Вывод информации об ошибке, если статус не 200\n        print(f\"Ошибка запроса. Код статуса: {response.status_code}\")\n        print(f\"Текст ответа: {response.text}\")\n\n# Обработка возможных ошибок при выполнении запроса\nexcept requests.exceptions.RequestException as e:\n    print(f\"Ошибка выполнения запроса: {e}\")\n\n# Создание DataFrame из полученных данных\npopulation = pd.DataFrame(data)\n\n# Преобразование значений показателя в числовой формат float\npopulation['ObsValue'] = population['ObsValue'].astype(float)\n\npopulation\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0ca\u002F844\u002F100\u002F0ca844100aec07bd0cd752530980a690.png\" alt=\"Данные показателя постоянного населения по субъектам РФ\" title=\"Данные показателя постоянного населения по субъектам РФ\" width=\"1193\" height=\"543\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0ca\u002F844\u002F100\u002F0ca844100aec07bd0cd752530980a690.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0ca\u002F844\u002F100\u002F0ca844100aec07bd0cd752530980a690.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EДанные показателя постоянного населения по субъектам РФ\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EОбратимся к справочникам ОКАТО (1) и Тип поселения (17):\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E# Находим все колонки, содержащие справочники (начинающиеся с index_)\nprint(\"Идентификация колонок со справочниками...\")\nindex_columns = [col for col in population.columns if col.startswith('index_')]\nprint(f\"Найдены колонки со справочниками: {index_columns}\")\n\n# Извлекаем ID справочников из названий колонок\nindex_ids = [col.split('_')[1] for col in index_columns]\nprint(f\"Извлеченные ID справочников: {index_ids}\")\n\n# Функция для получения соответствия между кодами и их текстовыми описаниями\ndef get_index_mapping(index_id):\n    \"\"\"Получает маппинг кодов в текстовые описания для указанного справочника\"\"\"\n    api_url = f\"https:\u002F\u002Fapi.alexstat.ru\u002Fapi\u002Fv1\u002Fget_index\u002F{index_id}\"\n    try:\n        print(f\"Запрашиваем маппинг для справочника {index_id}...\")\n        response = requests.get(api_url, headers=headers)\n\n        if response.status_code == 200:\n            data = response.json()\n            # Создаем словарь {код: описание}\n            mapping = {str(item['code_value']): item['code_text'] for item in data}\n            print(f\"Найдено {len(mapping)} соответствий для справочника {index_id}\")\n            return mapping\n        else:\n            print(f\"Ошибка получения справочника {index_id}: статус {response.status_code}\")\n            return None\n    except requests.exceptions.RequestException as e:\n        print(f\"Ошибка запроса для справочника {index_id}: {e}\")\n        return None\n    except KeyError as e:\n        print(f\"Неожиданный формат данных для справочника {index_id}: {e}\")\n        return None\n\n# Получаем маппинги для всех найденных справочников\nindex_mappings = {}\nfor index_id in index_ids:\n    mapping = get_index_mapping(index_id)\n    if mapping:\n        index_mappings[index_id] = mapping\n\nprint(f\"Созданы маппинги для {len(index_mappings)} из {len(index_ids)} справочников\")\n\n# Заменяем коды на текстовые описания в основном DataFrame\nfor col in index_columns:\n    index_id = col.split('_')[1]\n    if index_id in index_mappings:\n        mapping = index_mappings[index_id]\n        # Преобразуем к строковому типу, применяем маппинг, оставляем оригинальные значения при отсутствии маппинга\n        population[col] = population[col].astype(str).map(mapping).fillna(population[col])\n        print(f\"Обработана колонка {col} (справочник {index_id})\")\n    else:\n        print(f\"Не найден маппинг для колонки {col} (справочник {index_id})\")\n\n# Выводим результат\npopulation\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F301\u002F1ee\u002F7ed\u002F3011ee7edc4e4b4683e9a57cbba5bcb5.png\" alt=\"Добавили текстовые значения вместо кодов из справочников\" title=\"Добавили текстовые значения вместо кодов из справочников\" width=\"1533\" height=\"712\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F301\u002F1ee\u002F7ed\u002F3011ee7edc4e4b4683e9a57cbba5bcb5.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F301\u002F1ee\u002F7ed\u002F3011ee7edc4e4b4683e9a57cbba5bcb5.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EДобавили текстовые значения вместо кодов из справочников\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EИсследуем показатель, что он содержит:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E# Проходим по всем колонкам в DataFrame population\nfor col in population.columns:\n    # Пропускаем числовые колонки и идентификаторы\n    if col in ['ObsValue', 'id']:\n        continue\n\n    # Выводим название колонки\n    print(f'Уникальные значения в колонке {col}:')\n\n    # Выводим все уникальные значения в колонке\n    print(population[col].unique())\n\n    # Пустая строка для разделения\n    print()\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EОтфильтруем датафрейм со значениями показателя по населению. И возьмем статистику только с одного уровня – субъектного, исключив дублирования в виде РФ, федеральных округов, частей, входящих в состав субъектов:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003EOKATO_to_be_excluded = ['Российская Федерация',\n                        'Российская Федерация в границах до 04.10.2022',\n                        'Центральный федеральный округ',\n                        'Северо-Западный федеральный округ',\n                        'Ненецкий автономный округ (Архангельская область)',\n                        'Архангельская область (без АО)',\n                        'Архангельская область (кроме Ненецкого автономного округа)',\n                        'Южный федеральный округ (с 2010 года)',\n                        'Южный федеральный округ (с 29.07.2016)',\n                        'Северо-Кавказский федеральный округ',\n                        'Приволжский федеральный округ',\n                        'Коми-Пермяцкий округ, входящий в состав Пермского края',\n                        'Ханты-Мансийский автономный округ - Югра (Тюменская область)',\n                        'Ямало-Ненецкий автономный округ (Тюменская область)',\n                        'Тюменская область (без АО)',\n                        'Тюменская область (кроме Ханты-Мансийского автономного округа-Югры и Ямало-Ненецкого автономного округа)',\n                        'Сибирский федеральный округ',\n                        'Таймырский (Долгано-Ненецкий) автономный округ (Красноярский край)',\n                        'Эвенкийский автономный округ (Красноярский край)',\n                        'Усть-Ордынский Бурятский округ' ,\n                        'Агинский Бурятский округ (Забайкальский край)',\n                        'Корякский округ, входящий в состав Камчатского края',\n                        'Чеченская и Ингушская Республики',\n                        'Северный район' 'Северо-Западный район' 'Центральный район',\n                        'Волго-Вятский район',\n                        'Центрально-Черноземный район',\n                        'Поволжский район',\n                        'Северо-Кавказский район',\n                        'Уральский район',\n                        'Западно-Сибирский район',\n                        'Восточно-Сибирский район',\n                        'Дальневосточный район']\n\n# Фильтрация данных о населении по нескольким условиям:\npopulation_filtered = population[\n    # 1. Выбираем только данные за 2024 год\n    (population['Time'] == 2024) &amp;\n\n    # 2. Выбираем только записи, где указано \"все население\" (из справочника index_17)\n    (population['index_17'] == 'все население') &amp;\n\n    # 3. Исключаем записи, где код региона (index_1) находится в списке исключений OKATO_to_be_excluded\n    # Оператор ~ означает отрицание (NOT IN)\n    (~population['index_1'].isin(OKATO_to_be_excluded))\n]\n\n# Результат фильтрации сохраняется в новый DataFrame population_filtered\npopulation_filtered\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F33f\u002Fff4\u002F819\u002F33fff4819c6e9c29532e05d7dbb44250.png\" alt=\"Результат фильтрации показателя по населению\" title=\"Результат фильтрации показателя по населению\" width=\"1483\" height=\"536\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F33f\u002Fff4\u002F819\u002F33fff4819c6e9c29532e05d7dbb44250.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F33f\u002Fff4\u002F819\u002F33fff4819c6e9c29532e05d7dbb44250.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EРезультат фильтрации показателя по населению\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EСделаем тоже самое для показателя по числу преступлений:\u003C\u002Fp\u003E\u003Cp\u003EДелай раз:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003Eapi_url = \"https:\u002F\u002Fapi.alexstat.ru\u002Fapi\u002Fv1\u002Fget_indicator\u002F232\"\n\ntry:\n    response = requests.get(api_url, headers=headers)\n\n    data = None\n\n    if response.status_code == 200:\n        data = response.json()\n        print(\"Success!\")\n    else:\n        print(f\"Request failed with status code: {response.status_code}\")\n        print(f\"Response: {response.text}\")\n\nexcept requests.exceptions.RequestException as e:\n    print(f\"Request failed: {e}\")\n\ncrime = pd.DataFrame(data)\ncrime['ObsValue'] = crime['ObsValue'].astype(float)\ncrime\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EДелай два:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003Efor col in crime.columns:\n    if col in ['ObsValue', 'id']:\n        continue\n    print(f'{col} unique values:')\n    print(crime[col].unique())\n    print()\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EДелай три:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003Efor col in crime.columns:\n    if col in ['ObsValue', 'id']:\n        continue\n    print(f'{col} unique values:')\n    print(crime[col].unique())\n    print()\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EДелай четыре:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003Ecrime_filtered = crime[\n    (crime['Time'] == 2024) &amp;\n    (crime['PERIOD'] == 'январь-декабрь') &amp;\n    (crime['index_1'].isin(population_filtered['index_1'].tolist() ))]\ncrime_filtered\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EИ готово:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fe39\u002Fdd1\u002Ff3b\u002Fe39dd1f3b977aedb2fff395175c3fd0c.png\" alt=\"Результат фильтрации показателя по преступности\" title=\"Результат фильтрации показателя по преступности\" width=\"1254\" height=\"515\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fe39\u002Fdd1\u002Ff3b\u002Fe39dd1f3b977aedb2fff395175c3fd0c.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fe39\u002Fdd1\u002Ff3b\u002Fe39dd1f3b977aedb2fff395175c3fd0c.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EРезультат фильтрации показателя по преступности\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EОбъединим два показателя по ОКАТО (субъектам РФ):\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E# Объединение данных о населении и преступности в один DataFrame\npopulation_crime = pd.merge(\n    # Левый DataFrame - данные о населении:\n    population_filtered[['ObsValue', 'Time', 'index_1']].rename(columns={'ObsValue': 'population'}),\n\n    # Правый DataFrame - данные о преступности:\n    crime_filtered[['ObsValue', 'Time', 'index_1']].rename(columns={'ObsValue': 'crime'}),\n\n    # Параметры объединения:\n    on=['Time', 'index_1'],  # Ключи для объединения (год и код региона)\n    how='outer'              # Тип объединения (внешнее)\n)\n\n# Результат объединения:\npopulation_crime\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fc0a\u002F148\u002F7a8\u002Fc0a1487a8bc1d44d538d559ca157e89d.png\" alt=\"Объединили показатели &quot;Преступность&quot; и &quot;Население&quot;\" title=\"Объединили показатели &quot;Преступность&quot; и &quot;Население&quot;\" width=\"715\" height=\"522\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fc0a\u002F148\u002F7a8\u002Fc0a1487a8bc1d44d538d559ca157e89d.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fc0a\u002F148\u002F7a8\u002Fc0a1487a8bc1d44d538d559ca157e89d.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EОбъединили показатели \"Преступность\" и \"Население\"\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EРассмотрим зависимость между численностью населения и преступлениями:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E# раскомментируйте строчку ниже, чтобы установить библиотеку для рисования\n#!pip install matplotlib\nimport matplotlib.pyplot as plt\n\nplt.scatter(population_crime['population'], population_crime['crime'])\nplt.xlabel('Population')\nplt.ylabel('Crime')\nplt.show()\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa75\u002F32a\u002Fbbd\u002Fa7532abbd1366cb8bb9f6f37753237cb.png\" alt=\"График разброса значений показателей населения и преступности\" title=\"График разброса значений показателей населения и преступности\" width=\"921\" height=\"555\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa75\u002F32a\u002Fbbd\u002Fa7532abbd1366cb8bb9f6f37753237cb.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa75\u002F32a\u002Fbbd\u002Fa7532abbd1366cb8bb9f6f37753237cb.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EГрафик разброса значений показателей населения и преступности\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EРегрессия:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E# раскомментируйте строчку ниже, чтобы установить библиотеку для построения стат. моделей\n#!pip install statsmodels\n\nimport statsmodels.api as sm\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nX = population_crime['population']  # независимая переменная\ny = population_crime['crime']       # зависимая переменная\n\n# добавим константу в уравнение\nX = sm.add_constant(X)\n\n# регрессионная модель\nmodel = sm.OLS(y, X).fit()\n\n# статистики модели\nprint(model.summary())\nprint(\"\\nCoefficients:\")\nprint(f\"Intercept: {model.params[0]:.2f}\")\nprint(f\"Population Coefficient: {model.params[1]:.4f}\")\nprint(f\"R-squared: {model.rsquared:.3f}\")\nprint(f\"P-value for Population: {model.pvalues[1]:.4f}\")\n\n# построим график\nplt.figure(figsize=(10, 6))\n\n# график разброса наблюдаемых данных\nplt.scatter(\n    population_crime['population'],\n    population_crime['crime'],\n    color='blue',\n    alpha=0.6,\n    label='Фактические данные'\n)\n\n# линия регрессии\nregression_line = model.params[0] + model.params[1] * population_crime['population']\nplt.plot(\n    population_crime['population'],\n    regression_line,\n    color='red',\n    linewidth=2,\n    label=f'Regression Line\\ny = {model.params[0]:.2f} + {model.params[1]:.4f}x'\n)\n\n# уравнение регрессии\nequation_text = f'y = {model.params[0]:.2f} + {model.params[1]:.4f}x\\nR² = {model.rsquared:.3f}'\nplt.text(\n    0.05, 0.95,\n    equation_text,\n    transform=plt.gca().transAxes,\n    fontsize=12,\n    verticalalignment='top',\n    bbox=dict(boxstyle='round', facecolor='white', alpha=0.8)\n)\n\nplt.xlabel('Population', fontsize=12)\nplt.ylabel('Crime', fontsize=12)\nplt.title('Линейная регрессия', fontsize=14)\nplt.legend()\nplt.grid(True, alpha=0.3)\nplt.tight_layout()\nplt.show()\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd0b\u002F0c0\u002F974\u002Fd0b0c09746fc8b88654722479d397a75.png\" alt=\"Коэффициенты и метрики регрессии\" title=\"Коэффициенты и метрики регрессии\" width=\"865\" height=\"524\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd0b\u002F0c0\u002F974\u002Fd0b0c09746fc8b88654722479d397a75.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd0b\u002F0c0\u002F974\u002Fd0b0c09746fc8b88654722479d397a75.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EКоэффициенты и метрики регрессии\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EМодель показывает сильную зависимость уровня преступности от численности населения с R² = 0,829, что означает, что 82,9 % дисперсии преступности объясняется показателем населения. Коэффициент регрессии статистически значим: при росте населения на 1 000 человек число преступников увеличивается в среднем на 4 человека (как бы 4 человека из 1 000 значимо статистически могут стать преступниками). Однако, константа незначима (при \"нулевом\" населении). Такая вот псевдо-зависимость, но как пример использования API StatKit вполне себе подойдет.\u003C\u002Fp\u003E\u003Cp\u003EИ картинка:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbc4\u002Fb81\u002F4e9\u002Fbc4b814e9e2b1fa08b76020f39293910.png\" alt=\"Линейная регрессия\" title=\"Линейная регрессия\" width=\"1342\" height=\"729\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbc4\u002Fb81\u002F4e9\u002Fbc4b814e9e2b1fa08b76020f39293910.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbc4\u002Fb81\u002F4e9\u002Fbc4b814e9e2b1fa08b76020f39293910.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EЛинейная регрессия\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EИ причем здесь погода скажите Вы? Хочу сообщить о запуске разработки нового формата – больших погодных массивов по Российской Федерации от ВНИИГМИ-МЦД в совместимом с ЕМИСС формате SDMX. Что скоро будет внедрено (по некоторым городам РФ данные доступны аж с конца 1800 годов!):\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003Eсуточные данные о температуре почвы по станциям в РФ;\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eсуточные данные о температуре атмосферного воздуха и осадках по станциям в РФ;\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eсуточные данные о снежном покрове по станциям в РФ.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Ch3\u003EЗаключительные положения\u003C\u002Fh3\u003E\u003Cp\u003EПроект изначально был моим личным небольшим кодом, который помогал мне работать с ЕМИСС, но, как мне кажется, может он поможет и Вам.\u003C\u002Fp\u003E\u003Cp\u003EСейчас не все показатели есть у меня по сравнению с ЕМИСС, но я стараюсь добавлять с ЕМИСС новые данные, и, как я указывал в посте, если Вы напиши мне с указанием, какой показатель добавить (а еще лучше прямая ссылка на этот показатель в ЕМИСС), я его постараюсь оперативно добавить.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cem\u003EЕще раз положу здесь:\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003Eссылка на проект: \u003Ca href=\"https:\u002F\u002Fgo.statkit.ru\u002F\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fgo.statkit.ru\u002F\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eссылки на Colab: \u003Ca href=\"https:\u002F\u002Fcolab.research.google.com\u002Fdrive\u002F1yp37jkFGpFpphehHxakxd0dgCtvFkAPH?usp=sharing\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fcolab.research.google.com\u002Fdrive\u002F1yp37jkFGpFpphehHxakxd0dgCtvFkAPH?usp=sharing\u003C\u002Fa\u003E и \u003Ca href=\"https:\u002F\u002Fcolab.research.google.com\u002Fdrive\u002F1TRy3vILhplamlXnC_K_0TdlkGOZ0U46K?usp=sharing\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fcolab.research.google.com\u002Fdrive\u002F1TRy3vILhplamlXnC_K_0TdlkGOZ0U46K?usp=sharing\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eссылки на \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Farticles\u002F812123\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eчасть 1\u003C\u002Fa\u003E и \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fposts\u002F902254\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eчасть 2\u003C\u002Fa\u003E на Хабре.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"ЕМИСС"},{"titleHtml":"статистика"},{"titleHtml":"StatKit"},{"titleHtml":"росстат"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F173\u002F0ec\u002Fd9d\u002F1730ecd9d4685ddf0437e1cc647b8766.png","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F173\u002F0ec\u002Fd9d\u002F1730ecd9d4685ddf0437e1cc647b8766.png","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F907124\\\u002F\"},\"headline\":\"Новый ЕМИСС 2.0 со сводными таблицами, API и погодой?\",\"datePublished\":\"2025-05-05T21:21:39+03:00\",\"dateModified\":\"2025-05-06T00:22:24+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"create_your_view\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Привет, Хабр! Около года назад мне пришла странная идея: а что, если сделать новую версию ЕМИСС, хранилища российской статистики, чтобы наконец-то было удобно св...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F907124\\\u002F#post-content-body\",\"about\":[\"h_statistics\",\"h_webdev\",\"h_web_design\",\"f_develop\",\"f_design\",\"f_popsci\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F907124\\\u002Ff82217e905a2d0907cee4a4d208a2bf2\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F173\\\u002F0ec\\\u002Fd9d\\\u002F1730ecd9d4685ddf0437e1cc647b8766.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F260\\\u002Fe1e\\\u002F47d\\\u002F260e1e47d295758681166968dbccae77.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fb7d\\\u002F1b0\\\u002Fac1\\\u002Fb7d1b0ac1b96db21abd74177a655cdd1.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Ff7a\\\u002F2c0\\\u002F481\\\u002Ff7a2c0481769a539d483c32a6c94493d.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fa75\\\u002F899\\\u002Fa35\\\u002Fa75899a356037e32c91ba371f8736b38.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F285\\\u002Fdb4\\\u002F457\\\u002F285db4457768e59aa7cf7256d39455c3.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F274\\\u002Fd2e\\\u002F4e0\\\u002F274d2e4e065a917517ff270d83644d65.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F460\\\u002F653\\\u002Fccf\\\u002F460653ccfac57a03279da480ce6a8018.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F4a0\\\u002F81d\\\u002F4c0\\\u002F4a081d4c03c89d1934508c733a5bf5c4.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F491\\\u002F368\\\u002Fc7c\\\u002F491368c7ce7c00e806c21720dbf782cf.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fdbd\\\u002F543\\\u002F46a\\\u002Fdbd54346adf58602d8c3ffd91de60076.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Ff9e\\\u002Fc84\\\u002Ffe7\\\u002Ff9ec84fe7e5705e0d61afc9cc165a735.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fc41\\\u002F1c7\\\u002Fa29\\\u002Fc411c7a29e974085e8e7a66887f393ce.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F0ca\\\u002F844\\\u002F100\\\u002F0ca844100aec07bd0cd752530980a690.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F301\\\u002F1ee\\\u002F7ed\\\u002F3011ee7edc4e4b4683e9a57cbba5bcb5.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F33f\\\u002Fff4\\\u002F819\\\u002F33fff4819c6e9c29532e05d7dbb44250.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fe39\\\u002Fdd1\\\u002Ff3b\\\u002Fe39dd1f3b977aedb2fff395175c3fd0c.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fc0a\\\u002F148\\\u002F7a8\\\u002Fc0a1487a8bc1d44d538d559ca157e89d.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fa75\\\u002F32a\\\u002Fbbd\\\u002Fa7532abbd1366cb8bb9f6f37753237cb.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fd0b\\\u002F0c0\\\u002F974\\\u002Fd0b0c09746fc8b88654722479d397a75.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fbc4\\\u002Fb81\\\u002F4e9\\\u002Fbc4b814e9e2b1fa08b76020f39293910.png\"]}","metaDescription":"Привет, Хабр! Около года назад мне пришла странная идея: а что, если сделать новую версию ЕМИСС, хранилища российской статистики, чтобы наконец-то было удобно сводить данные. А то постоянно...","mainImageUrl":null,"amp":false,"customTrackerLinks":[]},"polls":[{"id":"47302","timeElapsed":null,"answersType":"checkbox","votesCount":0,"passCount":0,"textHtml":"А Вы чем пользуетесь для доступа к статистике?","relatedData":null,"variants":[{"id":"215868","textHtml":"ЕМИСС","votesCount":0,"percent":0,"selected":false},{"id":"215870","textHtml":"Витрина данных Росстата","votesCount":0,"percent":0,"selected":false},{"id":"215872","textHtml":"Статистика с сайта Росстата","votesCount":0,"percent":0,"selected":false},{"id":"215874","textHtml":"Другое","votesCount":0,"percent":0,"selected":false}]}],"commentsEnabled":{"status":true,"reason":null},"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"hasPinnedComments":false,"format":"tutorial","banner":null,"multiwidget":null,"multiwidgetUuid":null,"readingTime":12,"complexity":"medium","isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"postReasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"viewedPosts":[],"myFeedFilter":{"complexity":"all","score":"all","types":["articles","posts","news"]},"myFeedIsApplyFilters":false,"myFeedIsForce":false,"karma":{"userReasonsList":null}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[{"title":"Веб дизайнер","vacanciesCount":18,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Fveb_dizajner","itemHubs":["design","web_design"]}],"hubs":"statistics,webdev,web_design"},"comments":{"articleComments":{},"articlePinnedComments":{},"searchCommentsResults":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":"","idempotenceKey":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"multiwidgets":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"multiwidgetLoading":false,"vacancies":{},"companiesGalleries":{},"companiesBanners":{},"companiesLandingVacancies":{},"companiesTechnologies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null,"jivoStatus":0,"adminNotifications":null,"availableInvitesCount":{}},"companyAdd":{"currentStep":"","stepsData":{},"uncompletedSteps":[],"isStepLoading":true,"isStepCommitting":false,"isInitialized":false,"agreementContent":""},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"pagesCount":0},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":true},"fixedBanner":{"isArticleStickyPanelVisible":false,"isArticleStickyPanelAtTheBottom":false,"isFixedBannerVisible":false,"isStickyPanelIconsHidden":false},"flows":{"updates":{}},"global":{"isPwa":false,"device":"desktop","isHabrCom":true,"requestId":"f17da4a17e3eec052915e031ceefb7a3"},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"welcomePage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"query":{},"pathname":"\u002Fru\u002Farticles\u002F907124\u002F","path":"\u002Fru\u002Farticles\u002F907124\u002F","href":"\u002Fru\u002Farticles\u002F907124\u002F"}},"me":{"user":null,"uuid":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null,"userUpdates":{"feeds":{"newPostsCount":null,"newThreadsCount":null,"newNewsCount":null,"newCount":null},"conversationUnreadCount":0},"features":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"onboarding":{"currentStep":null,"stepsData":{},"stepsErrors":{},"completedSteps":[],"isStepCommitting":false,"isCommitDisabled":true},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{"salary":"project-block-article"}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null,"sticker":null},"publicationStatistics":{"statsInfo":{},"statsFunnels":{},"statsGraph":{},"defaultSuggest":{},"suggest":{},"timeTracker":{},"isTrackingActivity":false,"isUserActive":true,"otherPublicationStats":{}},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":true,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"stories":{"stories":null},"technotext":{"years":[],"technotextDocForNominees":null,"technotextDocForWinners":null,"technotextInfo":{},"technotextInfoLoading":false,"technotextWinners":{},"technotextWinnersLoading":false},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"userVotes":{"karmaVotesList":[],"karmaVotesPagesCount":null,"karmaVotesListLoading":false,"commentsVotesList":[],"commentsVotesPagesCount":null,"commentsVotesListLoading":false,"postsVotesList":[],"postsVotesPagesCount":null,"postsVotesListLoading":false,"userVotesList":[],"userVotesPagesCount":null,"userVotesListLoading":false},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"notificationsLoading":false,"notificationsList":[],"notificationsPageCount":0,"pendingMarkNotificationsRead":[],"publicationsLoading":true,"publicationsList":[],"publicationsPageCount":0,"pendingDeletePublications":false,"pendingMarkPublicationsRead":false},"events":{"eventRefs":{},"eventIds":[],"pagesCount":0,"categories":[],"cities":[],"actualEvents":null,"currentEvent":null,"eventsFilter":{"city":"all","timeStarted":null,"timeEnded":null}},"wysiwyg":{"WYSIWYGRulesRefs":null},"refs":{"specializationRefs":[]},"hint":{"hints":{}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script>
+   <script src="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" defer></script>
+   <script src="https://assets.habr.com/habr-web/js/app.58b8c457.js" defer></script>
+  </div>
+  <div id="overlays">
+   <!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor-->
+  </div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S28W1WC23F"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  </script>
+  <script type="text/javascript">
+      window.addEventListener('load', function () {
+        setTimeout(() => {
+          const img = new Image();
+          img.src = 'https://vk.com/rtrg?p=VK-RTRG-421343-57vKE';
+        }, 0);
+      });
+    </script>
+ </body>
+</html>

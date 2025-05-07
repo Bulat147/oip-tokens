@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="ru">
+ <head>
+  <title>Простейший инфракрасный счётчик на Arduino. С мелкими гадостями / Хабр</title>
+  <meta property="fb:app_id" content="444736788986613">
+  <meta property="fb:pages" content="472597926099084">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@habr_com">
+  <meta property="og:site_name" content="Хабр">
+  <link href="https://habr.com/ru/rss/post/907392/?fl=ru" type="application/rss+xml" title rel="alternate" name="rss">
+  <link href="https://habr.com/ru/articles/907392/" rel="canonical" data-hid="e3fa780">
+  <link rel="image_src" href="https://habrastorage.org/getpro/habr/upload_files/9ea/18b/dbf/9ea18bdbf4b46d81b331762ac8905c64.png" data-hid="2a79c45">
+  <link rel="amphtml" href="https://habr.com/ru/amp/publications/907392/">
+  <meta property="og:title" content="Простейший инфракрасный счётчик на Arduino. С мелкими гадостями">
+  <meta name="twitter:title" content="Простейший инфракрасный счётчик на Arduino. С мелкими гадостями">
+  <meta name="aiturec:title" content="Простейший инфракрасный счётчик на Arduino. С мелкими гадостями">
+  <meta name="description" content="Здесь описывается очень простой (возможно, самый простой в мире) самодельный однолучевой горизонтальный инфракрасный счётчик (людей) на Arduino. Его сенсорная система содержит лишь&nbsp;инфракрасный...">
+  <meta itemprop="description" content="Здесь описывается очень простой (возможно, самый простой в мире) самодельный однолучевой горизонтальный инфракрасный счётчик (людей) на Arduino. Его сенсорная система содержит лишь&nbsp;инфракрасный...">
+  <meta property="og:description" content="Здесь описывается очень простой (возможно, самый простой в мире) самодельный однолучевой горизонтальный инфракрасный счётчик (людей) на Arduino. Его сенсорная система содержит лишь&nbsp;инфракрасный...">
+  <meta name="twitter:description" content="Здесь описывается очень простой (возможно, самый простой в мире) самодельный однолучевой горизонтальный инфракрасный счётчик (людей) на Arduino. Его сенсорная система содержит лишь&nbsp;инфракрасный...">
+  <meta property="aiturec:description" content="Здесь описывается очень простой (возможно, самый простой в мире) самодельный однолучевой горизонтальный инфракрасный счётчик (людей) на Arduino. Его сенсорная система содержит лишь&nbsp;инфракрасный...">
+  <meta itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/9ea/18b/dbf/9ea18bdbf4b46d81b331762ac8905c64.png">
+  <meta property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/9ea/18b/dbf/9ea18bdbf4b46d81b331762ac8905c64.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/9ea/18b/dbf/9ea18bdbf4b46d81b331762ac8905c64.png">
+  <meta name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/9ea/18b/dbf/9ea18bdbf4b46d81b331762ac8905c64.png">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/9ea/18b/dbf/9ea18bdbf4b46d81b331762ac8905c64.png?format=vk">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/9ea/18b/dbf/9ea18bdbf4b46d81b331762ac8905c64.png?format=vk">
+  <meta property="aiturec:item_id" content="907392">
+  <meta property="aiturec:datetime" content="2025-05-06T13:42:44.000Z">
+  <meta content="https://habr.com/ru/articles/907392/" property="og:url">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="keywords" content="инфракрасный счетчик">
+  <script type="application/ld+json" data-hid="1e0f0a2">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/articles\/907392\/"},"headline":"Простейший инфракрасный счётчик на Arduino. С мелкими гадостями","datePublished":"2025-05-06T16:42:44+03:00","dateModified":"2025-05-07T00:07:15+03:00","author":{"@type":"Person","name":"samigon"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"Здесь описывается очень простой (возможно, самый простой в мире) самодельный однолучевой горизонтальный инфракрасный счётчик (людей) на Arduino. Его сенсорная си...","url":"https:\/\/habr.com\/ru\/articles\/907392\/#post-content-body","about":["h_DIY","h_gadgets","h_engineering_systems","h_controllers","h_easyelectronics","f_develop","f_admin","f_popsci"],"image":["https:\/\/habr.com\/share\/publication\/907392\/448424901487c09fc0661e429e58478e\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/a11\/58f\/2ad\/a1158f2ad667419b4230e33da456a29c.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/a38\/134\/a32\/a38134a320b29c96967905558cbd750f.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/9a2\/cb4\/69f\/9a2cb469f3a272e2704c635b91bb1b01.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/0b9\/4bc\/2b7\/0b94bc2b7baafdce8c09f5b6dca63e70.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/60c\/8ca\/af6\/60c8caaf6c8bbc3e3789ac14fcca7ee0.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/d90\/79a\/bac\/d9079abac5bee037f23a830359735eba.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/780\/9da\/2a0\/7809da2a0f0059ace9bf95d697f92395.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/9ea\/18b\/dbf\/9ea18bdbf4b46d81b331762ac8905c64.png"]}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1,user-scalable=0">
+  <meta name="referrer" content="unsafe-url">
+  <style>
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmojLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvk4jLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmYjLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" as="style" media="(prefers-color-scheme: light)">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" as="style" media="(prefers-color-scheme: dark)">
+  <link id="light-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" media="(prefers-color-scheme: light)">
+  <link id="dark-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" media="(prefers-color-scheme: dark)">
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.635b6c39236ebd33fa716c71ab0131a0.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script>
+  <style>
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+    </style>
+  <meta name="habr-version" content="2.241.0">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44">
+  <meta name="msapplication-TileColor" content="#629FBC">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png">
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png">
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg">
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest">
+  <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
+  <script>window.yaContextCb = window.yaContextCb || []</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.8599692f.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.58b8c457.js" as="script">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.8599692f.css">
+ </head>
+ <body>
+  <div id="mount">
+   <div id="app">
+    <div class="tm-layout__wrapper">
+     <!--[--><!---->
+     <div></div><!---->
+     <header class="tm-header" data-test-id="header">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-header__container">
+        <!----><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/">
+          <svg class="tm-svg-img tm-header__icon" height="16" width="16">
+           <title>
+            Хабр
+           </title><use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+          </svg></a><span style="display:none;" class="tm-header__beta-sign">β</span></span><!--[-->
+        <div class="tm-dropdown tm-header__projects">
+         <div class="tm-dropdown__head">
+          <!--[-->
+          <button class="tm-header__dropdown-toggle">
+           <svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16">
+            <title>
+             Открыть список
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#arrow-down"></use>
+           </svg></button><!--]-->
+         </div><!---->
+        </div><a href="/ru/sandbox/start/" class="tm-header__become-author-btn">Как стать автором</a>
+        <div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature">
+         <!---->
+        </div><!----><!--]--><!---->
+       </div><!--]-->
+      </div>
+     </header>
+     <div class="tm-layout">
+      <div class="tm-page-progress-bar"></div>
+      <div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true">
+       <div class="tm-page-width">
+        <!--[-->
+        <div class="tm-base-layout__header-wrapper">
+         <div class="tm-main-menu">
+          <div class="tm-main-menu__section">
+           <nav class="tm-main-menu__section-content">
+            <!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]-->
+           </nav>
+          </div>
+         </div>
+         <div class="tm-header-user-menu tm-base-layout__user-menu">
+          <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button">
+           <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24">
+            <title>
+             Поиск
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#search"></use>
+           </svg></a><!----><!---->
+          <div class="tm-header-user-menu__item tm-header-user-menu__write">
+           <div>
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Написать публикацию
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#write"></use>
+            </svg>
+           </div><!---->
+          </div><!--[-->
+          <div class="tm-header-user-menu__item">
+           <button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings">
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Настройки
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#page-settings"></use>
+            </svg></button>
+          </div><a href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/articles/907392/&amp;hl=ru" rel="nofollow" class="tm-header-user-menu__item"><!--[-->
+           <button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!----><!--teleport start--><!--teleport end--><!---->
+         </div>
+        </div><!--]-->
+       </div>
+      </div><!---->
+      <div class="tm-page-width">
+       <!--[--><!--]-->
+      </div>
+      <main class="tm-layout__container">
+       <div class="tm-page" hl="ru" data-async-called="true" style="--5ab2e5a8:16px;--44c4f6f6:100%;--45ba7a3b:0;">
+        <div class="tm-page-width">
+         <!--[--><!---->
+         <div class="tm-page__wrapper">
+          <div class="tm-page__main_has-sidebar tm-page__main">
+           <div class="pull-down">
+            <!---->
+            <div class="pull-down__header" style="height:0px;">
+             <div class="pull-down__content" style="bottom:10px;">
+              <svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24">
+               <title>
+                Обновить
+               </title><use xlink:href="/img/megazord-v28.7909a852..svg#pull-arrow"></use>
+              </svg>
+             </div>
+            </div><!--[--><!--[--><!---->
+            <div class="tm-article-presenter">
+             <!--[--><!--]-->
+             <div class="tm-article-presenter__body" data-test-id="article-body">
+              <div class="tm-misprint-area">
+               <div class="tm-misprint-area__wrapper">
+                <!--[-->
+                <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                 <!--[-->
+                 <div class="tm-article-presenter__header">
+                  <!--[--><!--]-->
+                  <div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet">
+                   <!--[--><!--]-->
+                   <div class="tm-article-snippet__meta-container">
+                    <div class="tm-article-snippet__meta">
+                     <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/samigon/" class="tm-user-info__userpic" data-test-id="user-info-pic" title="samigon">
+                       <div class="tm-entity-image">
+                        <!--[--><img alt="" class="tm-entity-image__pic" height="24" src="https://assets.habr.com/habr-web/img/avatars/151.png" width="24"><!--]-->
+                       </div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a href="/ru/users/samigon/" class="tm-user-info__username">samigon <!----></a><!--[--><span class="tm-article-datetime-published"><time datetime="2025-05-06T13:42:44.000Z" title="2025-05-06, 16:42">16 часов назад</time></span><!--]--></span></span>
+                    </div><!---->
+                   </div>
+                   <h1 class="tm-title tm-title_h1" lang="ru" data-test-id="articleTitle"><span>Простейший инфракрасный счётчик на Arduino. С мелкими гадостями</span></h1>
+                   <div class="tm-article-snippet__stats" data-test-id="articleStats">
+                    <!---->
+                    <div class="tm-article-reading-time">
+                     <span class="tm-svg-icon__wrapper tm-article-reading-time__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Время на прочтение
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#clock"></use>
+                      </svg></span><span class="tm-article-reading-time__label">6 мин</span>
+                    </div><span class="tm-icon-counter tm-data-icons__item">
+                     <svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24">
+                      <title>
+                       Количество просмотров
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-views"></use>
+                     </svg><span class="tm-icon-counter__value" title="1561">1.6K</span></span>
+                   </div>
+                   <div class="tm-publication-hubs__container" data-test-id="articleHubsList">
+                    <div class="tm-publication-hubs">
+                     <!--[--><span class="tm-publication-hub__link-container"><a href="/ru/hubs/DIY/" class="tm-publication-hub__link"><!--[--><span>DIY или Сделай сам</span><!----><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/gadgets/" class="tm-publication-hub__link"><!--[--><span>Гаджеты</span><!----><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/engineering_systems/" class="tm-publication-hub__link"><!--[--><span>Инженерные системы</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/controllers/" class="tm-publication-hub__link"><!--[--><span>Программирование микроконтроллеров</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/easyelectronics/" class="tm-publication-hub__link"><!--[--><span>Электроника для начинающих</span><!----><!--]--></a></span><!--]-->
+                    </div>
+                   </div><!----><!----><!---->
+                  </div>
+                 </div><!--[--><!---->
+                 <div class="tm-article-body" data-gallery-root lang="ru">
+                  <div>
+                   <!--[--><!--]-->
+                  </div>
+                  <div id="post-content-body">
+                   <div>
+                    <div class="article-formatted-body article-formatted-body article-formatted-body_version-2">
+                     <div xmlns="http://www.w3.org/1999/xhtml">
+                      <p>Здесь описывается очень простой (возможно, самый простой в мире) самодельный однолучевой горизонтальный инфракрасный счётчик (людей) на Arduino. Его сенсорная система содержит лишь&nbsp;инфракрасный светодиод, фотодиод, биполярный транзистор и три резистора.&nbsp; Руководствуясь описанием, счётчик сделать совсем легко.</p>
+                      <p>Но будьте бдительны: в описание я заложил мелкие гадости. А куда и какие - не хочу заранее сообщать. Долой скуку! Да здравствуют приключения!</p>
+                      <p>Как и в обычном квесте, реальной опасности здесь никакой нет. Даже если вы не заметите заложенные “мины” и всё сделаете в точности так, как тут коварно предложено, струйка дыма из самоделки не пойдёт. Ни один её элемент вообще никак не пострадает. Обещаю. При любом раскладе в итоге удастся без потерь наставить это изделие на путь истинный. (На пути истинном оно прекрасно работает. Проверено.)</p>
+                      <p>От всего этого вы получите большое удовольствие и нужные на практике навыки.</p>
+                      <p>Итак, начинаем!</p>
+                      <p>Далее здесь:</p>
+                      <ul>
+                       <li>
+                        <p>Принцип действия&nbsp;</p></li>
+                       <li>
+                        <p>Чем занять микроконтроллер &nbsp;</p></li>
+                       <li>
+                        <p>Простейшая инфракрасная сенсорная система&nbsp;</p></li>
+                       <li>
+                        <p>Подключение сенсорной системы к Arduino &nbsp;</p></li>
+                       <li>
+                        <p>Индикация &nbsp;</p></li>
+                       <li>
+                        <p>Скетч &nbsp;</p></li>
+                       <li>
+                        <p>Методика поиска неисправностей (мелких гадостей) &nbsp;</p></li>
+                       <li>
+                        <p>Что дальше?</p></li>
+                      </ul>
+                      <h2>Принцип действия</h2>
+                      <p>Сенсорная система типичного счётчика состоит из излучателя, создающего инфракрасный луч, и приёмника, чувствительного к этому лучу. При этом излучатель и приёмник располагают друг напротив друга так, что луч, “протянутый” между ними, образует что-то вроде барьера на пути идущего человека. Проходя через него, человек прерывает луч. В результате логическая единица (высокое напряжение) на выходе приёмника сменяется логическим нулём (низкое напряжение). Микроконтроллер, подключенный к выходу приёмника, обнаруживает это событие и подсчитывает его.</p>
+                      <h2>Чем занять микроконтроллер</h2>
+                      <p>Сейчас нужно принципиально решить, чем же будет занят микроконтроллер (Arduino) именно в нашем самодельном счётчике.</p>
+                      <p>&nbsp;Я говорю вот о чём. Вообще говоря, обнаружить смену единицы на ноль&nbsp;(и обратно) на своём входе микроконтроллер может разными способами.&nbsp;Какой же способ выбрать?</p>
+                      <p>Для начала (и лишь для начала), я предлагаю выбрать тот, который почему-то первым приходит в голову матёрым программистам. Обосновывается он следующим образом. В тот непредсказуемый момент, когда человек вторгается в инфракрасный луч, микроконтроллер, возможно, занят совсем другими делами. Значит, нужно временно их прервать и быстренько на человека отреагировать. Ну что же, с точки зрения очень занятых джентльменов - весьма логично.&nbsp;&nbsp;</p>
+                      <p>Итак, будем обнаруживать и подсчитывать прерывания инфракрасного луча с помощью прерываний работы процессора микроконтроллера.</p>
+                      <p>Какая завораживающая, волшебная игра слов!</p>
+                      <p>(Не смущайтесь, если вы не знакомы близко с прерываниями работы процессора. Чтобы смастерить счётчик по готовому описанию, такое знакомство особо и не требуется.)</p>
+                      <h2>Простейшая инфракрасная сенсорная система</h2>
+                      <p>Инфракрасный излучатель и инфракрасный приёмник, образующие сенсорную систему - это два отдельных модуля. Но в нашем случае они так просты, что я решил поместить принципиальную электрическую схему и того и другого на один рисунок.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/a11/58f/2ad/a1158f2ad667419b4230e33da456a29c.png" alt="Рисунок 1. Принципиальная электрическая схема простейшей инфракрасной сенсорной системы." title="Рисунок 1. Принципиальная электрическая схема простейшей инфракрасной сенсорной системы." width="1200" height="600" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/a11/58f/2ad/a1158f2ad667419b4230e33da456a29c.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/a11/58f/2ad/a1158f2ad667419b4230e33da456a29c.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Рисунок 1. Принципиальная электрическая схема простейшей инфракрасной сенсорной системы.
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p><strong>Рассмотрим схему излучателя.</strong></p>
+                      <p>Главное в ней - инфракрасный светодиод D1 (TSAL6100).&nbsp;По принципу своего действия он разительно отличается от старомодной лампочки накаливания. Но, как и лампа накаливания, излучает он только тогда, когда через него протекает электрический ток. Здесь он работает на постоянном токе, то есть по правилу: “всегда включен”.</p>
+                      <p>Сила тока через светодиод зависит от резистора R1, и при указанном на схеме сопротивлении (27 Ом) она составляет 100-120 мА. Это довольно большая сила тока, поэтому годится не любой резистор. Если брать с запасом, то лучше поставить резистор, способный выдержать рассеиваемую мощность до 2 Вт.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/a38/134/a32/a38134a320b29c96967905558cbd750f.png" alt="Рисунок 2. Излучатель (в картонном варианте), установленный на “испытательном стенде”." title="Рисунок 2. Излучатель (в картонном варианте), установленный на “испытательном стенде”." width="1200" height="600" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/a38/134/a32/a38134a320b29c96967905558cbd750f.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/a38/134/a32/a38134a320b29c96967905558cbd750f.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Рисунок 2. Излучатель (в картонном варианте), установленный на “испытательном стенде”.
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p><strong>Теперь обратимся к схеме приёмника.</strong></p>
+                      <p>В приёмнике элементом, чувствительным к инфракрасному излучению, является фотодиод D2 (BVP10NF).&nbsp;</p>
+                      <p>Ток через него, порождаемый инфракрасным излучением (фототок), протекает в цепи базы транзистора T1. При этом транзистор T1 (BC557) играет роль усилителя слабого сигнала с коэффициентом усиления порядка нескольких сотен.&nbsp;</p>
+                      <p>В свою очередь, ток коллектора транзистора T1 создаёт падение напряжения на резисторе R3. Оно и является выходным сигналом приёмника.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/9a2/cb4/69f/9a2cb469f3a272e2704c635b91bb1b01.png" alt="Рисунок 3. Приёмник (в картонном варианте), установленный на “испытательном стенде”." title="Рисунок 3. Приёмник (в картонном варианте), установленный на “испытательном стенде”." width="1200" height="600" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/9a2/cb4/69f/9a2cb469f3a272e2704c635b91bb1b01.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/9a2/cb4/69f/9a2cb469f3a272e2704c635b91bb1b01.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Рисунок 3. Приёмник (в картонном варианте), установленный на “испытательном стенде”.
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <h2>Подключение сенсорной системы к Arduino</h2>
+                      <p>Излучатель и приёмник берут от Arduino электропитание (5V). (Для питания излучателя можно использовать и независимый отдельный источник постоянного тока. Для приёмника этого лучше не делать.)&nbsp;</p>
+                      <p>Приёмник, кроме того, посылает в Arduino свой выходной сигнал (на цифровой вход D2). При этом Arduino не обязан быть расположен близко. Я использовал для подключения к Arduino провода длиной 5 метров, и какие-либо проблемы, связанные с их большой длиной, замечены не были.</p>
+                      <h2>Индикация</h2>
+                      <p>Собственный индикатор для отображения результатов счёта людей в этой простейшей самоделке не предусмотрен. Чем меньше у вас трудностей, тем лучше, для начала. При прохождении человека Arduino просто посылает данные в свой последовательный порт, подключенный к usb-порту персонального компьютера. Результат счёта людей можно увидеть на экране компьютера, в мониторе порта, встроенном в среду Arduino.</p>
+                      <h2>Скетч</h2>
+                      <p>Святая-святых счётчика - скетч (управляющая программа) для Arduino. Он написан на языке C++. Среда программирования Arduino автоматически переводит скетч на машинный язык (компилирует скетч) и в таком виде загружает его в микроконтроллер.</p>
+                      <p>Слово “скетч” переводится на русский язык как “небольшая зарисовка”. Имеется в виду небольшой размер программы и её простота. Хотя, в некоторых проектах я видел скетчи настолько большие и сложные, что назвать их “небольшой зарисовкой” - язык не поворачивается.</p>
+                      <p>Однако, для простейшего в мире счётчика скетч и вправду невелик.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/0b9/4bc/2b7/0b94bc2b7baafdce8c09f5b6dca63e70.png" alt="Рисунок 4. Скетч для Arduino." title="Рисунок 4. Скетч для Arduino." width="1200" height="760" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/0b9/4bc/2b7/0b94bc2b7baafdce8c09f5b6dca63e70.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/0b9/4bc/2b7/0b94bc2b7baafdce8c09f5b6dca63e70.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Рисунок 4. Скетч для Arduino.
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Вы можете считать меня негодяем, но я умышленно не привёл текст скетча в удобном виде для волшебства “скопируй-вставь”. Он - лишь на картинке. Наберите скетч с картинки, буква за буквой. Ещё и наделайте при этом ошибок. Потом найдите свои ошибки и исправьте. Это будет отличной тренировкой.</p>
+                      <h2>Методика поиска неисправностей</h2>
+                      <p>Если самоделка не работает (вот они и всплыли, мелкие гадости! может мои, а может и ваши), первое побуждение:&nbsp;“растоптать её, и больше никогда за такое не браться”.&nbsp;</p>
+                      <p>Ну что вы, дружище! Остыньте. Давайте искать неисправность, из-за которой “девайс” устроил забастовку.</p>
+                      <p>С чего начать поиск? С начала. С начала тракта, по которому “движется” инфракрасный сигнал. Рождается он в излучателе.&nbsp; Далее - поступает на&nbsp; приёмник. С выхода приёмника&nbsp; - на счётчик импульсов (то есть, на Arduino). Неисправность может обнаружиться в любом из перечисленных модулей. (Бывает, что и в нескольких.)&nbsp; Прежде всего, надо по-крупному определить, какой модуль исправен, а какой - нет. И затем уже выискивать, где спрятался гадкий “жучок” внутри этого проблемного модуля.</p>
+                      <p><strong>Проверка исправности излучателя</strong></p>
+                      <p>Проверить, работает ли собранный вами излучатель, несложно. У большинства смартфонов (айфон к ним, увы, не относится) фотокамера чувствительна не только к видимому свету, но и к инфракрасному излучению (в ближнем диапазоне). Наведите камеру на инфракрасный светодиод и начните включать и выключать питание излучателя. На экране смартфона вы должны увидеть, как светодиод при этом вспыхивает и гаснет.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/60c/8ca/af6/60c8caaf6c8bbc3e3789ac14fcca7ee0.png" alt="Рисунок 5. Свечение инфракрасного светодиода в исправном излучателе, наблюдаемое через камеру смартфона как сиреневый “огонёк”." title="Рисунок 5. Свечение инфракрасного светодиода в исправном излучателе, наблюдаемое через камеру смартфона как сиреневый “огонёк”." width="1200" height="600" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/60c/8ca/af6/60c8caaf6c8bbc3e3789ac14fcca7ee0.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/60c/8ca/af6/60c8caaf6c8bbc3e3789ac14fcca7ee0.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Рисунок 5. Свечение инфракрасного светодиода в исправном излучателе, наблюдаемое через камеру смартфона как сиреневый “огонёк”.
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p><strong>Проверка исправности приёмника</strong></p>
+                      <p>Исправность инфракрасного приёмника можно проверить только с помощью заведомо исправного излучателя.&nbsp;</p>
+                      <p>Кроме него, вам понадобится ещё и мультиметр (для измерения выходного напряжения приёмника). Если на исправный приёмник падает инфракрасный луч, выходное напряжение приёмника, измеренное мультиметром, имеет величину приблизительно 5 Вольт. Если луч прерван, выходное напряжение приёмника опускается практически до нулевой величины.</p>
+                      <p>Если мультиметра под рукой у вас нет, и взять его негде, вместо него вы можете подключить к выходу приёмника заведомо исправный&nbsp; счётчик импульсов (тот, в который вы превратили Arduino). При исправном приёмнике исправный счётчик импульсов будет послушно считать пробные прерывания луча вашей рукой и выводить результаты счёта на экран персонального компьютера.</p>
+                      <p><strong>Проверка исправности счётчика импульсов (на Arduino)</strong></p>
+                      <p>Счетчик импульсов на Arduino можно проверить с помощью исправного приёмника, а можно и без него.</p>
+                      <p>В отсутствие приёмника импульсы, которые Arduino должен считать, можно генерировать с помощью модуля-заглушки. Модуль состоит из резистора и кнопки. Если кнопка не нажата, на входе D2 Arduino - логический ноль. Нажимаете кнопку - ноль меняется на логическую единицу. Отпускаете кнопку - снова появляется ноль. И так далее.&nbsp;</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/d90/79a/bac/d9079abac5bee037f23a830359735eba.png" alt="Рисунок 6. Модуль-заглушка, подключенный к Arduino." title="Рисунок 6. Модуль-заглушка, подключенный к Arduino." width="1200" height="600" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/d90/79a/bac/d9079abac5bee037f23a830359735eba.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/d90/79a/bac/d9079abac5bee037f23a830359735eba.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Рисунок 6. Модуль-заглушка, подключенный к Arduino.
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Исправный счётчик импульсов должен неутомимо реагировать на все нажатия кнопки,&nbsp; считая их. Результаты счёта отобразятся на экране персонального компьютера.&nbsp;</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/780/9da/2a0/7809da2a0f0059ace9bf95d697f92395.png" alt="Рисунок 7. Пример отображения результатов счёта на экране персонального компьютера, в мониторе последовательного порта." title="Рисунок 7. Пример отображения результатов счёта на экране персонального компьютера, в мониторе последовательного порта." width="1200" height="470" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/780/9da/2a0/7809da2a0f0059ace9bf95d697f92395.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/780/9da/2a0/7809da2a0f0059ace9bf95d697f92395.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Рисунок 7. Пример отображения результатов счёта на экране персонального компьютера, в мониторе последовательного порта.
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <h2>Что дальше?</h2>
+                      <p>Дальнейшие действия зависят от того, к чему вы пришли.</p>
+                      <p>Если вы самостоятельно нашли в описании самоделки все мелкие гадости и исправили их, самоделка у вас нормально работает. Поздравляю!</p>
+                      <p>Если это пока не удалось, возможны два пути решения проблемы.</p>
+                      <ol>
+                       <li>
+                        <p>Дождаться выхода следующей статьи на эту тему, в которой будет предпринят подробный “разбор полётов”.</p></li>
+                       <li>
+                        <p>Сравнить свою самоделку с эталонным образцом (без “гадостей”), описанным мной в книге «Простейший инфракрасный счётчик на Arduino».</p></li>
+                      </ol>
+                      <p><a href="https://www.litres.ru/book/anatoliy-sivkov/prosteyshiy-infrakrasnyy-schetchik-na-arduino-71948347/" rel="noopener noreferrer nofollow">Ссылка на книгу</a></p>
+                     </div>
+                    </div>
+                   </div><!----><!---->
+                  </div><!----><!---->
+                 </div><!--]--><!---->
+                 <div class="tm-article-presenter__meta" data-test-id="article-meta-links">
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Теги:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%B8%D0%BD%D1%84%D1%80%D0%B0%D0%BA%D1%80%D0%B0%D1%81%D0%BD%D1%8B%D0%B9+%D1%81%D1%87%D0%B5%D1%82%D1%87%D0%B8%D0%BA]" class="tm-tags-list__link"><span>инфракрасный счетчик</span></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Хабы:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/DIY/" class="tm-hubs-list__link"><!--[--><span>DIY или Сделай сам</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/gadgets/" class="tm-hubs-list__link"><!--[--><span>Гаджеты</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/engineering_systems/" class="tm-hubs-list__link"><!--[--><span>Инженерные системы</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/controllers/" class="tm-hubs-list__link"><!--[--><span>Программирование микроконтроллеров</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/easyelectronics/" class="tm-hubs-list__link"><!--[--><span>Электроника для начинающих</span><!--]--></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                 </div><!----><!--]-->
+                </article><!--]-->
+               </div><!---->
+              </div>
+              <div style="" class="tm-article-sticky-panel" data-test-id="article-sticky-panel">
+               <div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons">
+                <div class="article-rating tm-data-icons__item" data-v-86aec4a7>
+                 <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-article votes-switcher" title="Всего голосов 6: ↑4 и ↓2" data-v-86aec4a7>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-upvote-button" title="Нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon" height="24" width="24">
+                    <title>
+                     Нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                  <div class="tm-votes-lever__score tm-votes-lever__score_appearance-article tm-votes-lever__score">
+                   <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_positive tm-votes-lever__score-counter" data-test-id="votes-score-counter">+4</span></span><!--]-->
+                  </div>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-downvote-button" title="Не нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon tm-votes-lever__icon_arrow-down" height="24" width="24">
+                    <title>
+                     Не нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                 </div><!--teleport start--><!--teleport end--><!---->
+                </div><!----><!---->
+                <button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon">
+                  <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                   <title>
+                    Добавить в закладки
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-favorite"></use>
+                  </svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">18</span></button>
+                <div class="tm-sharing tm-data-icons__item" title="Поделиться">
+                 <button class="tm-sharing__button" type="button">
+                  <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                   <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                  </svg></button><!--teleport start--><!--teleport end-->
+                </div>
+                <div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии">
+                 <a href="/ru/articles/907392/comments/" class="tm-article-comments-counter-link__link" data-test-id="counter-comments"><!--[-->
+                  <svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24">
+                   <title>
+                    Комментарии
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                  </svg><span class="tm-article-comments-counter-link__value">20</span><!--]--></a><!---->
+                </div><!--[--><!--[--><!--[--><!----><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!---->
+               </div>
+              </div>
+             </div><!--[--><!--]-->
+             <div class="tm-article-presenter__footer">
+              <!--[--><!--[-->
+              <div class="tm-article-blocks">
+               <!----><!--[-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <!----><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-balanced">
+                 <!--[-->
+                 <div class="tm-article-author" data-test-id="article-author-info" data-async-called="true">
+                  <!--[--><!--]-->
+                  <div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true">
+                   <div class="tm-user-card__info-container">
+                    <div class="tm-user-card__header">
+                     <div class="tm-user-card__header-data">
+                      <a href="/ru/users/samigon/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                       <div class="tm-entity-image">
+                        <!--[--><img alt="" class="tm-entity-image__pic" src="https://assets.habr.com/habr-web/img/avatars/151.png"><!--]-->
+                       </div></a>
+                      <div class="tm-user-card__meta">
+                       <div class="tm-counter-container karma" title=" 9 голосов " data-v-f7c0e283>
+                        <div class="tm-counter-container__header">
+                         <!--[-->
+                         <div class="karma-display positive" data-v-f7c0e283 data-v-7635202e>
+                          9
+                         </div><!----><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[-->
+                         <div class="karma-text" data-v-f7c0e283>
+                          Карма
+                         </div><!--teleport start--><!--teleport end--><!--]-->
+                        </div>
+                       </div>
+                       <div class="tm-counter-container" title="Рейтинг пользователя">
+                        <div class="tm-counter-container__header">
+                         <!--[--><!--[--><!--]-->
+                         <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                          <!---->
+                          <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score">
+                           <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">4</span></span><!--]-->
+                          </div><!---->
+                         </div><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info">
+                     <div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title">
+                      <!----><a href="/ru/users/samigon/" class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article"> @samigon</a><!---->
+                     </div>
+                     <p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Пользователь</p>
+                    </div>
+                   </div><!---->
+                   <div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons">
+                    <!---->
+                    <div class="tm-user-card__button">
+                     <div class="tm-button-follow tm-user-card__button-follow">
+                      <!---->
+                      <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+                     </div>
+                    </div><!---->
+                    <div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations">
+                     <svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16">
+                      <title>
+                       Отправить сообщение
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#mail"></use>
+                     </svg>
+                    </div><!---->
+                   </div><!---->
+                  </div>
+                  <div class="tm-article-author__user-contacts" data-test-id="author-contacts">
+                   <!----><!----><!---->
+                  </div>
+                 </div><!--]-->
+                </div><!--]--><!---->
+               </section><!----><!--[-->
+               <div class="banner-wrapper leaderboard tm-page-article__banner" style="--38f3d936:200px;--78a3cd06:auto;" data-v-f4bf0d24>
+                <!--[-->
+                <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="adfox-banner-placeholder leaderboard" data-v-12f7bcca>
+                  <div class="image loads" data-v-12f7bcca></div>
+                  <div class="lines" data-v-12f7bcca>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                  </div>
+                 </div><!----><!----><!---->
+                </div>
+                <div id="adfox_164725660339535756" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+               </div><!--]--><!--]-->
+               <div class="tm-article-blocks__comments">
+                <div id="publication-comments" class="tm-article-page-comments">
+                 <div>
+                  <!--[-->
+                  <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                   <a href="/ru/articles/907392/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments"><!--[-->
+                    <svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24">
+                     <title>
+                      Комментарии
+                     </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                    </svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 20 </span><!--]--></a><!---->
+                  </div><!--]-->
+                 </div>
+                </div>
+               </div><!--[--><!--[--><!--]-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <header class="tm-block__header tm-block__header tm-block__header_variant-borderless">
+                 <div class="tm-block__header-container">
+                  <h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]-->
+                 </div><!---->
+                </header><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim">
+                 <!--[--><!--[-->
+                 <div class="tm-tabs tm-tabs">
+                  <div class="">
+                   <!--[--><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]-->
+                  </div><!---->
+                 </div>
+                 <div class="similar-and-daily__tab-view">
+                  <div class="daily-articles-list">
+                   <ul class="tm-article-card-list">
+                    <!--[--><!--]-->
+                    <div class="tm-bordered-card">
+                     <!----><!--[--><!--]-->
+                    </div>
+                   </ul>
+                   <div class="daily-articles-block__button-container">
+                    <button class="btn btn_transparent btn_small tm-button tm-button_color-horizon" type="button"><!--[--><!--[-->Показать лучшие за всё время<!--]--><!--]--></button>
+                   </div>
+                  </div><!---->
+                 </div><!--]--><!--]-->
+                </div><!--]--><!---->
+               </section><!--[-->
+               <div>
+                <div class="placeholder-wrapper">
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="tm-placeholder-promo">
+                  <div class="tm-placeholder-promo__header">
+                   <div class="tm-placeholder__line tm-placeholder__line_promo-title"></div>
+                  </div>
+                  <div class="tm-placeholder-promo__body">
+                   <div class="tm-placeholder-promo__posts">
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                   </div>
+                   <div class="tm-placeholder-promo__dots">
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                   </div>
+                  </div>
+                 </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                </div>
+               </div>
+               <div class="placeholder-wrapper" data-async-called="true">
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="tm-placeholder-inset tm-placeholder-vacancies">
+                 <div class="tm-placeholder-inset__header">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div>
+                 </div>
+                 <div class="tm-placeholder-inset__body">
+                  <ul class="tm-placeholder-list">
+                   <!--[-->
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li><!--]-->
+                  </ul>
+                 </div>
+                 <div class="tm-placeholder-inset__footer">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div>
+                 </div>
+                </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               </div><!--]--><!----><!--[--><!--]--><!--]-->
+              </div><!--]--><!--]-->
+             </div>
+            </div><!--]--><!--]-->
+           </div>
+          </div>
+          <div class="tm-page__sidebar">
+           <!--[-->
+           <div class="tm-layout-sidebar">
+            <div class="tm-layout-sidebar__placeholder_initial"></div>
+            <div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;">
+             <!--[--><!--]--><!---->
+             <div class="tm-layout-sidebar__ads_initial tm-layout-sidebar__ads">
+              <div class="banner-wrapper half-page tm-layout-sidebar__banner tm-layout-sidebar__banner_top" style="--38f3d936:600px;--78a3cd06:auto;" data-v-f4bf0d24>
+               <!--[-->
+               <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="adfox-banner-placeholder half-page" data-v-12f7bcca>
+                 <div class="image loads" data-v-12f7bcca></div>
+                 <div class="lines" data-v-12f7bcca>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                 </div>
+                </div><!----><!----><!---->
+               </div>
+               <div id="adfox_164725680533065327" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+              </div>
+             </div><!--[--><!---->
+             <div></div><!---->
+             <section class="tm-block tm-block tm-block_spacing-around block" data-v-6f380946>
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Ближайшие события</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[-->
+               <div class="placeholder-wrapper" data-v-6f380946>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <section class="tm-block tm-block tm-block_spacing-none" tabindex="-1" data-v-9caf0b82>
+                 <!----><!--[-->
+                 <div class="event-card-placeholder is-widget" data-v-9caf0b82>
+                  <div class="image loads" data-v-9caf0b82></div>
+                  <div class="info" data-v-9caf0b82>
+                   <div class="date line" data-v-9caf0b82></div>
+                   <div class="title line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                  </div>
+                  <div class="footer widget" data-v-9caf0b82>
+                   <div class="link line" data-v-9caf0b82></div>
+                   <div class="categories" data-v-9caf0b82>
+                    <!--[-->
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div><!--]-->
+                   </div>
+                  </div>
+                 </div><!--]--><!---->
+                </section><!---->
+               </div><!--]-->
+              </div><!--]--><!---->
+             </section><!--]-->
+             <div class="banner-wrapper medium-rectangle tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom" style="--38f3d936:250px;--78a3cd06:auto;" data-v-f4bf0d24>
+              <!--[-->
+              <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+               <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               <div class="adfox-banner-placeholder medium-rectangle" data-v-12f7bcca>
+                <div class="image loads" data-v-12f7bcca></div>
+                <div class="lines" data-v-12f7bcca>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                </div>
+               </div><!----><!----><!---->
+              </div>
+              <div id="adfox_164725691003361602" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+             </div>
+            </div>
+           </div><!--]-->
+          </div>
+         </div><!----><!--]-->
+        </div>
+       </div>
+      </main><!---->
+     </div>
+     <div class="tm-footer-menu">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer-menu__container">
+        <!--[-->
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Ваш аккаунт</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/articles/907392/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/articles/907392/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Разделы</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/articles/" class="footer-menu__item-link">Статьи</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link">Новости</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link">Хабы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link">Компании</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link">Авторы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link">Песочница</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Информация</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link">Устройство сайта</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link">Для авторов</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link">Для компаний</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link">Документы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Услуги</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]-->
+          </ul>
+         </div>
+        </div><!--]-->
+       </div><!--]-->
+      </div>
+     </div>
+     <div class="tm-footer">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer__container">
+        <!---->
+        <div class="tm-footer__social">
+         <!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Facebook
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Twitter
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            VK
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Telegram
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Youtube
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Яндекс Дзен
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use>
+          </svg></a><!--]-->
+        </div><!--teleport start--><!--teleport end-->
+        <button class="tm-footer__link"><!----> Настройка языка</button><a href="/ru/feedback/" class="tm-footer__link">Техническая поддержка</a>
+        <div class="tm-footer-copyright">
+         <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span>
+        </div>
+       </div><!--]-->
+      </div>
+     </div><!----><!--]-->
+    </div><!---->
+   </div>
+   <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"907392":{"id":"907392","timePublished":"2025-05-06T13:42:44+00:00","isCorporative":false,"lang":"ru","titleHtml":"Простейший инфракрасный счётчик на Arduino. С мелкими гадостями","leadData":{"textHtml":"\u003Cp\u003EЗдесь описывается очень простой (возможно, самый простой в мире) самодельный однолучевой горизонтальный инфракрасный счётчик (людей) на Arduino. Его сенсорная система содержит лишь&nbsp; инфракрасный светодиод, фотодиод, биполярный транзистор и три резистора.&nbsp; Руководствуясь описанием, счётчик сделать совсем легко.\u003C\u002Fp\u003E\u003Cp\u003EНо будьте бдительны: в описание я заложил мелкие гадости. А куда и какие - не хочу заранее сообщать. Долой скуку! Да здравствуют приключения!\u003C\u002Fp\u003E\u003Cp\u003EКак и в обычном квесте, реальной опасности здесь никакой нет. Даже если вы не заметите заложенные “мины”, и всё сделаете в точности так, как тут коварно предложено, струйка дыма из самоделки не пойдёт. Ни один её элемент вообще никак не пострадает. Обещаю. При любом раскладе в итоге удастся без потерь наставить это изделие на путь истинный. (На пути истинном оно прекрасно работает. Проверено.)\u003C\u002Fp\u003E\u003Cp\u003EОт всего этого вы получите большое удовольствие и нужные на практике навыки.\u003C\u002Fp\u003E\u003Cp\u003EИтак, начинаем!\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F9ea\u002F18b\u002Fdbf\u002F9ea18bdbf4b46d81b331762ac8905c64.png","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F9ea\u002F18b\u002Fdbf\u002F9ea18bdbf4b46d81b331762ac8905c64.png","fit":"cover","positionY":0,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"id":"4044642","alias":"samigon","fullname":null,"avatarUrl":null,"speciality":null,"scoreStats":{"score":9,"votesCount":9},"rating":4,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"donationsMethod":null,"isInBlacklist":null,"careerProfile":null},"statistics":{"commentsCount":20,"favoritesCount":18,"readingCount":1561,"score":4,"votesCount":6,"votesCountPlus":4,"votesCountMinus":2},"hubs":[{"id":"21976","alias":"DIY","type":"collective","title":"DIY или Сделай сам","titleHtml":"DIY или Сделай сам","isProfiled":false,"relatedData":null},{"id":"21894","alias":"gadgets","type":"collective","title":"Гаджеты","titleHtml":"Гаджеты","isProfiled":false,"relatedData":null},{"id":"22113","alias":"engineering_systems","type":"collective","title":"Инженерные системы","titleHtml":"Инженерные системы","isProfiled":true,"relatedData":null},{"id":"19737","alias":"controllers","type":"collective","title":"Программирование микроконтроллеров","titleHtml":"Программирование микроконтроллеров","isProfiled":true,"relatedData":null},{"id":"22016","alias":"easyelectronics","type":"collective","title":"Электроника для начинающих","titleHtml":"Электроника для начинающих","isProfiled":false,"relatedData":null}],"flows":[{"id":"1","alias":"develop","title":"Разработка","titleHtml":"Разработка"},{"id":"6","alias":"admin","title":"Администрирование","titleHtml":"Администрирование"},{"id":"7","alias":"popsci","title":"Научпоп","titleHtml":"Научпоп"}],"relatedData":{"vote":null,"unreadCommentsCount":0,"bookmarked":false,"canComment":false,"canEdit":false,"canViewVotes":false,"votePlus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"voteMinus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"canModerateComments":false,"trackerSubscribed":false,"emailSubscribed":false},"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EЗдесь описывается очень простой (возможно, самый простой в мире) самодельный однолучевой горизонтальный инфракрасный счётчик (людей) на Arduino. Его сенсорная система содержит лишь инфракрасный светодиод, фотодиод, биполярный транзистор и три резистора.  Руководствуясь описанием, счётчик сделать совсем легко.\u003C\u002Fp\u003E\u003Cp\u003EНо будьте бдительны: в описание я заложил мелкие гадости. А куда и какие - не хочу заранее сообщать. Долой скуку! Да здравствуют приключения!\u003C\u002Fp\u003E\u003Cp\u003EКак и в обычном квесте, реальной опасности здесь никакой нет. Даже если вы не заметите заложенные “мины” и всё сделаете в точности так, как тут коварно предложено, струйка дыма из самоделки не пойдёт. Ни один её элемент вообще никак не пострадает. Обещаю. При любом раскладе в итоге удастся без потерь наставить это изделие на путь истинный. (На пути истинном оно прекрасно работает. Проверено.)\u003C\u002Fp\u003E\u003Cp\u003EОт всего этого вы получите большое удовольствие и нужные на практике навыки.\u003C\u002Fp\u003E\u003Cp\u003EИтак, начинаем!\u003C\u002Fp\u003E\u003Cp\u003EДалее здесь:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EПринцип действия \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EЧем занять микроконтроллер  \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПростейшая инфракрасная сенсорная система \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПодключение сенсорной системы к Arduino  \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EИндикация  \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСкетч  \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EМетодика поиска неисправностей (мелких гадостей)  \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EЧто дальше?\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Ch2\u003EПринцип действия\u003C\u002Fh2\u003E\u003Cp\u003EСенсорная система типичного счётчика состоит из излучателя, создающего инфракрасный луч, и приёмника, чувствительного к этому лучу. При этом излучатель и приёмник располагают друг напротив друга так, что луч, “протянутый” между ними, образует что-то вроде барьера на пути идущего человека. Проходя через него, человек прерывает луч. В результате логическая единица (высокое напряжение) на выходе приёмника сменяется логическим нулём (низкое напряжение). Микроконтроллер, подключенный к выходу приёмника, обнаруживает это событие и подсчитывает его.\u003C\u002Fp\u003E\u003Ch2\u003EЧем занять микроконтроллер\u003C\u002Fh2\u003E\u003Cp\u003EСейчас нужно принципиально решить, чем же будет занят микроконтроллер (Arduino) именно в нашем самодельном счётчике.\u003C\u002Fp\u003E\u003Cp\u003E Я говорю вот о чём. Вообще говоря, обнаружить смену единицы на ноль (и обратно) на своём входе микроконтроллер может разными способами. Какой же способ выбрать?\u003C\u002Fp\u003E\u003Cp\u003EДля начала (и лишь для начала), я предлагаю выбрать тот, который почему-то первым приходит в голову матёрым программистам. Обосновывается он следующим образом. В тот непредсказуемый момент, когда человек вторгается в инфракрасный луч, микроконтроллер, возможно, занят совсем другими делами. Значит, нужно временно их прервать и быстренько на человека отреагировать. Ну что же, с точки зрения очень занятых джентльменов - весьма логично.  \u003C\u002Fp\u003E\u003Cp\u003EИтак, будем обнаруживать и подсчитывать прерывания инфракрасного луча с помощью прерываний работы процессора микроконтроллера.\u003C\u002Fp\u003E\u003Cp\u003EКакая завораживающая, волшебная игра слов!\u003C\u002Fp\u003E\u003Cp\u003E(Не смущайтесь, если вы не знакомы близко с прерываниями работы процессора. Чтобы смастерить счётчик по готовому описанию, такое знакомство особо и не требуется.)\u003C\u002Fp\u003E\u003Ch2\u003EПростейшая инфракрасная сенсорная система\u003C\u002Fh2\u003E\u003Cp\u003EИнфракрасный излучатель и инфракрасный приёмник, образующие сенсорную систему - это два отдельных модуля. Но в нашем случае они так просты, что я решил поместить принципиальную электрическую схему и того и другого на один рисунок.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa11\u002F58f\u002F2ad\u002Fa1158f2ad667419b4230e33da456a29c.png\" alt=\"Рисунок 1. Принципиальная электрическая схема простейшей инфракрасной сенсорной системы.\" title=\"Рисунок 1. Принципиальная электрическая схема простейшей инфракрасной сенсорной системы.\" width=\"1200\" height=\"600\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa11\u002F58f\u002F2ad\u002Fa1158f2ad667419b4230e33da456a29c.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa11\u002F58f\u002F2ad\u002Fa1158f2ad667419b4230e33da456a29c.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EРисунок 1. Принципиальная электрическая схема простейшей инфракрасной сенсорной системы.\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E\u003Cstrong\u003EРассмотрим схему излучателя.\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EГлавное в ней - инфракрасный светодиод D1 (TSAL6100). По принципу своего действия он разительно отличается от старомодной лампочки накаливания. Но, как и лампа накаливания, излучает он только тогда, когда через него протекает электрический ток. Здесь он работает на постоянном токе, то есть по правилу: “всегда включен”.\u003C\u002Fp\u003E\u003Cp\u003EСила тока через светодиод зависит от резистора R1, и при указанном на схеме сопротивлении (27 Ом) она составляет 100-120 мА. Это довольно большая сила тока, поэтому годится не любой резистор. Если брать с запасом, то лучше поставить резистор, способный выдержать рассеиваемую мощность до 2 Вт.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa38\u002F134\u002Fa32\u002Fa38134a320b29c96967905558cbd750f.png\" alt=\"Рисунок 2. Излучатель (в картонном варианте), установленный на “испытательном стенде”.\" title=\"Рисунок 2. Излучатель (в картонном варианте), установленный на “испытательном стенде”.\" width=\"1200\" height=\"600\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa38\u002F134\u002Fa32\u002Fa38134a320b29c96967905558cbd750f.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa38\u002F134\u002Fa32\u002Fa38134a320b29c96967905558cbd750f.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EРисунок 2. Излучатель (в картонном варианте), установленный на “испытательном стенде”.\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E\u003Cstrong\u003EТеперь обратимся к схеме приёмника.\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EВ приёмнике элементом, чувствительным к инфракрасному излучению, является фотодиод D2 (BVP10NF). \u003C\u002Fp\u003E\u003Cp\u003EТок через него, порождаемый инфракрасным излучением (фототок), протекает в цепи базы транзистора T1. При этом транзистор T1 (BC557) играет роль усилителя слабого сигнала с коэффициентом усиления порядка нескольких сотен. \u003C\u002Fp\u003E\u003Cp\u003EВ свою очередь, ток коллектора транзистора T1 создаёт падение напряжения на резисторе R3. Оно и является выходным сигналом приёмника.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F9a2\u002Fcb4\u002F69f\u002F9a2cb469f3a272e2704c635b91bb1b01.png\" alt=\"Рисунок 3. Приёмник (в картонном варианте), установленный на “испытательном стенде”.\" title=\"Рисунок 3. Приёмник (в картонном варианте), установленный на “испытательном стенде”.\" width=\"1200\" height=\"600\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F9a2\u002Fcb4\u002F69f\u002F9a2cb469f3a272e2704c635b91bb1b01.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F9a2\u002Fcb4\u002F69f\u002F9a2cb469f3a272e2704c635b91bb1b01.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EРисунок 3. Приёмник (в картонном варианте), установленный на “испытательном стенде”.\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Ch2\u003EПодключение сенсорной системы к Arduino\u003C\u002Fh2\u003E\u003Cp\u003EИзлучатель и приёмник берут от Arduino электропитание (5V). (Для питания излучателя можно использовать и независимый отдельный источник постоянного тока. Для приёмника этого лучше не делать.) \u003C\u002Fp\u003E\u003Cp\u003EПриёмник, кроме того, посылает в Arduino свой выходной сигнал (на цифровой вход D2). При этом Arduino не обязан быть расположен близко. Я использовал для подключения к Arduino провода длиной 5 метров, и какие-либо проблемы, связанные с их большой длиной, замечены не были.\u003C\u002Fp\u003E\u003Ch2\u003EИндикация\u003C\u002Fh2\u003E\u003Cp\u003EСобственный индикатор для отображения результатов счёта людей в этой простейшей самоделке не предусмотрен. Чем меньше у вас трудностей, тем лучше, для начала. При прохождении человека Arduino просто посылает данные в свой последовательный порт, подключенный к usb-порту персонального компьютера. Результат счёта людей можно увидеть на экране компьютера, в мониторе порта, встроенном в среду Arduino.\u003C\u002Fp\u003E\u003Ch2\u003EСкетч\u003C\u002Fh2\u003E\u003Cp\u003EСвятая-святых счётчика - скетч (управляющая программа) для Arduino. Он написан на языке C++. Среда программирования Arduino автоматически переводит скетч на машинный язык (компилирует скетч) и в таком виде загружает его в микроконтроллер.\u003C\u002Fp\u003E\u003Cp\u003EСлово “скетч” переводится на русский язык как “небольшая зарисовка”. Имеется в виду небольшой размер программы и её простота. Хотя, в некоторых проектах я видел скетчи настолько большие и сложные, что назвать их “небольшой зарисовкой” - язык не поворачивается.\u003C\u002Fp\u003E\u003Cp\u003EОднако, для простейшего в мире счётчика скетч и вправду невелик.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0b9\u002F4bc\u002F2b7\u002F0b94bc2b7baafdce8c09f5b6dca63e70.png\" alt=\"Рисунок 4. Скетч для Arduino.\" title=\"Рисунок 4. Скетч для Arduino.\" width=\"1200\" height=\"760\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0b9\u002F4bc\u002F2b7\u002F0b94bc2b7baafdce8c09f5b6dca63e70.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0b9\u002F4bc\u002F2b7\u002F0b94bc2b7baafdce8c09f5b6dca63e70.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EРисунок 4. Скетч для Arduino.\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EВы можете считать меня негодяем, но я умышленно не привёл текст скетча в удобном виде для волшебства “скопируй-вставь”. Он - лишь на картинке. Наберите скетч с картинки, буква за буквой. Ещё и наделайте при этом ошибок. Потом найдите свои ошибки и исправьте. Это будет отличной тренировкой.\u003C\u002Fp\u003E\u003Ch2\u003EМетодика поиска неисправностей\u003C\u002Fh2\u003E\u003Cp\u003EЕсли самоделка не работает (вот они и всплыли, мелкие гадости! может мои, а может и ваши), первое побуждение: “растоптать её, и больше никогда за такое не браться”. \u003C\u002Fp\u003E\u003Cp\u003EНу что вы, дружище! Остыньте. Давайте искать неисправность, из-за которой “девайс” устроил забастовку.\u003C\u002Fp\u003E\u003Cp\u003EС чего начать поиск? С начала. С начала тракта, по которому “движется” инфракрасный сигнал. Рождается он в излучателе.  Далее - поступает на  приёмник. С выхода приёмника  - на счётчик импульсов (то есть, на Arduino). Неисправность может обнаружиться в любом из перечисленных модулей. (Бывает, что и в нескольких.)  Прежде всего, надо по-крупному определить, какой модуль исправен, а какой - нет. И затем уже выискивать, где спрятался  гадкий “жучок” внутри этого проблемного модуля.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EПроверка исправности излучателя\u003C\u002Fstrong\u003E\t \t\u003C\u002Fp\u003E\u003Cp\u003EПроверить, работает ли собранный вами излучатель, несложно. У большинства смартфонов (айфон к ним, увы, не относится) фотокамера чувствительна не только к видимому свету, но и к инфракрасному излучению (в ближнем диапазоне). Наведите камеру на инфракрасный светодиод и начните включать и выключать питание излучателя. На экране смартфона вы должны увидеть, как светодиод при этом вспыхивает и гаснет.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F60c\u002F8ca\u002Faf6\u002F60c8caaf6c8bbc3e3789ac14fcca7ee0.png\" alt=\"Рисунок 5. Свечение инфракрасного светодиода в исправном излучателе, наблюдаемое через камеру смартфона как сиреневый “огонёк”.\" title=\"Рисунок 5. Свечение инфракрасного светодиода в исправном излучателе, наблюдаемое через камеру смартфона как сиреневый “огонёк”.\" width=\"1200\" height=\"600\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F60c\u002F8ca\u002Faf6\u002F60c8caaf6c8bbc3e3789ac14fcca7ee0.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F60c\u002F8ca\u002Faf6\u002F60c8caaf6c8bbc3e3789ac14fcca7ee0.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EРисунок 5. Свечение инфракрасного светодиода в исправном излучателе, наблюдаемое через камеру смартфона как сиреневый “огонёк”.\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E\u003Cstrong\u003EПроверка исправности приёмника\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EИсправность инфракрасного приёмника можно проверить только с помощью заведомо исправного излучателя. \u003C\u002Fp\u003E\u003Cp\u003EКроме него, вам понадобится ещё и мультиметр (для измерения выходного напряжения приёмника). Если на исправный приёмник падает инфракрасный луч, выходное напряжение приёмника, измеренное мультиметром, имеет величину приблизительно 5 Вольт. Если луч прерван, выходное напряжение приёмника опускается практически до нулевой величины.\u003C\u002Fp\u003E\u003Cp\u003EЕсли мультиметра под рукой у вас нет, и взять его негде, вместо него вы можете подключить к выходу приёмника заведомо исправный  счётчик импульсов (тот, в который вы превратили Arduino). При исправном приёмнике исправный счётчик импульсов будет послушно считать пробные прерывания луча вашей рукой и выводить результаты счёта на экран персонального компьютера.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EПроверка исправности счётчика импульсов (на Arduino)\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EСчетчик импульсов на Arduino можно проверить с помощью исправного приёмника, а можно и без него.\u003C\u002Fp\u003E\u003Cp\u003EВ отсутствие приёмника импульсы, которые Arduino должен считать,  можно генерировать с помощью модуля-заглушки. Модуль состоит из резистора и кнопки. Если кнопка не нажата, на входе D2 Arduino - логический ноль. Нажимаете кнопку - ноль меняется на логическую единицу. Отпускаете кнопку - снова появляется ноль. И так далее. \u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd90\u002F79a\u002Fbac\u002Fd9079abac5bee037f23a830359735eba.png\" alt=\"Рисунок 6. Модуль-заглушка, подключенный к Arduino.\" title=\"Рисунок 6. Модуль-заглушка, подключенный к Arduino.\" width=\"1200\" height=\"600\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd90\u002F79a\u002Fbac\u002Fd9079abac5bee037f23a830359735eba.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd90\u002F79a\u002Fbac\u002Fd9079abac5bee037f23a830359735eba.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EРисунок 6. Модуль-заглушка, подключенный к Arduino.\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EИсправный счётчик импульсов должен неутомимо реагировать на все нажатия кнопки,  считая их. Результаты счёта отобразятся на экране персонального компьютера. \u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F780\u002F9da\u002F2a0\u002F7809da2a0f0059ace9bf95d697f92395.png\" alt=\"Рисунок 7. Пример отображения результатов счёта на экране персонального компьютера, в мониторе последовательного порта.\" title=\"Рисунок 7. Пример отображения результатов счёта на экране персонального компьютера, в мониторе последовательного порта.\" width=\"1200\" height=\"470\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F780\u002F9da\u002F2a0\u002F7809da2a0f0059ace9bf95d697f92395.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F780\u002F9da\u002F2a0\u002F7809da2a0f0059ace9bf95d697f92395.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EРисунок 7. Пример отображения результатов счёта на экране персонального компьютера, в мониторе последовательного порта.\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Ch2\u003EЧто дальше?\u003C\u002Fh2\u003E\u003Cp\u003EДальнейшие действия зависят от того, к чему вы пришли.\u003C\u002Fp\u003E\u003Cp\u003EЕсли вы самостоятельно нашли в описании самоделки все мелкие гадости и исправили их, самоделка у вас нормально работает. Поздравляю!\u003C\u002Fp\u003E\u003Cp\u003EЕсли это пока не удалось, возможны два пути решения проблемы.\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EДождаться выхода следующей статьи на эту тему, в которой будет предпринят подробный “разбор полётов”.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСравнить свою самоделку с эталонным образцом (без “гадостей”), описанным мной в книге «Простейший инфракрасный счётчик на Arduino».\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fwww.litres.ru\u002Fbook\u002Fanatoliy-sivkov\u002Fprosteyshiy-infrakrasnyy-schetchik-na-arduino-71948347\u002F\" rel=\"noopener noreferrer nofollow\"\u003EСсылка на книгу\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"инфракрасный счетчик"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F9ea\u002F18b\u002Fdbf\u002F9ea18bdbf4b46d81b331762ac8905c64.png","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F9ea\u002F18b\u002Fdbf\u002F9ea18bdbf4b46d81b331762ac8905c64.png","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F907392\\\u002F\"},\"headline\":\"Простейший инфракрасный счётчик на Arduino. С мелкими гадостями\",\"datePublished\":\"2025-05-06T16:42:44+03:00\",\"dateModified\":\"2025-05-07T00:07:15+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"samigon\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Здесь описывается очень простой (возможно, самый простой в мире) самодельный однолучевой горизонтальный инфракрасный счётчик (людей) на Arduino. Его сенсорная си...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F907392\\\u002F#post-content-body\",\"about\":[\"h_DIY\",\"h_gadgets\",\"h_engineering_systems\",\"h_controllers\",\"h_easyelectronics\",\"f_develop\",\"f_admin\",\"f_popsci\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F907392\\\u002F448424901487c09fc0661e429e58478e\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fa11\\\u002F58f\\\u002F2ad\\\u002Fa1158f2ad667419b4230e33da456a29c.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fa38\\\u002F134\\\u002Fa32\\\u002Fa38134a320b29c96967905558cbd750f.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F9a2\\\u002Fcb4\\\u002F69f\\\u002F9a2cb469f3a272e2704c635b91bb1b01.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F0b9\\\u002F4bc\\\u002F2b7\\\u002F0b94bc2b7baafdce8c09f5b6dca63e70.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F60c\\\u002F8ca\\\u002Faf6\\\u002F60c8caaf6c8bbc3e3789ac14fcca7ee0.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fd90\\\u002F79a\\\u002Fbac\\\u002Fd9079abac5bee037f23a830359735eba.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F780\\\u002F9da\\\u002F2a0\\\u002F7809da2a0f0059ace9bf95d697f92395.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F9ea\\\u002F18b\\\u002Fdbf\\\u002F9ea18bdbf4b46d81b331762ac8905c64.png\"]}","metaDescription":"Здесь описывается очень простой (возможно, самый простой в мире) самодельный однолучевой горизонтальный инфракрасный счётчик (людей) на Arduino. Его сенсорная система содержит лишь&nbsp;инфракрасный...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":{"status":true,"reason":null},"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"hasPinnedComments":false,"format":null,"banner":null,"multiwidget":null,"multiwidgetUuid":null,"readingTime":6,"complexity":null,"isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"postReasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"viewedPosts":[],"myFeedFilter":{"complexity":"all","score":"all","types":["articles","posts","news"]},"myFeedIsApplyFilters":false,"myFeedIsForce":false,"karma":{"userReasonsList":null}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":"DIY,gadgets,engineering_systems,controllers,easyelectronics"},"comments":{"articleComments":{},"articlePinnedComments":{},"searchCommentsResults":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":"","idempotenceKey":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"multiwidgets":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"multiwidgetLoading":false,"vacancies":{},"companiesGalleries":{},"companiesBanners":{},"companiesLandingVacancies":{},"companiesTechnologies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null,"jivoStatus":0,"adminNotifications":null,"availableInvitesCount":{}},"companyAdd":{"currentStep":"","stepsData":{},"uncompletedSteps":[],"isStepLoading":true,"isStepCommitting":false,"isInitialized":false,"agreementContent":""},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"pagesCount":0},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":true},"fixedBanner":{"isArticleStickyPanelVisible":false,"isArticleStickyPanelAtTheBottom":false,"isFixedBannerVisible":false,"isStickyPanelIconsHidden":false},"flows":{"updates":{}},"global":{"isPwa":false,"device":"desktop","isHabrCom":true,"requestId":"f13c64d52ed2b9bda44de460c33a77fd"},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"welcomePage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"query":{},"pathname":"\u002Fru\u002Farticles\u002F907392\u002F","path":"\u002Fru\u002Farticles\u002F907392\u002F","href":"\u002Fru\u002Farticles\u002F907392\u002F"}},"me":{"user":null,"uuid":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null,"userUpdates":{"feeds":{"newPostsCount":null,"newThreadsCount":null,"newNewsCount":null,"newCount":null},"conversationUnreadCount":0},"features":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"onboarding":{"currentStep":null,"stepsData":{},"stepsErrors":{},"completedSteps":[],"isStepCommitting":false,"isCommitDisabled":true},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{"vacancies":"project-block-article"}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null,"sticker":null},"publicationStatistics":{"statsInfo":{},"statsFunnels":{},"statsGraph":{},"defaultSuggest":{},"suggest":{},"timeTracker":{},"isTrackingActivity":false,"isUserActive":true,"otherPublicationStats":{}},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":true,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"stories":{"stories":null},"technotext":{"years":[],"technotextDocForNominees":null,"technotextDocForWinners":null,"technotextInfo":{},"technotextInfoLoading":false,"technotextWinners":{},"technotextWinnersLoading":false},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"userVotes":{"karmaVotesList":[],"karmaVotesPagesCount":null,"karmaVotesListLoading":false,"commentsVotesList":[],"commentsVotesPagesCount":null,"commentsVotesListLoading":false,"postsVotesList":[],"postsVotesPagesCount":null,"postsVotesListLoading":false,"userVotesList":[],"userVotesPagesCount":null,"userVotesListLoading":false},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"notificationsLoading":false,"notificationsList":[],"notificationsPageCount":0,"pendingMarkNotificationsRead":[],"publicationsLoading":true,"publicationsList":[],"publicationsPageCount":0,"pendingDeletePublications":false,"pendingMarkPublicationsRead":false},"events":{"eventRefs":{},"eventIds":[],"pagesCount":0,"categories":[],"cities":[],"actualEvents":null,"currentEvent":null,"eventsFilter":{"city":"all","timeStarted":null,"timeEnded":null}},"wysiwyg":{"WYSIWYGRulesRefs":null},"refs":{"specializationRefs":[]},"hint":{"hints":{}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script>
+   <script src="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" defer></script>
+   <script src="https://assets.habr.com/habr-web/js/app.58b8c457.js" defer></script>
+  </div>
+  <div id="overlays">
+   <!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor-->
+  </div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S28W1WC23F"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  </script>
+  <script type="text/javascript">
+      window.addEventListener('load', function () {
+        setTimeout(() => {
+          const img = new Image();
+          img.src = 'https://vk.com/rtrg?p=VK-RTRG-421343-57vKE';
+        }, 0);
+      });
+    </script>
+ </body>
+</html>

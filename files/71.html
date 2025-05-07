@@ -1,0 +1,1213 @@
+<!doctype html>
+<html lang="ru">
+ <head>
+  <title>Эмулируем iPhone в QEMU / Хабр</title>
+  <meta property="fb:app_id" content="444736788986613">
+  <meta property="fb:pages" content="472597926099084">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@habr_com">
+  <meta property="og:site_name" content="Хабр">
+  <link href="https://habr.com/ru/rss/post/898924/?fl=ru" type="application/rss+xml" title rel="alternate" name="rss">
+  <link href="https://habr.com/ru/articles/898924/" rel="canonical" data-hid="e3fa780">
+  <link rel="image_src" href="https://habrastorage.org/getpro/habr/upload_files/ef7/8e1/ca5/ef78e1ca528b90ccd795a1077d611da3.jpg" data-hid="2a79c45">
+  <link rel="amphtml" href="https://habr.com/ru/amp/publications/898924/">
+  <meta property="og:title" content="Эмулируем iPhone в QEMU">
+  <meta name="twitter:title" content="Эмулируем iPhone в QEMU">
+  <meta name="aiturec:title" content="Эмулируем iPhone в QEMU">
+  <meta name="description" content="Начало пути Мы начали наше исследование по эмуляции iOS с изучения уже существующих опенсорсных решений. Ранее мы уже успешно запускали alephsecurity/xnu-qemu-arm64 , но нас беспокоило то, что проект...">
+  <meta itemprop="description" content="Начало пути Мы начали наше исследование по эмуляции iOS с изучения уже существующих опенсорсных решений. Ранее мы уже успешно запускали alephsecurity/xnu-qemu-arm64 , но нас беспокоило то, что проект...">
+  <meta property="og:description" content="Начало пути Мы начали наше исследование по эмуляции iOS с изучения уже существующих опенсорсных решений. Ранее мы уже успешно запускали alephsecurity/xnu-qemu-arm64 , но нас беспокоило то, что проект...">
+  <meta name="twitter:description" content="Начало пути Мы начали наше исследование по эмуляции iOS с изучения уже существующих опенсорсных решений. Ранее мы уже успешно запускали alephsecurity/xnu-qemu-arm64 , но нас беспокоило то, что проект...">
+  <meta property="aiturec:description" content="Начало пути Мы начали наше исследование по эмуляции iOS с изучения уже существующих опенсорсных решений. Ранее мы уже успешно запускали alephsecurity/xnu-qemu-arm64 , но нас беспокоило то, что проект...">
+  <meta itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/ef7/8e1/ca5/ef78e1ca528b90ccd795a1077d611da3.jpg">
+  <meta property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/ef7/8e1/ca5/ef78e1ca528b90ccd795a1077d611da3.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/ef7/8e1/ca5/ef78e1ca528b90ccd795a1077d611da3.jpg">
+  <meta name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/ef7/8e1/ca5/ef78e1ca528b90ccd795a1077d611da3.jpg">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/ef7/8e1/ca5/ef78e1ca528b90ccd795a1077d611da3.jpg?format=vk">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/ef7/8e1/ca5/ef78e1ca528b90ccd795a1077d611da3.jpg?format=vk">
+  <meta property="aiturec:item_id" content="898924">
+  <meta property="aiturec:datetime" content="2025-05-06T07:26:35.000Z">
+  <meta content="https://habr.com/ru/articles/898924/" property="og:url">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="keywords" content="qemu, ios, iphone, эмуляторы, обратная разработка">
+  <script type="application/ld+json" data-hid="1e0f0a2">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/articles\/898924\/"},"headline":"Эмулируем iPhone в QEMU","datePublished":"2025-05-06T10:26:35+03:00","dateModified":"2025-05-06T14:16:18+03:00","author":{"@type":"Person","name":"PatientZero"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"Начало путиМы начали наше исследование по эмуляции iOS с изучения уже существующих опенсорсных решений. Ранее мы уже успешно запускали alephsecurity\/xnu-qemu-arm...","url":"https:\/\/habr.com\/ru\/articles\/898924\/#post-content-body","about":["h_ios_dev","h_reverse-engineering","h_infosecurity","h_os","f_develop","f_admin"],"image":["https:\/\/habr.com\/share\/publication\/898924\/30bbe66de473f7710f42331c821875d3\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/1ea\/b87\/ba4\/1eab87ba4deb52e5ab857d6ba27978c6.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/8e3\/43b\/ed2\/8e343bed2a9efa8bbed44c6f80b1da52.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/099\/4af\/6ac\/0994af6ac7a0a95ae7bef8de3ffff12a.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/ebb\/b92\/d6e\/ebbb92d6e1200cc713134699c2f8ea6c.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/513\/ffd\/173\/513ffd1731a52327b88fdd2c4d2cd8d0.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/651\/ff9\/040\/651ff9040e51f6f4969346621bd75303.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/685\/c9a\/c25\/685c9ac25f00c27f10c358b5248692c2.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/6c9\/c22\/d61\/6c9c22d61be163226c3bf678ca325b56.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/d18\/608\/ca3\/d18608ca342a5d7f60ff7b82262c8d5f.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/0c2\/124\/2d2\/0c21242d2b91f7baae211604009b39c5.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/c5f\/f13\/30b\/c5ff1330b2e9beb6adfea2848076d4d0.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/000\/d78\/4d8\/000d784d88663cb2e96c88e98609b208.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/ad5\/4b5\/4ba\/ad54b54ba9b14542f7fea75a842341e7.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/067\/e98\/ce1\/067e98ce1742921417c4ee0e88f83697.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/d05\/b3e\/cab\/d05b3ecab2548fff4f10f641d399bdb6.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/b6b\/79f\/97e\/b6b79f97e6afc043d3ad8e8abc9ed0e9.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/f2f\/a08\/8ab\/f2fa088abee6e3791aa1a4cc5a561344.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/5cf\/1ab\/02f\/5cf1ab02f7ffe117e07f6a7e0ebe13b9.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/0df\/bf0\/e46\/0dfbf0e4633d750faebfaa4e8dbe1ac6.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/f82\/b44\/cf2\/f82b44cf28cbef185be587f6fcb75a82.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/b53\/523\/fab\/b53523fab761896c6a5eec47073fb231.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/2c0\/770\/cea\/2c0770cea5a1f7a01a5458a28de8655c.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/eca\/95b\/8e8\/eca95b8e80d9caff14b1f73b5669983d.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/8d8\/aeb\/fa6\/8d8aebfa6ee3c00b4fefc747c95669e8.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/485\/e34\/08c\/485e3408cc165bbaf892456377712b9c.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/ef7\/8e1\/ca5\/ef78e1ca528b90ccd795a1077d611da3.jpg"]}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1,user-scalable=0">
+  <meta name="referrer" content="unsafe-url">
+  <style>
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmojLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvk4jLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmYjLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" as="style" media="(prefers-color-scheme: light)">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" as="style" media="(prefers-color-scheme: dark)">
+  <link id="light-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" media="(prefers-color-scheme: light)">
+  <link id="dark-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" media="(prefers-color-scheme: dark)">
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.635b6c39236ebd33fa716c71ab0131a0.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script>
+  <style>
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+    </style>
+  <meta name="habr-version" content="2.241.0">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44">
+  <meta name="msapplication-TileColor" content="#629FBC">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png">
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png">
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg">
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest">
+  <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
+  <script>window.yaContextCb = window.yaContextCb || []</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.8599692f.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.58b8c457.js" as="script">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.8599692f.css">
+ </head>
+ <body>
+  <div id="mount">
+   <div id="app">
+    <div class="tm-layout__wrapper">
+     <!--[--><!---->
+     <div></div><!---->
+     <header class="tm-header" data-test-id="header">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-header__container">
+        <!----><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/">
+          <svg class="tm-svg-img tm-header__icon" height="16" width="16">
+           <title>
+            Хабр
+           </title><use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+          </svg></a><span style="display:none;" class="tm-header__beta-sign">β</span></span><!--[-->
+        <div class="tm-dropdown tm-header__projects">
+         <div class="tm-dropdown__head">
+          <!--[-->
+          <button class="tm-header__dropdown-toggle">
+           <svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16">
+            <title>
+             Открыть список
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#arrow-down"></use>
+           </svg></button><!--]-->
+         </div><!---->
+        </div><a href="/ru/sandbox/start/" class="tm-header__become-author-btn">Как стать автором</a>
+        <div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature">
+         <!---->
+        </div><!----><!--]--><!---->
+       </div><!--]-->
+      </div>
+     </header>
+     <div class="tm-layout">
+      <div class="tm-page-progress-bar"></div>
+      <div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true">
+       <div class="tm-page-width">
+        <!--[-->
+        <div class="tm-base-layout__header-wrapper">
+         <div class="tm-main-menu">
+          <div class="tm-main-menu__section">
+           <nav class="tm-main-menu__section-content">
+            <!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]-->
+           </nav>
+          </div>
+         </div>
+         <div class="tm-header-user-menu tm-base-layout__user-menu">
+          <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button">
+           <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24">
+            <title>
+             Поиск
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#search"></use>
+           </svg></a><!----><!---->
+          <div class="tm-header-user-menu__item tm-header-user-menu__write">
+           <div>
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Написать публикацию
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#write"></use>
+            </svg>
+           </div><!---->
+          </div><!--[-->
+          <div class="tm-header-user-menu__item">
+           <button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings">
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Настройки
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#page-settings"></use>
+            </svg></button>
+          </div><a href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/articles/898924/&amp;hl=ru" rel="nofollow" class="tm-header-user-menu__item"><!--[-->
+           <button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!----><!--teleport start--><!--teleport end--><!---->
+         </div>
+        </div><!--]-->
+       </div>
+      </div><!---->
+      <div class="tm-page-width">
+       <!--[--><!--]-->
+      </div>
+      <main class="tm-layout__container">
+       <div class="tm-page" hl="ru" data-async-called="true" style="--5ab2e5a8:16px;--44c4f6f6:100%;--45ba7a3b:0;">
+        <div class="tm-page-width">
+         <!--[--><!---->
+         <div class="tm-page__wrapper">
+          <div class="tm-page__main_has-sidebar tm-page__main">
+           <div class="pull-down">
+            <!---->
+            <div class="pull-down__header" style="height:0px;">
+             <div class="pull-down__content" style="bottom:10px;">
+              <svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24">
+               <title>
+                Обновить
+               </title><use xlink:href="/img/megazord-v28.7909a852..svg#pull-arrow"></use>
+              </svg>
+             </div>
+            </div><!--[--><!--[--><!---->
+            <div class="tm-article-presenter">
+             <!--[--><!--]-->
+             <div class="tm-article-presenter__body" data-test-id="article-body">
+              <div class="tm-misprint-area">
+               <div class="tm-misprint-area__wrapper">
+                <!--[-->
+                <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                 <!--[-->
+                 <div class="tm-article-presenter__header">
+                  <!--[--><!--]-->
+                  <div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet">
+                   <!--[--><!--]-->
+                   <div class="tm-article-snippet__meta-container">
+                    <div class="tm-article-snippet__meta">
+                     <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/PatientZero/" class="tm-user-info__userpic" data-test-id="user-info-pic" title="PatientZero">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" height="24" src="//habrastorage.org/r/w48/getpro/habr/avatars/8de/9c5/34a/8de9c534a18a6cb8693270a2b528d4c0.png" width="24">
+                       </div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a href="/ru/users/PatientZero/" class="tm-user-info__username">PatientZero <!----></a><!--[--><span class="tm-article-datetime-published"><time datetime="2025-05-06T07:26:35.000Z" title="2025-05-06, 10:26">23 часа назад</time></span><!--]--></span></span>
+                    </div><!---->
+                   </div>
+                   <h1 class="tm-title tm-title_h1" lang="ru" data-test-id="articleTitle"><span>Эмулируем iPhone в QEMU</span></h1>
+                   <div class="tm-article-snippet__stats" data-test-id="articleStats">
+                    <div class="tm-article-complexity tm-article-complexity_complexity-medium">
+                     <span class="tm-svg-icon__wrapper tm-article-complexity__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Уровень сложности
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#complexity-medium"></use>
+                      </svg></span><span class="tm-article-complexity__label">Средний</span>
+                    </div>
+                    <div class="tm-article-reading-time">
+                     <span class="tm-svg-icon__wrapper tm-article-reading-time__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Время на прочтение
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#clock"></use>
+                      </svg></span><span class="tm-article-reading-time__label">12 мин</span>
+                    </div><span class="tm-icon-counter tm-data-icons__item">
+                     <svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24">
+                      <title>
+                       Количество просмотров
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-views"></use>
+                     </svg><span class="tm-icon-counter__value" title="1709">1.7K</span></span>
+                   </div>
+                   <div class="tm-publication-hubs__container" data-test-id="articleHubsList">
+                    <div class="tm-publication-hubs">
+                     <!--[--><span class="tm-publication-hub__link-container"><a href="/ru/hubs/ios_dev/" class="tm-publication-hub__link"><!--[--><span>Разработка под iOS</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/reverse-engineering/" class="tm-publication-hub__link"><!--[--><span>Реверс-инжиниринг</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/infosecurity/" class="tm-publication-hub__link"><!--[--><span>Информационная безопасность</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/os/" class="tm-publication-hub__link"><!--[--><span>Операционные системы</span><!----><!--]--></a></span><!--]-->
+                    </div>
+                   </div>
+                   <div class="tm-article-labels" data-test-id="articleLabels">
+                    <div class="tm-article-labels__container">
+                     <div class="tm-publication-label tm-publication-label_variant-review">
+                      <span>Обзор</span>
+                     </div><!--[-->
+                     <div class="tm-publication-label tm-publication-label_variant-translation">
+                      <span>Перевод</span>
+                     </div><!--]-->
+                    </div>
+                   </div><!----><!---->
+                  </div>
+                 </div><!--[-->
+                 <div class="tm-article-presenter__origin">
+                  <a class="tm-article-presenter__origin-link" href="https://eshard.com/posts/emulating-ios-14-with-qemu" target="_blank">Автор оригинала: <span>Georges Gagnerot</span></a>
+                 </div>
+                 <div class="tm-article-body" data-gallery-root lang="ru">
+                  <div>
+                   <!--[--><!--]-->
+                  </div>
+                  <div id="post-content-body">
+                   <div>
+                    <div class="article-formatted-body article-formatted-body article-formatted-body_version-2">
+                     <div xmlns="http://www.w3.org/1999/xhtml">
+                      <h3>Начало пути</h3>
+                      <p>Мы начали наше исследование по эмуляции iOS с изучения уже существующих опенсорсных решений. Ранее мы уже успешно запускали <a href="https://github.com/alephsecurity/xnu-qemu-arm64" rel="noopener noreferrer nofollow">alephsecurity/xnu-qemu-arm64</a>, но нас беспокоило то, что проект имеет статус read-only.</p>
+                      <p>Затем мы попробовали <a href="https://github.com/TrungNguyen1909/qemu-t8030" rel="noopener noreferrer nofollow">TrungNguyen1909/qemu-t8030</a>&nbsp;и обнаружили в нём довольно много интересных фич:</p>
+                      <ul>
+                       <li>
+                        <p>возможность восстановления iOS (при помощи второго QEMU-«компаньона» для подключения по USB)</p></li>
+                       <li>
+                        <p>запуск iOS 14</p></li>
+                       <li>
+                        <p>самую свежую версию QEMU</p></li>
+                       <li>
+                        <p>удобную wiki о запуске эмулятора</p></li>
+                      </ul>
+                      <p>Благодаря этому проекту мы быстро получили доступ к оболочке и ssh, изменив <code>System/Library/xpc/launchd.plist</code>, что стало отличной отправной точкой.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/1ea/b87/ba4/1eab87ba4deb52e5ab857d6ba27978c6.png" alt="image (16).png" title="" width="1760" height="832" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/1ea/b87/ba4/1eab87ba4deb52e5ab857d6ba27978c6.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/1ea/b87/ba4/1eab87ba4deb52e5ab857d6ba27978c6.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Нашей долговременной целью стала эмуляция функциональной iOS с UI и возможностью запуска хотя бы некоторых приложений.</p>
+                      <p>Первое, что напрягло нас в проекте t8030&nbsp;— то, что он добавил код в сам QEMU, чтобы пропатчить ядро xnu. Мы знали, что нам наверняка понадобится самим выполнять патчинг, поэтому хотели, чтобы это можно было делать чище. Так как у нас был опыт работы с реальным iPhone с джейлбрейком, мы решили попробовать использовать <a href="https://github.com/palera1n/PongoOS" rel="noopener noreferrer nofollow">Pongo</a>&nbsp;для применения патчей <code>checkra1n</code>, поскольку это позволит нам удалить весь патчинг, выполненный в QEMU.</p>
+                      <p>В сценарии джейлбрейка после взлома при помощи checkmate PongoOS инъецируется в SRAM и через USB передаётся модуль <code>checkra1n-kpf</code>. Мы решили не разбираться с сырой поддержкой USB и увеличили SRAM эмулируемого телефона, а затем использовали PongoOS с модулем checkra1n KPF.</p>
+                      <p>Выполнение PongoOS поначалу не обошлось без проблем: отсутствовал весь загрузочный код, обычно выполняемый bootrom или iboot, например, настройка FPU перед выполнением команд с double/float. Нам помогло чтение <a href="https://developer.arm.com/documentation/dai0527/latest/" rel="noopener noreferrer nofollow">документации ARM (section 5.4)</a>&nbsp;и <a href="https://github.com/citruz/pongoOS-QEMU/commit/033413bfaa6ebc4e1b8680b7548a3505fabe808b#diff-94255394208544c1bce0ef3fc2b955262dc6f5e8ed391005a521f28a0440a042L109-R117" rel="noopener noreferrer nofollow">гугление</a>.</p>
+                      <p>Фичи, добавленные в A13 и более поздних устройствах, неподдерживаемых Pongo, ломали сопоставление паттернов некоторых патчей. Например, команды Pointer Authentication (PAC) добавляли autda&nbsp;/&nbsp;xpacd, а Apple использовала другой slide.</p>
+                      <p>Примеры с печально известным <a href="https://theapplewiki.com/wiki/Tfp0_patch" rel="noopener noreferrer nofollow">task_for_pid (tfp0)</a></p>
+                      <pre><code class="powershell">% ipsw macho info kernelcache.release.iphone10b.decompressed
+000: LC_SEGMENT_64 sz=0x006d8000 off=0x00000000-0x006d8000 addr=0xfffffff007004000-0xfffffff0076dc000 r-x/r-x   __TEXT
+
+Previous version (iphone-X (14.0_18A373_GM))
+ - tfp0 address 0xfffffff0076e9e70
+   0xfffffff0076e9e70 - 0ffffffff007004000 = 0x6e5e70
+ - binary
+   % hexdump -s 0x6e5e70 -n 8 kernelcache.release.iphone10b.decompressed
+   06e5e70 7f70 07ec fff0 0017
+
+ 	Raw: 	0x0017_fff0_07ec_7f70
+ 	Ghidra:  0xffff_fff0_70ec_7f70
+
+Later version (iphone-11 (14.0_18A5351d))
+ - tfp0 address 0x0xfffffff0076c9e40
+   0xfffffff0076c9e40 - 0ffffffff007004000 = 0x6c5e40
+ - binary
+   % hexdump -s 0x6c5e40 -n 8 kernelcache.research.iphone12b.decompressed
+   06c5e40 1d70 00f0 307a 8010
+	 
+	Raw:	0x8010_307a_00f0_1d70
+	Ghidra: 0xffff_fff0_07f0_5d70
+</code></pre>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/8e3/43b/ed2/8e343bed2a9efa8bbed44c6f80b1da52.png" alt="unnamed2.png" title="" width="1800" height="1484" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/8e3/43b/ed2/8e343bed2a9efa8bbed44c6f80b1da52.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/8e3/43b/ed2/8e343bed2a9efa8bbed44c6f80b1da52.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Pongo позволил нам получить доступ к имеющимся патчам checkra1n для различных версий iOS, и хотя динамическое приложение было интересным, его было непросто читать и изменять. Мы хотели более декларативный подход, как и в настоящих патчах кода.</p>
+                      <p>Поэтому мы создали инструменты, позволившие выполнять <code>diff</code> между двумя Mach-O и генерировать текстовый файл патча с различиями в ассемблерном коде. Другая программа просто брала этот патч и применяла к двоичному файлу.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/099/4af/6ac/0994af6ac7a0a95ae7bef8de3ffff12a.png" alt="Screenshot_20250224_174126.png" title="" width="714" height="202" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/099/4af/6ac/0994af6ac7a0a95ae7bef8de3ffff12a.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/099/4af/6ac/0994af6ac7a0a95ae7bef8de3ffff12a.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Затем мы запускались с Pongo и использовали монитор QEMU для дампа пропатченных Pongo областей памяти, а затем переассемблировали пропатченное ядро и, наконец, генерировали файл патча со всеми модификациями. Далее мы разбивали большой патч и снабжали его комментариями, благодаря чему могли анализировать и контролировать ровно то, что было пропатчено в ядре.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/ebb/b92/d6e/ebbb92d6e1200cc713134699c2f8ea6c.png" alt="unnamed.png" title="" width="838" height="252" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/ebb/b92/d6e/ebbb92d6e1200cc713134699c2f8ea6c.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/ebb/b92/d6e/ebbb92d6e1200cc713134699c2f8ea6c.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <h2>Здесь темно</h2>
+                      <p>Мы знали, что на современных iPhone все операции графического рендеринга проходят через <a href="https://developer.apple.com/documentation/metal" rel="noopener noreferrer nofollow">Metal</a>&nbsp;API, которому требуется реальный GPU. Мы считали, что эмуляция Apple Silicon GPU окажется слишком сложной задачей, поэтому придумали два решения:</p>
+                      <ul>
+                       <li>
+                        <p>Использовать программный рендеринг: похоже, это было возможно в старых версиях iOS (при помощи bootarg gpu=0)</p></li>
+                       <li>
+                        <p>Перенаправлять вызовы Metal на устройство, способное выполнять рендеринг, например, на iPhone или, возможно, на Mac с OSX</p></li>
+                      </ul>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/513/ffd/173/513ffd1731a52327b88fdd2c4d2cd8d0.png" alt="graphic_architecture.png" title="" width="1069" height="709" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/513/ffd/173/513ffd1731a52327b88fdd2c4d2cd8d0.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/513/ffd/173/513ffd1731a52327b88fdd2c4d2cd8d0.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Решение с программным рендерингом казалось намного более простым, поэтому в первую очередь мы изучили его. К сожалению, опция bootarg ядра XNU&nbsp;исчезла в iOS 14. Изучив фреймворк QuartzCore&nbsp;при помощи Ghidra, мы пришли к выводу, что откат к программному рендерингу возможен, только если отсутствуют рендереры Metal.</p>
+                      <p>Чтобы убедиться, что программный рендеринг в самом деле можно использовать, мы взяли реальный iPhone с джейлбрейком и пропатчили Quartzcore, чтобы применялся программный рендеринг. Мы действительно подтвердили, что это возможно! При таких модификациях UI стал намного медленнее и содержал артефакты в тех частях, которые, вероятно, требовали для рендеринга непосредственно Metal.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/651/ff9/040/651ff9040e51f6f4969346621bd75303.png" alt="iphonex_sw_rendering.png" title="" width="1800" height="999" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/651/ff9/040/651ff9040e51f6f4969346621bd75303.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/651/ff9/040/651ff9040e51f6f4969346621bd75303.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Проведя эти эксперименты, мы поняли, что можем реализовать программный рендеринг в QEMU для всего, что не использует напрямую Metal&nbsp;или OpenGL&nbsp;(то есть, по сути, все приложения UIKit).</p>
+                      <p>Работая на двух физических iPhone, мы также исследовали альтернативную возможность применения прокси для вызовов Metal. Процесс был таким:</p>
+                      <ul>
+                       <li>
+                        <p>Спарсить все заголовки iOS при помощи LLVM.</p></li>
+                       <li>
+                        <p>Все указатели на объект Objetive C на сервере — это заглушка вызова в клиенте.</p></li>
+                       <li>
+                        <p>Сгенерировать автоматический код для обмена struct и указателями.</p></li>
+                       <li>
+                        <p>Перехватывать все функции и методы.</p></li>
+                       <li>
+                        <p>Перенаправлять каждый вызов на сервер, исполнять их и возвращать результат.</p></li>
+                      </ul>
+                      <p>Мы смогли обеспечить обмен простыми вызовами для инициализации Metal, но потом осознали, что для того, чтобы что-то заработало, потребуется пройти ещё долгий путь. Язык Objetive C и Metal&nbsp;API довольно сложны и имеют множество особенностей, сильно затрудняющих это мероприятие.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/685/c9a/c25/685c9ac25f00c27f10c358b5248692c2.png" alt="metal_hook.png" title="" width="1074" height="765" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/685/c9a/c25/685c9ac25f00c27f10c358b5248692c2.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/685/c9a/c25/685c9ac25f00c27f10c358b5248692c2.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>В итоге мы отложили это решение на будущее и решили начать с программным рендерингом, который, несмотря на его большие ограничения, позволит нам быстрее перейти к другим задачам.</p>
+                      <p>Кроме того, мы обнаружили, что фреймворки iOS раскрывают приватные API, отсутствующие в публичных заголовках. Хотя есть некоторые способы, позволяющие спарсить их и сгенерировать заголовки, чаще всего их нельзя использовать напрямую, и это ещё больше усложняло работу.</p>
+                      <h2>Охота за IOSurface</h2>
+                      <p>Попытавшись заставить работать программный рендеринг, мы решили, что нам всё равно нужно хотя бы устройство буфера кадров, а в оригинальном t8030 QEMU он реализован не был. Однако мы обнаружили <a href="https://github.com/ChefKissInc/QEMUAppleSilicon" rel="noopener noreferrer nofollow">форк проекта</a>, который, очевидно, работал над поддержкой IOMFB, и решили попробовать с его помощью выполнить отладку дисплея.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/6c9/c22/d61/6c9c22d61be163226c3bf678ca325b56.png" alt="image (2).png" width="646" height="978" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/6c9/c22/d61/6c9c22d61be163226c3bf678ca325b56.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/6c9/c22/d61/6c9c22d61be163226c3bf678ca325b56.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         image (2).png
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>&nbsp;</p>
+                      <p>И действительно, при восстановлении iOS с этой версией мы увидели логотип Apple и полосу прогресса. Однако при обычном запуске дисплей оставался совершенно чёрным. Настало время отладки!</p>
+                      <p>Изучив IOMFB kext в Ghidra и реализацию буфера кадров в QEMU, мы поняли, что возможны два режима:</p>
+                      <ul>
+                       <li>
+                        <p>Сырой буфер кадров по фиксированному аппаратному адресу (как мы предполагали ранее).</p></li>
+                       <li>
+                        <p>Более сложный API, использующий регистры для конфигурирования различных плоскостей и применяющий DMA для записи данных поверхностей.</p></li>
+                      </ul>
+                      <p>Сначала мы начали экспериментировать с сырым буфером кадров (позже обнаружилось, что именно с помощью него выполняет отображение Pongo). При работе с ним мы смогли отображать произвольные ARGB-поверхности, но при запуске система ничего не записывала в буфер кадров.</p>
+                      <p>Мы начали изучать второй режим отображения. Включив трассировки в реализации буфера кадров в QEMU, мы увидели, что ядро настраивает графические плоскости при помощи регистров, но потом ничего не происходит.</p>
+                      <p>На этом этапе нам нужно было выполнить отладку и разобраться, почему после запуска ничего не отображается, хотя буфер кадров реализован и обнаружен ядром.</p>
+                      <h2>Рандомизация адресов</h2>
+                      <p>Несмотря на наличие доступа по SSH, мы быстро упираемся в потолок возможностей наблюдения за аспектами работающей системы. Нам необходима возможность отладки компонентов ядра и пользовательского пространства при помощи GDB.</p>
+                      <p>Рандомизации ядра настраивалась в инициализации платы t8030, позволявшей полностью отключить её.</p>
+                      <p>В случае пользовательского пространства у нас было два случая: рандомизация для исполняемых файлов и для динамических библиотек внутри кэша dyld. В случае исполняемых файлов для её отключения достаточно было пропатчить функцию ядра <code>_load_machfile</code>.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/d18/608/ca3/d18608ca342a5d7f60ff7b82262c8d5f.png" alt="image (20).png" title="" width="674" height="354" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/d18/608/ca3/d18608ca342a5d7f60ff7b82262c8d5f.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/d18/608/ca3/d18608ca342a5d7f60ff7b82262c8d5f.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Случай с динамическими библиотеками мы обрабатываем немного иначе. Во-первых, нужно понимать, что каждая библиотека содержится внутри большого двоичного блоба, называемого кэшем dyld (расположен по адресу /System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64e).</p>
+                      <p>Все библиотеки из этого кэша (называемые фреймворками) загружаются одновременно при запуске, а затем отображаются в пространство памяти процессов, несмотря на то, что dlopen вызывается с путём в файловой системе (вида /System/Library/Frameworks/QuartzCore).</p>
+                      <p>Мы заметили, что рандомизация адресов происходит при запуске только один раз, после чего библиотека всегда загружается каждым исполняемым файлом по тому же адресу.</p>
+                      <p>Нам оставалось написать на C какой-нибудь инструмент, который бы выполнял dlopen для каждой библиотеки-фреймворка, а затем использовал функции _dyld*&nbsp;для получения списка загруженных образов и их смещений.</p>
+                      <p>Благодаря этому решению (а также обратному процессу при отладке с адресами, получаемыми из GDB) мы могли с лёгкостью отлаживать любую библиотеку из кэша dyld. Особенно нас интересовало kext IOMFB, демоны <code>backboardd</code>&nbsp;и SpringBoard, а также фреймворк QuartzCore.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/0c2/124/2d2/0c21242d2b91f7baae211604009b39c5.png" alt="unnamed5.png" title="" width="739" height="113" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/0c2/124/2d2/0c21242d2b91f7baae211604009b39c5.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/0c2/124/2d2/0c21242d2b91f7baae211604009b39c5.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/c5f/f13/30b/c5ff1330b2e9beb6adfea2848076d4d0.png" alt="unnamed4.png" title="" width="745" height="335" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/c5f/f13/30b/c5ff1330b2e9beb6adfea2848076d4d0.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/c5f/f13/30b/c5ff1330b2e9beb6adfea2848076d4d0.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/000/d78/4d8/000d784d88663cb2e96c88e98609b208.png" alt="unnamed3.png" title="" width="893" height="89" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/000/d78/4d8/000d784d88663cb2e96c88e98609b208.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/000/d78/4d8/000d784d88663cb2e96c88e98609b208.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/ad5/4b5/4ba/ad54b54ba9b14542f7fea75a842341e7.png" alt="unnamed6.png" title="" width="1025" height="422" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/ad5/4b5/4ba/ad54b54ba9b14542f7fea75a842341e7.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/ad5/4b5/4ba/ad54b54ba9b14542f7fea75a842341e7.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <pre><code class="powershell">debugserver localhost:1111 –attach backboardd
+iproxy 1111:1111
+gdb-multiarch -x "set architecture arch" -x "target remote localhost:1111"</code></pre>
+                      <p><strong>Примечание 1:</strong>&nbsp;позже мы выяснили, как отключать кэш dyld при помощи патчинга ядра. Это позволяет напрямую смотреть виртуальные адреса в кэше dyld на хосте (что мы и сделали при помощи отличной библиотеки Rust <a href="https://github.com/gimli-rs/object" rel="noopener noreferrer nofollow">object</a>&nbsp;из проекта Gimli).</p>
+                      <p><strong>Примечание 2:</strong>&nbsp;для отладки пользовательского пространства нам необходимо иметь на гостевом устройстве сервер gdb (см., например, пакет debugserver из <a href="https://github.com/ProcursusTeam" rel="noopener noreferrer nofollow">Procursus</a>). Изначально мы использовали gdb на хосте, но он был ограничен в возможностях или забагован, поэтому нам больше подошёл lldb.</p>
+                      <h2>Поговори со мной</h2>
+                      <p>Вооружившись работающим GDB, мы добились правильного запуска <code>backboardd</code>, но потом осознали, что нам сильно могут помочь разобраться в происходящем (или не происходящем) системные логи.</p>
+                      <p>На реальном iPhone можно получить системные логи (после подключения к компьютеру через USB) при помощи инструмента idevicesyslog. В процессе подключения требуется генерация пары ключей с хранением приватного ключа в телефоне.&nbsp;lockdownd&nbsp;использует его для проверки идентификации компьютера (после того, как пользователь авторизовал его один раз в UI).</p>
+                      <p>Хоть нам удалось обеспечить взаимодействие с телефоном через USB,&nbsp;lockdownd&nbsp;не работал должным образом. После нескольких сессий в Ghidra мы осознали, что lockdownd&nbsp;пытался использовать набор ключей (keybag)&nbsp;для хранения приватного ключа, для чего потребовался бы отсутствующий у нас SEP.</p>
+                      <p>Чтобы двигаться дальше, мы создали шелл-код, инъецированный вместо какой-то бесполезной (предположительно) функции. Код считывает заранее сгенерированную пару приватного/публичного ключей из файловой системы и, по сути, загружает их каждый раз, когда lockdownd&nbsp;пытается получить их из keybag.</p>
+                      <p>После долгой отладки (и патчинга, позволяющего симулировать то, что пользователь доверяет компьютеру и телефон разблокирован) нам наконец удалось заставить всё это работать, и мы смогли подключиться к эмулируемому iPhone из нашего QEMU-«компаньона».</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/067/e98/ce1/067e98ce1742921417c4ee0e88f83697.png" alt="unnamed7.png" title="" width="1156" height="352" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/067/e98/ce1/067e98ce1742921417c4ee0e88f83697.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/067/e98/ce1/067e98ce1742921417c4ee0e88f83697.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Позже мы выяснили, что также можно непосредственно в iPhone использовать для отображения логов инструмент oslog (на тот момент эта возможность не сработала), однако реализованное нами в дальнейшем позволило нам получать гораздо больше, чем просто логи.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/d05/b3e/cab/d05b3ecab2548fff4f10f641d399bdb6.png" alt="unnamed8.png" title="" width="1136" height="377" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/d05/b3e/cab/d05b3ecab2548fff4f10f641d399bdb6.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/d05/b3e/cab/d05b3ecab2548fff4f10f641d399bdb6.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>К сожалению, судя по логам, QuartzCore&nbsp;инициировался правильно, отображая размер дисплея. Также из них следовало, что в качестве fallback использовался программный рендеринг. То есть всё работает правильно, но дисплея всё равно нет!</p>
+                      <p>Примечание: отображалась ошибка формата пикселей, которую мы обошли, принудительно включив RGBA (ниже мы расскажем о патчинге в пользовательском пространстве), однако позже она была удалена.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/b6b/79f/97e/b6b79f97e6afc043d3ad8e8abc9ed0e9.png" alt="unnamed9.png" title="" width="1450" height="415" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/b6b/79f/97e/b6b79f97e6afc043d3ad8e8abc9ed0e9.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/b6b/79f/97e/b6b79f97e6afc043d3ad8e8abc9ed0e9.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <h2>PAC или не PAC</h2>
+                      <p>Внесение изменений в <code>backboardd</code>&nbsp;для устранения ошибки формата пикселей показало нам, что у нас возникнут проблемы со множеством аспектов безопасности iOS.</p>
+                      <p>Проверка подписи при загрузке и во время выполнения была исправлена патчами ядра, однако у нас оставались проблемы: сбои аутентификации указателей прерывали выполнение нашего модифицированного <code>backboardd</code>.</p>
+                      <p>Pointer Authentication — это фича, добавленная в ARM8.3; она используется в эмулируемой нами t8030, но не в t8015, которую мы применяли ранее, так что для нас это было новинкой.</p>
+                      <p>Так как мы предвидели, что нас ждёт много патчинга, то решили сразу взяться за эту проблему и попытаться обойти её, чтобы упростить себе жизнь.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/f2f/a08/8ab/f2fa088abee6e3791aa1a4cc5a561344.png" alt="esr_pac.png" title="" width="1564" height="329" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/f2f/a08/8ab/f2fa088abee6e3791aa1a4cc5a561344.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/f2f/a08/8ab/f2fa088abee6e3791aa1a4cc5a561344.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/5cf/1ab/02f/5cf1ab02f7ffe117e07f6a7e0ebe13b9.png" alt="esr_pac_decoded.png" title="" width="1725" height="182" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/5cf/1ab/02f/5cf1ab02f7ffe117e07f6a7e0ebe13b9.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/5cf/1ab/02f/5cf1ab02f7ffe117e07f6a7e0ebe13b9.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Сначала мы подумали, что можно просто заменить все команды PAC на NOP или на эквивалентные команды без PAC.</p>
+                      <p>Хоть это, вероятно, и сработало бы, но при этом пришлось бы слишком вмешиваться в работу системы; позже мы обнаружили, что двоичный файл PAC ARM64 можно создать двумя способами:</p>
+                      <ul>
+                       <li>
+                        <p>Использовать специальный набор команд PAC, который может быть только в ARM8.3+ CPU.</p></li>
+                       <li>
+                        <p>Или «неиспользуемый» набор команд, который будет интерпретироваться как PAC, на ARM8.3+, или эквивалент без PAC в ранних версиях ARM.</p></li>
+                      </ul>
+                      <p>После проведения тестов с Buildroot и системой на ARM64 Linux мы подтвердили это, а также убедились, что скомпилированные двоичные файлы для нашей платформы t8030 используют обратно совместимый набор инструкций (архитектура под названием arm64e).</p>
+                      <p>По сути, всё, что нам нужно было сделать — это отключить принудительную проверку PAC (Pointer Authentication) в QEMU, и код должен был работать как обычный код без PAC. К сожалению, это не сработало; на тот момент мы использовали QEMU 7 и выяснили, что в QEMU 8 поведение было другим.</p>
+                      <p>Тогда мы поступили логично — начали портировать текущую кодовую базу на QEMU 8.2.1. Это оказалось болезненным процессом, так как большая часть кода модифицировала стандартные части QEMU, особенно обработку специфичных для Apple инструкций genter/gexit и уровней исключений GL.</p>
+                      <p>После бесчисленных паник XNU, подключений GDB к ядру, подключений GDB к самому QEMU и отчаянного git bisect для поиска последнего бага мы наконец-то снова заставили iOS загружаться на QEMU 8! А вместе с этим получили возможность отключать PAC и модифицировать любой исполняемый код где угодно и как угодно.&nbsp;</p>
+                      <h2>Свет в конце туннеля</h2>
+                      <p>Поскольку, судя по системным логам, <code>backboardd</code> работал корректно, у нас не оставалось выбора, кроме как глубже изучить его поведение, чтобы понять, почему изображение по-прежнему не выводится.</p>
+                      <p>Запись необработанных ARGB-кадров по этим адресам позволяла нам фактически изменять дисплей и работать с различными графическими плоскостями, что подтверждало исправность дисплейной подсистемы.</p>
+                      <p>Оставалось несколько возможных вариантов:</p>
+                      <ul>
+                       <li>
+                        <p><code>backboardd</code>&nbsp;по какой-то причине ничего не записывал</p></li>
+                       <li>
+                        <p>или выполнял запись не по правильному адресу</p></li>
+                       <li>
+                        <p>или записанное им было невалидным</p></li>
+                      </ul>
+                      <p>Чтобы изучить вопрос, мы сначала попытались сдампить физическую память DMA, в которую должен был выполнять запись <code>backboardd</code>: возможно, запись выполнялась, но отображалась неправильно.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/0df/bf0/e46/0dfbf0e4633d750faebfaa4e8dbe1ac6.png" alt="Screenshot_20250225_092231.png" title="" width="751" height="422" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/0df/bf0/e46/0dfbf0e4633d750faebfaa4e8dbe1ac6.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/0df/bf0/e46/0dfbf0e4633d750faebfaa4e8dbe1ac6.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Для этого мы использовали монитор QEMU, чтобы получить несмежные адреса, а затем — написанный на коленке скрипт для дампа физической памяти и объединения всего этого в один файл.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/f82/b44/cf2/f82b44cf28cbef185be587f6fcb75a82.png" alt="Screenshot_20250225_092657.png" title="" width="723" height="587" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/f82/b44/cf2/f82b44cf28cbef185be587f6fcb75a82.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/f82/b44/cf2/f82b44cf28cbef185be587f6fcb75a82.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Затем при помощи ffplay мы попытались интерпретировать данные как ARGB-кадр, но, к сожалению, не получили ничего интересного.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/b53/523/fab/b53523fab761896c6a5eec47073fb231.png" alt="unnamed10.png" title="" width="1223" height="1046" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/b53/523/fab/b53523fab761896c6a5eec47073fb231.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/b53/523/fab/b53523fab761896c6a5eec47073fb231.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Затем мы решили поэкспериментировать с поверхностями, выделенными iOS, получив при помощи GDB отображённые адреса в памяти <code>backboardd</code>&nbsp;GDB (взломом <code>iosurface_lock</code>).</p>
+                      <p>Поискали по всем этим адресам подсказки, хоть и понятия не имели, что отображается и должно ли вообще что-то отображаться. Иногда мы встречали странные изображения в виде логотипа Apple, но запись кадров определённо выполнялась неправильно.</p>
+                      <figure class="">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/2c0/770/cea/2c0770cea5a1f7a01a5458a28de8655c.png" alt="unnamed11.png" title="" width="440" height="341" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/2c0/770/cea/2c0770cea5a1f7a01a5458a28de8655c.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/2c0/770/cea/2c0770cea5a1f7a01a5458a28de8655c.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>То же самое мы проделали на реальном iPhone 10 и с лёгкостью сдампили идеальные сырые ARGB-кадры текущего дисплея. Оказалось, что начиная с iPhone 11 (а значит, и в t8030) поверхности сжимаются и передаются GPU, который уже знает, как их обрабатывать.</p>
+                      <p>Но так как этого не происходило на iPhone X (t8015), мы попытались модифицировать DTB в QEMU, чтобы передать в качестве chip-id&nbsp;не 8030, а 8015. И наконец мы добились отображения логотипа Apple после запуска!</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/eca/95b/8e8/eca95b8e80d9caff14b1f73b5669983d.png" alt="unnamed12.png" title="" width="636" height="920" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/eca/95b/8e8/eca95b8e80d9caff14b1f73b5669983d.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/eca/95b/8e8/eca95b8e80d9caff14b1f73b5669983d.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <h2>Прогресс</h2>
+                      <p>Мы уже были довольны тем, что смогли отобразить логотип, но больше ничего другого не отображалось, а в системных логах было множество различной информации о неизвестных нам системных демонах и библиотеках.</p>
+                      <p>На этом этапе мы могли лишь гадать, какие из куч ошибок в логах были связаны с текущей проблемой, и устранять их одну за другой, пока не изменится поведение UI.</p>
+                      <p>Мы заметили проблемы с аутентификацией пользователя и обнаружили ошибки, вызванные демоном mobileactivationd&nbsp;и фреймворком SpringBoardFoundation.</p>
+                      <p>После их патчинга UI начал отображать белую полосу прогресса, похожую на ту, которая видна на этапе восстановления. Полоса двигалась, но зависала на 90%, даже если мы ждали несколько часов.</p>
+                      <h2>Патчим это всё</h2>
+                      <p>Благодаря отключению рандомизации адресов мы смогли пропатчить пользовательское пространство и фреймворк кэша dyld. Точно так же, как в случае патчинга ядра, мы создали текстовые файлы файлы патчей, разбитые по двоичным файлам/библиотекам, и применяли их при помощи наших инструментов.</p>
+                      <p>Однако мы быстро поняли. что нам придётся достаточно часто патчить кэш dyld, а при внесении изменений очень неудобно работать с двоичным файлом весом 2 ГБ.</p>
+                      <p>Патчить его напрямую было нереально, мы все работаем в Linux, поэтому не можем модифицировать nvme напрямую, а копирование 2 ГБ туда и обратно через SSH потребовало бы кучу времени.</p>
+                      <p>Поэтому мы дополнили наш внутренний инструмент diff/патчинга так, чтобы он работал с dyld и искал смещение фреймворка в блобе кэша dyld.</p>
+                      <p>Кроме того, мы добавили опцию, позволяющую генерировать простые команды «dd» (и обратные им), которые можно было применять непосредственно на iPhone (повторно смонтировав файловую систему в rw).</p>
+                      <p>Этот способ позволил нам протестировать множество итераций изменений; при этом для того, чтобы внесённые в кэш dyld модификации учитывались, достаточно было перезапустить iOS.</p>
+                      <p><strong>Примечание:</strong>&nbsp;чтобы это заработало, потребовалось ещё несколько дополнительных модификаций проверок подписей в ядре.</p>
+                      <h2>Оно живое!</h2>
+                      <p>Прежде чем разобраться, как устранить проблему зависающей полосы прогресса, мы немного поэкспериментировали с системным процессом PreBoard. Похоже, он виден пользователю только тогда, когда что-то пошло не так (например, прервано обновление).</p>
+                      <p>Так как это системное приложение, выполняющее отрисовку напрямую при помощи <code>backboardd</code> (точно так же, как это бы делал SpringBoard), его можно запустить непосредственно из командной строки. И благодаря этому мы получаем белый экран, предлагающий выполнить свайп для обновления!</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/8d8/aeb/fa6/8d8aebfa6ee3c00b4fefc747c95669e8.png" alt="unnamed13.png" title="" width="582" height="929" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/8d8/aeb/fa6/8d8aebfa6ee3c00b4fefc747c95669e8.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/8d8/aeb/fa6/8d8aebfa6ee3c00b4fefc747c95669e8.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Вооружившись знаниями из прошлых проектов об использовании VNC-сервера на физическом iPhone, мы попробовали добавить его, и спустя несколько неудачных попыток смогли разблокировать этот белый экран (не свайпом, а клавишей клавиатуры).</p>
+                      <p>Сразу после разблокировки QEMU прекращает выполнение, потому что iOS использует недопустимую команду. Порывшись в <code>backboardd</code>, мы обнаружили, что он использует фреймворк vImage&nbsp;для выполнения графических операций с аппаратным ускорением (например, <code>_vHorizontalScale_ARGB_8888_Accelerate</code>).</p>
+                      <p>Эти операции используют AMX (Apple Matrix Coprocessor), имеющий набор проприетарных команд, не реализованных в эмулированном CPU ARM, работающем в QEMU. К счастью, у фреймворка vImage&nbsp;есть альтернативные программные версии этих вызовов, задействующих только общие команды ARM, так что мы снова занялись патчингом.</p>
+                      <p>В результате мы получили новый экран с настоящим окном UIKit, которое предлагало нам ввести пароль в работающее поле ввода текста. В нём можно было писать при помощи инъецированных через VNC событий клавиатуры.</p>
+                      <p>&nbsp;</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/485/e34/08c/485e3408cc165bbaf892456377712b9c.png" alt="unnamed14.png" title="" width="679" height="1015" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/485/e34/08c/485e3408cc165bbaf892456377712b9c.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/485/e34/08c/485e3408cc165bbaf892456377712b9c.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>На этом этапе мы знали, что у нас всё готово для правильного отображения SpringBoard, и его запуск оставался лишь делом времени.</p>
+                     </div>
+                    </div>
+                   </div><!----><!---->
+                  </div><!----><!---->
+                 </div><!--]--><!---->
+                 <div class="tm-article-presenter__meta" data-test-id="article-meta-links">
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Теги:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[qemu]" class="tm-tags-list__link"><span>qemu</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[ios]" class="tm-tags-list__link"><span>ios</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[iphone]" class="tm-tags-list__link"><span>iphone</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%8D%D0%BC%D1%83%D0%BB%D1%8F%D1%82%D0%BE%D1%80%D1%8B]" class="tm-tags-list__link"><span>эмуляторы</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D0%B0%D1%8F+%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0]" class="tm-tags-list__link"><span>обратная разработка</span></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Хабы:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/ios_dev/" class="tm-hubs-list__link"><!--[--><span>Разработка под iOS</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/reverse-engineering/" class="tm-hubs-list__link"><!--[--><span>Реверс-инжиниринг</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/infosecurity/" class="tm-hubs-list__link"><!--[--><span>Информационная безопасность</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/os/" class="tm-hubs-list__link"><!--[--><span>Операционные системы</span><!--]--></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                 </div>
+                 <div class="article-donation-block">
+                  <div class="article-donation-block__message">
+                   Если эта публикация вас вдохновила и вы хотите поддержать автора — не&nbsp;стесняйтесь нажать на кнопку
+                  </div>
+                  <button class="btn btn_solid btn_small tm-button tm-button_color-horizon article-donation-block__button" type="button"><!--[--><!--[-->Задонатить<!--]--><!--]--></button><!---->
+                 </div><!--]-->
+                </article><!--]-->
+               </div><!---->
+              </div>
+              <div style="" class="tm-article-sticky-panel" data-test-id="article-sticky-panel">
+               <div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons">
+                <div class="article-rating tm-data-icons__item" data-v-86aec4a7>
+                 <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-article votes-switcher" title="Всего голосов 18: ↑18 и ↓0" data-v-86aec4a7>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-upvote-button" title="Нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon" height="24" width="24">
+                    <title>
+                     Нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                  <div class="tm-votes-lever__score tm-votes-lever__score_appearance-article tm-votes-lever__score">
+                   <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_positive tm-votes-lever__score-counter" data-test-id="votes-score-counter">+29</span></span><!--]-->
+                  </div>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-downvote-button" title="Не нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon tm-votes-lever__icon_arrow-down" height="24" width="24">
+                    <title>
+                     Не нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                 </div><!--teleport start--><!--teleport end--><!---->
+                </div><!----><!---->
+                <button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon">
+                  <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                   <title>
+                    Добавить в закладки
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-favorite"></use>
+                  </svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">17</span></button>
+                <div class="tm-sharing tm-data-icons__item" title="Поделиться">
+                 <button class="tm-sharing__button" type="button">
+                  <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                   <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                  </svg></button><!--teleport start--><!--teleport end-->
+                </div>
+                <div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии">
+                 <a href="/ru/articles/898924/comments/" class="tm-article-comments-counter-link__link" data-test-id="counter-comments"><!--[-->
+                  <svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24">
+                   <title>
+                    Комментарии
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                  </svg><span class="tm-article-comments-counter-link__value">0</span><!--]--></a><!---->
+                </div><!--[--><!--[--><!--[--><!----><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!---->
+               </div>
+              </div>
+             </div><!--[--><!--]-->
+             <div class="tm-article-presenter__footer">
+              <!--[--><!--[-->
+              <div class="tm-article-blocks">
+               <!----><!--[-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <!----><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-balanced">
+                 <!--[-->
+                 <div class="tm-article-author" data-test-id="article-author-info" data-async-called="true">
+                  <!--[--><!--]-->
+                  <div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true">
+                   <div class="tm-user-card__info-container">
+                    <div class="tm-user-card__header">
+                     <div class="tm-user-card__header-data">
+                      <a href="/ru/users/PatientZero/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" src="//habrastorage.org/getpro/habr/avatars/8de/9c5/34a/8de9c534a18a6cb8693270a2b528d4c0.png">
+                       </div></a>
+                      <div class="tm-user-card__meta">
+                       <div class="tm-counter-container karma" title=" 2081 голос " data-v-f7c0e283>
+                        <div class="tm-counter-container__header">
+                         <!--[-->
+                         <div class="karma-display positive" data-v-f7c0e283 data-v-7635202e>
+                          1883
+                         </div><!----><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[-->
+                         <div class="karma-text" data-v-f7c0e283>
+                          Карма
+                         </div><!--teleport start--><!--teleport end--><!--]-->
+                        </div>
+                       </div>
+                       <div class="tm-counter-container" title="Рейтинг пользователя">
+                        <div class="tm-counter-container__header">
+                         <!--[--><!--[--><!--]-->
+                         <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                          <!---->
+                          <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score_no-margin tm-votes-lever__score">
+                           <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">488.3</span></span><!--]-->
+                          </div><!---->
+                         </div><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info">
+                     <div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title">
+                      <!----><a href="/ru/users/PatientZero/" class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article"> @PatientZero</a><!---->
+                     </div>
+                     <p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Переводчик-фрилансер</p>
+                    </div>
+                   </div><!---->
+                   <div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons">
+                    <!---->
+                    <div class="tm-user-card__button">
+                     <div class="tm-button-follow tm-user-card__button-follow">
+                      <!---->
+                      <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+                     </div>
+                    </div><!---->
+                    <div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations">
+                     <svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16">
+                      <title>
+                       Отправить сообщение
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#mail"></use>
+                     </svg>
+                    </div><!---->
+                   </div><!---->
+                  </div>
+                  <div class="tm-article-author__user-contacts" data-test-id="author-contacts">
+                   <!----><!----><!---->
+                  </div>
+                 </div><!--]-->
+                </div><!--]--><!---->
+               </section><!----><!--[-->
+               <div class="banner-wrapper leaderboard tm-page-article__banner" style="--38f3d936:200px;--78a3cd06:auto;" data-v-f4bf0d24>
+                <!--[-->
+                <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="adfox-banner-placeholder leaderboard" data-v-12f7bcca>
+                  <div class="image loads" data-v-12f7bcca></div>
+                  <div class="lines" data-v-12f7bcca>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                  </div>
+                 </div><!----><!----><!---->
+                </div>
+                <div id="adfox_164725660339535756" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+               </div><!--]--><!--]-->
+               <div class="tm-article-blocks__comments">
+                <div id="publication-comments" class="tm-article-page-comments">
+                 <div>
+                  <!--[-->
+                  <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                   <a href="/ru/articles/898924/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments"><!--[-->
+                    <svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24">
+                     <title>
+                      Комментарии
+                     </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                    </svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментировать </span><!--]--></a><!---->
+                  </div><!--]-->
+                 </div>
+                </div>
+               </div><!--[--><!--[--><!--]-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <header class="tm-block__header tm-block__header tm-block__header_variant-borderless">
+                 <div class="tm-block__header-container">
+                  <h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]-->
+                 </div><!---->
+                </header><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim">
+                 <!--[--><!--[-->
+                 <div class="tm-tabs tm-tabs">
+                  <div class="">
+                   <!--[--><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]-->
+                  </div><!---->
+                 </div>
+                 <div class="similar-and-daily__tab-view">
+                  <div class="daily-articles-list">
+                   <ul class="tm-article-card-list">
+                    <!--[--><!--]-->
+                    <div class="tm-bordered-card">
+                     <!----><!--[--><!--]-->
+                    </div>
+                   </ul>
+                   <div class="daily-articles-block__button-container">
+                    <button class="btn btn_transparent btn_small tm-button tm-button_color-horizon" type="button"><!--[--><!--[-->Показать лучшие за всё время<!--]--><!--]--></button>
+                   </div>
+                  </div><!---->
+                 </div><!--]--><!--]-->
+                </div><!--]--><!---->
+               </section><!--[-->
+               <div>
+                <div class="placeholder-wrapper">
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="tm-placeholder-promo">
+                  <div class="tm-placeholder-promo__header">
+                   <div class="tm-placeholder__line tm-placeholder__line_promo-title"></div>
+                  </div>
+                  <div class="tm-placeholder-promo__body">
+                   <div class="tm-placeholder-promo__posts">
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                   </div>
+                   <div class="tm-placeholder-promo__dots">
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                   </div>
+                  </div>
+                 </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                </div>
+               </div>
+               <div class="placeholder-wrapper">
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="tm-placeholder-inset tm-placeholder-questions">
+                 <div class="tm-placeholder-inset__header">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div>
+                 </div>
+                 <div class="tm-placeholder-inset__body">
+                  <ul class="tm-placeholder-list">
+                   <!--[-->
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li><!--]-->
+                  </ul>
+                 </div>
+                 <div class="tm-placeholder-inset__footer">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div>
+                 </div>
+                </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               </div><!--]--><!----><!--[--><!--]--><!--]-->
+              </div><!--]--><!--]-->
+             </div>
+            </div><!--]--><!--]-->
+           </div>
+          </div>
+          <div class="tm-page__sidebar">
+           <!--[-->
+           <div class="tm-layout-sidebar">
+            <div class="tm-layout-sidebar__placeholder_initial"></div>
+            <div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;">
+             <!--[--><!--]--><!---->
+             <div class="tm-layout-sidebar__ads_initial tm-layout-sidebar__ads">
+              <div class="banner-wrapper half-page tm-layout-sidebar__banner tm-layout-sidebar__banner_top" style="--38f3d936:600px;--78a3cd06:auto;" data-v-f4bf0d24>
+               <!--[-->
+               <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="adfox-banner-placeholder half-page" data-v-12f7bcca>
+                 <div class="image loads" data-v-12f7bcca></div>
+                 <div class="lines" data-v-12f7bcca>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                 </div>
+                </div><!----><!----><!---->
+               </div>
+               <div id="adfox_164725680533065327" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+              </div>
+             </div><!--[--><!---->
+             <div></div>
+             <section class="tm-block tm-block tm-block_spacing-around" data-async-called="true">
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Работа</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[--><!--[-->
+               <div class="tm-vacancies-block__item">
+                <a class="tm-vacancies-block__vacancy-title" href="https://career.habr.com/vacancies/ios_razrabotchik_swift" target="_blank">Swift разработчик</a>
+                <div class="tm-vacancies-block__vacancies-count">
+                 6 вакансий
+                </div>
+               </div>
+               <div class="tm-vacancies-block__item">
+                <a class="tm-vacancies-block__vacancy-title" href="https://career.habr.com/vacancies/ios_razrabotchik" target="_blank">iOS разработчик</a>
+                <div class="tm-vacancies-block__vacancies-count">
+                 11 вакансий
+                </div>
+               </div>
+               <div class="tm-vacancies-block__item">
+                <a class="tm-vacancies-block__vacancy-title" href="https://career.habr.com/vacancies/specialist_po_informacionnoj_bezopasnosti" target="_blank">Специалист по информационной безопасности</a>
+                <div class="tm-vacancies-block__vacancies-count">
+                 35 вакансий
+                </div>
+               </div><!--]--><!--]-->
+              </div><!--]-->
+              <footer class="tm-block__footer">
+               <!--[--><a class="tm-block-extralink" href="https://career.habr.com/catalog">Все вакансии</a><!--]-->
+              </footer>
+             </section>
+             <section class="tm-block tm-block tm-block_spacing-around block" data-v-6f380946>
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Ближайшие события</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[-->
+               <div class="placeholder-wrapper" data-v-6f380946>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <section class="tm-block tm-block tm-block_spacing-none" tabindex="-1" data-v-9caf0b82>
+                 <!----><!--[-->
+                 <div class="event-card-placeholder is-widget" data-v-9caf0b82>
+                  <div class="image loads" data-v-9caf0b82></div>
+                  <div class="info" data-v-9caf0b82>
+                   <div class="date line" data-v-9caf0b82></div>
+                   <div class="title line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                  </div>
+                  <div class="footer widget" data-v-9caf0b82>
+                   <div class="link line" data-v-9caf0b82></div>
+                   <div class="categories" data-v-9caf0b82>
+                    <!--[-->
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div><!--]-->
+                   </div>
+                  </div>
+                 </div><!--]--><!---->
+                </section><!---->
+               </div><!--]-->
+              </div><!--]--><!---->
+             </section><!--]-->
+             <div class="banner-wrapper medium-rectangle tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom" style="--38f3d936:250px;--78a3cd06:auto;" data-v-f4bf0d24>
+              <!--[-->
+              <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+               <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               <div class="adfox-banner-placeholder medium-rectangle" data-v-12f7bcca>
+                <div class="image loads" data-v-12f7bcca></div>
+                <div class="lines" data-v-12f7bcca>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                </div>
+               </div><!----><!----><!---->
+              </div>
+              <div id="adfox_164725691003361602" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+             </div>
+            </div>
+           </div><!--]-->
+          </div>
+         </div><!----><!--]-->
+        </div>
+       </div>
+      </main><!---->
+     </div>
+     <div class="tm-footer-menu">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer-menu__container">
+        <!--[-->
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Ваш аккаунт</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/articles/898924/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/articles/898924/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Разделы</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/articles/" class="footer-menu__item-link">Статьи</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link">Новости</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link">Хабы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link">Компании</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link">Авторы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link">Песочница</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Информация</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link">Устройство сайта</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link">Для авторов</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link">Для компаний</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link">Документы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Услуги</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]-->
+          </ul>
+         </div>
+        </div><!--]-->
+       </div><!--]-->
+      </div>
+     </div>
+     <div class="tm-footer">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer__container">
+        <!---->
+        <div class="tm-footer__social">
+         <!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Facebook
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Twitter
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            VK
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Telegram
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Youtube
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Яндекс Дзен
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use>
+          </svg></a><!--]-->
+        </div><!--teleport start--><!--teleport end-->
+        <button class="tm-footer__link"><!----> Настройка языка</button><a href="/ru/feedback/" class="tm-footer__link">Техническая поддержка</a>
+        <div class="tm-footer-copyright">
+         <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span>
+        </div>
+       </div><!--]-->
+      </div>
+     </div><!----><!--]-->
+    </div><!---->
+   </div>
+   <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"898924":{"id":"898924","timePublished":"2025-05-06T07:26:35+00:00","isCorporative":false,"lang":"ru","titleHtml":"Эмулируем iPhone в QEMU","leadData":{"textHtml":"\u003Cp\u003EМы начали наше исследование по эмуляции iOS с изучения уже существующих опенсорсных решений. Ранее мы уже успешно запускали \u003Ca href=\"https:\u002F\u002Fgithub.com\u002Falephsecurity\u002Fxnu-qemu-arm64\" rel=\"noopener noreferrer nofollow\"\u003Ealephsecurity\u002Fxnu-qemu-arm64\u003C\u002Fa\u003E, но нас беспокоило то, что проект имеет статус read-only.\u003C\u002Fp\u003E\u003Cp\u003EЗатем мы попробовали \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FTrungNguyen1909\u002Fqemu-t8030\" rel=\"noopener noreferrer nofollow\"\u003ETrungNguyen1909\u002Fqemu-t8030\u003C\u002Fa\u003E&nbsp;и обнаружили в нём довольно много интересных фич:\u003C\u002Fp\u003E\u003Cp\u003Eвозможность восстановления iOS (при помощи второго QEMU-«компаньона» для подключения по USB)\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E●\u003C\u002Fstrong\u003E запуск iOS 14\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E●\u003C\u002Fstrong\u003E самую свежую версию QEMU\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E●\u003C\u002Fstrong\u003E удобную wiki о запуске эмулятора\u003C\u002Fp\u003E\u003Cp\u003EБлагодаря этому проекту мы быстро получили доступ к оболочке и ssh, изменив \u003Ccode\u003ESystem\u002FLibrary\u002Fxpc\u002Flaunchd.plist\u003C\u002Fcode\u003E, что стало отличной отправной точкой.\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fef7\u002F8e1\u002Fca5\u002Fef78e1ca528b90ccd795a1077d611da3.jpg","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fef7\u002F8e1\u002Fca5\u002Fef78e1ca528b90ccd795a1077d611da3.jpg","fit":"cover","positionY":0,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[{"type":"translation","typeOf":"system","title":"Перевод","data":{"originalAuthorName":"Georges Gagnerot","originalUrl":"https:\u002F\u002Feshard.com\u002Fposts\u002Femulating-ios-14-with-qemu"}}],"author":{"id":"78894","alias":"PatientZero","fullname":null,"avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F8de\u002F9c5\u002F34a\u002F8de9c534a18a6cb8693270a2b528d4c0.png","speciality":"Переводчик-фрилансер","scoreStats":{"score":1883,"votesCount":2081},"rating":488.3,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":"410013829899665","paymentPayPalMe":"vadimivshin","paymentWebmoney":null},"donationsMethod":"wallets","isInBlacklist":null,"careerProfile":null},"statistics":{"commentsCount":0,"favoritesCount":17,"readingCount":1709,"score":29,"votesCount":18,"votesCountPlus":18,"votesCountMinus":0},"hubs":[{"id":"548","alias":"ios_dev","type":"collective","title":"Разработка под iOS","titleHtml":"Разработка под iOS","isProfiled":true,"relatedData":null},{"id":"19011","alias":"reverse-engineering","type":"collective","title":"Реверс-инжиниринг","titleHtml":"Реверс-инжиниринг","isProfiled":true,"relatedData":null},{"id":"50","alias":"infosecurity","type":"collective","title":"Информационная безопасность","titleHtml":"Информационная безопасность","isProfiled":true,"relatedData":null},{"id":"23270","alias":"os","type":"collective","title":"Операционные системы","titleHtml":"Операционные системы","isProfiled":false,"relatedData":null}],"flows":[{"id":"1","alias":"develop","title":"Разработка","titleHtml":"Разработка"},{"id":"6","alias":"admin","title":"Администрирование","titleHtml":"Администрирование"}],"relatedData":{"vote":null,"unreadCommentsCount":0,"bookmarked":false,"canComment":false,"canEdit":false,"canViewVotes":false,"votePlus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"voteMinus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"canModerateComments":false,"trackerSubscribed":false,"emailSubscribed":false},"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Ch3\u003EНачало пути\u003C\u002Fh3\u003E\u003Cp\u003EМы начали наше исследование по эмуляции iOS с изучения уже существующих опенсорсных решений. Ранее мы уже успешно запускали \u003Ca href=\"https:\u002F\u002Fgithub.com\u002Falephsecurity\u002Fxnu-qemu-arm64\" rel=\"noopener noreferrer nofollow\"\u003Ealephsecurity\u002Fxnu-qemu-arm64\u003C\u002Fa\u003E, но нас беспокоило то, что проект имеет статус read-only.\u003C\u002Fp\u003E\u003Cp\u003EЗатем мы попробовали \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FTrungNguyen1909\u002Fqemu-t8030\" rel=\"noopener noreferrer nofollow\"\u003ETrungNguyen1909\u002Fqemu-t8030\u003C\u002Fa\u003E и обнаружили в нём довольно много интересных фич:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003Eвозможность восстановления iOS (при помощи второго QEMU-«компаньона» для подключения по USB)\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eзапуск iOS 14\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eсамую свежую версию QEMU\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eудобную wiki о запуске эмулятора\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EБлагодаря этому проекту мы быстро получили доступ к оболочке и ssh, изменив \u003Ccode\u003ESystem\u002FLibrary\u002Fxpc\u002Flaunchd.plist\u003C\u002Fcode\u003E, что стало отличной отправной точкой.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F1ea\u002Fb87\u002Fba4\u002F1eab87ba4deb52e5ab857d6ba27978c6.png\" alt=\"image (16).png\" title=\"\" width=\"1760\" height=\"832\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F1ea\u002Fb87\u002Fba4\u002F1eab87ba4deb52e5ab857d6ba27978c6.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F1ea\u002Fb87\u002Fba4\u002F1eab87ba4deb52e5ab857d6ba27978c6.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EНашей долговременной целью стала эмуляция функциональной iOS с UI и возможностью запуска хотя бы некоторых приложений.\u003C\u002Fp\u003E\u003Cp\u003EПервое, что напрягло нас в проекте t8030 — то, что он добавил код в сам QEMU, чтобы пропатчить ядро xnu. Мы знали, что нам наверняка понадобится самим выполнять патчинг, поэтому хотели, чтобы это можно было делать чище. Так как у нас был опыт работы с реальным iPhone с джейлбрейком, мы решили попробовать использовать \u003Ca href=\"https:\u002F\u002Fgithub.com\u002Fpalera1n\u002FPongoOS\" rel=\"noopener noreferrer nofollow\"\u003EPongo\u003C\u002Fa\u003E для применения патчей \u003Ccode\u003Echeckra1n\u003C\u002Fcode\u003E, поскольку это позволит нам удалить весь патчинг, выполненный в QEMU.\u003C\u002Fp\u003E\u003Cp\u003EВ сценарии джейлбрейка после взлома при помощи checkmate PongoOS инъецируется в SRAM и через USB передаётся модуль \u003Ccode\u003Echeckra1n-kpf\u003C\u002Fcode\u003E. Мы решили не разбираться с сырой поддержкой USB и увеличили SRAM эмулируемого телефона, а затем использовали PongoOS с модулем checkra1n KPF.\u003C\u002Fp\u003E\u003Cp\u003EВыполнение PongoOS поначалу не обошлось без проблем: отсутствовал весь загрузочный код, обычно выполняемый bootrom или iboot, например, настройка FPU перед выполнением команд с double\u002Ffloat. Нам помогло чтение \u003Ca href=\"https:\u002F\u002Fdeveloper.arm.com\u002Fdocumentation\u002Fdai0527\u002Flatest\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eдокументации ARM (section 5.4)\u003C\u002Fa\u003E и \u003Ca href=\"https:\u002F\u002Fgithub.com\u002Fcitruz\u002FpongoOS-QEMU\u002Fcommit\u002F033413bfaa6ebc4e1b8680b7548a3505fabe808b#diff-94255394208544c1bce0ef3fc2b955262dc6f5e8ed391005a521f28a0440a042L109-R117\" rel=\"noopener noreferrer nofollow\"\u003Eгугление\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cp\u003EФичи, добавленные в A13 и более поздних устройствах, неподдерживаемых Pongo, ломали сопоставление паттернов некоторых патчей. Например, команды Pointer Authentication (PAC) добавляли autda \u002F xpacd, а Apple использовала другой slide.\u003C\u002Fp\u003E\u003Cp\u003EПримеры с печально известным \u003Ca href=\"https:\u002F\u002Ftheapplewiki.com\u002Fwiki\u002FTfp0_patch\" rel=\"noopener noreferrer nofollow\"\u003Etask_for_pid (tfp0)\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"powershell\"\u003E% ipsw macho info kernelcache.release.iphone10b.decompressed\n000: LC_SEGMENT_64 sz=0x006d8000 off=0x00000000-0x006d8000 addr=0xfffffff007004000-0xfffffff0076dc000 r-x\u002Fr-x   __TEXT\n\nPrevious version (iphone-X (14.0_18A373_GM))\n - tfp0 address 0xfffffff0076e9e70\n   0xfffffff0076e9e70 - 0ffffffff007004000 = 0x6e5e70\n - binary\n   % hexdump -s 0x6e5e70 -n 8 kernelcache.release.iphone10b.decompressed\n   06e5e70 7f70 07ec fff0 0017\n\n \tRaw: \t0x0017_fff0_07ec_7f70\n \tGhidra:  0xffff_fff0_70ec_7f70\n\nLater version (iphone-11 (14.0_18A5351d))\n - tfp0 address 0x0xfffffff0076c9e40\n   0xfffffff0076c9e40 - 0ffffffff007004000 = 0x6c5e40\n - binary\n   % hexdump -s 0x6c5e40 -n 8 kernelcache.research.iphone12b.decompressed\n   06c5e40 1d70 00f0 307a 8010\n\t \n\tRaw:\t0x8010_307a_00f0_1d70\n\tGhidra: 0xffff_fff0_07f0_5d70\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8e3\u002F43b\u002Fed2\u002F8e343bed2a9efa8bbed44c6f80b1da52.png\" alt=\"unnamed2.png\" title=\"\" width=\"1800\" height=\"1484\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8e3\u002F43b\u002Fed2\u002F8e343bed2a9efa8bbed44c6f80b1da52.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8e3\u002F43b\u002Fed2\u002F8e343bed2a9efa8bbed44c6f80b1da52.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EPongo позволил нам получить доступ к имеющимся патчам checkra1n для различных версий iOS, и хотя динамическое приложение было интересным, его было непросто читать и изменять. Мы хотели более декларативный подход, как и в настоящих патчах кода.\u003C\u002Fp\u003E\u003Cp\u003EПоэтому мы создали инструменты, позволившие выполнять \u003Ccode\u003Ediff\u003C\u002Fcode\u003E между двумя Mach-O и генерировать текстовый файл патча с различиями в ассемблерном коде. Другая программа просто брала этот патч и применяла к двоичному файлу.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F099\u002F4af\u002F6ac\u002F0994af6ac7a0a95ae7bef8de3ffff12a.png\" alt=\"Screenshot_20250224_174126.png\" title=\"\" width=\"714\" height=\"202\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F099\u002F4af\u002F6ac\u002F0994af6ac7a0a95ae7bef8de3ffff12a.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F099\u002F4af\u002F6ac\u002F0994af6ac7a0a95ae7bef8de3ffff12a.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EЗатем мы запускались с Pongo и использовали монитор QEMU для дампа пропатченных Pongo областей памяти, а затем переассемблировали пропатченное ядро и, наконец, генерировали файл патча со всеми модификациями. Далее мы разбивали большой патч и снабжали его комментариями, благодаря чему могли анализировать и контролировать ровно то, что было пропатчено в ядре.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Febb\u002Fb92\u002Fd6e\u002Febbb92d6e1200cc713134699c2f8ea6c.png\" alt=\"unnamed.png\" title=\"\" width=\"838\" height=\"252\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Febb\u002Fb92\u002Fd6e\u002Febbb92d6e1200cc713134699c2f8ea6c.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Febb\u002Fb92\u002Fd6e\u002Febbb92d6e1200cc713134699c2f8ea6c.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Ch2\u003EЗдесь темно\u003C\u002Fh2\u003E\u003Cp\u003EМы знали, что на современных iPhone все операции графического рендеринга проходят через \u003Ca href=\"https:\u002F\u002Fdeveloper.apple.com\u002Fdocumentation\u002Fmetal\" rel=\"noopener noreferrer nofollow\"\u003EMetal\u003C\u002Fa\u003E API, которому требуется реальный GPU. Мы считали, что эмуляция Apple Silicon GPU окажется слишком сложной задачей, поэтому придумали два решения:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EИспользовать программный рендеринг: похоже, это было возможно в старых версиях iOS (при помощи bootarg gpu=0)\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПеренаправлять вызовы Metal на устройство, способное выполнять рендеринг, например, на iPhone или, возможно, на Mac с OSX\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F513\u002Fffd\u002F173\u002F513ffd1731a52327b88fdd2c4d2cd8d0.png\" alt=\"graphic_architecture.png\" title=\"\" width=\"1069\" height=\"709\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F513\u002Fffd\u002F173\u002F513ffd1731a52327b88fdd2c4d2cd8d0.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F513\u002Fffd\u002F173\u002F513ffd1731a52327b88fdd2c4d2cd8d0.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EРешение с программным рендерингом казалось намного более простым, поэтому в первую очередь мы изучили его. К сожалению, опция bootarg ядра XNU исчезла в iOS 14. Изучив фреймворк QuartzCore при помощи Ghidra, мы пришли к выводу, что откат к программному рендерингу возможен, только если отсутствуют рендереры Metal.\u003C\u002Fp\u003E\u003Cp\u003EЧтобы убедиться, что программный рендеринг в самом деле можно использовать, мы взяли реальный iPhone с джейлбрейком и пропатчили Quartzcore, чтобы применялся программный рендеринг. Мы действительно подтвердили, что это возможно! При таких модификациях UI стал намного медленнее и содержал артефакты в тех частях, которые, вероятно, требовали для рендеринга непосредственно Metal.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F651\u002Fff9\u002F040\u002F651ff9040e51f6f4969346621bd75303.png\" alt=\"iphonex_sw_rendering.png\" title=\"\" width=\"1800\" height=\"999\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F651\u002Fff9\u002F040\u002F651ff9040e51f6f4969346621bd75303.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F651\u002Fff9\u002F040\u002F651ff9040e51f6f4969346621bd75303.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EПроведя эти эксперименты, мы поняли, что можем реализовать программный рендеринг в QEMU для всего, что не использует напрямую Metal или OpenGL (то есть, по сути, все приложения UIKit).\u003C\u002Fp\u003E\u003Cp\u003EРаботая на двух физических iPhone, мы также исследовали альтернативную возможность применения прокси для вызовов Metal. Процесс был таким:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EСпарсить все заголовки iOS при помощи LLVM.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EВсе указатели на объект Objetive C на сервере — это заглушка вызова в клиенте.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСгенерировать автоматический код для обмена struct и указателями.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПерехватывать все функции и методы.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПеренаправлять каждый вызов на сервер, исполнять их и возвращать результат.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EМы смогли обеспечить обмен простыми вызовами для инициализации Metal, но потом осознали, что для того, чтобы что-то заработало, потребуется пройти ещё долгий путь. Язык Objetive C и Metal API довольно сложны и имеют множество особенностей, сильно затрудняющих это мероприятие.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F685\u002Fc9a\u002Fc25\u002F685c9ac25f00c27f10c358b5248692c2.png\" alt=\"metal_hook.png\" title=\"\" width=\"1074\" height=\"765\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F685\u002Fc9a\u002Fc25\u002F685c9ac25f00c27f10c358b5248692c2.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F685\u002Fc9a\u002Fc25\u002F685c9ac25f00c27f10c358b5248692c2.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EВ итоге мы отложили это решение на будущее и решили начать с программным рендерингом, который, несмотря на его большие ограничения, позволит нам быстрее перейти к другим задачам.\u003C\u002Fp\u003E\u003Cp\u003EКроме того, мы обнаружили, что фреймворки iOS раскрывают приватные API, отсутствующие в публичных заголовках. Хотя есть некоторые способы, позволяющие спарсить их и сгенерировать заголовки, чаще всего их нельзя использовать напрямую, и это ещё больше усложняло работу.\u003C\u002Fp\u003E\u003Ch2\u003EОхота за IOSurface\u003C\u002Fh2\u003E\u003Cp\u003EПопытавшись заставить работать программный рендеринг, мы решили, что нам всё равно нужно хотя бы устройство буфера кадров, а в оригинальном t8030 QEMU он реализован не был. Однако мы обнаружили \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FChefKissInc\u002FQEMUAppleSilicon\" rel=\"noopener noreferrer nofollow\"\u003Eфорк проекта\u003C\u002Fa\u003E, который, очевидно, работал над поддержкой IOMFB, и решили попробовать с его помощью выполнить отладку дисплея.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F6c9\u002Fc22\u002Fd61\u002F6c9c22d61be163226c3bf678ca325b56.png\" alt=\"image (2).png\" width=\"646\" height=\"978\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F6c9\u002Fc22\u002Fd61\u002F6c9c22d61be163226c3bf678ca325b56.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F6c9\u002Fc22\u002Fd61\u002F6c9c22d61be163226c3bf678ca325b56.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003Eimage (2).png\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E \u003C\u002Fp\u003E\u003Cp\u003EИ действительно, при восстановлении iOS с этой версией мы увидели логотип Apple и полосу прогресса. Однако при обычном запуске дисплей оставался совершенно чёрным. Настало время отладки!\u003C\u002Fp\u003E\u003Cp\u003EИзучив IOMFB kext в Ghidra и реализацию буфера кадров  в QEMU, мы поняли, что возможны два режима:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EСырой буфер кадров по фиксированному аппаратному адресу (как мы предполагали ранее).\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EБолее сложный API, использующий регистры для конфигурирования различных плоскостей и применяющий DMA для записи данных поверхностей.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EСначала мы начали экспериментировать с сырым буфером кадров (позже обнаружилось, что именно с помощью него выполняет отображение Pongo). При работе с ним мы смогли отображать произвольные ARGB-поверхности, но при запуске система ничего не записывала в буфер кадров.\u003C\u002Fp\u003E\u003Cp\u003EМы начали изучать второй режим отображения. Включив трассировки в реализации буфера кадров в QEMU, мы увидели, что ядро настраивает графические плоскости при помощи регистров, но потом ничего не происходит.\u003C\u002Fp\u003E\u003Cp\u003EНа этом этапе нам нужно было выполнить отладку и разобраться, почему после запуска ничего не отображается, хотя буфер кадров реализован и обнаружен ядром.\u003C\u002Fp\u003E\u003Ch2\u003EРандомизация адресов\u003C\u002Fh2\u003E\u003Cp\u003EНесмотря на наличие доступа по SSH, мы быстро упираемся в потолок возможностей наблюдения за аспектами работающей системы. Нам необходима возможность отладки компонентов ядра и пользовательского пространства при помощи GDB.\u003C\u002Fp\u003E\u003Cp\u003EРандомизации ядра настраивалась в инициализации платы t8030, позволявшей полностью отключить её.\u003C\u002Fp\u003E\u003Cp\u003EВ случае пользовательского пространства у нас было два случая: рандомизация для исполняемых файлов и для динамических библиотек внутри кэша dyld. В случае исполняемых файлов для её отключения достаточно было пропатчить функцию ядра \u003Ccode\u003E_load_machfile\u003C\u002Fcode\u003E.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd18\u002F608\u002Fca3\u002Fd18608ca342a5d7f60ff7b82262c8d5f.png\" alt=\"image (20).png\" title=\"\" width=\"674\" height=\"354\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd18\u002F608\u002Fca3\u002Fd18608ca342a5d7f60ff7b82262c8d5f.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd18\u002F608\u002Fca3\u002Fd18608ca342a5d7f60ff7b82262c8d5f.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EСлучай с динамическими библиотеками мы обрабатываем немного иначе. Во-первых, нужно понимать, что каждая библиотека содержится внутри большого двоичного блоба, называемого кэшем dyld (расположен по адресу \u002FSystem\u002FLibrary\u002FCaches\u002Fcom.apple.dyld\u002Fdyld_shared_cache_arm64e).\u003C\u002Fp\u003E\u003Cp\u003EВсе библиотеки из этого кэша (называемые фреймворками) загружаются одновременно при запуске, а затем отображаются в пространство памяти процессов, несмотря на то, что dlopen вызывается с путём в файловой системе (вида \u002FSystem\u002FLibrary\u002FFrameworks\u002FQuartzCore).\u003C\u002Fp\u003E\u003Cp\u003EМы заметили, что рандомизация адресов происходит при запуске только один раз, после чего библиотека всегда загружается каждым исполняемым файлом по тому же адресу.\u003C\u002Fp\u003E\u003Cp\u003EНам оставалось написать на C какой-нибудь инструмент, который бы выполнял dlopen для каждой библиотеки-фреймворка, а затем использовал функции _dyld* для получения списка загруженных образов и их смещений.\u003C\u002Fp\u003E\u003Cp\u003EБлагодаря этому решению (а также обратному процессу при отладке с адресами, получаемыми из GDB) мы могли с лёгкостью отлаживать любую библиотеку из кэша dyld. Особенно нас интересовало kext IOMFB, демоны \u003Ccode\u003Ebackboardd\u003C\u002Fcode\u003E и SpringBoard, а также фреймворк QuartzCore.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0c2\u002F124\u002F2d2\u002F0c21242d2b91f7baae211604009b39c5.png\" alt=\"unnamed5.png\" title=\"\" width=\"739\" height=\"113\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0c2\u002F124\u002F2d2\u002F0c21242d2b91f7baae211604009b39c5.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0c2\u002F124\u002F2d2\u002F0c21242d2b91f7baae211604009b39c5.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fc5f\u002Ff13\u002F30b\u002Fc5ff1330b2e9beb6adfea2848076d4d0.png\" alt=\"unnamed4.png\" title=\"\" width=\"745\" height=\"335\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fc5f\u002Ff13\u002F30b\u002Fc5ff1330b2e9beb6adfea2848076d4d0.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fc5f\u002Ff13\u002F30b\u002Fc5ff1330b2e9beb6adfea2848076d4d0.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F000\u002Fd78\u002F4d8\u002F000d784d88663cb2e96c88e98609b208.png\" alt=\"unnamed3.png\" title=\"\" width=\"893\" height=\"89\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F000\u002Fd78\u002F4d8\u002F000d784d88663cb2e96c88e98609b208.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F000\u002Fd78\u002F4d8\u002F000d784d88663cb2e96c88e98609b208.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fad5\u002F4b5\u002F4ba\u002Fad54b54ba9b14542f7fea75a842341e7.png\" alt=\"unnamed6.png\" title=\"\" width=\"1025\" height=\"422\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fad5\u002F4b5\u002F4ba\u002Fad54b54ba9b14542f7fea75a842341e7.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fad5\u002F4b5\u002F4ba\u002Fad54b54ba9b14542f7fea75a842341e7.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cpre\u003E\u003Ccode class=\"powershell\"\u003Edebugserver localhost:1111 –attach backboardd\niproxy 1111:1111\ngdb-multiarch -x \"set architecture arch\" -x \"target remote localhost:1111\"\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003E\u003Cstrong\u003EПримечание 1:\u003C\u002Fstrong\u003E позже мы выяснили, как отключать кэш dyld при помощи патчинга ядра. Это позволяет напрямую смотреть виртуальные адреса в кэше dyld на хосте (что мы и сделали при помощи отличной библиотеки Rust \u003Ca href=\"https:\u002F\u002Fgithub.com\u002Fgimli-rs\u002Fobject\" rel=\"noopener noreferrer nofollow\"\u003Eobject\u003C\u002Fa\u003E из проекта Gimli).\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EПримечание 2:\u003C\u002Fstrong\u003E для отладки пользовательского пространства нам необходимо иметь на гостевом устройстве сервер gdb (см., например, пакет debugserver из \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FProcursusTeam\" rel=\"noopener noreferrer nofollow\"\u003EProcursus\u003C\u002Fa\u003E). Изначально мы использовали gdb на хосте, но он был ограничен в возможностях или забагован, поэтому нам больше подошёл lldb.\u003C\u002Fp\u003E\u003Ch2\u003EПоговори со мной\u003C\u002Fh2\u003E\u003Cp\u003EВооружившись работающим GDB, мы добились правильного запуска \u003Ccode\u003Ebackboardd\u003C\u002Fcode\u003E, но потом осознали, что нам сильно могут помочь разобраться в происходящем (или не происходящем) системные логи.\u003C\u002Fp\u003E\u003Cp\u003EНа реальном iPhone можно получить системные логи (после подключения к компьютеру через USB) при помощи инструмента idevicesyslog. В процессе подключения требуется генерация пары ключей с хранением приватного ключа в телефоне. lockdownd использует его для проверки идентификации компьютера (после того, как пользователь авторизовал его один раз в UI).\u003C\u002Fp\u003E\u003Cp\u003EХоть нам удалось обеспечить взаимодействие с телефоном через USB, lockdownd не работал должным образом. После нескольких сессий в Ghidra мы осознали, что lockdownd пытался использовать набор ключей (keybag) для хранения приватного ключа, для чего потребовался бы отсутствующий у нас SEP.\u003C\u002Fp\u003E\u003Cp\u003EЧтобы двигаться дальше, мы создали шелл-код, инъецированный вместо какой-то бесполезной (предположительно) функции. Код считывает заранее сгенерированную пару приватного\u002Fпубличного ключей из файловой системы и, по сути, загружает их каждый раз, когда lockdownd пытается получить их из keybag.\u003C\u002Fp\u003E\u003Cp\u003EПосле долгой отладки (и патчинга, позволяющего симулировать то, что пользователь доверяет компьютеру и телефон разблокирован) нам наконец удалось заставить всё это работать, и мы смогли подключиться к эмулируемому iPhone из нашего QEMU-«компаньона».\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F067\u002Fe98\u002Fce1\u002F067e98ce1742921417c4ee0e88f83697.png\" alt=\"unnamed7.png\" title=\"\" width=\"1156\" height=\"352\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F067\u002Fe98\u002Fce1\u002F067e98ce1742921417c4ee0e88f83697.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F067\u002Fe98\u002Fce1\u002F067e98ce1742921417c4ee0e88f83697.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EПозже мы выяснили, что также можно непосредственно в iPhone использовать для отображения логов инструмент oslog (на тот момент эта возможность не сработала), однако реализованное нами в дальнейшем позволило нам получать гораздо больше, чем просто логи.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd05\u002Fb3e\u002Fcab\u002Fd05b3ecab2548fff4f10f641d399bdb6.png\" alt=\"unnamed8.png\" title=\"\" width=\"1136\" height=\"377\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd05\u002Fb3e\u002Fcab\u002Fd05b3ecab2548fff4f10f641d399bdb6.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd05\u002Fb3e\u002Fcab\u002Fd05b3ecab2548fff4f10f641d399bdb6.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EК сожалению, судя по логам, QuartzCore инициировался правильно, отображая размер дисплея. Также из них следовало, что в качестве fallback использовался программный рендеринг. То есть всё работает правильно, но дисплея всё равно нет!\u003C\u002Fp\u003E\u003Cp\u003EПримечание: отображалась ошибка формата пикселей, которую мы обошли, принудительно включив RGBA (ниже мы расскажем о патчинге в пользовательском пространстве), однако позже она была удалена.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb6b\u002F79f\u002F97e\u002Fb6b79f97e6afc043d3ad8e8abc9ed0e9.png\" alt=\"unnamed9.png\" title=\"\" width=\"1450\" height=\"415\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb6b\u002F79f\u002F97e\u002Fb6b79f97e6afc043d3ad8e8abc9ed0e9.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb6b\u002F79f\u002F97e\u002Fb6b79f97e6afc043d3ad8e8abc9ed0e9.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Ch2\u003EPAC или не PAC\u003C\u002Fh2\u003E\u003Cp\u003EВнесение изменений в \u003Ccode\u003Ebackboardd\u003C\u002Fcode\u003E для устранения ошибки формата пикселей показало нам, что у нас возникнут проблемы со множеством аспектов безопасности iOS.\u003C\u002Fp\u003E\u003Cp\u003EПроверка подписи при загрузке и во время выполнения была исправлена патчами ядра, однако у нас оставались проблемы: сбои аутентификации указателей прерывали выполнение нашего модифицированного \u003Ccode\u003Ebackboardd\u003C\u002Fcode\u003E.\u003C\u002Fp\u003E\u003Cp\u003EPointer Authentication — это фича, добавленная в ARM8.3; она используется в эмулируемой нами t8030, но не в t8015, которую мы применяли ранее, так что для нас это было новинкой.\u003C\u002Fp\u003E\u003Cp\u003EТак как мы предвидели, что нас ждёт много патчинга, то решили сразу взяться за эту проблему и попытаться обойти её, чтобы упростить себе жизнь.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff2f\u002Fa08\u002F8ab\u002Ff2fa088abee6e3791aa1a4cc5a561344.png\" alt=\"esr_pac.png\" title=\"\" width=\"1564\" height=\"329\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff2f\u002Fa08\u002F8ab\u002Ff2fa088abee6e3791aa1a4cc5a561344.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff2f\u002Fa08\u002F8ab\u002Ff2fa088abee6e3791aa1a4cc5a561344.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F5cf\u002F1ab\u002F02f\u002F5cf1ab02f7ffe117e07f6a7e0ebe13b9.png\" alt=\"esr_pac_decoded.png\" title=\"\" width=\"1725\" height=\"182\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F5cf\u002F1ab\u002F02f\u002F5cf1ab02f7ffe117e07f6a7e0ebe13b9.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F5cf\u002F1ab\u002F02f\u002F5cf1ab02f7ffe117e07f6a7e0ebe13b9.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EСначала мы подумали, что можно просто заменить все команды PAC на NOP или на эквивалентные команды без PAC.\u003C\u002Fp\u003E\u003Cp\u003EХоть это, вероятно, и сработало бы, но при этом пришлось бы слишком вмешиваться в работу системы; позже мы обнаружили, что двоичный файл PAC ARM64 можно создать двумя способами:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EИспользовать специальный набор команд PAC, который может быть только в ARM8.3+ CPU.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EИли «неиспользуемый» набор команд, который будет интерпретироваться как PAC, на ARM8.3+, или эквивалент без PAC в ранних версиях ARM.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EПосле проведения тестов с Buildroot и системой на ARM64 Linux мы подтвердили это, а также убедились, что скомпилированные двоичные файлы для нашей платформы t8030 используют обратно совместимый набор инструкций (архитектура под названием arm64e).\u003C\u002Fp\u003E\u003Cp\u003EПо сути, всё, что нам нужно было сделать — это отключить принудительную проверку PAC (Pointer Authentication) в QEMU, и код должен был работать как обычный код без PAC. К сожалению, это не сработало; на тот момент мы использовали QEMU 7 и выяснили, что в QEMU 8 поведение было другим.\u003C\u002Fp\u003E\u003Cp\u003EТогда мы поступили логично — начали портировать текущую кодовую базу на QEMU 8.2.1. Это оказалось болезненным процессом, так как большая часть кода модифицировала стандартные части QEMU, особенно обработку специфичных для Apple инструкций genter\u002Fgexit и уровней исключений GL.\u003C\u002Fp\u003E\u003Cp\u003EПосле бесчисленных паник XNU, подключений GDB к ядру, подключений GDB к самому QEMU и отчаянного git bisect для поиска последнего бага мы наконец-то снова заставили iOS загружаться на QEMU 8! А вместе с этим получили возможность отключать PAC и модифицировать любой исполняемый код где угодно и как угодно. \u003C\u002Fp\u003E\u003Ch2\u003EСвет в конце туннеля\u003C\u002Fh2\u003E\u003Cp\u003EПоскольку, судя по системным логам, \u003Ccode\u003Ebackboardd\u003C\u002Fcode\u003E работал корректно, у нас не оставалось выбора, кроме как глубже изучить его поведение, чтобы понять, почему изображение по-прежнему не выводится.\u003C\u002Fp\u003E\u003Cp\u003EЗапись необработанных ARGB-кадров по этим адресам позволяла нам фактически изменять дисплей и работать с различными графическими плоскостями, что подтверждало исправность дисплейной подсистемы.\u003C\u002Fp\u003E\u003Cp\u003EОставалось несколько возможных вариантов:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003E\u003Ccode\u003Ebackboardd\u003C\u002Fcode\u003E по какой-то причине ничего не записывал\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eили выполнял запись не по правильному адресу\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eили записанное им было невалидным\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EЧтобы изучить вопрос, мы сначала попытались сдампить физическую память DMA, в которую должен был выполнять запись \u003Ccode\u003Ebackboardd\u003C\u002Fcode\u003E: возможно, запись выполнялась, но отображалась неправильно.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0df\u002Fbf0\u002Fe46\u002F0dfbf0e4633d750faebfaa4e8dbe1ac6.png\" alt=\"Screenshot_20250225_092231.png\" title=\"\" width=\"751\" height=\"422\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0df\u002Fbf0\u002Fe46\u002F0dfbf0e4633d750faebfaa4e8dbe1ac6.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0df\u002Fbf0\u002Fe46\u002F0dfbf0e4633d750faebfaa4e8dbe1ac6.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EДля этого мы использовали монитор QEMU, чтобы получить несмежные адреса, а затем — написанный на коленке скрипт для дампа физической памяти и объединения всего этого в один файл.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff82\u002Fb44\u002Fcf2\u002Ff82b44cf28cbef185be587f6fcb75a82.png\" alt=\"Screenshot_20250225_092657.png\" title=\"\" width=\"723\" height=\"587\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff82\u002Fb44\u002Fcf2\u002Ff82b44cf28cbef185be587f6fcb75a82.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff82\u002Fb44\u002Fcf2\u002Ff82b44cf28cbef185be587f6fcb75a82.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EЗатем при помощи ffplay мы попытались интерпретировать данные как ARGB-кадр, но, к сожалению, не получили ничего интересного.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb53\u002F523\u002Ffab\u002Fb53523fab761896c6a5eec47073fb231.png\" alt=\"unnamed10.png\" title=\"\" width=\"1223\" height=\"1046\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb53\u002F523\u002Ffab\u002Fb53523fab761896c6a5eec47073fb231.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb53\u002F523\u002Ffab\u002Fb53523fab761896c6a5eec47073fb231.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EЗатем мы решили поэкспериментировать с поверхностями, выделенными iOS, получив при помощи GDB отображённые адреса в памяти \u003Ccode\u003Ebackboardd\u003C\u002Fcode\u003E GDB (взломом \u003Ccode\u003Eiosurface_lock\u003C\u002Fcode\u003E).\u003C\u002Fp\u003E\u003Cp\u003EПоискали по всем этим адресам подсказки, хоть и понятия не имели, что отображается и должно ли вообще что-то отображаться. Иногда мы встречали странные изображения в виде логотипа Apple, но запись кадров определённо выполнялась неправильно.\u003C\u002Fp\u003E\u003Cfigure class=\"\"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F2c0\u002F770\u002Fcea\u002F2c0770cea5a1f7a01a5458a28de8655c.png\" alt=\"unnamed11.png\" title=\"\" width=\"440\" height=\"341\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F2c0\u002F770\u002Fcea\u002F2c0770cea5a1f7a01a5458a28de8655c.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F2c0\u002F770\u002Fcea\u002F2c0770cea5a1f7a01a5458a28de8655c.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EТо же самое мы проделали на реальном iPhone 10 и с лёгкостью сдампили идеальные сырые ARGB-кадры текущего дисплея. Оказалось, что начиная с iPhone 11 (а значит, и в t8030) поверхности сжимаются и передаются GPU, который уже знает, как их обрабатывать.\u003C\u002Fp\u003E\u003Cp\u003EНо так как этого не происходило на iPhone X (t8015), мы попытались модифицировать DTB в QEMU, чтобы передать в качестве chip-id не 8030, а 8015. И наконец мы добились отображения логотипа Apple после запуска!\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Feca\u002F95b\u002F8e8\u002Feca95b8e80d9caff14b1f73b5669983d.png\" alt=\"unnamed12.png\" title=\"\" width=\"636\" height=\"920\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Feca\u002F95b\u002F8e8\u002Feca95b8e80d9caff14b1f73b5669983d.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Feca\u002F95b\u002F8e8\u002Feca95b8e80d9caff14b1f73b5669983d.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Ch2\u003EПрогресс\u003C\u002Fh2\u003E\u003Cp\u003EМы уже были довольны тем, что смогли отобразить логотип, но больше ничего другого не отображалось, а в системных логах было множество различной информации о неизвестных нам системных демонах и библиотеках.\u003C\u002Fp\u003E\u003Cp\u003EНа этом этапе мы могли лишь гадать, какие из куч ошибок в логах были связаны с текущей проблемой, и устранять их одну за другой, пока не изменится поведение UI.\u003C\u002Fp\u003E\u003Cp\u003EМы заметили проблемы с аутентификацией пользователя и обнаружили ошибки, вызванные демоном mobileactivationd и фреймворком SpringBoardFoundation.\u003C\u002Fp\u003E\u003Cp\u003EПосле их патчинга UI начал отображать белую полосу прогресса, похожую на ту, которая видна на этапе восстановления. Полоса двигалась, но зависала на 90%, даже если мы ждали несколько часов.\u003C\u002Fp\u003E\u003Ch2\u003EПатчим это всё\u003C\u002Fh2\u003E\u003Cp\u003EБлагодаря отключению рандомизации адресов мы смогли пропатчить пользовательское пространство и фреймворк кэша dyld. Точно так же, как в случае патчинга ядра, мы создали текстовые файлы файлы патчей, разбитые по двоичным файлам\u002Fбиблиотекам, и применяли их при помощи наших инструментов.\u003C\u002Fp\u003E\u003Cp\u003EОднако мы быстро поняли. что нам придётся достаточно часто патчить кэш dyld, а при внесении изменений очень неудобно работать с двоичным файлом весом 2 ГБ.\u003C\u002Fp\u003E\u003Cp\u003EПатчить его напрямую было нереально, мы все работаем в Linux, поэтому не можем модифицировать nvme напрямую, а копирование 2 ГБ туда и обратно через SSH потребовало бы кучу времени.\u003C\u002Fp\u003E\u003Cp\u003EПоэтому мы дополнили наш внутренний инструмент diff\u002Fпатчинга так, чтобы он работал с dyld и искал смещение фреймворка в блобе кэша dyld.\u003C\u002Fp\u003E\u003Cp\u003EКроме того, мы добавили опцию, позволяющую генерировать простые команды  «dd» (и обратные им), которые можно было применять непосредственно на iPhone (повторно смонтировав файловую систему в rw).\u003C\u002Fp\u003E\u003Cp\u003EЭтот способ позволил нам протестировать множество итераций изменений; при этом для того, чтобы внесённые в кэш dyld модификации учитывались, достаточно было перезапустить iOS.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EПримечание:\u003C\u002Fstrong\u003E чтобы это заработало, потребовалось ещё несколько дополнительных модификаций проверок подписей в ядре.\u003C\u002Fp\u003E\u003Ch2\u003EОно живое!\u003C\u002Fh2\u003E\u003Cp\u003EПрежде чем разобраться, как устранить проблему зависающей полосы прогресса, мы немного поэкспериментировали с системным процессом PreBoard. Похоже, он виден пользователю только тогда, когда что-то пошло не так (например, прервано обновление).\u003C\u002Fp\u003E\u003Cp\u003EТак как это системное приложение, выполняющее отрисовку напрямую при помощи \u003Ccode\u003Ebackboardd\u003C\u002Fcode\u003E (точно так же, как это бы делал SpringBoard), его можно запустить непосредственно из командной строки. И благодаря этому мы получаем белый экран, предлагающий выполнить свайп для обновления!\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8d8\u002Faeb\u002Ffa6\u002F8d8aebfa6ee3c00b4fefc747c95669e8.png\" alt=\"unnamed13.png\" title=\"\" width=\"582\" height=\"929\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8d8\u002Faeb\u002Ffa6\u002F8d8aebfa6ee3c00b4fefc747c95669e8.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8d8\u002Faeb\u002Ffa6\u002F8d8aebfa6ee3c00b4fefc747c95669e8.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EВооружившись знаниями из прошлых проектов об использовании VNC-сервера на физическом iPhone, мы попробовали добавить его, и спустя несколько неудачных попыток смогли разблокировать этот белый экран (не свайпом, а клавишей клавиатуры).\u003C\u002Fp\u003E\u003Cp\u003EСразу после разблокировки QEMU прекращает выполнение, потому что iOS использует недопустимую команду. Порывшись в \u003Ccode\u003Ebackboardd\u003C\u002Fcode\u003E, мы обнаружили, что он использует фреймворк vImage для выполнения графических операций с аппаратным ускорением (например, \u003Ccode\u003E_vHorizontalScale_ARGB_8888_Accelerate\u003C\u002Fcode\u003E).\u003C\u002Fp\u003E\u003Cp\u003EЭти операции используют AMX (Apple Matrix Coprocessor), имеющий набор проприетарных команд, не реализованных в эмулированном CPU ARM, работающем в QEMU. К счастью, у фреймворка vImage есть альтернативные программные версии этих вызовов, задействующих только общие команды ARM, так что мы снова занялись патчингом.\u003C\u002Fp\u003E\u003Cp\u003EВ результате мы получили новый экран с настоящим окном UIKit, которое предлагало нам ввести пароль в работающее поле ввода текста. В нём можно было писать при помощи инъецированных через VNC событий клавиатуры.\u003C\u002Fp\u003E\u003Cp\u003E \u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F485\u002Fe34\u002F08c\u002F485e3408cc165bbaf892456377712b9c.png\" alt=\"unnamed14.png\" title=\"\" width=\"679\" height=\"1015\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F485\u002Fe34\u002F08c\u002F485e3408cc165bbaf892456377712b9c.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F485\u002Fe34\u002F08c\u002F485e3408cc165bbaf892456377712b9c.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EНа этом этапе мы знали, что у нас всё готово для правильного отображения SpringBoard, и его запуск оставался лишь делом времени.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"qemu"},{"titleHtml":"ios"},{"titleHtml":"iphone"},{"titleHtml":"эмуляторы"},{"titleHtml":"обратная разработка"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fef7\u002F8e1\u002Fca5\u002Fef78e1ca528b90ccd795a1077d611da3.jpg","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fef7\u002F8e1\u002Fca5\u002Fef78e1ca528b90ccd795a1077d611da3.jpg","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F898924\\\u002F\"},\"headline\":\"Эмулируем iPhone в QEMU\",\"datePublished\":\"2025-05-06T10:26:35+03:00\",\"dateModified\":\"2025-05-06T14:16:18+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"PatientZero\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Начало путиМы начали наше исследование по эмуляции iOS с изучения уже существующих опенсорсных решений. Ранее мы уже успешно запускали alephsecurity\\\u002Fxnu-qemu-arm...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F898924\\\u002F#post-content-body\",\"about\":[\"h_ios_dev\",\"h_reverse-engineering\",\"h_infosecurity\",\"h_os\",\"f_develop\",\"f_admin\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F898924\\\u002F30bbe66de473f7710f42331c821875d3\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F1ea\\\u002Fb87\\\u002Fba4\\\u002F1eab87ba4deb52e5ab857d6ba27978c6.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F8e3\\\u002F43b\\\u002Fed2\\\u002F8e343bed2a9efa8bbed44c6f80b1da52.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F099\\\u002F4af\\\u002F6ac\\\u002F0994af6ac7a0a95ae7bef8de3ffff12a.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Febb\\\u002Fb92\\\u002Fd6e\\\u002Febbb92d6e1200cc713134699c2f8ea6c.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F513\\\u002Fffd\\\u002F173\\\u002F513ffd1731a52327b88fdd2c4d2cd8d0.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F651\\\u002Fff9\\\u002F040\\\u002F651ff9040e51f6f4969346621bd75303.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F685\\\u002Fc9a\\\u002Fc25\\\u002F685c9ac25f00c27f10c358b5248692c2.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F6c9\\\u002Fc22\\\u002Fd61\\\u002F6c9c22d61be163226c3bf678ca325b56.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fd18\\\u002F608\\\u002Fca3\\\u002Fd18608ca342a5d7f60ff7b82262c8d5f.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F0c2\\\u002F124\\\u002F2d2\\\u002F0c21242d2b91f7baae211604009b39c5.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fc5f\\\u002Ff13\\\u002F30b\\\u002Fc5ff1330b2e9beb6adfea2848076d4d0.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F000\\\u002Fd78\\\u002F4d8\\\u002F000d784d88663cb2e96c88e98609b208.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fad5\\\u002F4b5\\\u002F4ba\\\u002Fad54b54ba9b14542f7fea75a842341e7.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F067\\\u002Fe98\\\u002Fce1\\\u002F067e98ce1742921417c4ee0e88f83697.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fd05\\\u002Fb3e\\\u002Fcab\\\u002Fd05b3ecab2548fff4f10f641d399bdb6.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fb6b\\\u002F79f\\\u002F97e\\\u002Fb6b79f97e6afc043d3ad8e8abc9ed0e9.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Ff2f\\\u002Fa08\\\u002F8ab\\\u002Ff2fa088abee6e3791aa1a4cc5a561344.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F5cf\\\u002F1ab\\\u002F02f\\\u002F5cf1ab02f7ffe117e07f6a7e0ebe13b9.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F0df\\\u002Fbf0\\\u002Fe46\\\u002F0dfbf0e4633d750faebfaa4e8dbe1ac6.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Ff82\\\u002Fb44\\\u002Fcf2\\\u002Ff82b44cf28cbef185be587f6fcb75a82.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fb53\\\u002F523\\\u002Ffab\\\u002Fb53523fab761896c6a5eec47073fb231.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F2c0\\\u002F770\\\u002Fcea\\\u002F2c0770cea5a1f7a01a5458a28de8655c.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Feca\\\u002F95b\\\u002F8e8\\\u002Feca95b8e80d9caff14b1f73b5669983d.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F8d8\\\u002Faeb\\\u002Ffa6\\\u002F8d8aebfa6ee3c00b4fefc747c95669e8.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F485\\\u002Fe34\\\u002F08c\\\u002F485e3408cc165bbaf892456377712b9c.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fef7\\\u002F8e1\\\u002Fca5\\\u002Fef78e1ca528b90ccd795a1077d611da3.jpg\"]}","metaDescription":"Начало пути Мы начали наше исследование по эмуляции iOS с изучения уже существующих опенсорсных решений. Ранее мы уже успешно запускали alephsecurity\u002Fxnu-qemu-arm64 , но нас беспокоило то, что проект...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":{"status":true,"reason":null},"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"hasPinnedComments":false,"format":"review","banner":null,"multiwidget":null,"multiwidgetUuid":null,"readingTime":12,"complexity":"medium","isEditorial":true}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"postReasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"viewedPosts":[],"myFeedFilter":{"complexity":"all","score":"all","types":["articles","posts","news"]},"myFeedIsApplyFilters":false,"myFeedIsForce":false,"karma":{"userReasonsList":null}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[{"title":"Swift разработчик","vacanciesCount":6,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Fios_razrabotchik_swift","itemHubs":["swift","xcode","mobile_dev","flutter","cocoa","ios_dev"]},{"title":"iOS разработчик","vacanciesCount":11,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Fios_razrabotchik","itemHubs":["swift","xcode","mobile_dev","flutter","cocoa","ios_dev"]},{"title":"Специалист по информационной безопасности","vacanciesCount":35,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Fspecialist_po_informacionnoj_bezopasnosti","itemHubs":["infosecurity"]}],"hubs":"ios_dev,reverse-engineering,infosecurity,os"},"comments":{"articleComments":{},"articlePinnedComments":{},"searchCommentsResults":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":"","idempotenceKey":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"multiwidgets":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"multiwidgetLoading":false,"vacancies":{},"companiesGalleries":{},"companiesBanners":{},"companiesLandingVacancies":{},"companiesTechnologies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null,"jivoStatus":0,"adminNotifications":null,"availableInvitesCount":{}},"companyAdd":{"currentStep":"","stepsData":{},"uncompletedSteps":[],"isStepLoading":true,"isStepCommitting":false,"isInitialized":false,"agreementContent":""},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"pagesCount":0},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":true},"fixedBanner":{"isArticleStickyPanelVisible":false,"isArticleStickyPanelAtTheBottom":false,"isFixedBannerVisible":false,"isStickyPanelIconsHidden":false},"flows":{"updates":{}},"global":{"isPwa":false,"device":"desktop","isHabrCom":true,"requestId":"2cb1d01c2136378be75272226e49fd12"},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"welcomePage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"query":{},"pathname":"\u002Fru\u002Farticles\u002F898924\u002F","path":"\u002Fru\u002Farticles\u002F898924\u002F","href":"\u002Fru\u002Farticles\u002F898924\u002F"}},"me":{"user":null,"uuid":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null,"userUpdates":{"feeds":{"newPostsCount":null,"newThreadsCount":null,"newNewsCount":null,"newCount":null},"conversationUnreadCount":0},"features":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"onboarding":{"currentStep":null,"stepsData":{},"stepsErrors":{},"completedSteps":[],"isStepCommitting":false,"isCommitDisabled":true},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{"questions":"project-block-article"}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null,"sticker":null},"publicationStatistics":{"statsInfo":{},"statsFunnels":{},"statsGraph":{},"defaultSuggest":{},"suggest":{},"timeTracker":{},"isTrackingActivity":false,"isUserActive":true,"otherPublicationStats":{}},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":true,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"stories":{"stories":null},"technotext":{"years":[],"technotextDocForNominees":null,"technotextDocForWinners":null,"technotextInfo":{},"technotextInfoLoading":false,"technotextWinners":{},"technotextWinnersLoading":false},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"userVotes":{"karmaVotesList":[],"karmaVotesPagesCount":null,"karmaVotesListLoading":false,"commentsVotesList":[],"commentsVotesPagesCount":null,"commentsVotesListLoading":false,"postsVotesList":[],"postsVotesPagesCount":null,"postsVotesListLoading":false,"userVotesList":[],"userVotesPagesCount":null,"userVotesListLoading":false},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"notificationsLoading":false,"notificationsList":[],"notificationsPageCount":0,"pendingMarkNotificationsRead":[],"publicationsLoading":true,"publicationsList":[],"publicationsPageCount":0,"pendingDeletePublications":false,"pendingMarkPublicationsRead":false},"events":{"eventRefs":{},"eventIds":[],"pagesCount":0,"categories":[],"cities":[],"actualEvents":null,"currentEvent":null,"eventsFilter":{"city":"all","timeStarted":null,"timeEnded":null}},"wysiwyg":{"WYSIWYGRulesRefs":null},"refs":{"specializationRefs":[]},"hint":{"hints":{}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script>
+   <script src="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" defer></script>
+   <script src="https://assets.habr.com/habr-web/js/app.58b8c457.js" defer></script>
+  </div>
+  <div id="overlays">
+   <!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor-->
+  </div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S28W1WC23F"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  </script>
+  <script type="text/javascript">
+      window.addEventListener('load', function () {
+        setTimeout(() => {
+          const img = new Image();
+          img.src = 'https://vk.com/rtrg?p=VK-RTRG-421343-57vKE';
+        }, 0);
+      });
+    </script>
+ </body>
+</html>

@@ -1,0 +1,1021 @@
+<!doctype html>
+<html lang="ru">
+ <head>
+  <title>CTO в разрезе: как устроена его конфигурация по уровням компании / Хабр</title>
+  <meta property="fb:app_id" content="444736788986613">
+  <meta property="fb:pages" content="472597926099084">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@habr_com">
+  <meta property="og:site_name" content="Хабр">
+  <link href="https://habr.com/ru/rss/post/907240/?fl=ru" type="application/rss+xml" title rel="alternate" name="rss">
+  <link href="https://habr.com/ru/articles/907240/" rel="canonical" data-hid="e3fa780">
+  <link rel="image_src" href="https://habrastorage.org/getpro/habr/upload_files/f91/605/6ce/f916056ce0bd44613d198535140fc87a.jpg" data-hid="2a79c45">
+  <meta property="og:title" content="CTO в разрезе: как устроена его конфигурация по уровням компании">
+  <meta name="twitter:title" content="CTO в разрезе: как устроена его конфигурация по уровням компании">
+  <meta name="aiturec:title" content="CTO в разрезе: как устроена его конфигурация по уровням компании">
+  <meta name="description" content="В прошлый раз мы обсуждали PDCA — про оценку того, как рук-ль работает с командой. Теперь — о командах, на уровнях которых работает CTO (будем для общности называть его руководителем технического...">
+  <meta itemprop="description" content="В прошлый раз мы обсуждали PDCA — про оценку того, как рук-ль работает с командой. Теперь — о командах, на уровнях которых работает CTO (будем для общности называть его руководителем технического...">
+  <meta property="og:description" content="В прошлый раз мы обсуждали PDCA — про оценку того, как рук-ль работает с командой. Теперь — о командах, на уровнях которых работает CTO (будем для общности называть его руководителем технического...">
+  <meta name="twitter:description" content="В прошлый раз мы обсуждали PDCA — про оценку того, как рук-ль работает с командой. Теперь — о командах, на уровнях которых работает CTO (будем для общности называть его руководителем технического...">
+  <meta property="aiturec:description" content="В прошлый раз мы обсуждали PDCA — про оценку того, как рук-ль работает с командой. Теперь — о командах, на уровнях которых работает CTO (будем для общности называть его руководителем технического...">
+  <meta itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/f91/605/6ce/f916056ce0bd44613d198535140fc87a.jpg">
+  <meta property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/f91/605/6ce/f916056ce0bd44613d198535140fc87a.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/f91/605/6ce/f916056ce0bd44613d198535140fc87a.jpg">
+  <meta name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/f91/605/6ce/f916056ce0bd44613d198535140fc87a.jpg">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/f91/605/6ce/f916056ce0bd44613d198535140fc87a.jpg?format=vk">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/f91/605/6ce/f916056ce0bd44613d198535140fc87a.jpg?format=vk">
+  <meta property="aiturec:item_id" content="907240">
+  <meta property="aiturec:datetime" content="2025-05-06T07:25:34.000Z">
+  <meta content="https://habr.com/ru/articles/907240/" property="og:url">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="keywords" content="cto, teamlead, devops, фреймворк управления it-компанией, фреймворк-cto, pdca">
+  <script type="application/ld+json" data-hid="1e0f0a2">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/articles\/907240\/"},"headline":"CTO в разрезе: как устроена его конфигурация по уровням компании","datePublished":"2025-05-06T10:25:34+03:00","dateModified":"2025-05-07T00:55:15+03:00","author":{"@type":"Person","name":"Дмитрий В. Симонов"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"В прошлый раз мы обсуждали PDCA &mdash; про оценку того, как рук-ль работает с командой. Теперь &mdash; о командах, на уровнях которых работает CTO (будем для общности назыв...","url":"https:\/\/habr.com\/ru\/articles\/907240\/#post-content-body","about":["h_dev_management","h_hr_management","h_itcompanies","f_management"],"image":["https:\/\/habr.com\/share\/publication\/907240\/7a7bf9ca8ffd002cbda96ea31e43b1e9\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/332\/c36\/b2a\/332c36b2a0a3065944451d35e2891efa.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/f91\/605\/6ce\/f916056ce0bd44613d198535140fc87a.jpg"]}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1,user-scalable=0">
+  <meta name="referrer" content="unsafe-url">
+  <style>
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmojLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvk4jLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmYjLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" as="style" media="(prefers-color-scheme: light)">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" as="style" media="(prefers-color-scheme: dark)">
+  <link id="light-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" media="(prefers-color-scheme: light)">
+  <link id="dark-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" media="(prefers-color-scheme: dark)">
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.635b6c39236ebd33fa716c71ab0131a0.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script>
+  <style>
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+    </style>
+  <meta name="habr-version" content="2.241.0">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44">
+  <meta name="msapplication-TileColor" content="#629FBC">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png">
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png">
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg">
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest">
+  <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
+  <script>window.yaContextCb = window.yaContextCb || []</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.8599692f.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.58b8c457.js" as="script">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.8599692f.css">
+ </head>
+ <body>
+  <div id="mount">
+   <div id="app">
+    <div class="tm-layout__wrapper">
+     <!--[--><!---->
+     <div></div><!---->
+     <header class="tm-header" data-test-id="header">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-header__container">
+        <!----><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/">
+          <svg class="tm-svg-img tm-header__icon" height="16" width="16">
+           <title>
+            Хабр
+           </title><use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+          </svg></a><span style="display:none;" class="tm-header__beta-sign">β</span></span><!--[-->
+        <div class="tm-dropdown tm-header__projects">
+         <div class="tm-dropdown__head">
+          <!--[-->
+          <button class="tm-header__dropdown-toggle">
+           <svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16">
+            <title>
+             Открыть список
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#arrow-down"></use>
+           </svg></button><!--]-->
+         </div><!---->
+        </div><a href="/ru/sandbox/start/" class="tm-header__become-author-btn">Как стать автором</a>
+        <div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature">
+         <!---->
+        </div><!----><!--]--><!---->
+       </div><!--]-->
+      </div>
+     </header>
+     <div class="tm-layout">
+      <div class="tm-page-progress-bar"></div>
+      <div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true">
+       <div class="tm-page-width">
+        <!--[-->
+        <div class="tm-base-layout__header-wrapper">
+         <div class="tm-main-menu">
+          <div class="tm-main-menu__section">
+           <nav class="tm-main-menu__section-content">
+            <!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/en/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/en/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/en/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/en/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/en/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/en/flows/popsci/">Научпоп</a><!--]--><!--]-->
+           </nav>
+          </div>
+         </div>
+         <div class="tm-header-user-menu tm-base-layout__user-menu">
+          <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button">
+           <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24">
+            <title>
+             Поиск
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#search"></use>
+           </svg></a><!----><!---->
+          <div class="tm-header-user-menu__item tm-header-user-menu__write">
+           <div>
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Написать публикацию
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#write"></use>
+            </svg>
+           </div><!---->
+          </div><!--[-->
+          <div class="tm-header-user-menu__item">
+           <button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings">
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Настройки
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#page-settings"></use>
+            </svg></button>
+          </div><a href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/articles/907240/&amp;hl=ru" rel="nofollow" class="tm-header-user-menu__item"><!--[-->
+           <button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!----><!--teleport start--><!--teleport end--><!---->
+         </div>
+        </div><!--]-->
+       </div>
+      </div><!---->
+      <div class="tm-page-width">
+       <!--[--><!--]-->
+      </div>
+      <main class="tm-layout__container">
+       <div class="tm-page" hl="ru" data-async-called="true" style="--5ab2e5a8:16px;--44c4f6f6:100%;--45ba7a3b:0;">
+        <div class="tm-page-width">
+         <!--[--><!---->
+         <div class="tm-page__wrapper">
+          <div class="tm-page__main_has-sidebar tm-page__main">
+           <div class="pull-down">
+            <!---->
+            <div class="pull-down__header" style="height:0px;">
+             <div class="pull-down__content" style="bottom:10px;">
+              <svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24">
+               <title>
+                Обновить
+               </title><use xlink:href="/img/megazord-v28.7909a852..svg#pull-arrow"></use>
+              </svg>
+             </div>
+            </div><!--[--><!--[--><!---->
+            <div class="tm-article-presenter">
+             <!--[--><!--]-->
+             <div class="tm-article-presenter__body" data-test-id="article-body">
+              <div class="tm-misprint-area">
+               <div class="tm-misprint-area__wrapper">
+                <!--[-->
+                <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                 <!--[-->
+                 <div class="tm-article-presenter__header">
+                  <!--[--><!--]-->
+                  <div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet">
+                   <!--[--><!--]-->
+                   <div class="tm-article-snippet__meta-container">
+                    <div class="tm-article-snippet__meta">
+                     <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/ctorecords/" class="tm-user-info__userpic" data-test-id="user-info-pic" title="ctorecords">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" height="24" src="//habrastorage.org/r/w48/getpro/habr/avatars/fa7/bb9/1a8/fa7bb91a8cabe5240dde4f664d7a42f7.png" width="24">
+                       </div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a href="/ru/users/ctorecords/" class="tm-user-info__username">ctorecords <!----></a><!--[--><span class="tm-article-datetime-published"><time datetime="2025-05-06T07:25:34.000Z" title="2025-05-06, 10:25">23 часа назад</time></span><!--]--></span></span>
+                    </div><!---->
+                   </div>
+                   <h1 class="tm-title tm-title_h1" lang="ru" data-test-id="articleTitle"><span>CTO в разрезе: как устроена его конфигурация по уровням компании</span></h1>
+                   <div class="tm-article-snippet__stats" data-test-id="articleStats">
+                    <div class="tm-article-complexity tm-article-complexity_complexity-medium">
+                     <span class="tm-svg-icon__wrapper tm-article-complexity__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Уровень сложности
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#complexity-medium"></use>
+                      </svg></span><span class="tm-article-complexity__label">Средний</span>
+                    </div>
+                    <div class="tm-article-reading-time">
+                     <span class="tm-svg-icon__wrapper tm-article-reading-time__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Время на прочтение
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#clock"></use>
+                      </svg></span><span class="tm-article-reading-time__label">4 мин</span>
+                    </div><span class="tm-icon-counter tm-data-icons__item">
+                     <svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24">
+                      <title>
+                       Количество просмотров
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-views"></use>
+                     </svg><span class="tm-icon-counter__value" title="648">648</span></span>
+                   </div>
+                   <div class="tm-publication-hubs__container" data-test-id="articleHubsList">
+                    <div class="tm-publication-hubs">
+                     <!--[--><span class="tm-publication-hub__link-container"><a href="/ru/hubs/dev_management/" class="tm-publication-hub__link"><!--[--><span>Управление разработкой</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/hr_management/" class="tm-publication-hub__link"><!--[--><span>Управление персоналом</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/itcompanies/" class="tm-publication-hub__link"><!--[--><span>IT-компании</span><!----><!--]--></a></span><!--]-->
+                    </div>
+                   </div>
+                   <div class="tm-article-labels" data-test-id="articleLabels">
+                    <div class="tm-article-labels__container">
+                     <div class="tm-publication-label tm-publication-label_variant-analytics">
+                      <span>Аналитика</span>
+                     </div><!--[--><!--]-->
+                    </div>
+                   </div><!----><!---->
+                  </div>
+                 </div><!--[--><!---->
+                 <div class="tm-article-body" data-gallery-root lang="ru">
+                  <div>
+                   <!--[--><!--]-->
+                  </div>
+                  <div id="post-content-body">
+                   <div>
+                    <div class="article-formatted-body article-formatted-body article-formatted-body_version-2">
+                     <div xmlns="http://www.w3.org/1999/xhtml">
+                      <p><a href="https://habr.com/ru/posts/907112/" rel="noopener noreferrer nofollow">В прошлый раз мы обсуждали PDCA</a> — про оценку того, как рук-ль работает с командой. Теперь — о командах, на уровнях которых работает CTO (будем для общности называть его руководителем технического домена). CTO работает не только с разработкой. Его зона ответственности охватывает множество бизнес-доменов — от аналитики до маркетинга. Разберём, как это устроено на разных уровнях компании, определив, с кем он взаимодействует и из чего складывается оценка его деятельности...</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/332/c36/b2a/332c36b2a0a3065944451d35e2891efa.png" width="1024" height="1024" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/332/c36/b2a/332c36b2a0a3065944451d35e2891efa.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/332/c36/b2a/332c36b2a0a3065944451d35e2891efa.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <h2>[1 и 2] Операционно-тактический уровень - технари и тимлиды</h2>
+                      <p>Это, конечно, технарские команды, которых может быть несколько. Такой вот уровень работы «на земле» — операционный. Там и «бекенды», и «фронты», и мобильщики, и тестировщики, и технические писатели и т. д. и т. п. В общем, все те, кто работают руками.</p>
+                      <p>Далее тимлиды, которые рулят теми самыми командами. Их команда — это уже не операционный, а тактический уровень. Все вместе и на операционном, и на тактическом уровне они занимаются развитием продуктов компании, генерируя постоянно их улучшения.</p>
+                      <p>Здесь рождаются первые кросс-доменные задачи — например, взаимодействие с продуктовыми командами или аналитиками. На этом уровне CTO чаще всего проявляется как руководитель домена разработки: архитектура, темпы реализации, качество, технический долг.</p>
+                      <p>Оценка CTO складывается из успешности работы по управленческой (тимлидской) и технарской (техника) частям.</p>
+                      <h2>[3] Уровень эксплуатации (operations) - инфра, кадры, бухгалтерия и пр.</h2>
+                      <p>Улучшения продуктов поднимаются на следующий уровень — уровень эксплуатации (operations). Ради него и пишется документация техническими писателями, настраиваются CI/CD девопсами — в общем, делается всё, чтобы уровень развития, как первые ступени ракеты, в любой момент бизнес мог отбросить как выполнившие свою функцию. Уровень эксплуатации — это уже третий уровень.</p>
+                      <p>Здесь находятся техподдержка, те специалисты из DevOps-команд, которые занимаются эксплуатацией (мониторинг, алерты, инциденты и т. д.). Здесь идёт постоянно активное взаимодействие с эксплуатацией других доменов — например, HR, юридической поддержкой, Отделом Кадров, АХО, бухгалтерией и т. п.</p>
+                      <p>На этом уровне от CTO требуется действовать по принципу минимального вмешательства, так как именно здесь находятся механизмы компании, обеспечивающие работу всей бизнес-модели. Для CTO крайне важна здесь стабильность работы его улучшений продуктов, а также скорость выката в эксплуатацию — для проверки гипотез, позволяющих тестировать на живом рынке новые предлагаемые ценности.</p>
+                      <p>Здесь CTO взаимодействует с доменами DevOps, технической поддержки, внутренней безопасности, IT-инфраструктуры, а также доменами административных и кадровых служб, от которых зависит стабильность.</p>
+                      <p>Оценка CTO складывается из того, насколько он грамотно обеспечивает эксплуатацию.</p>
+                      <h2>[4] Стратегический уровень - бизнес</h2>
+                      <p>Следующий уровень — бизнес-команда или C-level. Это уровень стратегии с долгосрочными перспективами. Это команда руководителей других доменов, с которыми идёт активное взаимодействие для координации общей стратегии по улучшению бизнес-модели. Если на уровне эксплуатации CTO ещё мог не взаимодействовать с продажами или маркетингом, то здесь у него идёт активнейшее взаимодействие с ними.</p>
+                      <p>CTO на этом уровне включается во взаимодействие с доменами продаж, маркетинга, клиентского успеха, даже если они ему не подчиняются. Его задача — донести ограничения и возможности технологий до тех, кто строит бизнес-модель.</p>
+                      <p>Оценка CTO здесь уже сложная, так как планировать, работать, контролировать и развивать ему приходится в зависимости от договорённостей с ключевыми внутренними группами.</p>
+                      <h2>[5] Внешний контур - рынок</h2>
+                      <p>И последний уровень — внешний контур, рынок. То, ради чего всё.</p>
+                      <p>На самом деле вся компания со всеми доменами и уровнями — это его (рынка) гипотеза. Рынок, по сути, проверяет гипотезу (в виде инвестиций), экспертизой (в виде сотрудников и консультантов). Рынок может даже проводить валидацию. Это может быть due diligence от инвесторов, ревью со стороны партнёров или требования аудиторов в регуляторной среде. Если гипотеза оказывается верной — он меняет инвестиции финансов и внимания кастомеров на ценность, предоставляемую продуктами компании.</p>
+                      <p>Оценка CTO здесь складывается из способности активно взаимодействовать с рынком по всем направлениям: от привлечения экспертизы до прохождения аудитов.</p>
+                      <h2>Итог</h2>
+                      <p>В каждом из этих уровней CTO взаимодействует с разными доменами компании. Получается сетка из уровней и функций, по которой можно диагностировать слабые места и что именно надо прокачивать или делегировать. Этот подход можно применять к любому домену. Вот как может выглядеть эта конфигурация на примере домена разработки: оперативно-тактический уровень, уровень эксплуатации, бизнес-уровень и уровень рынка.</p>
+                      <p>Такую конфигурацию можно использовать для выявления пробелов в ответственности, фасилитации стратегических сессий и настройки фокуса роли CTO. Эта не оценка, как я уже в прошлый раз говорил, не дамоклов меч, а конфигурация конкретного CTO — в зависимости от того, что представляет собой компания: стартап, бигтех или вообще перекуп. Понимание своей конфигурации помогает CTO оценить зрелость своей роли, адаптировать систему управления и выстроить архитектуру под задачи компании.</p>
+                      <h2>Домашнее задание для закрепления</h2>
+                      <p>Возьмите любой уровень, начиная с эксплуатации, и выделите все ключевые внутренние группы и их представителей - стейкхолдеров, с которыми вы взаимодействуете. Попробуйте оценить каждое взаимодействие в формате дроби:</p>
+                      <ul>
+                       <li>
+                        <p>в знаменателе — их реальные ожидания от вас,</p></li>
+                       <li>
+                        <p>в числителе — то, как вы презентуете свою работу по этим ожиданиям перед стейкхолдерами;</p></li>
+                      </ul>
+                      <p>Такая простая модель быстро покажет, где возникает разрыв — и что стоит развивать или делегировать.</p>
+                     </div>
+                    </div>
+                   </div><!----><!---->
+                  </div><!---->
+                  <div class="tm-article-poll-container">
+                   <!--[-->
+                   <div class="tm-article-poll tm-article-poll_variant-bordered">
+                    <div class="tm-notice tm-notice_positive tm-article-poll__notice">
+                     <!---->
+                     <div class="tm-notice__inner">
+                      <!---->
+                      <div class="tm-notice__content" data-test-id="notice-content">
+                       <!--[--><span>Только зарегистрированные пользователи могут участвовать в опросе. <a rel="nofollow" href="/kek/v1/auth/habrahabr/?back=/ru/articles/907240/&amp;hl=ru">Войдите</a>, пожалуйста.</span><!--]-->
+                      </div>
+                     </div>
+                    </div><!--[-->
+                    <div class="tm-article-poll__header">
+                     По каким уровням реально работает ваш CTO?
+                    </div>
+                    <div class="tm-article-poll__answers">
+                     <!--[-->
+                     <div class="tm-article-poll__answer">
+                      <div class="tm-article-poll__answer-data">
+                       <span class="tm-article-poll__answer-percent">100% </span><span class="tm-article-poll__answer-label">[1 и 2] Операционно-тактический уровень — технари и тимлиды</span><span class="tm-article-poll__answer-votes">3</span>
+                      </div>
+                      <div class="tm-article-poll__answer-bar">
+                       <div class="tm-article-poll__answer-progress" style="width: 100%"></div>
+                      </div>
+                     </div>
+                     <div class="tm-article-poll__answer">
+                      <div class="tm-article-poll__answer-data">
+                       <span class="tm-article-poll__answer-percent tm-article-poll__answer-percent_winning">100% </span><span class="tm-article-poll__answer-label">[3] Уровень эксплуатации (operations) — инфра, кадры, бухгалтерия и пр.</span><span class="tm-article-poll__answer-votes">3</span>
+                      </div>
+                      <div class="tm-article-poll__answer-bar">
+                       <div class="tm-article-poll__answer-progress tm-article-poll__answer-progress_winning" style="width: 100%"></div>
+                      </div>
+                     </div>
+                     <div class="tm-article-poll__answer">
+                      <div class="tm-article-poll__answer-data">
+                       <span class="tm-article-poll__answer-percent">33.33% </span><span class="tm-article-poll__answer-label">[4] Стратегический уровень — бизнес</span><span class="tm-article-poll__answer-votes">1</span>
+                      </div>
+                      <div class="tm-article-poll__answer-bar">
+                       <div class="tm-article-poll__answer-progress" style="width: 33.33%"></div>
+                      </div>
+                     </div>
+                     <div class="tm-article-poll__answer">
+                      <div class="tm-article-poll__answer-data">
+                       <span class="tm-article-poll__answer-percent">0% </span><span class="tm-article-poll__answer-label">[5] Внешний контур — рынок</span><span class="tm-article-poll__answer-votes">0</span>
+                      </div>
+                      <div class="tm-article-poll__answer-bar">
+                       <div class="tm-article-poll__answer-progress" style="width: 0%"></div>
+                      </div>
+                     </div><!--]-->
+                    </div>
+                    <div class="tm-article-poll__stats">
+                     Проголосовали 3 пользователя. Воздержавшихся нет.
+                    </div><!--]-->
+                   </div><!--]-->
+                  </div>
+                 </div><!--]--><!---->
+                 <div class="tm-article-presenter__meta" data-test-id="article-meta-links">
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Теги:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[cto]" class="tm-tags-list__link"><span>cto</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[teamlead]" class="tm-tags-list__link"><span>teamlead</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[devops]" class="tm-tags-list__link"><span>devops</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%84%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA+%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F+it-%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B5%D0%B9]" class="tm-tags-list__link"><span>фреймворк управления it-компанией</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%84%D1%80%D0%B5%D0%B9%D0%BC%D0%B2%D0%BE%D1%80%D0%BA-cto]" class="tm-tags-list__link"><span>фреймворк-cto</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[pdca]" class="tm-tags-list__link"><span>pdca</span></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Хабы:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/dev_management/" class="tm-hubs-list__link"><!--[--><span>Управление разработкой</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/hr_management/" class="tm-hubs-list__link"><!--[--><span>Управление персоналом</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/itcompanies/" class="tm-hubs-list__link"><!--[--><span>IT-компании</span><!--]--></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                 </div><!----><!--]-->
+                </article><!--]-->
+               </div><!---->
+              </div>
+              <div style="" class="tm-article-sticky-panel" data-test-id="article-sticky-panel">
+               <div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons">
+                <div class="article-rating tm-data-icons__item" data-v-86aec4a7>
+                 <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-article votes-switcher" title="Всего голосов 1: ↑1 и ↓0" data-v-86aec4a7>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-upvote-button" title="Нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon" height="24" width="24">
+                    <title>
+                     Нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                  <div class="tm-votes-lever__score tm-votes-lever__score_appearance-article tm-votes-lever__score">
+                   <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_positive tm-votes-lever__score-counter" data-test-id="votes-score-counter">+1</span></span><!--]-->
+                  </div>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-downvote-button" title="Не нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon tm-votes-lever__icon_arrow-down" height="24" width="24">
+                    <title>
+                     Не нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                 </div><!--teleport start--><!--teleport end--><!---->
+                </div><!----><!---->
+                <button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon">
+                  <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                   <title>
+                    Добавить в закладки
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-favorite"></use>
+                  </svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">3</span></button>
+                <div class="tm-sharing tm-data-icons__item" title="Поделиться">
+                 <button class="tm-sharing__button" type="button">
+                  <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                   <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                  </svg></button><!--teleport start--><!--teleport end-->
+                </div>
+                <div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии">
+                 <a href="/ru/articles/907240/comments/" class="tm-article-comments-counter-link__link" data-test-id="counter-comments"><!--[-->
+                  <svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24">
+                   <title>
+                    Комментарии
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                  </svg><span class="tm-article-comments-counter-link__value">0</span><!--]--></a><!---->
+                </div><!--[--><!--[--><!--[--><!----><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!---->
+               </div>
+              </div>
+             </div><!--[--><!--]-->
+             <div class="tm-article-presenter__footer">
+              <!--[--><!--[-->
+              <div class="tm-article-blocks">
+               <!----><!--[-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <!----><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-balanced">
+                 <!--[-->
+                 <div class="tm-article-author" data-test-id="article-author-info" data-async-called="true">
+                  <!--[--><!--]-->
+                  <div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true">
+                   <div class="tm-user-card__info-container">
+                    <div class="tm-user-card__header">
+                     <div class="tm-user-card__header-data">
+                      <a href="/ru/users/ctorecords/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" src="//habrastorage.org/getpro/habr/avatars/fa7/bb9/1a8/fa7bb91a8cabe5240dde4f664d7a42f7.png">
+                       </div></a>
+                      <div class="tm-user-card__meta">
+                       <div class="tm-counter-container karma" title=" 110 голосов " data-v-f7c0e283>
+                        <div class="tm-counter-container__header">
+                         <!--[-->
+                         <div class="karma-display positive" data-v-f7c0e283 data-v-7635202e>
+                          24
+                         </div><!----><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[-->
+                         <div class="karma-text" data-v-f7c0e283>
+                          Карма
+                         </div><!--teleport start--><!--teleport end--><!--]-->
+                        </div>
+                       </div>
+                       <div class="tm-counter-container" title="Рейтинг пользователя">
+                        <div class="tm-counter-container__header">
+                         <!--[--><!--[--><!--]-->
+                         <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                          <!---->
+                          <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score">
+                           <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">1</span></span><!--]-->
+                          </div><!---->
+                         </div><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info">
+                     <div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title">
+                      <span class="tm-user-card__name tm-user-card__name_variant-article tm-user-card__name">Дмитрий В. Симонов</span><a href="/ru/users/ctorecords/" class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article"> @ctorecords</a><!---->
+                     </div>
+                     <p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Пользователь</p>
+                    </div>
+                   </div><!---->
+                   <div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons">
+                    <!---->
+                    <div class="tm-user-card__button">
+                     <div class="tm-button-follow tm-user-card__button-follow">
+                      <!---->
+                      <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+                     </div>
+                    </div><!---->
+                    <div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations">
+                     <svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16">
+                      <title>
+                       Отправить сообщение
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#mail"></use>
+                     </svg>
+                    </div><!---->
+                   </div><!---->
+                  </div>
+                  <div class="tm-article-author__user-contacts" data-test-id="author-contacts">
+                   <!----><!----><!---->
+                  </div>
+                 </div><!--]-->
+                </div><!--]--><!---->
+               </section><!----><!--[-->
+               <div class="banner-wrapper leaderboard tm-page-article__banner" style="--38f3d936:200px;--78a3cd06:auto;" data-v-f4bf0d24>
+                <!--[-->
+                <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="adfox-banner-placeholder leaderboard" data-v-12f7bcca>
+                  <div class="image loads" data-v-12f7bcca></div>
+                  <div class="lines" data-v-12f7bcca>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                  </div>
+                 </div><!----><!----><!---->
+                </div>
+                <div id="adfox_164725660339535756" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+               </div><!--]--><!--]-->
+               <div class="tm-article-blocks__comments">
+                <div id="publication-comments" class="tm-article-page-comments">
+                 <div>
+                  <!--[-->
+                  <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                   <a href="/ru/articles/907240/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments"><!--[-->
+                    <svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24">
+                     <title>
+                      Комментарии
+                     </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                    </svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментировать </span><!--]--></a><!---->
+                  </div><!--]-->
+                 </div>
+                </div>
+               </div><!--[--><!--[--><!--]-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <header class="tm-block__header tm-block__header tm-block__header_variant-borderless">
+                 <div class="tm-block__header-container">
+                  <h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]-->
+                 </div><!---->
+                </header><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim">
+                 <!--[--><!--[-->
+                 <div class="tm-tabs tm-tabs">
+                  <div class="">
+                   <!--[--><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]-->
+                  </div><!---->
+                 </div>
+                 <div class="similar-and-daily__tab-view">
+                  <div class="daily-articles-list">
+                   <ul class="tm-article-card-list">
+                    <!--[--><!--]-->
+                    <div class="tm-bordered-card">
+                     <!----><!--[--><!--]-->
+                    </div>
+                   </ul>
+                   <div class="daily-articles-block__button-container">
+                    <button class="btn btn_transparent btn_small tm-button tm-button_color-horizon" type="button"><!--[--><!--[-->Показать лучшие за всё время<!--]--><!--]--></button>
+                   </div>
+                  </div><!---->
+                 </div><!--]--><!--]-->
+                </div><!--]--><!---->
+               </section><!--[-->
+               <div>
+                <div class="placeholder-wrapper">
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="tm-placeholder-promo">
+                  <div class="tm-placeholder-promo__header">
+                   <div class="tm-placeholder__line tm-placeholder__line_promo-title"></div>
+                  </div>
+                  <div class="tm-placeholder-promo__body">
+                   <div class="tm-placeholder-promo__posts">
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                   </div>
+                   <div class="tm-placeholder-promo__dots">
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                   </div>
+                  </div>
+                 </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                </div>
+               </div>
+               <div class="placeholder-wrapper">
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="tm-placeholder-inset tm-placeholder-courses">
+                 <div class="tm-placeholder-inset__header">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div>
+                 </div>
+                 <div class="tm-placeholder-inset__body">
+                  <ul class="tm-placeholder-list">
+                   <!--[-->
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li><!--]-->
+                  </ul>
+                 </div>
+                 <div class="tm-placeholder-inset__footer">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div>
+                 </div>
+                </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               </div><!--]--><!----><!--[--><!--]--><!--]-->
+              </div><!--]--><!--]-->
+             </div>
+            </div><!--]--><!--]-->
+           </div>
+          </div>
+          <div class="tm-page__sidebar">
+           <!--[-->
+           <div class="tm-layout-sidebar">
+            <div class="tm-layout-sidebar__placeholder_initial"></div>
+            <div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;">
+             <!--[--><!--]--><!---->
+             <div class="tm-layout-sidebar__ads_initial tm-layout-sidebar__ads">
+              <div class="banner-wrapper half-page tm-layout-sidebar__banner tm-layout-sidebar__banner_top" style="--38f3d936:600px;--78a3cd06:auto;" data-v-f4bf0d24>
+               <!--[-->
+               <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="adfox-banner-placeholder half-page" data-v-12f7bcca>
+                 <div class="image loads" data-v-12f7bcca></div>
+                 <div class="lines" data-v-12f7bcca>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                 </div>
+                </div><!----><!----><!---->
+               </div>
+               <div id="adfox_164725680533065327" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+              </div>
+             </div><!--[--><!---->
+             <div></div>
+             <section class="tm-block tm-block tm-block_spacing-around" data-async-called="true">
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Работа</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[--><!--[-->
+               <div class="tm-vacancies-block__item">
+                <a class="tm-vacancies-block__vacancy-title" href="https://career.habr.com/vacancies/rukovoditel_razrabotki" target="_blank">Руководитель разработки</a>
+                <div class="tm-vacancies-block__vacancies-count">
+                 81 вакансия
+                </div>
+               </div><!--]--><!--]-->
+              </div><!--]-->
+              <footer class="tm-block__footer">
+               <!--[--><a class="tm-block-extralink" href="https://career.habr.com/catalog">Все вакансии</a><!--]-->
+              </footer>
+             </section>
+             <section class="tm-block tm-block tm-block_spacing-around block" data-v-6f380946>
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Ближайшие события</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[-->
+               <div class="placeholder-wrapper" data-v-6f380946>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <section class="tm-block tm-block tm-block_spacing-none" tabindex="-1" data-v-9caf0b82>
+                 <!----><!--[-->
+                 <div class="event-card-placeholder is-widget" data-v-9caf0b82>
+                  <div class="image loads" data-v-9caf0b82></div>
+                  <div class="info" data-v-9caf0b82>
+                   <div class="date line" data-v-9caf0b82></div>
+                   <div class="title line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                  </div>
+                  <div class="footer widget" data-v-9caf0b82>
+                   <div class="link line" data-v-9caf0b82></div>
+                   <div class="categories" data-v-9caf0b82>
+                    <!--[-->
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div><!--]-->
+                   </div>
+                  </div>
+                 </div><!--]--><!---->
+                </section><!---->
+               </div><!--]-->
+              </div><!--]--><!---->
+             </section><!--]-->
+             <div class="banner-wrapper medium-rectangle tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom" style="--38f3d936:250px;--78a3cd06:auto;" data-v-f4bf0d24>
+              <!--[-->
+              <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+               <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               <div class="adfox-banner-placeholder medium-rectangle" data-v-12f7bcca>
+                <div class="image loads" data-v-12f7bcca></div>
+                <div class="lines" data-v-12f7bcca>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                </div>
+               </div><!----><!----><!---->
+              </div>
+              <div id="adfox_164725691003361602" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+             </div>
+            </div>
+           </div><!--]-->
+          </div>
+         </div><!----><!--]-->
+        </div>
+       </div>
+      </main><!---->
+     </div>
+     <div class="tm-footer-menu">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer-menu__container">
+        <!--[-->
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Ваш аккаунт</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/articles/907240/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/articles/907240/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Разделы</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/articles/" class="footer-menu__item-link">Статьи</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link">Новости</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link">Хабы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link">Компании</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link">Авторы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link">Песочница</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Информация</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link">Устройство сайта</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link">Для авторов</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link">Для компаний</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link">Документы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Услуги</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]-->
+          </ul>
+         </div>
+        </div><!--]-->
+       </div><!--]-->
+      </div>
+     </div>
+     <div class="tm-footer">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer__container">
+        <!---->
+        <div class="tm-footer__social">
+         <!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Facebook
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Twitter
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            VK
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Telegram
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Youtube
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Яндекс Дзен
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use>
+          </svg></a><!--]-->
+        </div><!--teleport start--><!--teleport end-->
+        <button class="tm-footer__link"><!----> Настройка языка</button><a href="/ru/feedback/" class="tm-footer__link">Техническая поддержка</a>
+        <div class="tm-footer-copyright">
+         <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span>
+        </div>
+       </div><!--]-->
+      </div>
+     </div><!----><!--]-->
+    </div><!---->
+   </div>
+   <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"907240":{"id":"907240","timePublished":"2025-05-06T07:25:34+00:00","isCorporative":false,"lang":"ru","titleHtml":"CTO в разрезе: как устроена его конфигурация по уровням компании","leadData":{"textHtml":"\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fposts\u002F907112\u002F\" rel=\"noopener noreferrer nofollow\"\u003EВ прошлый раз мы обсуждали PDCA\u003C\u002Fa\u003E — про оценку того, как рук-ль работает с командой. Теперь — о командах, на уровнях которых работает CTO (будем для общности называть его руководителем технического домена).  CTO работает не только с разработкой. Его зона ответственности охватывает множество бизнес-доменов — от аналитики до маркетинга. Разберём, как это устроено на разных уровнях компании, определив, с кем он взаимодействует и из чего складывается оценка его деятельности.\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff91\u002F605\u002F6ce\u002Ff916056ce0bd44613d198535140fc87a.jpg","buttonTextHtml":"Читать далее про уровни","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff91\u002F605\u002F6ce\u002Ff916056ce0bd44613d198535140fc87a.jpg","fit":"cover","positionY":100,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"id":"47260","alias":"ctorecords","fullname":"Дмитрий В. Симонов","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002Ffa7\u002Fbb9\u002F1a8\u002Ffa7bb91a8cabe5240dde4f664d7a42f7.png","speciality":"Пользователь","scoreStats":{"score":24,"votesCount":110},"rating":1,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"donationsMethod":null,"isInBlacklist":null,"careerProfile":null},"statistics":{"commentsCount":0,"favoritesCount":3,"readingCount":648,"score":1,"votesCount":1,"votesCountPlus":1,"votesCountMinus":0},"hubs":[{"id":"19583","alias":"dev_management","type":"collective","title":"Управление разработкой","titleHtml":"Управление разработкой","isProfiled":true,"relatedData":null},{"id":"20736","alias":"hr_management","type":"collective","title":"Управление персоналом","titleHtml":"Управление персоналом","isProfiled":true,"relatedData":null},{"id":"22026","alias":"itcompanies","type":"collective","title":"IT-компании","titleHtml":"IT-компании","isProfiled":false,"relatedData":null}],"flows":[{"id":"3","alias":"management","title":"Менеджмент","titleHtml":"Менеджмент"}],"relatedData":{"vote":null,"unreadCommentsCount":0,"bookmarked":false,"canComment":false,"canEdit":false,"canViewVotes":false,"votePlus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"voteMinus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"canModerateComments":false,"trackerSubscribed":false,"emailSubscribed":false},"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fposts\u002F907112\u002F\" rel=\"noopener noreferrer nofollow\"\u003EВ прошлый раз мы обсуждали PDCA\u003C\u002Fa\u003E — про оценку того, как рук-ль работает с командой. Теперь — о командах, на уровнях которых работает CTO (будем для общности называть его руководителем технического домена).  CTO работает не только с разработкой. Его зона ответственности охватывает множество бизнес-доменов — от аналитики до маркетинга. Разберём, как это устроено на разных уровнях компании, определив, с кем он взаимодействует и из чего складывается оценка его деятельности...\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F332\u002Fc36\u002Fb2a\u002F332c36b2a0a3065944451d35e2891efa.png\" width=\"1024\" height=\"1024\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F332\u002Fc36\u002Fb2a\u002F332c36b2a0a3065944451d35e2891efa.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F332\u002Fc36\u002Fb2a\u002F332c36b2a0a3065944451d35e2891efa.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Ch2\u003E[1 и 2] Операционно-тактический уровень - технари и тимлиды\u003C\u002Fh2\u003E\u003Cp\u003EЭто, конечно, технарские команды, которых может быть несколько. Такой вот уровень работы «на земле» — операционный. Там и «бекенды», и «фронты», и мобильщики, и тестировщики, и технические писатели и т. д. и т. п. В общем, все те, кто работают руками. \u003C\u002Fp\u003E\u003Cp\u003EДалее тимлиды, которые рулят теми самыми командами. Их команда — это уже не операционный, а тактический уровень. Все вместе и на операционном, и на тактическом уровне они занимаются развитием продуктов компании, генерируя постоянно их улучшения. \u003C\u002Fp\u003E\u003Cp\u003EЗдесь рождаются первые кросс-доменные задачи — например, взаимодействие с продуктовыми командами или аналитиками. На этом уровне CTO чаще всего проявляется как руководитель домена разработки: архитектура, темпы реализации, качество, технический долг.\u003C\u002Fp\u003E\u003Cp\u003EОценка CTO складывается из успешности работы по управленческой (тимлидской) и  технарской (техника) частям. \u003C\u002Fp\u003E\u003Ch2\u003E[3] Уровень эксплуатации (operations) - инфра, кадры, бухгалтерия и пр.\u003C\u002Fh2\u003E\u003Cp\u003EУлучшения продуктов поднимаются на следующий уровень — уровень эксплуатации (operations). Ради него и пишется документация техническими писателями, настраиваются CI\u002FCD девопсами — в общем, делается всё, чтобы уровень развития, как первые ступени ракеты, в любой момент бизнес мог отбросить как выполнившие свою функцию. Уровень эксплуатации — это уже третий уровень. \u003C\u002Fp\u003E\u003Cp\u003EЗдесь находятся техподдержка, те специалисты из DevOps-команд, которые занимаются эксплуатацией (мониторинг, алерты, инциденты и т. д.). Здесь идёт постоянно активное взаимодействие с эксплуатацией других доменов — например, HR, юридической поддержкой, Отделом Кадров, АХО, бухгалтерией и т. п. \u003C\u002Fp\u003E\u003Cp\u003EНа этом уровне от CTO требуется действовать по принципу минимального вмешательства, так как именно здесь находятся механизмы компании, обеспечивающие работу всей бизнес-модели. Для CTO крайне важна здесь стабильность работы его улучшений продуктов, а также скорость выката в эксплуатацию — для проверки гипотез, позволяющих тестировать на живом рынке новые предлагаемые ценности. \u003C\u002Fp\u003E\u003Cp\u003EЗдесь CTO взаимодействует с доменами DevOps, технической поддержки, внутренней безопасности, IT-инфраструктуры, а также доменами административных и кадровых служб, от которых зависит стабильность.\u003C\u002Fp\u003E\u003Cp\u003EОценка CTO складывается из того, насколько он грамотно обеспечивает эксплуатацию. \u003C\u002Fp\u003E\u003Ch2\u003E[4] Стратегический уровень - бизнес\u003C\u002Fh2\u003E\u003Cp\u003EСледующий уровень — бизнес-команда или C-level. Это уровень стратегии с долгосрочными перспективами. Это команда руководителей других доменов, с которыми идёт активное взаимодействие для координации общей стратегии по улучшению бизнес-модели. Если на уровне эксплуатации CTO ещё мог не взаимодействовать с продажами или маркетингом, то здесь у него идёт активнейшее взаимодействие с ними. \u003C\u002Fp\u003E\u003Cp\u003ECTO на этом уровне включается во взаимодействие с доменами продаж, маркетинга, клиентского успеха, даже если они ему не подчиняются. Его задача — донести ограничения и возможности технологий до тех, кто строит бизнес-модель. \u003C\u002Fp\u003E\u003Cp\u003EОценка CTO здесь уже сложная, так как планировать, работать, контролировать и развивать ему приходится в зависимости от договорённостей с ключевыми внутренними группами.\u003C\u002Fp\u003E\u003Ch2\u003E[5] Внешний контур - рынок\u003C\u002Fh2\u003E\u003Cp\u003EИ последний уровень — внешний контур, рынок. То, ради чего всё. \u003C\u002Fp\u003E\u003Cp\u003EНа самом деле вся компания со всеми доменами и уровнями — это его (рынка) гипотеза. Рынок, по сути, проверяет гипотезу  (в виде инвестиций), экспертизой (в виде сотрудников и консультантов). Рынок может даже проводить валидацию. Это может быть due diligence от инвесторов, ревью со стороны партнёров или требования аудиторов в регуляторной среде. Если гипотеза оказывается верной — он меняет инвестиции финансов и внимания кастомеров на ценность, предоставляемую продуктами компании. \u003C\u002Fp\u003E\u003Cp\u003EОценка CTO здесь складывается из способности активно взаимодействовать с рынком по всем направлениям: от привлечения экспертизы до прохождения аудитов.\u003C\u002Fp\u003E\u003Ch2\u003EИтог\u003C\u002Fh2\u003E\u003Cp\u003EВ каждом из этих уровней CTO взаимодействует с разными доменами компании. Получается сетка из уровней и функций, по которой можно диагностировать слабые места и что именно надо прокачивать или делегировать. Этот подход можно применять к любому домену. Вот как может выглядеть эта конфигурация на примере домена разработки: оперативно-тактический уровень, уровень эксплуатации, бизнес-уровень и уровень рынка.\u003C\u002Fp\u003E\u003Cp\u003EТакую конфигурацию можно использовать для выявления пробелов в ответственности, фасилитации стратегических сессий и настройки фокуса роли CTO. Эта не оценка, как я уже в прошлый раз говорил, не дамоклов меч, а конфигурация конкретного CTO — в зависимости от того, что представляет собой компания: стартап, бигтех или вообще перекуп. Понимание своей конфигурации помогает CTO оценить зрелость своей роли, адаптировать систему управления и выстроить архитектуру под задачи компании.\u003C\u002Fp\u003E\u003Ch2\u003EДомашнее задание для закрепления\u003C\u002Fh2\u003E\u003Cp\u003EВозьмите любой уровень, начиная с эксплуатации, и выделите все ключевые внутренние группы и их представителей - стейкхолдеров, с которыми вы взаимодействуете. Попробуйте оценить каждое взаимодействие в формате дроби:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003Eв знаменателе — их реальные ожидания от вас,\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eв числителе — то, как вы презентуете свою работу по этим ожиданиям перед стейкхолдерами;\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EТакая простая модель быстро покажет, где возникает разрыв — и что стоит развивать или делегировать.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"cto"},{"titleHtml":"teamlead"},{"titleHtml":"devops"},{"titleHtml":"фреймворк управления it-компанией"},{"titleHtml":"фреймворк-cto"},{"titleHtml":"pdca"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff91\u002F605\u002F6ce\u002Ff916056ce0bd44613d198535140fc87a.jpg","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff91\u002F605\u002F6ce\u002Ff916056ce0bd44613d198535140fc87a.jpg","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F907240\\\u002F\"},\"headline\":\"CTO в разрезе: как устроена его конфигурация по уровням компании\",\"datePublished\":\"2025-05-06T10:25:34+03:00\",\"dateModified\":\"2025-05-07T00:55:15+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Дмитрий В. Симонов\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"В прошлый раз мы обсуждали PDCA &mdash; про оценку того, как рук-ль работает с командой. Теперь &mdash; о командах, на уровнях которых работает CTO (будем для общности назыв...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F907240\\\u002F#post-content-body\",\"about\":[\"h_dev_management\",\"h_hr_management\",\"h_itcompanies\",\"f_management\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F907240\\\u002F7a7bf9ca8ffd002cbda96ea31e43b1e9\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F332\\\u002Fc36\\\u002Fb2a\\\u002F332c36b2a0a3065944451d35e2891efa.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Ff91\\\u002F605\\\u002F6ce\\\u002Ff916056ce0bd44613d198535140fc87a.jpg\"]}","metaDescription":"В прошлый раз мы обсуждали PDCA — про оценку того, как рук-ль работает с командой. Теперь — о командах, на уровнях которых работает CTO (будем для общности называть его руководителем технического...","mainImageUrl":null,"amp":false,"customTrackerLinks":[]},"polls":[{"id":"47316","timeElapsed":null,"answersType":"checkbox","votesCount":3,"passCount":0,"textHtml":"По каким уровням реально работает ваш CTO?","relatedData":null,"variants":[{"id":"215926","textHtml":"[1 и 2] Операционно-тактический уровень — технари и тимлиды","votesCount":3,"percent":100,"selected":false},{"id":"215928","textHtml":"[3] Уровень эксплуатации (operations) — инфра, кадры, бухгалтерия и пр.","votesCount":3,"percent":100,"selected":false},{"id":"215930","textHtml":"[4] Стратегический уровень — бизнес","votesCount":1,"percent":33.33,"selected":false},{"id":"215932","textHtml":"[5] Внешний контур — рынок","votesCount":0,"percent":0,"selected":false}]}],"commentsEnabled":{"status":true,"reason":null},"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"hasPinnedComments":false,"format":"analytics","banner":null,"multiwidget":null,"multiwidgetUuid":null,"readingTime":4,"complexity":"medium","isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"postReasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"viewedPosts":[],"myFeedFilter":{"complexity":"all","score":"all","types":["articles","posts","news"]},"myFeedIsApplyFilters":false,"myFeedIsForce":false,"karma":{"userReasonsList":null}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[{"title":"Руководитель разработки","vacanciesCount":81,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Frukovoditel_razrabotki","itemHubs":["dev_management"]}],"hubs":"dev_management,hr_management,itcompanies"},"comments":{"articleComments":{},"articlePinnedComments":{},"searchCommentsResults":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":"","idempotenceKey":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"multiwidgets":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"multiwidgetLoading":false,"vacancies":{},"companiesGalleries":{},"companiesBanners":{},"companiesLandingVacancies":{},"companiesTechnologies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null,"jivoStatus":0,"adminNotifications":null,"availableInvitesCount":{}},"companyAdd":{"currentStep":"","stepsData":{},"uncompletedSteps":[],"isStepLoading":true,"isStepCommitting":false,"isInitialized":false,"agreementContent":""},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"pagesCount":0},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":true},"fixedBanner":{"isArticleStickyPanelVisible":false,"isArticleStickyPanelAtTheBottom":false,"isFixedBannerVisible":false,"isStickyPanelIconsHidden":false},"flows":{"updates":{}},"global":{"isPwa":false,"device":"desktop","isHabrCom":true,"requestId":"37e54ab3b56dbe5a0bde9c0b755a2a2d"},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"welcomePage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"query":{},"pathname":"\u002Fru\u002Farticles\u002F907240\u002F","path":"\u002Fru\u002Farticles\u002F907240\u002F","href":"\u002Fru\u002Farticles\u002F907240\u002F"}},"me":{"user":null,"uuid":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null,"userUpdates":{"feeds":{"newPostsCount":null,"newThreadsCount":null,"newNewsCount":null,"newCount":null},"conversationUnreadCount":0},"features":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"onboarding":{"currentStep":null,"stepsData":{},"stepsErrors":{},"completedSteps":[],"isStepCommitting":false,"isCommitDisabled":true},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{"courses":"project-block-article"}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null,"sticker":null},"publicationStatistics":{"statsInfo":{},"statsFunnels":{},"statsGraph":{},"defaultSuggest":{},"suggest":{},"timeTracker":{},"isTrackingActivity":false,"isUserActive":true,"otherPublicationStats":{}},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":true,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"stories":{"stories":null},"technotext":{"years":[],"technotextDocForNominees":null,"technotextDocForWinners":null,"technotextInfo":{},"technotextInfoLoading":false,"technotextWinners":{},"technotextWinnersLoading":false},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"userVotes":{"karmaVotesList":[],"karmaVotesPagesCount":null,"karmaVotesListLoading":false,"commentsVotesList":[],"commentsVotesPagesCount":null,"commentsVotesListLoading":false,"postsVotesList":[],"postsVotesPagesCount":null,"postsVotesListLoading":false,"userVotesList":[],"userVotesPagesCount":null,"userVotesListLoading":false},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"notificationsLoading":false,"notificationsList":[],"notificationsPageCount":0,"pendingMarkNotificationsRead":[],"publicationsLoading":true,"publicationsList":[],"publicationsPageCount":0,"pendingDeletePublications":false,"pendingMarkPublicationsRead":false},"events":{"eventRefs":{},"eventIds":[],"pagesCount":0,"categories":[],"cities":[],"actualEvents":null,"currentEvent":null,"eventsFilter":{"city":"all","timeStarted":null,"timeEnded":null}},"wysiwyg":{"WYSIWYGRulesRefs":null},"refs":{"specializationRefs":[]},"hint":{"hints":{}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script>
+   <script src="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" defer></script>
+   <script src="https://assets.habr.com/habr-web/js/app.58b8c457.js" defer></script>
+  </div>
+  <div id="overlays">
+   <!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor-->
+  </div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S28W1WC23F"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  </script>
+  <script type="text/javascript">
+      window.addEventListener('load', function () {
+        setTimeout(() => {
+          const img = new Image();
+          img.src = 'https://vk.com/rtrg?p=VK-RTRG-421343-57vKE';
+        }, 0);
+      });
+    </script>
+ </body>
+</html>

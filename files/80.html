@@ -1,0 +1,1124 @@
+<!doctype html>
+<html lang="ru">
+ <head>
+  <title>FunCaptcha (Arkose Labs): принципы работы, особенности и методы распознавания (автоматические и ручные варианты) / Хабр</title>
+  <meta property="fb:app_id" content="444736788986613">
+  <meta property="fb:pages" content="472597926099084">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@habr_com">
+  <meta property="og:site_name" content="Хабр">
+  <link href="https://habr.com/ru/rss/post/907218/?fl=ru" type="application/rss+xml" title rel="alternate" name="rss">
+  <link href="https://habr.com/ru/articles/907218/" rel="canonical" data-hid="e3fa780">
+  <link rel="image_src" href="https://habrastorage.org/getpro/habr/upload_files/340/5ee/8b0/3405ee8b02f86785cf359afb0a4a741e.jpg" data-hid="2a79c45">
+  <link rel="amphtml" href="https://habr.com/ru/amp/publications/907218/">
+  <meta property="og:title" content="FunCaptcha (Arkose Labs): принципы работы, особенности и методы распознавания (автоматические и ручные варианты)">
+  <meta name="twitter:title" content="FunCaptcha (Arkose Labs): принципы работы, особенности и методы распознавания (автоматические и ручные варианты)">
+  <meta name="aiturec:title" content="FunCaptcha (Arkose Labs): принципы работы, особенности и методы распознавания (автоматические и ручные варианты)">
+  <meta name="description" content="Как работает FunCaptcha и чем она отличается от классических капч Продолжаем путешествовать по миру капч (Фантастические капчи и где они обитают, а также способы борьбы с ними), и сегодня на очереди...">
+  <meta itemprop="description" content="Как работает FunCaptcha и чем она отличается от классических капч Продолжаем путешествовать по миру капч (Фантастические капчи и где они обитают, а также способы борьбы с ними), и сегодня на очереди...">
+  <meta property="og:description" content="Как работает FunCaptcha и чем она отличается от классических капч Продолжаем путешествовать по миру капч (Фантастические капчи и где они обитают, а также способы борьбы с ними), и сегодня на очереди...">
+  <meta name="twitter:description" content="Как работает FunCaptcha и чем она отличается от классических капч Продолжаем путешествовать по миру капч (Фантастические капчи и где они обитают, а также способы борьбы с ними), и сегодня на очереди...">
+  <meta property="aiturec:description" content="Как работает FunCaptcha и чем она отличается от классических капч Продолжаем путешествовать по миру капч (Фантастические капчи и где они обитают, а также способы борьбы с ними), и сегодня на очереди...">
+  <meta itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/340/5ee/8b0/3405ee8b02f86785cf359afb0a4a741e.jpg">
+  <meta property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/340/5ee/8b0/3405ee8b02f86785cf359afb0a4a741e.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/340/5ee/8b0/3405ee8b02f86785cf359afb0a4a741e.jpg">
+  <meta name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/340/5ee/8b0/3405ee8b02f86785cf359afb0a4a741e.jpg">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/340/5ee/8b0/3405ee8b02f86785cf359afb0a4a741e.jpg?format=vk">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/340/5ee/8b0/3405ee8b02f86785cf359afb0a4a741e.jpg?format=vk">
+  <meta property="aiturec:item_id" content="907218">
+  <meta property="aiturec:datetime" content="2025-05-06T06:29:06.000Z">
+  <meta content="https://habr.com/ru/articles/907218/" property="og:url">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="keywords" content="фанкапча, решение фанкапчи, funcaptcha, arcose lab">
+  <script type="application/ld+json" data-hid="1e0f0a2">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/articles\/907218\/"},"headline":"FunCaptcha (Arkose Labs): принципы работы, особенности и методы распознавания (автоматические и ручные варианты)","datePublished":"2025-05-06T09:29:06+03:00","dateModified":"2025-05-07T01:03:56+03:00","author":{"@type":"Person","name":"Alex"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"Как работает FunCaptcha и чем она отличается от классических капчПродолжаем путешествовать по миру капч (Фантастические капчи и где они обитают, а также способы...","url":"https:\/\/habr.com\/ru\/articles\/907218\/#post-content-body","about":["h_infosecurity","f_develop"],"image":["https:\/\/habr.com\/share\/publication\/907218\/a5c4513a9c4417972f32ab51c5a78d81\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/340\/5ee\/8b0\/3405ee8b02f86785cf359afb0a4a741e.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/8e4\/7b5\/7d4\/8e47b57d43d5caf2323a3034f34dcf6c.jpeg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/bfe\/96a\/20e\/bfe96a20e4ff303a9f792e3ec8c10ab9.jpeg"]}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1,user-scalable=0">
+  <meta name="referrer" content="unsafe-url">
+  <style>
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmojLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvk4jLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmYjLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" as="style" media="(prefers-color-scheme: light)">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" as="style" media="(prefers-color-scheme: dark)">
+  <link id="light-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" media="(prefers-color-scheme: light)">
+  <link id="dark-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" media="(prefers-color-scheme: dark)">
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.635b6c39236ebd33fa716c71ab0131a0.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script>
+  <style>
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+    </style>
+  <meta name="habr-version" content="2.241.0">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44">
+  <meta name="msapplication-TileColor" content="#629FBC">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png">
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png">
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg">
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest">
+  <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
+  <script>window.yaContextCb = window.yaContextCb || []</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.8599692f.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.58b8c457.js" as="script">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.8599692f.css">
+ </head>
+ <body>
+  <div id="mount">
+   <div id="app">
+    <div class="tm-layout__wrapper">
+     <!--[--><!---->
+     <div></div><!---->
+     <header class="tm-header" data-test-id="header">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-header__container">
+        <!----><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/">
+          <svg class="tm-svg-img tm-header__icon" height="16" width="16">
+           <title>
+            Хабр
+           </title><use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+          </svg></a><span style="display:none;" class="tm-header__beta-sign">β</span></span><!--[-->
+        <div class="tm-dropdown tm-header__projects">
+         <div class="tm-dropdown__head">
+          <!--[-->
+          <button class="tm-header__dropdown-toggle">
+           <svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16">
+            <title>
+             Открыть список
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#arrow-down"></use>
+           </svg></button><!--]-->
+         </div><!---->
+        </div><a href="/ru/sandbox/start/" class="tm-header__become-author-btn">Как стать автором</a>
+        <div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature">
+         <!---->
+        </div><!----><!--]--><!---->
+       </div><!--]-->
+      </div>
+     </header>
+     <div class="tm-layout">
+      <div class="tm-page-progress-bar"></div>
+      <div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true">
+       <div class="tm-page-width">
+        <!--[-->
+        <div class="tm-base-layout__header-wrapper">
+         <div class="tm-main-menu">
+          <div class="tm-main-menu__section">
+           <nav class="tm-main-menu__section-content">
+            <!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]-->
+           </nav>
+          </div>
+         </div>
+         <div class="tm-header-user-menu tm-base-layout__user-menu">
+          <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button">
+           <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24">
+            <title>
+             Поиск
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#search"></use>
+           </svg></a><!----><!---->
+          <div class="tm-header-user-menu__item tm-header-user-menu__write">
+           <div>
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Написать публикацию
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#write"></use>
+            </svg>
+           </div><!---->
+          </div><!--[-->
+          <div class="tm-header-user-menu__item">
+           <button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings">
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Настройки
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#page-settings"></use>
+            </svg></button>
+          </div><a href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/articles/907218/&amp;hl=ru" rel="nofollow" class="tm-header-user-menu__item"><!--[-->
+           <button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!----><!--teleport start--><!--teleport end--><!---->
+         </div>
+        </div><!--]-->
+       </div>
+      </div><!---->
+      <div class="tm-page-width">
+       <!--[--><!--]-->
+      </div>
+      <main class="tm-layout__container">
+       <div class="tm-page" hl="ru" data-async-called="true" style="--5ab2e5a8:16px;--44c4f6f6:100%;--45ba7a3b:0;">
+        <div class="tm-page-width">
+         <!--[--><!---->
+         <div class="tm-page__wrapper">
+          <div class="tm-page__main_has-sidebar tm-page__main">
+           <div class="pull-down">
+            <!---->
+            <div class="pull-down__header" style="height:0px;">
+             <div class="pull-down__content" style="bottom:10px;">
+              <svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24">
+               <title>
+                Обновить
+               </title><use xlink:href="/img/megazord-v28.7909a852..svg#pull-arrow"></use>
+              </svg>
+             </div>
+            </div><!--[--><!--[--><!---->
+            <div class="tm-article-presenter">
+             <!--[--><!--]-->
+             <div class="tm-article-presenter__body" data-test-id="article-body">
+              <div class="tm-misprint-area">
+               <div class="tm-misprint-area__wrapper">
+                <!--[-->
+                <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                 <!--[-->
+                 <div class="tm-article-presenter__header">
+                  <!--[--><!--]-->
+                  <div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet">
+                   <!--[--><!--]-->
+                   <div class="tm-article-snippet__meta-container">
+                    <div class="tm-article-snippet__meta">
+                     <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/kentavr009/" class="tm-user-info__userpic" data-test-id="user-info-pic" title="kentavr009">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" height="24" src="//habrastorage.org/r/w48/getpro/habr/avatars/b05/458/3a7/b054583a7ca1cc5b058bb65d3f5f46b0.jpeg" width="24">
+                       </div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a href="/ru/users/kentavr009/" class="tm-user-info__username">kentavr009 <!----></a><!--[--><span class="tm-article-datetime-published"><time datetime="2025-05-06T06:29:06.000Z" title="2025-05-06, 09:29">23 часа назад</time></span><!--]--></span></span>
+                    </div><!---->
+                   </div>
+                   <h1 class="tm-title tm-title_h1" lang="ru" data-test-id="articleTitle"><span>FunCaptcha (Arkose Labs): принципы работы, особенности и методы распознавания (автоматические и ручные варианты)</span></h1>
+                   <div class="tm-article-snippet__stats" data-test-id="articleStats">
+                    <div class="tm-article-complexity tm-article-complexity_complexity-low">
+                     <span class="tm-svg-icon__wrapper tm-article-complexity__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Уровень сложности
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#complexity-low"></use>
+                      </svg></span><span class="tm-article-complexity__label">Простой</span>
+                    </div>
+                    <div class="tm-article-reading-time">
+                     <span class="tm-svg-icon__wrapper tm-article-reading-time__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Время на прочтение
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#clock"></use>
+                      </svg></span><span class="tm-article-reading-time__label">23 мин</span>
+                    </div><span class="tm-icon-counter tm-data-icons__item">
+                     <svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24">
+                      <title>
+                       Количество просмотров
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-views"></use>
+                     </svg><span class="tm-icon-counter__value" title="374">374</span></span>
+                   </div>
+                   <div class="tm-publication-hubs__container" data-test-id="articleHubsList">
+                    <div class="tm-publication-hubs">
+                     <!--[--><span class="tm-publication-hub__link-container"><a href="/ru/hubs/infosecurity/" class="tm-publication-hub__link"><!--[--><span>Информационная безопасность</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><!--]-->
+                    </div>
+                   </div>
+                   <div class="tm-article-labels" data-test-id="articleLabels">
+                    <div class="tm-article-labels__container">
+                     <div class="tm-publication-label tm-publication-label_variant-review">
+                      <span>Обзор</span>
+                     </div><!--[--><!--]-->
+                    </div>
+                   </div><!----><!---->
+                  </div>
+                 </div><!--[--><!---->
+                 <div class="tm-article-body" data-gallery-root lang="ru">
+                  <div>
+                   <!--[--><!--]-->
+                  </div>
+                  <div id="post-content-body">
+                   <div>
+                    <div class="article-formatted-body article-formatted-body article-formatted-body_version-2">
+                     <div xmlns="http://www.w3.org/1999/xhtml">
+                      <h3>Как работает FunCaptcha и чем она отличается от классических капч</h3>
+                      <p>Продолжаем путешествовать по миру капч (Фантастические капчи и где они обитают, а также способы борьбы с ними), и сегодня на очереди очередной “крепкий орешек” во вселенной капч - FunCaptcha (Arkose Labs).</p>
+                      <p><strong>FunCaptcha</strong> – это тип CAPTCHA от компании Arkose Labs, который предлагает пользователям небольшие головоломки вместо привычных задач вроде распознавания текста или выбора картинок с автобусами. В классических капчах (например, reCAPTCHA) проверка часто основывается на распознавании искаженных символов или простых изображений. Arkose Labs пошли другим путем: их “развлекательные” капчи представляют интерактивные задания с 3D-объектами, логическими головоломками и аудио-вопросами​. Такой подход призван быть юзер френдли для человека, но должен затруднить жизнь ботам.</p>
+                      <p>Типичные задания FunCaptcha бывают следующими:</p>
+                      <ul>
+                       <li>
+                        <p><strong>Поворот изображения</strong> – Пользователю показывают перевернутый объект (например, животное) и предлагают повернуть его в правильное положение с помощью стрелок. Это проверяет пространственное мышление – то, с чем у алгоритмов могут возникнуть сложности​.</p></li>
+                      </ul>
+                      <figure class="">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/340/5ee/8b0/3405ee8b02f86785cf359afb0a4a741e.jpg" width="431" height="412" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/340/5ee/8b0/3405ee8b02f86785cf359afb0a4a741e.jpg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/340/5ee/8b0/3405ee8b02f86785cf359afb0a4a741e.jpg 781w" loading="lazy" decode="async">
+                      </figure>
+                      <ul>
+                       <li>
+                        <p><strong>Выбор объектов по условию</strong> – Например, нужно выбрать из набора изображений те, на которых выполнено определенное условие. Встречается головоломка с игральными кубиками: <em>«выберите пару костей, сумма очков на верхних гранях которых равна заданному числу»</em>. Ботам сложно <strong>понять контекст</strong> картинки и логически соотнести объекты​ (кстати, пресловутое число 16 пошатнуло не одно психическое состояние разгадывающего).</p></li>
+                      </ul>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/8e4/7b5/7d4/8e47b57d43d5caf2323a3034f34dcf6c.jpeg" width="1000" height="400" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/8e4/7b5/7d4/8e47b57d43d5caf2323a3034f34dcf6c.jpeg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/8e4/7b5/7d4/8e47b57d43d5caf2323a3034f34dcf6c.jpeg 781w" loading="lazy" decode="async">
+                      </figure>
+                      <ul>
+                       <li>
+                        <p><strong>Интерактивные задачи</strong> – В некоторых вариантах нужно <strong>перемещать</strong> элементы. Например, перетащить кусочек пазла в нужное место или провести персонажа в заданную точку по схеме. Тут проверяется способность узнавать паттерны и следовать инструкциям, что затруднительно для скриптов​.</p></li>
+                       <li>
+                        <p><strong>Аудио-загадки</strong> – В отличие от классических аудио-капч «скажите слова/цифры с записи», Arkose предлагает вопросы на слух. Например: “какая из аудиозаписей – звук барабанов?” или “где говорящий – единственный человек?”​. Пользователь должен прослушать несколько звуков и выбрать правильный – это проверяет понимание содержания, а не распознавание текста, что гораздо тяжелее автоматизировать.</p>
+                        <figure class="">
+                         <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/bfe/96a/20e/bfe96a20e4ff303a9f792e3ec8c10ab9.jpeg" width="275" height="183" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/bfe/96a/20e/bfe96a20e4ff303a9f792e3ec8c10ab9.jpeg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/bfe/96a/20e/bfe96a20e4ff303a9f792e3ec8c10ab9.jpeg 781w" loading="lazy" decode="async">
+                        </figure></li>
+                      </ul>
+                      <p>В итоге FunCaptcha заметно отличается от традиционных капч. Она использует <strong>игровые сценарии и 3D-графику</strong>, избегая шаблонных задач. Инструкции обычно понятны без слов (через изображение-указку или интуитивный интерфейс), чтобы пользователи любой языковой среды могли решить задачу легко​. Такой подход повышает удобство для реальных людей (капча воспринимается скорее как мини-игра), но осложняет автоматическое распознавание, поскольку боту нужно <em>понимать</em> содержание задания, а не просто читать текст. Неудивительно, что многие разработчики, сталкиваясь с этой системой, в шутку называют FunCaptcha «<strong>факкапча</strong>» – намекая, сколько проблем она может доставить ботам и тем, кто пытается их написать.</p>
+                      <h3>Почему FunCaptcha считается сложной для автоматизации</h3>
+                      <p>“FunCaptcha решение” оказалось гораздо труднее реализовать, чем обход классических текстовых капч. На то есть несколько причин:</p>
+                      <ul>
+                       <li>
+                        <p><strong>Вариативность и частое обновление заданий.</strong> Arkose Labs постоянно добавляет новые виды головоломок и вариации. По официальным данным, одна только серия Match Key-челленджей (обновленная версия FunCaptcha) может насчитывать свыше <strong>1250 вариантов одного задания</strong>​. Это значит, что бот не может быть “натаскан” на ограниченный набор картинок – постоянно будут встречаться новые сцены, образы и правила. Для уверенного распознавания потребовалось бы собрать и разметить сотни тысяч изображений (Arkose Lab оценивает свою базу примерно в <strong>500 000 изображений</strong> для обучения ML-модели на уровне их сложнейших капч)​ – очевидно что это колоссальная трудозатрата.</p></li>
+                       <li>
+                        <p><strong>Интерактивность и контекст.</strong> Боту недостаточно распознать отдельный объект – нужно <strong>понять инструкцию и выполнить действия</strong>. Например, повернуть фигуру на нужный угол или выбрать правильно все подходящие картинки из нескольких. Скрипты, основанные на шаблонах или компьютерном зрении, могут сбиваться, если меняется угол объекта, освещение или формулировка задачи. Требуется настоящее <strong>компьютерное зрение + логика</strong>, близкие к человеческому, что выходит за рамки простого OCR.</p></li>
+                       <li>
+                        <p><strong>Дополнительные защиты Arkose (MatchKey).</strong> Arkose Labs внедряет механизм <em>challenge-response</em> под названием MatchKey, делающий автоматизацию ещё сложнее. По сути, помимо решения видимой задачи, браузер должен доказать, что он “честно” исполняет заложенный сценарий. Например, при инициализации сессии капча выдает уникальный скрипт (по URL <strong>dapib</strong>), который должен вычислить специальный параметр ответа – часто называют <strong>tguess</strong> или match key​. Этот скрипт привязан к конкретной сессии и меняется во времени, выступая своего рода “доказательством работы”: без его выполнения даже правильно угаданное решение не будет принято сервером. Для бота это огромная проблема – приходится исполнять чужой JS-код или пытаться эмулировать его логику, а скрипты регулярно обновляются.</p></li>
+                       <li>
+                        <p><strong>Отпечатки устройства и окружения.</strong> Чтобы отличить скрипт от реального пользователя, Arkose собирает множество параметров окружения: User Agent, разрешение экрана, время рендеринга WebGL, движение мыши, набранные ранее токены и пр. Эти данные могут упаковываться в скрытый параметр (на некоторых сайтах он называется <strong>blob</strong>), который передается на сервер​. Сгенерировать корректный <em>blob</em> без запуска настоящего браузера непросто. Если скрипт просто шлет запросы к API Arkose, минуя браузер, платформа может определить аномалии (например, нехарактерные задержки, отсутствие определенных событий) и повысить сложность задания или вовсе отклонить попытку.</p></li>
+                       <li>
+                        <p><strong>Ограничение по времени и попыткам.</strong> FunCaptcha не всегда дает неограниченное время на решение. Если пользователь (или бот) слишком долго “думает”, задача может смениться на другую. Так бывает, что при решении капчи повторно (спустя ~15 секунд) Arkose выдавала новую серию испытаний​. Для автоматизации это означает, что <strong>слишком медленное решение = неудача</strong>: скрипт может получить корректный ответ, а сервер уже потребует следующий. Более того, при нескольких неверных попытках подряд система может усилить проверку или совсем заблокировать дальнейшие запросы. То есть долгий отклик критичен!</p></li>
+                      </ul>
+                      <p>Все эти факторы делают FunCaptcha одной из самых <strong>устойчивых систем к бот - трафику</strong>. Если классическую капчу можно решить, подав изображение на OCR или использовав публичный API, то здесь приходится воспроизводить поведение человека в целом: от движка браузера и взаимодействия с 3D-графикой до логического “мышления”. Тем не менее, задача автоматизации «факапчи» актуальна для многих – рассмотрим, какие данные нужны для ее обхода и какими способами вообще можно попытаться ее распознать.&nbsp;</p>
+                      <h3>Получение ключевых параметров капчи на сайте</h3>
+                      <p>Прежде чем пытаться решить FunCaptcha автоматически, нужно получить с целевого сайта данные, необходимые для запроса к Arkose Labs. При интеграции FunCaptcha сайт-владелец использует <strong>публичный ключ</strong> Arkose и связанный с ним адрес сервиса Arkose (так называемый <strong>Service URL</strong> или коротко surl). Эти параметры генерируются Arkose Labs для каждого клиента (сайта) и зашиты в код капчи на странице.</p>
+                      <p>Как их обнаружить? Обычно публичный ключ – это GUID, который можно найти в HTML-разметке страницы. Например, часто на странице присутствует скрытый элемент ввода с именем fc-token (или похожим), в значении которого содержатся необходимые данные. Вот пример кода страницы с указанными данными (фрагмент HTML):</p>
+                      <pre><code class="python">&lt;input type="hidden" id="FunCaptcha-Token" name="fc-token"</code></pre>
+                      <pre><code class="python">&nbsp;value="702178f80cd6ade39.2875608305|r=eu-west-1|...|pk=2CB16598-CB82-4CF7-B332-5990DB66F3AB|...|surl=https%3A%2F%2Fclient-api.arkoselabs.com|..."&gt;</code></pre>
+                      <p>Здесь присутствует строка value, где видно <code>pk=&lt;...&gt;</code> – это и есть <code><strong>public key</strong></code>, а также surl= – URL сервиса Arkose, закодированный в виде ссылки. В данном примере публичный ключ равен <code>2CB16598-CB82-4CF7-B332-5990DB66F3AB</code>, а surl – <a href="https://client-api.arkoselabs.com" rel="noopener noreferrer nofollow"><code>https://client-api.arkoselabs.com</code></a> (дефолтный адрес API Arkose)​. На других сайтах surl может быть кастомным поддомена Arkose (например, <a href="http://blizzard-api.arkoselabs.com" rel="noopener noreferrer nofollow"><code>blizzard-api.arkoselabs.com</code></a> для сервисов Blizzard и т.п.), поэтому лучше всегда его извлекать, если он указан.</p>
+                      <p>Альтернативный способ – поиск параметра <code>data-pkey</code> в HTML. Некоторые сайты вставляют виджет Arkose через контейнер <code>&lt;div data-pkey="PUBLIC_KEY" ...&gt;</code> или через JavaScript-конфиг. В любом случае, <strong>публичный ключ (Open Key)</strong> и <strong>адрес сервиса (</strong><code><strong>surl</strong></code><strong>)</strong> можно найти через инструменты разработчика, поиск по исходному коду страницы или анализ сетевых запросов при загрузке капчи​. Также может потребоваться дополнительный параметр <code><strong>blob</strong> </code>(если сайт его использует) – как правило, он передается как часть запроса при инициации капчи и может храниться в том же скрытом поле или генерироваться скриптом Arkose. Если blob необходим, его наличие и значение обычно видно в исходном коде страницы (в JavaScript переменных) или можно отловить в DevTools (по запросу к <code>.../fc/gfct/</code> на Arkose API).</p>
+                      <p>Итак, получив <strong>public key</strong> (открытый ключ сайта) и опционально <code><strong>surl</strong></code><strong> </strong>и <code><strong>blob</strong></code>, у нас есть данные для обращения к сервису распознавания капчи или напрямую к Arkose (если решение будет настроено без использования сервиса распознавания капчи). Теперь давайте рассмотрим, какие есть подходы к распознаванию FunCaptcha автоматически.</p>
+                      <h3>Как распознать "факапчу": обзор методов обхода</h3>
+                      <p>Существует несколько стратегий автоматического решения FunCaptcha. Условно их можно разделить на три категории:</p>
+                      <ol>
+                       <li>
+                        <p>Использовать <strong>сторонние платные сервисы</strong> распознавания (anti-captcha сервисы), которые берут на себя всю сложную работу.</p></li>
+                       <li>
+                        <p>Использовать <strong>open-source или DIY-решения (самостоятельные скрипты)</strong>, создавая своего бота – например, задействовать распознавание аудио или обученные нейросети, либо скрипты из открытых репозиториев.</p></li>
+                       <li>
+                        <p>Пойти путём <strong>эмуляции пользователя в браузере</strong> – с помощью Selenium или другого инструмента автоматизировать сам браузер, возможно, вкупе с первым или вторым подходом.</p></li>
+                      </ol>
+                      <p>Рассмотрим плюсы, минусы и реализации каждого из подходов.</p>
+                      <h4>Решение через платные сервисы (2Captcha, Rucaptcha, SolveCaptcha и др.)</h4>
+                      <p>Самый простой способ для разработчика – отдать задачу решения капчи на аутсорсинг специальному сервису. Существуют сервисы распознавания капчи (Rucaptcha, <strong>2Captcha</strong>, SolveCaptcha, DeathByCaptcha, etc.), которые специализируются на обходе капч. Как правило, они работают по API: вы отправляете им необходимые параметры капчи, сервис на своей стороне ее решает (либо с помощью работников-людей, либо с помощью нейросетей, либо комбинированно) и возвращает готовый <strong>токен ответа</strong>.</p>
+                      <p>Для FunCaptcha большинство таких сервисов поддерживают <em>метод распознавания через токен</em>. Он заключается в следующем:</p>
+                      <ol>
+                       <li>
+                        <p>Вы извлекаете с целевого сайта <code><strong>public key</strong></code> и <code><strong>surl</strong></code> (как описано выше). Эти значения понадобятся сервису распознавания.</p></li>
+                       <li>
+                        <p>Делаете запрос к API сервиса: указываете метод = funcaptcha, передаете публичный ключ (параметр <code>publickey</code>), URL Arkose (<code>surl</code>) и <strong>адрес страницы</strong>, на которой появилась капча (<code>pageurl</code>)​. Также передать свой API-ключ для авторизации на сервисе.</p></li>
+                       <li>
+                        <p>Сервис ставит вашу задачу в очередь на решение. Через их API вы получите обратно идентификатор задачи (например, ID капчи).</p></li>
+                       <li>
+                        <p>Спустя некоторое время (обычно 15–30 секунд) вы опрашиваете API сервиса с этим ID, чтобы узнать результат. Если капча уже решена, сервис вернет строку-токен вида например: <code>3084f4a302b176cd7.96368058|r=ap-southeast-1|...|surl=</code><a href="https://funcaptcha.com%E2%80%8B" rel="noopener noreferrer nofollow"><code>https://funcaptcha.com</code>​</a>. Если еще нет – ответ будет что-то вроде <code>CAPCHA_NOT_READY</code>, тогда нужно подождать и повторить запрос через пару секунд​.</p></li>
+                       <li>
+                        <p>Полученный <strong>response token</strong> вставляется обратно в форму на сайте. Обычно на целевой странице есть скрытое поле (например, <code>fc-token</code>), куда нужно подставить полученный токен вместо изначального значение, после чего можно отправлять форму или вызывать завершающий запрос в приложение (нажатие кнопки подтверждения и т.п.)​. Сервер сайта проверит токен с помощью Arkose API – и при валидном токене вы пройдете капчу.</p></li>
+                      </ol>
+                      <p>На практике использование такого API можно реализовать несколькими строчками кода. Пример на Python с библиотекой 2Captcha:</p>
+                      <pre><code class="python">from twocaptcha import TwoCaptcha
+
+solver = TwoCaptcha("ВАШ_API_KEY_2CAPTCHA")
+
+result = solver.funcaptcha(sitekey=PUBLIC_KEY, url=PAGE_URL, surl=SURL)
+
+token = result['code'] &nbsp; # полученный токен решения FunCaptcha
+
+print("FunCaptcha token:", token)</code></pre>
+                      <p>Либо без сторонней библиотеки, просто HTTP-запросами:</p>
+                      <pre><code class="python"># 1. Отправляем капчу на решение
+
+url = f"http://2captcha.com/in.php?key={API_KEY}&amp;method=funcaptcha&amp;publickey={PUBLIC_KEY}&amp;surl={SURL}&amp;pageurl={PAGE_URL}"
+
+captcha_id = requests.get(url).text.split('|')[1]
+
+# 2. Ждем и запрашиваем результат
+
+time.sleep(20)
+
+res = requests.get(f"http://2captcha.com/res.php?key={API_KEY}&amp;action=get&amp;id={captcha_id}").text
+
+while "CAPCHA_NOT_READY" in res:
+
+&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(5)
+
+&nbsp;&nbsp;&nbsp;&nbsp;res = requests.get(...).text
+
+token = res.split('|', 1)[1]&nbsp; # токен решения после "OK|"</code></pre>
+                      <p>Подобным образом работают и другие сервисы. Различия лишь в деталях API – где-то используются POST-запросы с JSON, где-то GET – но суть одна: передать ключи, получить готовый ответ. Крупнейшие платформы (2Captcha, SolveCaptcha и др.) имеют готовые <strong>SDK и библиотеки</strong> под популярные языки, что упрощает интеграцию.</p>
+                      <p><strong>Что происходит “под капотом” сервисов?</strong> Чаще всего они либо привлекают к решению реальных людей, либо используют свои нейросетевые модели (или гибрид). Например, 2Captcha и Anti-Captcha исторически опирались на сеть из работников: ваш запрос с параметрами капчи фактически транслируется на их внутренний интерфейс, где оператор видит ту же головоломку (с помощью эмуляции браузера) и решает ее вручную. После этого система возвращает вам токен. Однако для FunCaptcha ручной труд – не единственный вариант: появились сервисы, утверждающие, что применяют <strong>AI для решения Arkose</strong>. Один из них – <strong>SolveCaptcha</strong>. По отзывам, SolveCaptcha в 2024 году выделялся наиболее быстрым решением FunCaptcha за счет AI-алгоритмов​. То есть вместо того, чтобы ждать ~20 секунд, ответ иногда приходит за 5–10 секунд, потому что задачу решает не человек, а обученная модель (распознающая изображение и эмулирующая нужные действия).</p>
+                      <p>์Также, SolveCaptcha заявляют о комбинированном подходе: сначала пытаются решить автоматически, а если не получается – подключают человека​. Для нас, как пользователей API, это прозрачно – мы просто получаем результат или ошибку. Стоимость решения FunCaptcha у разных сервисов отличается, но она выше чем за простую капчу: в среднем порядка $2–3 за 1000 решений при ручном распознавании (точная цена зависит от выбранного сервиса и срочности) и до 1 доллара при автоматическом​. Но в расчете на одну штуку это всего несколько десятых цента – часто дешевле, чем тратить время на разработку собственного алгоритма.</p>
+                      <p><strong>Ограничения метода:</strong> главный минус – зависимость от стороннего сервиса и время ожидания. Несмотря на заявления о “мгновенном” решении, на практике среднее время ~20 секунд (при высокой нагрузке – дольше). Для интерактивных задач Arkose это критично: как я писал выше, если затянуть с ответом, капча может уже смениться. Впрочем, сервисы стараются учитывать это – многие решают FunCaptcha <strong>без прокси</strong> от имени своих серверов​, чтобы скорость была максимальной. Если сайт-цель строго привязывает решение к IP пользователя, может потребоваться режим с прокси: например, Anti-Captcha позволяет отправить задачу в браузер работника через указанный прокси, чтобы Arkose видела тот же IP, что и у пользователя бота​. Это дороже и дольше по времени, но иногда оправдывает себя.</p>
+                      <p>Еще одно ограничение – <strong>новые виды задач.</strong> Когда Arkose выпускает новый тип головоломки, могут пройти дни или недели, прежде чем сервисы распознавания капчи научатся его решать. Например, в начале 2023 появилась версия FunCaptcha с так называемым MatchKey, и первые недели некоторые авто-солверы не справлялись – приходилось ждать обновления с их стороны​. В такие моменты бот-разработчики особенно чувствуют зависимость от внешнего решения. Тем не менее, для большинства практических случаев использование готовых сервисов – наиболее быстрый и надежный путь обойти “факапчу” без глубокого погружения в ее механику.</p>
+                      <h4>Open-source и DIY-решения: аудио-решатели, нейросети, скрипты GitHub</h4>
+                      <p>Вокруг FunCaptcha существует сообщество энтузиастов, которые пытаются создавать свои решения и делятся наработками. Рассмотрим несколько направлений таких DIY-подходов:</p>
+                      <p><strong>1. Распознавание через аудио.</strong> Исторически у многих капч слабое место – аудиоверсия (для слабовидящих). Некоторые сайты с FunCaptcha позволяют переключиться на аудио-вариант задания. Ранние версии Arkose действительно имели относительно простые аудио-голосовки (произнесенные цифры и т.п.). Это породило скрипты, которые автоматизировали аудио-режим: например, проект Funcaptcha-Audio-Solver загружает аудио-файл с Arkose, прогоняет его через сервис распознавания речи (Google Speech-to-Text или аналог) и отправляет расшифрованный ответ назад в капчу. Такой скрипт работает <strong>только на сайтах, где доступен аудио-вариант</strong> и где аудио-загадка сводится к распознаванию речи (цифр, букв)​. На многих популярных сайтах аудио-режим FunCaptcha может быть отключен или же сами аудио-задания сделаны в новом формате (например, “выберите звук, где поет одна птица” – и Speech-to-Text тут не поможет). Поэтому хотя open-source решение через аудио и существует, его применение ограничено. К тому же Arkose может определять подозрительно быстрое переключение на аудио и ответ за доли секунды как нечеловеческое поведение.</p>
+                      <p><strong>2. Нейросетевые решения (Computer Vision).</strong> Более амбициозное направление – обучить модель распознавать картинки FunCaptcha. Некоторые энтузиасты пробовали создавать датасеты и тренировать нейросети для конкретных задач, например, определять угол поворота животных или читать числа на игральных костях. Отдельные успехи достигались: в сети появлялись видео, где самодельная программа решает “вращающуюся капчу” за счет анализа изображения и эмуляции нажатия стрелок. Но, как отмечалось ранее, Arkose регулярно увеличивает вариативность. На форуме BlackHatWorld я находил такой кейс: у разработчика была собственная нейросеть, которая успешно решала несколько видов FunCaptcha, пока Arkose Labs не обновили механизм – после обновления (т. н. новая версия с MatchKey) решение сломалось, и автоматизация остановилась​. Основные трудности здесь – недостаток данных (нужно много примеров капчи для обучения) и громоздкость поддержки: как только выходит новый тип головоломки, модель требует доработки. Тем не менее, некоторые сервисы (например, SolveCaptcha, NopeCHA) инвестируют именно в ML-решения, что доказывает осуществимость подхода, хоть и ценой больших ресурсов.</p>
+                      <p>Иногда нейросетевой подход сочетается с аудио: мне встречались описания попыток классифицировать <em>тип звука</em> (например, отличить звук барабанов от гудка) с помощью ML-моделей, чтобы решать новые аудио-вопросы Arkose. Но публичных открытых решений такого плана пока нет – в основном это внутренние разработки компаний и разработчиков энтузиастов.</p>
+                      <p><strong>3. Скрипты и библиотеки на GitHub для обхода механик Arkose.</strong> Помимо непосредственно распознавания головоломок, есть технические задачи: например, сгенерировать валидный <strong>fingerprint</strong> браузера или вычислить нужный <strong>tguess</strong> (match key) для ответа. Сообщество исследовало JS-код Arkose и выложило ряд утилит. Например, репозиторий <strong>unfuncaptcha</strong> содержит инструменты для работы с <strong>BDA (browser data)</strong> – можно формировать корректный fingerprint-пакет, чтобы капча “доверяла” окружению. Другой модуль tguess позволяет подсовывать Arkose Labs сгенерированный параметр проверки на основе того самого скрипта dapib​. Эти библиотеки не решают капчу целиком, но помогают тем, кто пишет своего бота: их применяют вместе с компьютерным зрением или даже с ручным решением. Проще говоря, open-source скрипты берут на себя сложные части (эмулировать поведение браузера, обойти защиту Arkose), а разработчик может сосредоточиться на распознавании задания.</p>
+                      <p>Пример: можно запустить скрытый браузер (Chromium) через Puppeteer, загрузить FunCaptcha, с помощью скриптов с GitHub <strong>отключить некоторые проверки Arkose</strong> (подсунув свой fingerprint), извлечь изображение задания (например, спарсить &lt;canvas&gt; или скриншот), отправить это изображение на свой решатель или даже в сервис типа SolveCaptcha (который по изображению вернет координаты клика​), затем эмулировать клики или нажатия стрелок в браузере. Такие гибридные схемы – скорее исследовательские, их реализуют продвинутые разработчики под свои нужды. В открытом доступе есть проекты, демонстрирующие подобную автоматизацию, однако они часто быстро устаревают, поскольку Arkose закрывает выявленные лазейки.</p>
+                      <p><strong>Вывод по DIY:</strong> Самостоятельно решить FunCaptcha “с нуля” – очень нетривиальная задача. Open-source наработки могут покрыть отдельные части проблемы, но требуют времени на разбирательство и настройку. Аудио-решатели просты, но подходят далеко не везде. Нейросети перспективны, но требуют большого объема данных и вычислительных мощностей для обучения, не говоря уже о поддержке. Поэтому DIY-подход оправдан либо в учебных/исследовательских целях, либо если вы работаете над серьезным проектом, где масштаб и безопасность диктуют отказаться от платных сервисов и создать свое решение (например, в антиспам-системах крупных компаний). В остальных случаях, скорее всего, выгоднее воспользоваться уже готовыми сервисами или хотя бы их API, чем пытаться полностью воспроизвести человеческое поведение своими силами.</p>
+                      <h4>Автоматизация с помощью браузера (Selenium и др.)</h4>
+                      <p>Третий подход – не пытаться “разгадать” капчу интеллектуально, а <strong>эмулировать реального пользователя</strong>, выполняющего задание. По сути, это напоминает автоматизацию UI-тестирования: мы программно управляем настоящим браузером (через Selenium, Playwright, Puppeteer), который загружает страницу и капчу, и стараемся пройти ее так же, как прошел бы человек.</p>
+                      <p>Простейший вариант – вообще не решать автоматически, а вывести капчу человеку-оператору. Например, некоторые боты способны при возникновении FunCaptcha передавать управление на удаленный интерфейс, где сидит сотрудник, решает головоломку, после чего скрипт продолжается. Но это уже не полностью автоматическое решение, к тому же такая схема мало масштабируется.</p>
+                      <p>Нас больше интересует <strong>полностью автоматизированный сценарий в браузере</strong>. Возможны разные реализации:</p>
+                      <ul>
+                       <li>
+                        <p><strong>Комбинация с сервисом распознавания.</strong> Здесь Selenium используется, чтобы корректно загрузить капчу и дождаться появления нужных элементов (public key, etc.). Далее скрипт может собрать параметры и отправить задачу в 2Captcha (как описано ранее) или в SolveCaptcha, получить токен и вставить его на странице. То есть браузер выполняет роль “держателя контекста”, а решает задачу внешний сервис. Этот способ довольно надежен: он гарантирует, что все нужные JS Arkose отработают (сгенерируют fingerprint, session и пр.), а мы просто подставим готовое решение. В среде Selenium можно прописать ожидание (WebDriverWait) появления скрытого поля fc-token, затем заполнить его решенным токеном и выполнить сабмит. Такой метод часто применяют на практике, особенно когда нужно автоматизировать целый сценарий взаимодействия с сайтом, а не только капчу.</p></li>
+                       <li>
+                        <p><strong>Полностью свой решатель капчи внутри браузера.</strong> Более сложный вариант – писать логику решения в коде, который управляет браузером. Например, определить, что за задача отображена, и выполнить соответствующие действия:</p>
+                        <ul>
+                         <li>
+                          <p>Если это головоломка с вращением объекта – проанализировать изображение (можно получить canvas из DOM или сделать скриншот элемента) и вычислить, насколько повернут объект. Были попытки вычислять угол наклона животных с помощью OpenCV-шаблонов или специализированных моделей. Затем эмулировать нажатия стрелок в Selenium (посылая send_keys или через JS) нужное число раз и нажать "Verify".</p></li>
+                         <li>
+                          <p>Если задача с выбором картинок (например, “выберите все изображения, на которых есть X”) – можно вытащить каждое подизображение, прогнать через модель классификации (или воспользоваться API типа SolveCaptcha, который по base64-картинке вернет, какие из 6 изображений отмечать​), а потом с помощью Selenium кликнуть по нужным элементам.</p></li>
+                         <li>
+                          <p>В случае сложных многоэтапных игр (как загадка с местами в самолете, где нужно перемещать фигурку по рядам) – это еще больший вызов. Потребовалось бы распознавать текстовые метки (ряд/место), понимать, куда кликать стрелками. Теоретически возможно прописать детерминированный алгоритм под конкретную игру, но каждое новшество Arkose свело бы такую систему на нет.</p></li>
+                        </ul></li>
+                      </ul>
+                      <p>Как видно, <strong>универсальный браузерный бот</strong> для Arkose почти сопоставим по сложности с написанием DIY-решения из предыдущего раздела. Разница лишь в том, что тут мы используем реальный браузер (минимизируя проблемы с fingerprint и MatchKey, т.к. штатный JS Arkose отрабатывает как у обычного пользователя). Но сам этап “принятия решения” все равно ложится на наш код.</p>
+                      <p>Зато управление браузером дает некоторые преимущества:</p>
+                      <ul>
+                       <li>
+                        <p>Можно собирать данные “на лету” (например, делать скриншоты), отлаживать по шагам, визуально видеть, что капча отобразилась.</p></li>
+                       <li>
+                        <p>Selenium/Playwright позволяют задать профиль браузера, чтобы выглядело более правдоподобно (загрузить необходимые куки, включить видео/звук для решения аудио).</p></li>
+                       <li>
+                        <p>В случае с комбинацией сервисов: можно заранее запускать процесс решения параллельно. Например, открываем страницу, сразу вытаскиваем ключи и шлем на 2Captcha, пока капча анимировано отображается – возможно, часть времени перекроется и общее ожидание будет меньше.</p></li>
+                      </ul>
+                      <p><strong>Ограничения:</strong> чисто браузерная автоматизация очень чувствительна к изменениям интерфейса. Любое обновление фронтенда Arkose (изменение селекторов, логики переходов между этапами) может сломать скрипт. Также браузер – это ресурсоемко: запускать сотни потоков Selenium, каждый из которых крутит 3D-анимацию, нереально (в то время как условная 2Captcha может параллельно решать тысячи капч на своих серверах). Поэтому такой подход годится либо для относительно небольшого числа задач, либо в случаях, когда интеграция с внешними API недопустима по соображениям безопасности и тп.</p>
+                      <p>На практике часто используется <strong>гибридный</strong> вариант: браузер + капча-сервис. Он относительно прост: Selenium скрипт логирует в консоль или файл найденный public key и прочие параметры, затем внешняя система (человек или другой процесс) вызывает API распознавания, получает токен и вводит его через Selenium. Такой сценарий распространен среди тех, кто делает ботов для специфических целей (регистрация аккаунтов, парсинг данных за защищенными формами) – он уменьшает риск ошибок, связанных с fingerprint, поскольку <strong>браузер выполняет “честное” прохождение</strong>, и нам остается только обеспечить правильный токен решения.</p>
+                      <h3>Ограничения и сложности методов обхода</h3>
+                      <p>Подведем итог ограничениям каждого подхода:</p>
+                      <ul>
+                       <li>
+                        <p><strong>Сервисы распознавания:</strong> зависимость от сторонней платформы, время ожидания решения (обычно 15–30 сек), возможная неработоспособность при вводе новых капч Arkose (пока сервис не адаптируется). Также есть небольшой риск, что сайт узнает о факте использования solver-сервиса – например, Arkose передает сайту информацию об IP решающего. Если вы используете решение <strong>без прокси</strong>, сайт может увидеть, что капчу решил не ваш IP, а какой-то дата-центр​. В некоторых случаях это может привести к дополнительной проверке. Решение – использовать режим с прокси (когда сервис решает с IP вашего региона) или выбирать сервисы, заявляющие полную незаметность. Стоимость – тоже фактор: если вы решаете тысячи капч ежедневно, даже $3 за 1000 превращаются в заметные суммы.</p></li>
+                       <li>
+                        <p><strong>Open-source/самописное решение:</strong> требует высокой технической экспертизы и времени. Аудио-способ ограничен доступностью аудио-варианта и простотой самих загадок (современные аудио Arkose слишком сложны для тривиального распознавания). Нейросетевые решения – длительная разработка, постоянная поддержка и обновление модели. Кроме того, тестировать такую систему сложно: для отладки приходится воспроизводить работу капчи в контролируемых условиях, что само по себе непросто (Arkose может не давать много попыток с одного IP, либо придётся эмулировать их API). В результате многие публичные скрипты либо устарели, либо решают лишь часть задачи (например, только генерируют токены, но не распознают изображение).</p></li>
+                       <li>
+                        <p><strong>Автоматизация браузера:</strong> основной минус – <strong>низкая скорость и масштабируемость</strong>. Один браузер выполняет одну капчу за раз, нагружая CPU/GPU. Масштабировать на десятки потоков – тяжело. Кроме того, Selenium веб-драйверы иногда детектируются – Arkose вполне может определить Headless Chrome и либо усложнить для него задачу, либо вовсе блокировать (правда, Arkose заявляет соответствие WCAG и поддержку скринридеров, так что полностью запрещать автоматизацию им невыгодно). Но headless-браузер без правильного приведения окружения может выдавать аномальные параметры (например, отсутствует реальная видеокарта для WebGL), что повысит подозрения. Все это делает подход нуждающимся в тонкой настройке.</p></li>
+                      </ul>
+                      <p>Важно понимать, что <strong>ни один метод не дает 100% гарантии прохода Arkose</strong>. Разработчики FunCaptcha активно борются с обходом: вводят новые головоломки, анализируют траектории курсора, могут задавать последовательность из нескольких этапов (например, решить 2–3 мини-игры подряд). Часто реализуется принцип: если есть сомнения в трафике, капча становится сложнее или повторяется больше раз. Поэтому у бота может уйти, скажем, 5 решенных токенов, чтобы наконец система сочла его успешным (после отправки токена сайт иногда возвращает новую капчу – возможно, как реакцию на подозрительность)​. Это нужно учитывать при планировании автоматизации – быть готовым к нескольким итерациям или отказу.</p>
+                      <p>С другой стороны, Arkose Labs стремится не задушить пользователя: слишком жесткая капча отпугнет и “хороших” юзеров. Они балансируют между сложностью и юзабилити​. Для нас это означает, что при умеренных попытках обхода шанс успеха все же остается – особенно если грамотно комбинировать методы.</p>
+                      <h3>MatchKey и новые меры защиты Arkose Labs</h3>
+                      <p>Отдельно стоит поговорить о <strong>MatchKey</strong> – так Arkose Labs называет свой обновленный комплекс защит для капч нового поколения. По сути, MatchKey – маркетинговое название улучшенной FunCaptcha, вобравшей в себя все лучшие практики против ботов. Что включает этот механизм:</p>
+                      <ul>
+                       <li>
+                        <p><strong>Ещё более разнообразные задания.</strong> Как уже упоминалось, 3D-капчи Arkose теперь генерируются с огромным числом вариаций (более 1250)​. Например, в задачах с поворотом могут меняться модели (разные животные, предметы), фон, направление, дополнительный отвлекающий контент. В логических задачах (“найди правильный объект”) – множество комбинаций и совершенно разный визуал. Такая вариативность бьет по методам машинного зрения: решить одно-два статичных задания можно, но покрыть тысячи вариантов – практически нереально без огромной обучающей выборки​.</p></li>
+                       <li>
+                        <p><strong>Комбинация мультимодальных проверок.</strong> MatchKey-челленджи могут объединять несколько типов проверок. Например: сначала пользователь решает визуальную головоломку, сразу вслед за ней – короткую аудио-загадку. Или в процессе визуальной задачи (перемещения объекта) также должно срабатывать некоторое скрытое условие (например, последовательность действий, которую бот повторить не сможет). Таким образом, для прохождения нужно одновременно преуспеть на нескольких фронтах, что резко снижает вероятность случайного автоматического обхода.</p></li>
+                       <li>
+                        <p><strong>Динамический ключ ответа (match key).</strong> Под этим подразумевается уже упомянутый ранее принцип: простой ответ “да/нет” на сервер не отправляется. Вместо этого ответ снабжается криптографическим или вычисляемым <em>ключом</em>, подтверждающим, что решение получено честно. Arkose Labs на своем сайте заявляет MatchKey как “самую сильную CAPTCHA из существующих” именно благодаря этой challenge-response схеме​. Для бот-разработчика это означает необходимость запускать сторонний код и вычислять дополнительный параметр для каждого ответа. Как пример – механизм <strong>tguess</strong>: при каждой попытке вращения объекта Arkose дает уникальный скрипт, который должен обработать ваш “guess” (угаданный ответ) и выдать контрольное значение​. Без этого контрольного значения сервер не примет решение как верное. Проще говоря, даже если бот визуально определил правильно, куда кликать, ему нужно еще сгенерировать правильный “сопровождающий ключ”, тесно связанный с внутренней логикой Arkose. Это значительно повышает барьер входа для автоматизации.</p></li>
+                       <li>
+                        <p><strong>Улучшенная работа с аудио.</strong> Arkose MatchKey включает более <strong>20 видов аудио-вопросов</strong>​, отходя от простого диктанта. Например, как уже было, пользователь должен прослушать несколько звуков и ответить на вопрос, который предполагает понимание чему звук принадлежит (где звук пчелы, где барабаны и т.д.). Причем аудио генерируются с разными шумами, вариациями, возможно даже меняются от сеанса к сеансу. Они утверждают, что это крупнейшее разнообразие аудио-капч в индустрии​. Это значит, что стандартный обходной вариант – скачал аудио и отдал Speech API – больше не помогает. Нужно решать задачу аудиального распознавания на уровне классификации смыслов, что близко к задаче обучения ИИ.</p></li>
+                       <li>
+                        <p><strong>Тестирование против ботов.</strong> Arkose активно тестирует свои новые задачи на новейших алгоритмах машинного обучения​. По их заявлениям, они знают точно, сколько данных и усилий потребуется, чтобы обойти каждую их защиту, и стараются сделать так, чтобы затраты для злоумышленников были экономически невыгодны. Например, если для надежного решения одной капчи нужен полугодовой труд команды и инфраструктура за миллионы долларов – мало кто будет этим заниматься ради спама на сайте с Arkose. Конечно, со временем мощность алгоритмов растет, но Arkose тоже не стоит на месте.</p></li>
+                      </ul>
+                      <p>В совокупности MatchKey делает FunCaptcha очень стойкой. Однако “неприступных крепостей” не бывает. Уже спустя некоторое время после выхода MatchKey-капч появились улучшенные решения от анти-капча сервисов и новые находки энтузиастов. Просто теперь это <strong>гонка вооружений</strong>: Arkose усложняет – разработчики ищут тонкие места – Arkose снова их прикрывает.</p>
+                      <p>Для человека же принципиальных изменений нет: как были забавные 3D-картинки, так и остались. Разве что их тематика стала еще более разнообразной, и, как отмечают пользователи, <strong>решать Arkose капчи часто даже проще, чем разбирать цифры на смазанной рекапче</strong> – сказывается акцент на UX. Правда, если система посчитает вас ботом, она может “подвесить” на вас несколько раундов капчи подряд, что уже утомительно (например, 5 разных головоломок одну за другой)​. Но обычному пользователю такое почти не грозит – Arkose оценивает риск по множеству параметров и подавляющему большинству реальных людей дает пройти проверку быстро.</p>
+                      <h3>Какой метод решения использовать и когда</h3>
+                      <p>Мы рассмотрели три подхода к обходу FunCaptcha. Какой же выбрать? Это зависит от ваших целей, ресурсов и ограничений:</p>
+                      <ul>
+                       <li>
+                        <p><strong>Если вам нужно быстро и надежно автоматизировать небольшое количество действий</strong> (например, написать скрипт для личного использования или разового парсинга), то оптимально воспользоваться <strong>API платного сервиса</strong>. За символическую плату вы получаете абстракцию над всей сложностью. 2Captcha, Rucaptcha, SolveCaptcha и прочие сейчас умеют решать большинство задач Arkose Labs. Интеграция займет считанные минуты, а поддерживать ничего не нужно – сервис сам будет обновляться, при появлении нововведений, чтобы не отставать от Arkose. Этот вариант хорош и для прототипирования: можно сначала подключить внешний решатель, а уже потом, если понадобятся оптимизации, думать о собственном решении.</p></li>
+                       <li>
+                        <p><strong>Если вы ограничены в средствах</strong>, и объем капч большой, можно попробовать <strong>open-source подходы</strong>. Например, при массовой рассылке SMS может быть накладно платить за каждую капчу – тогда имеет смысл инвестировать время в свое решение. Аудио-скрипт может быть внедрен как запасной вариант: вдруг на сайте есть аудио-капча – тогда вы ее пройдете вообще бесплатно, без обращения в сторонний сервис. Но надеяться только на аудио нельзя. Обучение нейросети “под себя” – вариант для энтузиастов или крупных игроков (например, разработчики спам-ботов теоретически могут попытаться построить модель под конкретный вид FunCaptcha, если таргетируют один сайт). Учтите, что поддержка такой модели – постоянный процесс, потребующий мониторинга капчи и обновления датасета.</p></li>
+                       <li>
+                        <p><strong>Если вы интегрируете Arkose Labs FunCaptcha в свой сервис как проверку</strong>, и хотите протестировать прочность – можно написать Selenium-скрипт, который с помощью ваших же production-скриптов будет пытаться ее проходить. Это поможет выявить слабые места. Здесь, конечно, не стоит выкладывать решение в открытый доступ, но вы можете в контролируемых условиях оценить, как сложно боту пройти вашу капчу.</p></li>
+                       <li>
+                        <p><strong>Автоматизация через браузер</strong> полезна, когда вам нужно <strong>именно воспроизвести последовательность действий пользователя целиком</strong>. Скажем, вы автоматизируете тестирование сайта, где на определенном шаге всегда возникает FunCaptcha. В тестовом окружении можно отключить капчу, но если нет – то приходится решать и ее. Использовать облачный сервис на каждый прогон тестов может быть неудобно (например, тесты запускаются часто, и вы не хотите зависеть от внешних API). Тогда можно встроить решение капчи в сам тест: например, подключить библиотеку NopeCHA или аналог прямо в браузере – она будет локально анализировать картинки (с помощью ML-модели) и кликать по ним. Это избавит от сетевых задержек и внешних зависимостей, но потребует загрузки ML-модели в среду браузера.</p></li>
+                       <li>
+                        <p><strong>Когда важна скорость и масштаб, а бюджет не ограничен</strong>, имеет смысл комбинировать подходы: например, основной поток решений пускать через платный сервис (ИИ + люди), а параллельно исследовать возможности снизить затраты – либо через встроенное решение простых кейсов, либо через оптимизацию параметров (например, заранее прогревать Arkose сессии, чтобы реже выпадали сложные задания).&nbsp;</p></li>
+                      </ul>
+                      <p>В реальности часто используются гибридные стратегии. Например, некоторые разработчики сначала пытаются решить FunCaptcha своими силами (напрямую крутя браузер), и только если не получается за N секунд – отправляют задачу на 2Captcha как запасной вариант. Такой подход может чуть сэкономить деньги, но требует внимательно отслеживать эффективность.</p>
+                      <p>FunCaptcha от Arkose Labs – один из самых продвинутых и “непробиваемых” видов капчи на сегодняшний день. Она эволюционировала от простых вращающихся картинок до целого набора многоуровневых испытаний (MatchKey), бросающих вызов самым современным ботам. Но способы ее распознавания существуют, и регулярно обновляются.</p>
+                     </div>
+                    </div>
+                   </div><!----><!---->
+                  </div><!----><!---->
+                 </div><!--]--><!---->
+                 <div class="tm-article-presenter__meta" data-test-id="article-meta-links">
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Теги:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%84%D0%B0%D0%BD%D0%BA%D0%B0%D0%BF%D1%87%D0%B0]" class="tm-tags-list__link"><span>фанкапча</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5+%D1%84%D0%B0%D0%BD%D0%BA%D0%B0%D0%BF%D1%87%D0%B8]" class="tm-tags-list__link"><span>решение фанкапчи</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[funcaptcha]" class="tm-tags-list__link"><span>funcaptcha</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[arcose+lab]" class="tm-tags-list__link"><span>arcose lab</span></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Хабы:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/infosecurity/" class="tm-hubs-list__link"><!--[--><span>Информационная безопасность</span><!--]--></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                 </div><!----><!--]-->
+                </article><!--]-->
+               </div><!---->
+              </div>
+              <div style="" class="tm-article-sticky-panel" data-test-id="article-sticky-panel">
+               <div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons">
+                <div class="article-rating tm-data-icons__item" data-v-86aec4a7>
+                 <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-article votes-switcher" title="Всего голосов 1: ↑1 и ↓0" data-v-86aec4a7>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-upvote-button" title="Нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon" height="24" width="24">
+                    <title>
+                     Нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                  <div class="tm-votes-lever__score tm-votes-lever__score_appearance-article tm-votes-lever__score">
+                   <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_positive tm-votes-lever__score-counter" data-test-id="votes-score-counter">+1</span></span><!--]-->
+                  </div>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-downvote-button" title="Не нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon tm-votes-lever__icon_arrow-down" height="24" width="24">
+                    <title>
+                     Не нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                 </div><!--teleport start--><!--teleport end--><!---->
+                </div><!----><!---->
+                <button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon">
+                  <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                   <title>
+                    Добавить в закладки
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-favorite"></use>
+                  </svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">8</span></button>
+                <div class="tm-sharing tm-data-icons__item" title="Поделиться">
+                 <button class="tm-sharing__button" type="button">
+                  <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                   <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                  </svg></button><!--teleport start--><!--teleport end-->
+                </div>
+                <div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии">
+                 <a href="/ru/articles/907218/comments/" class="tm-article-comments-counter-link__link" data-test-id="counter-comments"><!--[-->
+                  <svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24">
+                   <title>
+                    Комментарии
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                  </svg><span class="tm-article-comments-counter-link__value">1</span><!--]--></a><!---->
+                </div><!--[--><!--[--><!--[--><!----><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!---->
+               </div>
+              </div>
+             </div><!--[--><!--]-->
+             <div class="tm-article-presenter__footer">
+              <!--[--><!--[-->
+              <div class="tm-article-blocks">
+               <!----><!--[-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <!----><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-balanced">
+                 <!--[-->
+                 <div class="tm-article-author" data-test-id="article-author-info" data-async-called="true">
+                  <!--[--><!--]-->
+                  <div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true">
+                   <div class="tm-user-card__info-container">
+                    <div class="tm-user-card__header">
+                     <div class="tm-user-card__header-data">
+                      <a href="/ru/users/kentavr009/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" src="//habrastorage.org/getpro/habr/avatars/b05/458/3a7/b054583a7ca1cc5b058bb65d3f5f46b0.jpeg">
+                       </div></a>
+                      <div class="tm-user-card__meta">
+                       <div class="tm-counter-container karma" title=" 77 голосов " data-v-f7c0e283>
+                        <div class="tm-counter-container__header">
+                         <!--[-->
+                         <div class="karma-display positive" data-v-f7c0e283 data-v-7635202e>
+                          5
+                         </div><!----><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[-->
+                         <div class="karma-text" data-v-f7c0e283>
+                          Карма
+                         </div><!--teleport start--><!--teleport end--><!--]-->
+                        </div>
+                       </div>
+                       <div class="tm-counter-container" title="Рейтинг пользователя">
+                        <div class="tm-counter-container__header">
+                         <!--[--><!--[--><!--]-->
+                         <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                          <!---->
+                          <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score">
+                           <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">3.8</span></span><!--]-->
+                          </div><!---->
+                         </div><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info">
+                     <div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title">
+                      <span class="tm-user-card__name tm-user-card__name_variant-article tm-user-card__name">Alex</span><a href="/ru/users/kentavr009/" class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article"> @kentavr009</a><!---->
+                     </div>
+                     <p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Marketing Specialist</p>
+                    </div>
+                   </div><!---->
+                   <div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons">
+                    <!---->
+                    <div class="tm-user-card__button">
+                     <div class="tm-button-follow tm-user-card__button-follow">
+                      <!---->
+                      <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+                     </div>
+                    </div><!---->
+                    <div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations">
+                     <svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16">
+                      <title>
+                       Отправить сообщение
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#mail"></use>
+                     </svg>
+                    </div><!---->
+                   </div><!---->
+                  </div>
+                  <div class="tm-article-author__user-contacts" data-test-id="author-contacts">
+                   <!----><!----><!---->
+                  </div>
+                 </div><!--]-->
+                </div><!--]--><!---->
+               </section><!----><!--[-->
+               <div class="banner-wrapper leaderboard tm-page-article__banner" style="--38f3d936:200px;--78a3cd06:auto;" data-v-f4bf0d24>
+                <!--[-->
+                <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="adfox-banner-placeholder leaderboard" data-v-12f7bcca>
+                  <div class="image loads" data-v-12f7bcca></div>
+                  <div class="lines" data-v-12f7bcca>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                  </div>
+                 </div><!----><!----><!---->
+                </div>
+                <div id="adfox_164725660339535756" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+               </div><!--]--><!--]-->
+               <div class="tm-article-blocks__comments">
+                <div id="publication-comments" class="tm-article-page-comments">
+                 <div>
+                  <!--[-->
+                  <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                   <a href="/ru/articles/907218/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments"><!--[-->
+                    <svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24">
+                     <title>
+                      Комментарии
+                     </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                    </svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 1 </span><!--]--></a><!---->
+                  </div><!--]-->
+                 </div>
+                </div>
+               </div><!--[--><!--[--><!--]-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <header class="tm-block__header tm-block__header tm-block__header_variant-borderless">
+                 <div class="tm-block__header-container">
+                  <h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]-->
+                 </div><!---->
+                </header><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim">
+                 <!--[--><!--[-->
+                 <div class="tm-tabs tm-tabs">
+                  <div class="">
+                   <!--[--><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]-->
+                  </div><!---->
+                 </div>
+                 <div class="similar-and-daily__tab-view">
+                  <div class="daily-articles-list">
+                   <ul class="tm-article-card-list">
+                    <!--[--><!--]-->
+                    <div class="tm-bordered-card">
+                     <!----><!--[--><!--]-->
+                    </div>
+                   </ul>
+                   <div class="daily-articles-block__button-container">
+                    <button class="btn btn_transparent btn_small tm-button tm-button_color-horizon" type="button"><!--[--><!--[-->Показать лучшие за всё время<!--]--><!--]--></button>
+                   </div>
+                  </div><!---->
+                 </div><!--]--><!--]-->
+                </div><!--]--><!---->
+               </section><!--[-->
+               <div>
+                <div class="placeholder-wrapper">
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="tm-placeholder-promo">
+                  <div class="tm-placeholder-promo__header">
+                   <div class="tm-placeholder__line tm-placeholder__line_promo-title"></div>
+                  </div>
+                  <div class="tm-placeholder-promo__body">
+                   <div class="tm-placeholder-promo__posts">
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                   </div>
+                   <div class="tm-placeholder-promo__dots">
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                   </div>
+                  </div>
+                 </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                </div>
+               </div>
+               <div class="placeholder-wrapper">
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="tm-placeholder-inset tm-placeholder-courses">
+                 <div class="tm-placeholder-inset__header">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div>
+                 </div>
+                 <div class="tm-placeholder-inset__body">
+                  <ul class="tm-placeholder-list">
+                   <!--[-->
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li><!--]-->
+                  </ul>
+                 </div>
+                 <div class="tm-placeholder-inset__footer">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div>
+                 </div>
+                </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               </div><!--]--><!----><!--[--><!--]--><!--]-->
+              </div><!--]--><!--]-->
+             </div>
+            </div><!--]--><!--]-->
+           </div>
+          </div>
+          <div class="tm-page__sidebar">
+           <!--[-->
+           <div class="tm-layout-sidebar">
+            <div class="tm-layout-sidebar__placeholder_initial"></div>
+            <div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;">
+             <!--[--><!--]--><!---->
+             <div class="tm-layout-sidebar__ads_initial tm-layout-sidebar__ads">
+              <div class="banner-wrapper half-page tm-layout-sidebar__banner tm-layout-sidebar__banner_top" style="--38f3d936:600px;--78a3cd06:auto;" data-v-f4bf0d24>
+               <!--[-->
+               <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="adfox-banner-placeholder half-page" data-v-12f7bcca>
+                 <div class="image loads" data-v-12f7bcca></div>
+                 <div class="lines" data-v-12f7bcca>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                 </div>
+                </div><!----><!----><!---->
+               </div>
+               <div id="adfox_164725680533065327" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+              </div>
+             </div><!--[--><!---->
+             <div></div>
+             <section class="tm-block tm-block tm-block_spacing-around" data-async-called="true">
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Работа</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[--><!--[-->
+               <div class="tm-vacancies-block__item">
+                <a class="tm-vacancies-block__vacancy-title" href="https://career.habr.com/vacancies/specialist_po_informacionnoj_bezopasnosti" target="_blank">Специалист по информационной безопасности</a>
+                <div class="tm-vacancies-block__vacancies-count">
+                 35 вакансий
+                </div>
+               </div><!--]--><!--]-->
+              </div><!--]-->
+              <footer class="tm-block__footer">
+               <!--[--><a class="tm-block-extralink" href="https://career.habr.com/catalog">Все вакансии</a><!--]-->
+              </footer>
+             </section>
+             <section class="tm-block tm-block tm-block_spacing-around block" data-v-6f380946>
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Ближайшие события</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[-->
+               <div class="placeholder-wrapper" data-v-6f380946>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <section class="tm-block tm-block tm-block_spacing-none" tabindex="-1" data-v-9caf0b82>
+                 <!----><!--[-->
+                 <div class="event-card-placeholder is-widget" data-v-9caf0b82>
+                  <div class="image loads" data-v-9caf0b82></div>
+                  <div class="info" data-v-9caf0b82>
+                   <div class="date line" data-v-9caf0b82></div>
+                   <div class="title line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                  </div>
+                  <div class="footer widget" data-v-9caf0b82>
+                   <div class="link line" data-v-9caf0b82></div>
+                   <div class="categories" data-v-9caf0b82>
+                    <!--[-->
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div><!--]-->
+                   </div>
+                  </div>
+                 </div><!--]--><!---->
+                </section><!---->
+               </div><!--]-->
+              </div><!--]--><!---->
+             </section><!--]-->
+             <div class="banner-wrapper medium-rectangle tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom" style="--38f3d936:250px;--78a3cd06:auto;" data-v-f4bf0d24>
+              <!--[-->
+              <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+               <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               <div class="adfox-banner-placeholder medium-rectangle" data-v-12f7bcca>
+                <div class="image loads" data-v-12f7bcca></div>
+                <div class="lines" data-v-12f7bcca>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                </div>
+               </div><!----><!----><!---->
+              </div>
+              <div id="adfox_164725691003361602" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+             </div>
+            </div>
+           </div><!--]-->
+          </div>
+         </div><!----><!--]-->
+        </div>
+       </div>
+      </main><!---->
+     </div>
+     <div class="tm-footer-menu">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer-menu__container">
+        <!--[-->
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Ваш аккаунт</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/articles/907218/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/articles/907218/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Разделы</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/articles/" class="footer-menu__item-link">Статьи</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link">Новости</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link">Хабы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link">Компании</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link">Авторы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link">Песочница</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Информация</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link">Устройство сайта</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link">Для авторов</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link">Для компаний</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link">Документы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Услуги</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]-->
+          </ul>
+         </div>
+        </div><!--]-->
+       </div><!--]-->
+      </div>
+     </div>
+     <div class="tm-footer">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer__container">
+        <!---->
+        <div class="tm-footer__social">
+         <!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Facebook
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Twitter
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            VK
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Telegram
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Youtube
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Яндекс Дзен
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use>
+          </svg></a><!--]-->
+        </div><!--teleport start--><!--teleport end-->
+        <button class="tm-footer__link"><!----> Настройка языка</button><a href="/ru/feedback/" class="tm-footer__link">Техническая поддержка</a>
+        <div class="tm-footer-copyright">
+         <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span>
+        </div>
+       </div><!--]-->
+      </div>
+     </div><!----><!--]-->
+    </div><!---->
+   </div>
+   <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"907218":{"id":"907218","timePublished":"2025-05-06T06:29:06+00:00","isCorporative":false,"lang":"ru","titleHtml":"FunCaptcha (Arkose Labs): принципы работы, особенности и методы распознавания (автоматические и ручные варианты)","leadData":{"textHtml":"\u003Cp\u003EПродолжаем путешествовать по миру капч (Фантастические капчи и где они обитают, а также способы борьбы с ними), и сегодня на очереди очередной “крепкий орешек” во вселенной капч - FunCaptcha (Arkose Labs).\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EFunCaptcha\u003C\u002Fstrong\u003E – это тип CAPTCHA от компании Arkose Labs, который предлагает пользователям небольшие головоломки вместо привычных задач вроде распознавания текста или выбора картинок с автобусами. В классических капчах (например, reCAPTCHA) проверка часто основывается на распознавании искаженных символов или простых изображений. Arkose Labs пошли другим путем: их “развлекательные” капчи представляют интерактивные задания с 3D-объектами, логическими головоломками и аудио-вопросами​. Такой подход призван быть юзер френдли для человека, но должен затруднить жизнь ботам.\u003C\u002Fp\u003E\u003Cp\u003EТипичные задания FunCaptcha бывают следующими:\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F340\u002F5ee\u002F8b0\u002F3405ee8b02f86785cf359afb0a4a741e.jpg","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F340\u002F5ee\u002F8b0\u002F3405ee8b02f86785cf359afb0a4a741e.jpg","fit":"cover","positionY":0,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"id":"1981533","alias":"kentavr009","fullname":"Alex","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002Fb05\u002F458\u002F3a7\u002Fb054583a7ca1cc5b058bb65d3f5f46b0.jpeg","speciality":"Marketing Specialist","scoreStats":{"score":5,"votesCount":77},"rating":3.8,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"donationsMethod":null,"isInBlacklist":null,"careerProfile":null},"statistics":{"commentsCount":1,"favoritesCount":8,"readingCount":374,"score":1,"votesCount":1,"votesCountPlus":1,"votesCountMinus":0},"hubs":[{"id":"50","alias":"infosecurity","type":"collective","title":"Информационная безопасность","titleHtml":"Информационная безопасность","isProfiled":true,"relatedData":null}],"flows":[{"id":"1","alias":"develop","title":"Разработка","titleHtml":"Разработка"}],"relatedData":{"vote":null,"unreadCommentsCount":0,"bookmarked":false,"canComment":false,"canEdit":false,"canViewVotes":false,"votePlus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"voteMinus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"canModerateComments":false,"trackerSubscribed":false,"emailSubscribed":false},"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Ch3\u003EКак работает FunCaptcha и чем она отличается от классических капч\u003C\u002Fh3\u003E\u003Cp\u003EПродолжаем путешествовать по миру капч (Фантастические капчи и где они обитают, а также способы борьбы с ними), и сегодня на очереди очередной “крепкий орешек” во вселенной капч - FunCaptcha (Arkose Labs).\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EFunCaptcha\u003C\u002Fstrong\u003E – это тип CAPTCHA от компании Arkose Labs, который предлагает пользователям небольшие головоломки вместо привычных задач вроде распознавания текста или выбора картинок с автобусами. В классических капчах (например, reCAPTCHA) проверка часто основывается на распознавании искаженных символов или простых изображений. Arkose Labs пошли другим путем: их “развлекательные” капчи представляют интерактивные задания с 3D-объектами, логическими головоломками и аудио-вопросами​. Такой подход призван быть юзер френдли для человека, но должен затруднить жизнь ботам.\u003C\u002Fp\u003E\u003Cp\u003EТипичные задания FunCaptcha бывают следующими:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EПоворот изображения\u003C\u002Fstrong\u003E – Пользователю показывают перевернутый объект (например, животное) и предлагают повернуть его в правильное положение с помощью стрелок. Это проверяет пространственное мышление – то, с чем у алгоритмов могут возникнуть сложности​.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cfigure class=\"\"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F340\u002F5ee\u002F8b0\u002F3405ee8b02f86785cf359afb0a4a741e.jpg\" width=\"431\" height=\"412\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F340\u002F5ee\u002F8b0\u002F3405ee8b02f86785cf359afb0a4a741e.jpg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F340\u002F5ee\u002F8b0\u002F3405ee8b02f86785cf359afb0a4a741e.jpg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EВыбор объектов по условию\u003C\u002Fstrong\u003E – Например, нужно выбрать из набора изображений те, на которых выполнено определенное условие. Встречается головоломка с игральными кубиками: \u003Cem\u003E«выберите пару костей, сумма очков на верхних гранях которых равна заданному числу»\u003C\u002Fem\u003E. Ботам сложно \u003Cstrong\u003Eпонять контекст\u003C\u002Fstrong\u003E картинки и логически соотнести объекты​ (кстати, пресловутое число 16 пошатнуло не одно психическое состояние разгадывающего).\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8e4\u002F7b5\u002F7d4\u002F8e47b57d43d5caf2323a3034f34dcf6c.jpeg\" width=\"1000\" height=\"400\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8e4\u002F7b5\u002F7d4\u002F8e47b57d43d5caf2323a3034f34dcf6c.jpeg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8e4\u002F7b5\u002F7d4\u002F8e47b57d43d5caf2323a3034f34dcf6c.jpeg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EИнтерактивные задачи\u003C\u002Fstrong\u003E – В некоторых вариантах нужно \u003Cstrong\u003Eперемещать\u003C\u002Fstrong\u003E элементы. Например, перетащить кусочек пазла в нужное место или провести персонажа в заданную точку по схеме. Тут проверяется способность узнавать паттерны и следовать инструкциям, что затруднительно для скриптов​.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EАудио-загадки\u003C\u002Fstrong\u003E – В отличие от классических аудио-капч «скажите слова\u002Fцифры с записи», Arkose предлагает вопросы на слух. Например: “какая из аудиозаписей – звук барабанов?” или “где говорящий – единственный человек?”​. Пользователь должен прослушать несколько звуков и выбрать правильный – это проверяет понимание содержания, а не распознавание текста, что гораздо тяжелее автоматизировать.\u003C\u002Fp\u003E\u003Cfigure class=\"\"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbfe\u002F96a\u002F20e\u002Fbfe96a20e4ff303a9f792e3ec8c10ab9.jpeg\" width=\"275\" height=\"183\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbfe\u002F96a\u002F20e\u002Fbfe96a20e4ff303a9f792e3ec8c10ab9.jpeg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbfe\u002F96a\u002F20e\u002Fbfe96a20e4ff303a9f792e3ec8c10ab9.jpeg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EВ итоге FunCaptcha заметно отличается от традиционных капч. Она использует \u003Cstrong\u003Eигровые сценарии и 3D-графику\u003C\u002Fstrong\u003E, избегая шаблонных задач. Инструкции обычно понятны без слов (через изображение-указку или интуитивный интерфейс), чтобы пользователи любой языковой среды могли решить задачу легко​. Такой подход повышает удобство для реальных людей (капча воспринимается скорее как мини-игра), но осложняет автоматическое распознавание, поскольку боту нужно \u003Cem\u003Eпонимать\u003C\u002Fem\u003E содержание задания, а не просто читать текст. Неудивительно, что многие разработчики, сталкиваясь с этой системой, в шутку называют FunCaptcha «\u003Cstrong\u003Eфаккапча\u003C\u002Fstrong\u003E» – намекая, сколько проблем она может доставить ботам и тем, кто пытается их написать.\u003C\u002Fp\u003E\u003Ch3\u003EПочему FunCaptcha считается сложной для автоматизации\u003C\u002Fh3\u003E\u003Cp\u003E“FunCaptcha решение” оказалось гораздо труднее реализовать, чем обход классических текстовых капч. На то есть несколько причин:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EВариативность и частое обновление заданий.\u003C\u002Fstrong\u003E Arkose Labs постоянно добавляет новые виды головоломок и вариации. По официальным данным, одна только серия Match Key-челленджей (обновленная версия FunCaptcha) может насчитывать свыше \u003Cstrong\u003E1250 вариантов одного задания\u003C\u002Fstrong\u003E​. Это значит, что бот не может быть “натаскан” на ограниченный набор картинок – постоянно будут встречаться новые сцены, образы и правила. Для уверенного распознавания потребовалось бы собрать и разметить сотни тысяч изображений (Arkose Lab оценивает свою базу примерно в \u003Cstrong\u003E500 000 изображений\u003C\u002Fstrong\u003E для обучения ML-модели на уровне их сложнейших капч)​ – очевидно что это колоссальная трудозатрата.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EИнтерактивность и контекст.\u003C\u002Fstrong\u003E Боту недостаточно распознать отдельный объект – нужно \u003Cstrong\u003Eпонять инструкцию и выполнить действия\u003C\u002Fstrong\u003E. Например, повернуть фигуру на нужный угол или выбрать правильно все подходящие картинки из нескольких. Скрипты, основанные на шаблонах или компьютерном зрении, могут сбиваться, если меняется угол объекта, освещение или формулировка задачи. Требуется настоящее \u003Cstrong\u003Eкомпьютерное зрение + логика\u003C\u002Fstrong\u003E, близкие к человеческому, что выходит за рамки простого OCR.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EДополнительные защиты Arkose (MatchKey).\u003C\u002Fstrong\u003E Arkose Labs внедряет механизм \u003Cem\u003Echallenge-response\u003C\u002Fem\u003E под названием MatchKey, делающий автоматизацию ещё сложнее. По сути, помимо решения видимой задачи, браузер должен доказать, что он “честно” исполняет заложенный сценарий. Например, при инициализации сессии капча выдает уникальный скрипт (по URL \u003Cstrong\u003Edapib\u003C\u002Fstrong\u003E), который должен вычислить специальный параметр ответа – часто называют \u003Cstrong\u003Etguess\u003C\u002Fstrong\u003E или match key​. Этот скрипт привязан к конкретной сессии и меняется во времени, выступая своего рода “доказательством работы”: без его выполнения даже правильно угаданное решение не будет принято сервером. Для бота это огромная проблема – приходится исполнять чужой JS-код или пытаться эмулировать его логику, а скрипты регулярно обновляются.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EОтпечатки устройства и окружения.\u003C\u002Fstrong\u003E Чтобы отличить скрипт от реального пользователя, Arkose собирает множество параметров окружения: User Agent, разрешение экрана, время рендеринга WebGL, движение мыши, набранные ранее токены и пр. Эти данные могут упаковываться в скрытый параметр (на некоторых сайтах он называется \u003Cstrong\u003Eblob\u003C\u002Fstrong\u003E), который передается на сервер​. Сгенерировать корректный \u003Cem\u003Eblob\u003C\u002Fem\u003E без запуска настоящего браузера непросто. Если скрипт просто шлет запросы к API Arkose, минуя браузер, платформа может определить аномалии (например, нехарактерные задержки, отсутствие определенных событий) и повысить сложность задания или вовсе отклонить попытку.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EОграничение по времени и попыткам.\u003C\u002Fstrong\u003E FunCaptcha не всегда дает неограниченное время на решение. Если пользователь (или бот) слишком долго “думает”, задача может смениться на другую. Так бывает, что при решении капчи повторно (спустя ~15 секунд) Arkose выдавала новую серию испытаний​. Для автоматизации это означает, что \u003Cstrong\u003Eслишком медленное решение = неудача\u003C\u002Fstrong\u003E: скрипт может получить корректный ответ, а сервер уже потребует следующий. Более того, при нескольких неверных попытках подряд система может усилить проверку или совсем заблокировать дальнейшие запросы. То есть долгий отклик критичен!\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EВсе эти факторы делают FunCaptcha одной из самых \u003Cstrong\u003Eустойчивых систем к бот - трафику\u003C\u002Fstrong\u003E. Если классическую капчу можно решить, подав изображение на OCR или использовав публичный API, то здесь приходится воспроизводить поведение человека в целом: от движка браузера и взаимодействия с 3D-графикой до логического “мышления”. Тем не менее, задача автоматизации «факапчи» актуальна для многих – рассмотрим, какие данные нужны для ее обхода и какими способами вообще можно попытаться ее распознать. \u003C\u002Fp\u003E\u003Ch3\u003EПолучение ключевых параметров капчи на сайте\u003C\u002Fh3\u003E\u003Cp\u003EПрежде чем пытаться решить FunCaptcha автоматически, нужно получить с целевого сайта данные, необходимые для запроса к Arkose Labs. При интеграции FunCaptcha сайт-владелец использует \u003Cstrong\u003Eпубличный ключ\u003C\u002Fstrong\u003E Arkose и связанный с ним адрес сервиса Arkose (так называемый \u003Cstrong\u003EService URL\u003C\u002Fstrong\u003E или коротко surl). Эти параметры генерируются Arkose Labs для каждого клиента (сайта) и зашиты в код капчи на странице.\u003C\u002Fp\u003E\u003Cp\u003EКак их обнаружить? Обычно публичный ключ – это GUID, который можно найти в HTML-разметке страницы. Например, часто на странице присутствует скрытый элемент ввода с именем fc-token (или похожим), в значении которого содержатся необходимые данные. Вот пример кода страницы с указанными данными (фрагмент HTML):\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E&lt;input type=\"hidden\" id=\"FunCaptcha-Token\" name=\"fc-token\"\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E value=\"702178f80cd6ade39.2875608305|r=eu-west-1|...|pk=2CB16598-CB82-4CF7-B332-5990DB66F3AB|...|surl=https%3A%2F%2Fclient-api.arkoselabs.com|...\"&gt;\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EЗдесь присутствует строка value, где видно \u003Ccode\u003Epk=&lt;...&gt;\u003C\u002Fcode\u003E – это и есть \u003Ccode\u003E\u003Cstrong\u003Epublic key\u003C\u002Fstrong\u003E\u003C\u002Fcode\u003E, а также surl= – URL сервиса Arkose, закодированный в виде ссылки. В данном примере публичный ключ равен \u003Ccode\u003E2CB16598-CB82-4CF7-B332-5990DB66F3AB\u003C\u002Fcode\u003E, а surl – \u003Ca href=\"https:\u002F\u002Fclient-api.arkoselabs.com\" rel=\"noopener noreferrer nofollow\"\u003E\u003Ccode\u003Ehttps:\u002F\u002Fclient-api.arkoselabs.com\u003C\u002Fcode\u003E\u003C\u002Fa\u003E (дефолтный адрес API Arkose)​. На других сайтах surl может быть кастомным поддомена Arkose (например, \u003Ca href=\"http:\u002F\u002Fblizzard-api.arkoselabs.com\" rel=\"noopener noreferrer nofollow\"\u003E\u003Ccode\u003Eblizzard-api.arkoselabs.com\u003C\u002Fcode\u003E\u003C\u002Fa\u003E для сервисов Blizzard и т.п.), поэтому лучше всегда его извлекать, если он указан.\u003C\u002Fp\u003E\u003Cp\u003EАльтернативный способ – поиск параметра \u003Ccode\u003Edata-pkey\u003C\u002Fcode\u003E в HTML. Некоторые сайты вставляют виджет Arkose через контейнер \u003Ccode\u003E&lt;div data-pkey=\"PUBLIC_KEY\" ...&gt;\u003C\u002Fcode\u003E или через JavaScript-конфиг. В любом случае, \u003Cstrong\u003Eпубличный ключ (Open Key)\u003C\u002Fstrong\u003E и \u003Cstrong\u003Eадрес сервиса (\u003C\u002Fstrong\u003E\u003Ccode\u003E\u003Cstrong\u003Esurl\u003C\u002Fstrong\u003E\u003C\u002Fcode\u003E\u003Cstrong\u003E)\u003C\u002Fstrong\u003E можно найти через инструменты разработчика, поиск по исходному коду страницы или анализ сетевых запросов при загрузке капчи​. Также может потребоваться дополнительный параметр \u003Ccode\u003E\u003Cstrong\u003Eblob\u003C\u002Fstrong\u003E \u003C\u002Fcode\u003E(если сайт его использует) – как правило, он передается как часть запроса при инициации капчи и может храниться в том же скрытом поле или генерироваться скриптом Arkose. Если blob необходим, его наличие и значение обычно видно в исходном коде страницы (в JavaScript переменных) или можно отловить в DevTools (по запросу к \u003Ccode\u003E...\u002Ffc\u002Fgfct\u002F\u003C\u002Fcode\u003E на Arkose API).\u003C\u002Fp\u003E\u003Cp\u003EИтак, получив \u003Cstrong\u003Epublic key\u003C\u002Fstrong\u003E (открытый ключ сайта) и опционально \u003Ccode\u003E\u003Cstrong\u003Esurl\u003C\u002Fstrong\u003E\u003C\u002Fcode\u003E\u003Cstrong\u003E \u003C\u002Fstrong\u003Eи \u003Ccode\u003E\u003Cstrong\u003Eblob\u003C\u002Fstrong\u003E\u003C\u002Fcode\u003E, у нас есть данные для обращения к сервису распознавания капчи или напрямую к Arkose (если решение будет настроено без использования сервиса распознавания капчи). Теперь давайте рассмотрим, какие есть подходы к распознаванию FunCaptcha автоматически.\u003C\u002Fp\u003E\u003Ch3\u003EКак распознать \"факапчу\": обзор методов обхода\u003C\u002Fh3\u003E\u003Cp\u003EСуществует несколько стратегий автоматического решения FunCaptcha. Условно их можно разделить на три категории:\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EИспользовать \u003Cstrong\u003Eсторонние платные сервисы\u003C\u002Fstrong\u003E распознавания (anti-captcha сервисы), которые берут на себя всю сложную работу.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EИспользовать \u003Cstrong\u003Eopen-source или DIY-решения (самостоятельные скрипты)\u003C\u002Fstrong\u003E, создавая своего бота – например, задействовать распознавание аудио или обученные нейросети, либо скрипты из открытых репозиториев.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПойти путём \u003Cstrong\u003Eэмуляции пользователя в браузере\u003C\u002Fstrong\u003E – с помощью Selenium или другого инструмента автоматизировать сам браузер, возможно, вкупе с первым или вторым подходом.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003EРассмотрим плюсы, минусы и реализации каждого из подходов.\u003C\u002Fp\u003E\u003Ch4\u003EРешение через платные сервисы (2Captcha, Rucaptcha, SolveCaptcha и др.)\u003C\u002Fh4\u003E\u003Cp\u003EСамый простой способ для разработчика – отдать задачу решения капчи на аутсорсинг специальному сервису. Существуют сервисы распознавания капчи (Rucaptcha, \u003Cstrong\u003E2Captcha\u003C\u002Fstrong\u003E, SolveCaptcha, DeathByCaptcha, etc.), которые специализируются на обходе капч. Как правило, они работают по API: вы отправляете им необходимые параметры капчи, сервис на своей стороне ее решает (либо с помощью работников-людей, либо с помощью нейросетей, либо комбинированно) и возвращает готовый \u003Cstrong\u003Eтокен ответа\u003C\u002Fstrong\u003E.\u003C\u002Fp\u003E\u003Cp\u003EДля FunCaptcha большинство таких сервисов поддерживают \u003Cem\u003Eметод распознавания через токен\u003C\u002Fem\u003E. Он заключается в следующем:\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EВы извлекаете с целевого сайта \u003Ccode\u003E\u003Cstrong\u003Epublic key\u003C\u002Fstrong\u003E\u003C\u002Fcode\u003E и \u003Ccode\u003E\u003Cstrong\u003Esurl\u003C\u002Fstrong\u003E\u003C\u002Fcode\u003E (как описано выше). Эти значения понадобятся сервису распознавания.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДелаете запрос к API сервиса: указываете метод = funcaptcha, передаете публичный ключ (параметр \u003Ccode\u003Epublickey\u003C\u002Fcode\u003E), URL Arkose (\u003Ccode\u003Esurl\u003C\u002Fcode\u003E) и \u003Cstrong\u003Eадрес страницы\u003C\u002Fstrong\u003E, на которой появилась капча (\u003Ccode\u003Epageurl\u003C\u002Fcode\u003E)​. Также передать свой API-ключ для авторизации на сервисе.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСервис ставит вашу задачу в очередь на решение. Через их API вы получите обратно идентификатор задачи (например, ID капчи).\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСпустя некоторое время (обычно 15–30 секунд) вы опрашиваете API сервиса с этим ID, чтобы узнать результат. Если капча уже решена, сервис вернет строку-токен вида например: \u003Ccode\u003E3084f4a302b176cd7.96368058|r=ap-southeast-1|...|surl=\u003C\u002Fcode\u003E\u003Ca href=\"https:\u002F\u002Ffuncaptcha.com%E2%80%8B\" rel=\"noopener noreferrer nofollow\"\u003E\u003Ccode\u003Ehttps:\u002F\u002Ffuncaptcha.com\u003C\u002Fcode\u003E​\u003C\u002Fa\u003E. Если еще нет – ответ будет что-то вроде \u003Ccode\u003ECAPCHA_NOT_READY\u003C\u002Fcode\u003E, тогда нужно подождать и повторить запрос через пару секунд​.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПолученный \u003Cstrong\u003Eresponse token\u003C\u002Fstrong\u003E вставляется обратно в форму на сайте. Обычно на целевой странице есть скрытое поле (например, \u003Ccode\u003Efc-token\u003C\u002Fcode\u003E), куда нужно подставить полученный токен вместо изначального значение, после чего можно отправлять форму или вызывать завершающий запрос в приложение (нажатие кнопки подтверждения и т.п.)​. Сервер сайта проверит токен с помощью Arkose API – и при валидном токене вы пройдете капчу.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003EНа практике использование такого API можно реализовать несколькими строчками кода. Пример на Python с библиотекой 2Captcha:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003Efrom twocaptcha import TwoCaptcha\n\nsolver = TwoCaptcha(\"ВАШ_API_KEY_2CAPTCHA\")\n\nresult = solver.funcaptcha(sitekey=PUBLIC_KEY, url=PAGE_URL, surl=SURL)\n\ntoken = result['code']   # полученный токен решения FunCaptcha\n\nprint(\"FunCaptcha token:\", token)\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EЛибо без сторонней библиотеки, просто HTTP-запросами:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E# 1. Отправляем капчу на решение\n\nurl = f\"http:\u002F\u002F2captcha.com\u002Fin.php?key={API_KEY}&amp;method=funcaptcha&amp;publickey={PUBLIC_KEY}&amp;surl={SURL}&amp;pageurl={PAGE_URL}\"\n\ncaptcha_id = requests.get(url).text.split('|')[1]\n\n# 2. Ждем и запрашиваем результат\n\ntime.sleep(20)\n\nres = requests.get(f\"http:\u002F\u002F2captcha.com\u002Fres.php?key={API_KEY}&amp;action=get&amp;id={captcha_id}\").text\n\nwhile \"CAPCHA_NOT_READY\" in res:\n\n    time.sleep(5)\n\n    res = requests.get(...).text\n\ntoken = res.split('|', 1)[1]  # токен решения после \"OK|\"\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EПодобным образом работают и другие сервисы. Различия лишь в деталях API – где-то используются POST-запросы с JSON, где-то GET – но суть одна: передать ключи, получить готовый ответ. Крупнейшие платформы (2Captcha, SolveCaptcha и др.) имеют готовые \u003Cstrong\u003ESDK и библиотеки\u003C\u002Fstrong\u003E под популярные языки, что упрощает интеграцию.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EЧто происходит “под капотом” сервисов?\u003C\u002Fstrong\u003E Чаще всего они либо привлекают к решению реальных людей, либо используют свои нейросетевые модели (или гибрид). Например, 2Captcha и Anti-Captcha исторически опирались на сеть из работников: ваш запрос с параметрами капчи фактически транслируется на их внутренний интерфейс, где оператор видит ту же головоломку (с помощью эмуляции браузера) и решает ее вручную. После этого система возвращает вам токен. Однако для FunCaptcha ручной труд – не единственный вариант: появились сервисы, утверждающие, что применяют \u003Cstrong\u003EAI для решения Arkose\u003C\u002Fstrong\u003E. Один из них – \u003Cstrong\u003ESolveCaptcha\u003C\u002Fstrong\u003E. По отзывам, SolveCaptcha в 2024 году выделялся наиболее быстрым решением FunCaptcha за счет AI-алгоритмов​. То есть вместо того, чтобы ждать ~20 секунд, ответ иногда приходит за 5–10 секунд, потому что задачу решает не человек, а обученная модель (распознающая изображение и эмулирующая нужные действия).\u003C\u002Fp\u003E\u003Cp\u003E์Также, SolveCaptcha заявляют о комбинированном подходе: сначала пытаются решить автоматически, а если не получается – подключают человека​. Для нас, как пользователей API, это прозрачно – мы просто получаем результат или ошибку. Стоимость решения FunCaptcha у разных сервисов отличается, но она выше чем за простую капчу: в среднем порядка $2–3 за 1000 решений при ручном распознавании (точная цена зависит от выбранного сервиса и срочности) и до 1 доллара при автоматическом​. Но в расчете на одну штуку это всего несколько десятых цента – часто дешевле, чем тратить время на разработку собственного алгоритма.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EОграничения метода:\u003C\u002Fstrong\u003E главный минус – зависимость от стороннего сервиса и время ожидания. Несмотря на заявления о “мгновенном” решении, на практике среднее время ~20 секунд (при высокой нагрузке – дольше). Для интерактивных задач Arkose это критично: как я писал выше, если затянуть с ответом, капча может уже смениться. Впрочем, сервисы стараются учитывать это – многие решают FunCaptcha \u003Cstrong\u003Eбез прокси\u003C\u002Fstrong\u003E от имени своих серверов​, чтобы скорость была максимальной. Если сайт-цель строго привязывает решение к IP пользователя, может потребоваться режим с прокси: например, Anti-Captcha позволяет отправить задачу в браузер работника через указанный прокси, чтобы Arkose видела тот же IP, что и у пользователя бота​. Это дороже и дольше по времени, но иногда оправдывает себя.\u003C\u002Fp\u003E\u003Cp\u003EЕще одно ограничение – \u003Cstrong\u003Eновые виды задач.\u003C\u002Fstrong\u003E Когда Arkose выпускает новый тип головоломки, могут пройти дни или недели, прежде чем сервисы распознавания капчи научатся его решать. Например, в начале 2023 появилась версия FunCaptcha с так называемым MatchKey, и первые недели некоторые авто-солверы не справлялись – приходилось ждать обновления с их стороны​. В такие моменты бот-разработчики особенно чувствуют зависимость от внешнего решения. Тем не менее, для большинства практических случаев использование готовых сервисов – наиболее быстрый и надежный путь обойти “факапчу” без глубокого погружения в ее механику.\u003C\u002Fp\u003E\u003Ch4\u003EOpen-source и DIY-решения: аудио-решатели, нейросети, скрипты GitHub\u003C\u002Fh4\u003E\u003Cp\u003EВокруг FunCaptcha существует сообщество энтузиастов, которые пытаются создавать свои решения и делятся наработками. Рассмотрим несколько направлений таких DIY-подходов:\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E1. Распознавание через аудио.\u003C\u002Fstrong\u003E Исторически у многих капч слабое место – аудиоверсия (для слабовидящих). Некоторые сайты с FunCaptcha позволяют переключиться на аудио-вариант задания. Ранние версии Arkose действительно имели относительно простые аудио-голосовки (произнесенные цифры и т.п.). Это породило скрипты, которые автоматизировали аудио-режим: например, проект Funcaptcha-Audio-Solver загружает аудио-файл с Arkose, прогоняет его через сервис распознавания речи (Google Speech-to-Text или аналог) и отправляет расшифрованный ответ назад в капчу. Такой скрипт работает \u003Cstrong\u003Eтолько на сайтах, где доступен аудио-вариант\u003C\u002Fstrong\u003E и где аудио-загадка сводится к распознаванию речи (цифр, букв)​. На многих популярных сайтах аудио-режим FunCaptcha может быть отключен или же сами аудио-задания сделаны в новом формате (например, “выберите звук, где поет одна птица” – и Speech-to-Text тут не поможет). Поэтому хотя open-source решение через аудио и существует, его применение ограничено. К тому же Arkose может определять подозрительно быстрое переключение на аудио и ответ за доли секунды как нечеловеческое поведение.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E2. Нейросетевые решения (Computer Vision).\u003C\u002Fstrong\u003E Более амбициозное направление – обучить модель распознавать картинки FunCaptcha. Некоторые энтузиасты пробовали создавать датасеты и тренировать нейросети для конкретных задач, например, определять угол поворота животных или читать числа на игральных костях. Отдельные успехи достигались: в сети появлялись видео, где самодельная программа решает “вращающуюся капчу” за счет анализа изображения и эмуляции нажатия стрелок. Но, как отмечалось ранее, Arkose регулярно увеличивает вариативность. На форуме BlackHatWorld я находил такой кейс: у разработчика была собственная нейросеть, которая успешно решала несколько видов FunCaptcha, пока Arkose Labs не обновили механизм – после обновления (т. н. новая версия с MatchKey) решение сломалось, и автоматизация остановилась​. Основные трудности здесь – недостаток данных (нужно много примеров капчи для обучения) и громоздкость поддержки: как только выходит новый тип головоломки, модель требует доработки. Тем не менее, некоторые сервисы (например, SolveCaptcha, NopeCHA) инвестируют именно в ML-решения, что доказывает осуществимость подхода, хоть и ценой больших ресурсов.\u003C\u002Fp\u003E\u003Cp\u003EИногда нейросетевой подход сочетается с аудио: мне встречались описания попыток классифицировать \u003Cem\u003Eтип звука\u003C\u002Fem\u003E (например, отличить звук барабанов от гудка) с помощью ML-моделей, чтобы решать новые аудио-вопросы Arkose. Но публичных открытых решений такого плана пока нет – в основном это внутренние разработки компаний и разработчиков энтузиастов.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E3. Скрипты и библиотеки на GitHub для обхода механик Arkose.\u003C\u002Fstrong\u003E Помимо непосредственно распознавания головоломок, есть технические задачи: например, сгенерировать валидный \u003Cstrong\u003Efingerprint\u003C\u002Fstrong\u003E браузера или вычислить нужный \u003Cstrong\u003Etguess\u003C\u002Fstrong\u003E (match key) для ответа. Сообщество исследовало JS-код Arkose и выложило ряд утилит. Например, репозиторий \u003Cstrong\u003Eunfuncaptcha\u003C\u002Fstrong\u003E содержит инструменты для работы с \u003Cstrong\u003EBDA (browser data)\u003C\u002Fstrong\u003E – можно формировать корректный fingerprint-пакет, чтобы капча “доверяла” окружению. Другой модуль tguess позволяет подсовывать Arkose Labs сгенерированный параметр проверки на основе того самого скрипта dapib​. Эти библиотеки не решают капчу целиком, но помогают тем, кто пишет своего бота: их применяют вместе с компьютерным зрением или даже с ручным решением. Проще говоря, open-source скрипты берут на себя сложные части (эмулировать поведение браузера, обойти защиту Arkose), а разработчик может сосредоточиться на распознавании задания.\u003C\u002Fp\u003E\u003Cp\u003EПример: можно запустить скрытый браузер (Chromium) через Puppeteer, загрузить FunCaptcha, с помощью скриптов с GitHub \u003Cstrong\u003Eотключить некоторые проверки Arkose\u003C\u002Fstrong\u003E (подсунув свой fingerprint), извлечь изображение задания (например, спарсить &lt;canvas&gt; или скриншот), отправить это изображение на свой решатель или даже в сервис типа SolveCaptcha (который по изображению вернет координаты клика​), затем эмулировать клики или нажатия стрелок в браузере. Такие гибридные схемы – скорее исследовательские, их реализуют продвинутые разработчики под свои нужды. В открытом доступе есть проекты, демонстрирующие подобную автоматизацию, однако они часто быстро устаревают, поскольку Arkose закрывает выявленные лазейки.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EВывод по DIY:\u003C\u002Fstrong\u003E Самостоятельно решить FunCaptcha “с нуля” – очень нетривиальная задача. Open-source наработки могут покрыть отдельные части проблемы, но требуют времени на разбирательство и настройку. Аудио-решатели просты, но подходят далеко не везде. Нейросети перспективны, но требуют большого объема данных и вычислительных мощностей для обучения, не говоря уже о поддержке. Поэтому DIY-подход оправдан либо в учебных\u002Fисследовательских целях, либо если вы работаете над серьезным проектом, где масштаб и безопасность диктуют отказаться от платных сервисов и создать свое решение (например, в антиспам-системах крупных компаний). В остальных случаях, скорее всего, выгоднее воспользоваться уже готовыми сервисами или хотя бы их API, чем пытаться полностью воспроизвести человеческое поведение своими силами.\u003C\u002Fp\u003E\u003Ch4\u003EАвтоматизация с помощью браузера (Selenium и др.)\u003C\u002Fh4\u003E\u003Cp\u003EТретий подход – не пытаться “разгадать” капчу интеллектуально, а \u003Cstrong\u003Eэмулировать реального пользователя\u003C\u002Fstrong\u003E, выполняющего задание. По сути, это напоминает автоматизацию UI-тестирования: мы программно управляем настоящим браузером (через Selenium, Playwright, Puppeteer), который загружает страницу и капчу, и стараемся пройти ее так же, как прошел бы человек.\u003C\u002Fp\u003E\u003Cp\u003EПростейший вариант – вообще не решать автоматически, а вывести капчу человеку-оператору. Например, некоторые боты способны при возникновении FunCaptcha передавать управление на удаленный интерфейс, где сидит сотрудник, решает головоломку, после чего скрипт продолжается. Но это уже не полностью автоматическое решение, к тому же такая схема мало масштабируется.\u003C\u002Fp\u003E\u003Cp\u003EНас больше интересует \u003Cstrong\u003Eполностью автоматизированный сценарий в браузере\u003C\u002Fstrong\u003E. Возможны разные реализации:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EКомбинация с сервисом распознавания.\u003C\u002Fstrong\u003E Здесь Selenium используется, чтобы корректно загрузить капчу и дождаться появления нужных элементов (public key, etc.). Далее скрипт может собрать параметры и отправить задачу в 2Captcha (как описано ранее) или в SolveCaptcha, получить токен и вставить его на странице. То есть браузер выполняет роль “держателя контекста”, а решает задачу внешний сервис. Этот способ довольно надежен: он гарантирует, что все нужные JS Arkose отработают (сгенерируют fingerprint, session и пр.), а мы просто подставим готовое решение. В среде Selenium можно прописать ожидание (WebDriverWait) появления скрытого поля fc-token, затем заполнить его решенным токеном и выполнить сабмит. Такой метод часто применяют на практике, особенно когда нужно автоматизировать целый сценарий взаимодействия с сайтом, а не только капчу.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EПолностью свой решатель капчи внутри браузера.\u003C\u002Fstrong\u003E Более сложный вариант – писать логику решения в коде, который управляет браузером. Например, определить, что за задача отображена, и выполнить соответствующие действия:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EЕсли это головоломка с вращением объекта – проанализировать изображение (можно получить canvas из DOM или сделать скриншот элемента) и вычислить, насколько повернут объект. Были попытки вычислять угол наклона животных с помощью OpenCV-шаблонов или специализированных моделей. Затем эмулировать нажатия стрелок в Selenium (посылая send_keys или через JS) нужное число раз и нажать \"Verify\".\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EЕсли задача с выбором картинок (например, “выберите все изображения, на которых есть X”) – можно вытащить каждое подизображение, прогнать через модель классификации (или воспользоваться API типа SolveCaptcha, который по base64-картинке вернет, какие из 6 изображений отмечать​), а потом с помощью Selenium кликнуть по нужным элементам.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EВ случае сложных многоэтапных игр (как загадка с местами в самолете, где нужно перемещать фигурку по рядам) – это еще больший вызов. Потребовалось бы распознавать текстовые метки (ряд\u002Fместо), понимать, куда кликать стрелками. Теоретически возможно прописать детерминированный алгоритм под конкретную игру, но каждое новшество Arkose свело бы такую систему на нет.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EКак видно, \u003Cstrong\u003Eуниверсальный браузерный бот\u003C\u002Fstrong\u003E для Arkose почти сопоставим по сложности с написанием DIY-решения из предыдущего раздела. Разница лишь в том, что тут мы используем реальный браузер (минимизируя проблемы с fingerprint и MatchKey, т.к. штатный JS Arkose отрабатывает как у обычного пользователя). Но сам этап “принятия решения” все равно ложится на наш код.\u003C\u002Fp\u003E\u003Cp\u003EЗато управление браузером дает некоторые преимущества:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EМожно собирать данные “на лету” (например, делать скриншоты), отлаживать по шагам, визуально видеть, что капча отобразилась.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003ESelenium\u002FPlaywright позволяют задать профиль браузера, чтобы выглядело более правдоподобно (загрузить необходимые куки, включить видео\u002Fзвук для решения аудио).\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EВ случае с комбинацией сервисов: можно заранее запускать процесс решения параллельно. Например, открываем страницу, сразу вытаскиваем ключи и шлем на 2Captcha, пока капча анимировано отображается – возможно, часть времени перекроется и общее ожидание будет меньше.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003E\u003Cstrong\u003EОграничения:\u003C\u002Fstrong\u003E чисто браузерная автоматизация очень чувствительна к изменениям интерфейса. Любое обновление фронтенда Arkose (изменение селекторов, логики переходов между этапами) может сломать скрипт. Также браузер – это ресурсоемко: запускать сотни потоков Selenium, каждый из которых крутит 3D-анимацию, нереально (в то время как условная 2Captcha может параллельно решать тысячи капч на своих серверах). Поэтому такой подход годится либо для относительно небольшого числа задач, либо в случаях, когда интеграция с внешними API недопустима по соображениям безопасности и тп.\u003C\u002Fp\u003E\u003Cp\u003EНа практике часто используется \u003Cstrong\u003Eгибридный\u003C\u002Fstrong\u003E вариант: браузер + капча-сервис. Он относительно прост: Selenium скрипт логирует в консоль или файл найденный public key и прочие параметры, затем внешняя система (человек или другой процесс) вызывает API распознавания, получает токен и вводит его через Selenium. Такой сценарий распространен среди тех, кто делает ботов для специфических целей (регистрация аккаунтов, парсинг данных за защищенными формами) – он уменьшает риск ошибок, связанных с fingerprint, поскольку \u003Cstrong\u003Eбраузер выполняет “честное” прохождение\u003C\u002Fstrong\u003E, и нам остается только обеспечить правильный токен решения.\u003C\u002Fp\u003E\u003Ch3\u003EОграничения и сложности методов обхода\u003C\u002Fh3\u003E\u003Cp\u003EПодведем итог ограничениям каждого подхода:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EСервисы распознавания:\u003C\u002Fstrong\u003E зависимость от сторонней платформы, время ожидания решения (обычно 15–30 сек), возможная неработоспособность при вводе новых капч Arkose (пока сервис не адаптируется). Также есть небольшой риск, что сайт узнает о факте использования solver-сервиса – например, Arkose передает сайту информацию об IP решающего. Если вы используете решение \u003Cstrong\u003Eбез прокси\u003C\u002Fstrong\u003E, сайт может увидеть, что капчу решил не ваш IP, а какой-то дата-центр​. В некоторых случаях это может привести к дополнительной проверке. Решение – использовать режим с прокси (когда сервис решает с IP вашего региона) или выбирать сервисы, заявляющие полную незаметность. Стоимость – тоже фактор: если вы решаете тысячи капч ежедневно, даже $3 за 1000 превращаются в заметные суммы.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EOpen-source\u002Fсамописное решение:\u003C\u002Fstrong\u003E требует высокой технической экспертизы и времени. Аудио-способ ограничен доступностью аудио-варианта и простотой самих загадок (современные аудио Arkose слишком сложны для тривиального распознавания). Нейросетевые решения – длительная разработка, постоянная поддержка и обновление модели. Кроме того, тестировать такую систему сложно: для отладки приходится воспроизводить работу капчи в контролируемых условиях, что само по себе непросто (Arkose может не давать много попыток с одного IP, либо придётся эмулировать их API). В результате многие публичные скрипты либо устарели, либо решают лишь часть задачи (например, только генерируют токены, но не распознают изображение).\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EАвтоматизация браузера:\u003C\u002Fstrong\u003E основной минус – \u003Cstrong\u003Eнизкая скорость и масштабируемость\u003C\u002Fstrong\u003E. Один браузер выполняет одну капчу за раз, нагружая CPU\u002FGPU. Масштабировать на десятки потоков – тяжело. Кроме того, Selenium веб-драйверы иногда детектируются – Arkose вполне может определить Headless Chrome и либо усложнить для него задачу, либо вовсе блокировать (правда, Arkose заявляет соответствие WCAG и поддержку скринридеров, так что полностью запрещать автоматизацию им невыгодно). Но headless-браузер без правильного приведения окружения может выдавать аномальные параметры (например, отсутствует реальная видеокарта для WebGL), что повысит подозрения. Все это делает подход нуждающимся в тонкой настройке.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EВажно понимать, что \u003Cstrong\u003Eни один метод не дает 100% гарантии прохода Arkose\u003C\u002Fstrong\u003E. Разработчики FunCaptcha активно борются с обходом: вводят новые головоломки, анализируют траектории курсора, могут задавать последовательность из нескольких этапов (например, решить 2–3 мини-игры подряд). Часто реализуется принцип: если есть сомнения в трафике, капча становится сложнее или повторяется больше раз. Поэтому у бота может уйти, скажем, 5 решенных токенов, чтобы наконец система сочла его успешным (после отправки токена сайт иногда возвращает новую капчу – возможно, как реакцию на подозрительность)​. Это нужно учитывать при планировании автоматизации – быть готовым к нескольким итерациям или отказу.\u003C\u002Fp\u003E\u003Cp\u003EС другой стороны, Arkose Labs стремится не задушить пользователя: слишком жесткая капча отпугнет и “хороших” юзеров. Они балансируют между сложностью и юзабилити​. Для нас это означает, что при умеренных попытках обхода шанс успеха все же остается – особенно если грамотно комбинировать методы.\u003C\u002Fp\u003E\u003Ch3\u003EMatchKey и новые меры защиты Arkose Labs\u003C\u002Fh3\u003E\u003Cp\u003EОтдельно стоит поговорить о \u003Cstrong\u003EMatchKey\u003C\u002Fstrong\u003E – так Arkose Labs называет свой обновленный комплекс защит для капч нового поколения. По сути, MatchKey – маркетинговое название улучшенной FunCaptcha, вобравшей в себя все лучшие практики против ботов. Что включает этот механизм:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EЕщё более разнообразные задания.\u003C\u002Fstrong\u003E Как уже упоминалось, 3D-капчи Arkose теперь генерируются с огромным числом вариаций (более 1250)​. Например, в задачах с поворотом могут меняться модели (разные животные, предметы), фон, направление, дополнительный отвлекающий контент. В логических задачах (“найди правильный объект”) – множество комбинаций и совершенно разный визуал. Такая вариативность бьет по методам машинного зрения: решить одно-два статичных задания можно, но покрыть тысячи вариантов – практически нереально без огромной обучающей выборки​.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EКомбинация мультимодальных проверок.\u003C\u002Fstrong\u003E MatchKey-челленджи могут объединять несколько типов проверок. Например: сначала пользователь решает визуальную головоломку, сразу вслед за ней – короткую аудио-загадку. Или в процессе визуальной задачи (перемещения объекта) также должно срабатывать некоторое скрытое условие (например, последовательность действий, которую бот повторить не сможет). Таким образом, для прохождения нужно одновременно преуспеть на нескольких фронтах, что резко снижает вероятность случайного автоматического обхода.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EДинамический ключ ответа (match key).\u003C\u002Fstrong\u003E Под этим подразумевается уже упомянутый ранее принцип: простой ответ “да\u002Fнет” на сервер не отправляется. Вместо этого ответ снабжается криптографическим или вычисляемым \u003Cem\u003Eключом\u003C\u002Fem\u003E, подтверждающим, что решение получено честно. Arkose Labs на своем сайте заявляет MatchKey как “самую сильную CAPTCHA из существующих” именно благодаря этой challenge-response схеме​. Для бот-разработчика это означает необходимость запускать сторонний код и вычислять дополнительный параметр для каждого ответа. Как пример – механизм \u003Cstrong\u003Etguess\u003C\u002Fstrong\u003E: при каждой попытке вращения объекта Arkose дает уникальный скрипт, который должен обработать ваш “guess” (угаданный ответ) и выдать контрольное значение​. Без этого контрольного значения сервер не примет решение как верное. Проще говоря, даже если бот визуально определил правильно, куда кликать, ему нужно еще сгенерировать правильный “сопровождающий ключ”, тесно связанный с внутренней логикой Arkose. Это значительно повышает барьер входа для автоматизации.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EУлучшенная работа с аудио.\u003C\u002Fstrong\u003E Arkose MatchKey включает более \u003Cstrong\u003E20 видов аудио-вопросов\u003C\u002Fstrong\u003E​, отходя от простого диктанта. Например, как уже было, пользователь должен прослушать несколько звуков и ответить на вопрос, который предполагает понимание чему звук принадлежит (где звук пчелы, где барабаны и т.д.). Причем аудио генерируются с разными шумами, вариациями, возможно даже меняются от сеанса к сеансу. Они утверждают, что это крупнейшее разнообразие аудио-капч в индустрии​. Это значит, что стандартный обходной вариант – скачал аудио и отдал Speech API – больше не помогает. Нужно решать задачу аудиального распознавания на уровне классификации смыслов, что близко к задаче обучения ИИ.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EТестирование против ботов.\u003C\u002Fstrong\u003E Arkose активно тестирует свои новые задачи на новейших алгоритмах машинного обучения​. По их заявлениям, они знают точно, сколько данных и усилий потребуется, чтобы обойти каждую их защиту, и стараются сделать так, чтобы затраты для злоумышленников были экономически невыгодны. Например, если для надежного решения одной капчи нужен полугодовой труд команды и инфраструктура за миллионы долларов – мало кто будет этим заниматься ради спама на сайте с Arkose. Конечно, со временем мощность алгоритмов растет, но Arkose тоже не стоит на месте.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EВ совокупности MatchKey делает FunCaptcha очень стойкой. Однако “неприступных крепостей” не бывает. Уже спустя некоторое время после выхода MatchKey-капч появились улучшенные решения от анти-капча сервисов и новые находки энтузиастов. Просто теперь это \u003Cstrong\u003Eгонка вооружений\u003C\u002Fstrong\u003E: Arkose усложняет – разработчики ищут тонкие места – Arkose снова их прикрывает.\u003C\u002Fp\u003E\u003Cp\u003EДля человека же принципиальных изменений нет: как были забавные 3D-картинки, так и остались. Разве что их тематика стала еще более разнообразной, и, как отмечают пользователи, \u003Cstrong\u003Eрешать Arkose капчи часто даже проще, чем разбирать цифры на смазанной рекапче\u003C\u002Fstrong\u003E – сказывается акцент на UX. Правда, если система посчитает вас ботом, она может “подвесить” на вас несколько раундов капчи подряд, что уже утомительно (например, 5 разных головоломок одну за другой)​. Но обычному пользователю такое почти не грозит – Arkose оценивает риск по множеству параметров и подавляющему большинству реальных людей дает пройти проверку быстро.\u003C\u002Fp\u003E\u003Ch3\u003EКакой метод решения использовать и когда\u003C\u002Fh3\u003E\u003Cp\u003EМы рассмотрели три подхода к обходу FunCaptcha. Какой же выбрать? Это зависит от ваших целей, ресурсов и ограничений:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EЕсли вам нужно быстро и надежно автоматизировать небольшое количество действий\u003C\u002Fstrong\u003E (например, написать скрипт для личного использования или разового парсинга), то оптимально воспользоваться \u003Cstrong\u003EAPI платного сервиса\u003C\u002Fstrong\u003E. За символическую плату вы получаете абстракцию над всей сложностью. 2Captcha, Rucaptcha, SolveCaptcha и прочие сейчас умеют решать большинство задач Arkose Labs. Интеграция займет считанные минуты, а поддерживать ничего не нужно – сервис сам будет обновляться, при появлении нововведений, чтобы не отставать от Arkose. Этот вариант хорош и для прототипирования: можно сначала подключить внешний решатель, а уже потом, если понадобятся оптимизации, думать о собственном решении.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EЕсли вы ограничены в средствах\u003C\u002Fstrong\u003E, и объем капч большой, можно попробовать \u003Cstrong\u003Eopen-source подходы\u003C\u002Fstrong\u003E. Например, при массовой рассылке SMS может быть накладно платить за каждую капчу – тогда имеет смысл инвестировать время в свое решение. Аудио-скрипт может быть внедрен как запасной вариант: вдруг на сайте есть аудио-капча – тогда вы ее пройдете вообще бесплатно, без обращения в сторонний сервис. Но надеяться только на аудио нельзя. Обучение нейросети “под себя” – вариант для энтузиастов или крупных игроков (например, разработчики спам-ботов теоретически могут попытаться построить модель под конкретный вид FunCaptcha, если таргетируют один сайт). Учтите, что поддержка такой модели – постоянный процесс, потребующий мониторинга капчи и обновления датасета.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EЕсли вы интегрируете Arkose Labs FunCaptcha в свой сервис как проверку\u003C\u002Fstrong\u003E, и хотите протестировать прочность – можно написать Selenium-скрипт, который с помощью ваших же production-скриптов будет пытаться ее проходить. Это поможет выявить слабые места. Здесь, конечно, не стоит выкладывать решение в открытый доступ, но вы можете в контролируемых условиях оценить, как сложно боту пройти вашу капчу.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EАвтоматизация через браузер\u003C\u002Fstrong\u003E полезна, когда вам нужно \u003Cstrong\u003Eименно воспроизвести последовательность действий пользователя целиком\u003C\u002Fstrong\u003E. Скажем, вы автоматизируете тестирование сайта, где на определенном шаге всегда возникает FunCaptcha. В тестовом окружении можно отключить капчу, но если нет – то приходится решать и ее. Использовать облачный сервис на каждый прогон тестов может быть неудобно (например, тесты запускаются часто, и вы не хотите зависеть от внешних API). Тогда можно встроить решение капчи в сам тест: например, подключить библиотеку NopeCHA или аналог прямо в браузере – она будет локально анализировать картинки (с помощью ML-модели) и кликать по ним. Это избавит от сетевых задержек и внешних зависимостей, но потребует загрузки ML-модели в среду браузера.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EКогда важна скорость и масштаб, а бюджет не ограничен\u003C\u002Fstrong\u003E, имеет смысл комбинировать подходы: например, основной поток решений пускать через платный сервис (ИИ + люди), а параллельно исследовать возможности снизить затраты – либо через встроенное решение простых кейсов, либо через оптимизацию параметров (например, заранее прогревать Arkose сессии, чтобы реже выпадали сложные задания). \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EВ реальности часто используются гибридные стратегии. Например, некоторые разработчики сначала пытаются решить FunCaptcha своими силами (напрямую крутя браузер), и только если не получается за N секунд – отправляют задачу на 2Captcha как запасной вариант. Такой подход может чуть сэкономить деньги, но требует внимательно отслеживать эффективность.\u003C\u002Fp\u003E\u003Cp\u003EFunCaptcha от Arkose Labs – один из самых продвинутых и “непробиваемых” видов капчи на сегодняшний день. Она эволюционировала от простых вращающихся картинок до целого набора многоуровневых испытаний (MatchKey), бросающих вызов самым современным ботам. Но способы ее распознавания существуют, и регулярно обновляются.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"фанкапча"},{"titleHtml":"решение фанкапчи"},{"titleHtml":"funcaptcha"},{"titleHtml":"arcose lab"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F340\u002F5ee\u002F8b0\u002F3405ee8b02f86785cf359afb0a4a741e.jpg","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F340\u002F5ee\u002F8b0\u002F3405ee8b02f86785cf359afb0a4a741e.jpg","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F907218\\\u002F\"},\"headline\":\"FunCaptcha (Arkose Labs): принципы работы, особенности и методы распознавания (автоматические и ручные варианты)\",\"datePublished\":\"2025-05-06T09:29:06+03:00\",\"dateModified\":\"2025-05-07T01:03:56+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Alex\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Как работает FunCaptcha и чем она отличается от классических капчПродолжаем путешествовать по миру капч (Фантастические капчи и где они обитают, а также способы...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F907218\\\u002F#post-content-body\",\"about\":[\"h_infosecurity\",\"f_develop\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F907218\\\u002Fa5c4513a9c4417972f32ab51c5a78d81\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F340\\\u002F5ee\\\u002F8b0\\\u002F3405ee8b02f86785cf359afb0a4a741e.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F8e4\\\u002F7b5\\\u002F7d4\\\u002F8e47b57d43d5caf2323a3034f34dcf6c.jpeg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fbfe\\\u002F96a\\\u002F20e\\\u002Fbfe96a20e4ff303a9f792e3ec8c10ab9.jpeg\"]}","metaDescription":"Как работает FunCaptcha и чем она отличается от классических капч Продолжаем путешествовать по миру капч (Фантастические капчи и где они обитают, а также способы борьбы с ними), и сегодня на очереди...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":{"status":true,"reason":null},"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"hasPinnedComments":false,"format":"review","banner":null,"multiwidget":null,"multiwidgetUuid":null,"readingTime":23,"complexity":"low","isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"postReasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"viewedPosts":[],"myFeedFilter":{"complexity":"all","score":"all","types":["articles","posts","news"]},"myFeedIsApplyFilters":false,"myFeedIsForce":false,"karma":{"userReasonsList":null}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[{"title":"Специалист по информационной безопасности","vacanciesCount":35,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Fspecialist_po_informacionnoj_bezopasnosti","itemHubs":["infosecurity"]}],"hubs":"infosecurity"},"comments":{"articleComments":{},"articlePinnedComments":{},"searchCommentsResults":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":"","idempotenceKey":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"multiwidgets":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"multiwidgetLoading":false,"vacancies":{},"companiesGalleries":{},"companiesBanners":{},"companiesLandingVacancies":{},"companiesTechnologies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null,"jivoStatus":0,"adminNotifications":null,"availableInvitesCount":{}},"companyAdd":{"currentStep":"","stepsData":{},"uncompletedSteps":[],"isStepLoading":true,"isStepCommitting":false,"isInitialized":false,"agreementContent":""},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"pagesCount":0},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":true},"fixedBanner":{"isArticleStickyPanelVisible":false,"isArticleStickyPanelAtTheBottom":false,"isFixedBannerVisible":false,"isStickyPanelIconsHidden":false},"flows":{"updates":{}},"global":{"isPwa":false,"device":"desktop","isHabrCom":true,"requestId":"661e35433d1bc0e7bb261f41cc91e693"},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"welcomePage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"query":{},"pathname":"\u002Fru\u002Farticles\u002F907218\u002F","path":"\u002Fru\u002Farticles\u002F907218\u002F","href":"\u002Fru\u002Farticles\u002F907218\u002F"}},"me":{"user":null,"uuid":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null,"userUpdates":{"feeds":{"newPostsCount":null,"newThreadsCount":null,"newNewsCount":null,"newCount":null},"conversationUnreadCount":0},"features":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"onboarding":{"currentStep":null,"stepsData":{},"stepsErrors":{},"completedSteps":[],"isStepCommitting":false,"isCommitDisabled":true},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{"courses":"project-block-article"}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null,"sticker":null},"publicationStatistics":{"statsInfo":{},"statsFunnels":{},"statsGraph":{},"defaultSuggest":{},"suggest":{},"timeTracker":{},"isTrackingActivity":false,"isUserActive":true,"otherPublicationStats":{}},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":true,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"stories":{"stories":null},"technotext":{"years":[],"technotextDocForNominees":null,"technotextDocForWinners":null,"technotextInfo":{},"technotextInfoLoading":false,"technotextWinners":{},"technotextWinnersLoading":false},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"userVotes":{"karmaVotesList":[],"karmaVotesPagesCount":null,"karmaVotesListLoading":false,"commentsVotesList":[],"commentsVotesPagesCount":null,"commentsVotesListLoading":false,"postsVotesList":[],"postsVotesPagesCount":null,"postsVotesListLoading":false,"userVotesList":[],"userVotesPagesCount":null,"userVotesListLoading":false},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"notificationsLoading":false,"notificationsList":[],"notificationsPageCount":0,"pendingMarkNotificationsRead":[],"publicationsLoading":true,"publicationsList":[],"publicationsPageCount":0,"pendingDeletePublications":false,"pendingMarkPublicationsRead":false},"events":{"eventRefs":{},"eventIds":[],"pagesCount":0,"categories":[],"cities":[],"actualEvents":null,"currentEvent":null,"eventsFilter":{"city":"all","timeStarted":null,"timeEnded":null}},"wysiwyg":{"WYSIWYGRulesRefs":null},"refs":{"specializationRefs":[]},"hint":{"hints":{}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script>
+   <script src="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" defer></script>
+   <script src="https://assets.habr.com/habr-web/js/app.58b8c457.js" defer></script>
+  </div>
+  <div id="overlays">
+   <!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor-->
+  </div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S28W1WC23F"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  </script>
+  <script type="text/javascript">
+      window.addEventListener('load', function () {
+        setTimeout(() => {
+          const img = new Image();
+          img.src = 'https://vk.com/rtrg?p=VK-RTRG-421343-57vKE';
+        }, 0);
+      });
+    </script>
+ </body>
+</html>

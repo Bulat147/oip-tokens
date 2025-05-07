@@ -1,0 +1,1353 @@
+<!doctype html>
+<html lang="ru">
+ <head>
+  <title>Криптография эпохи Ренессанса: шифрование как искусство и рабочий инструмент / Хабр</title>
+  <meta property="fb:app_id" content="444736788986613">
+  <meta property="fb:pages" content="472597926099084">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@habr_com">
+  <meta property="og:site_name" content="Хабр">
+  <link href="https://habr.com/ru/rss/post/901478/?fl=ru" type="application/rss+xml" title rel="alternate" name="rss">
+  <link href="https://habr.com/ru/companies/bastion/articles/901478/" rel="canonical" data-hid="e3fa780">
+  <link rel="image_src" href="https://habrastorage.org/getpro/habr/upload_files/df1/7d8/095/df17d80953f134605473f5a5900e3f82.jpg" data-hid="2a79c45">
+  <link rel="amphtml" href="https://habr.com/ru/amp/publications/901478/">
+  <meta property="og:title" content="Криптография эпохи Ренессанса: шифрование как искусство и рабочий инструмент">
+  <meta name="twitter:title" content="Криптография эпохи Ренессанса: шифрование как искусство и рабочий инструмент">
+  <meta name="aiturec:title" content="Криптография эпохи Ренессанса: шифрование как искусство и рабочий инструмент">
+  <meta name="description" content="«Казнь Марии Стюарт». Картина кисти Абеля де Пюжоля. XIX век Эпоха Ренессанса стала рассветом не только науки и искусства, но также криптографии. Некоторые шифры этого периода для криптографа — все...">
+  <meta itemprop="description" content="«Казнь Марии Стюарт». Картина кисти Абеля де Пюжоля. XIX век Эпоха Ренессанса стала рассветом не только науки и искусства, но также криптографии. Некоторые шифры этого периода для криптографа — все...">
+  <meta property="og:description" content="«Казнь Марии Стюарт». Картина кисти Абеля де Пюжоля. XIX век Эпоха Ренессанса стала рассветом не только науки и искусства, но также криптографии. Некоторые шифры этого периода для криптографа — все...">
+  <meta name="twitter:description" content="«Казнь Марии Стюарт». Картина кисти Абеля де Пюжоля. XIX век Эпоха Ренессанса стала рассветом не только науки и искусства, но также криптографии. Некоторые шифры этого периода для криптографа — все...">
+  <meta property="aiturec:description" content="«Казнь Марии Стюарт». Картина кисти Абеля де Пюжоля. XIX век Эпоха Ренессанса стала рассветом не только науки и искусства, но также криптографии. Некоторые шифры этого периода для криптографа — все...">
+  <meta itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/df1/7d8/095/df17d80953f134605473f5a5900e3f82.jpg">
+  <meta property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/df1/7d8/095/df17d80953f134605473f5a5900e3f82.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/df1/7d8/095/df17d80953f134605473f5a5900e3f82.jpg">
+  <meta name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/df1/7d8/095/df17d80953f134605473f5a5900e3f82.jpg">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/df1/7d8/095/df17d80953f134605473f5a5900e3f82.jpg?format=vk">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/df1/7d8/095/df17d80953f134605473f5a5900e3f82.jpg?format=vk">
+  <meta property="aiturec:item_id" content="901478">
+  <meta property="aiturec:datetime" content="2025-05-06T09:31:03.000Z">
+  <meta content="https://habr.com/ru/companies/bastion/articles/901478/" property="og:url">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="keywords" content="криптография, шифрование информации, шифры эпохи ренессанса, криптография эпохи ренессанса, криптография нового времени, история криптографии, роль криптографии в истории">
+  <script type="application/ld+json" data-hid="1e0f0a2">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/companies\/bastion\/articles\/901478\/"},"headline":"Криптография эпохи Ренессанса: шифрование как искусство и рабочий инструмент","datePublished":"2025-05-06T12:31:03+03:00","dateModified":"2025-05-06T13:38:49+03:00","author":{"@type":"Person","name":"Павел Канаев"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"&laquo;Казнь Марии Стюарт&raquo;. Картина кисти Абеля де Пюжоля. XIX векЭпоха Ренессанса стала рассветом не только науки и искусства, но также криптографии. Некоторые шифры...","url":"https:\/\/habr.com\/ru\/companies\/bastion\/articles\/901478\/#post-content-body","about":["c_bastion","h_history","h_read","h_crypto","h_infosecurity","f_develop","f_management","f_popsci"],"image":["https:\/\/habr.com\/share\/publication\/901478\/4ac877c6616d589caf9fafa55a00d28a\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/4a1\/d37\/e49\/4a1d37e4935d324199b7c99a4b80e44b.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/771\/16d\/6d2\/77116d6d24046f4ad8c34e6110a59c5c.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/ac5\/362\/9db\/ac53629db6f752707a72674cbca97612.jpeg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/b26\/cca\/fa8\/b26ccafa81e3165a89bec0c144480c9f.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/d6f\/1bc\/92e\/d6f1bc92e69320cf45d1ee817a617a8f.jpeg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/f85\/b74\/fbb\/f85b74fbb3dc9e67da8d8c842823745a.jpeg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/9fa\/826\/1e5\/9fa8261e50f44e6dea864114d19beea5.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/406\/8e6\/389\/4068e63896f4f74f2f222409105d33a4.jpeg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/569\/fc7\/1da\/569fc71da69f0e3d5ba5a1e58ceae954.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/a0f\/f8e\/625\/a0ff8e625867679a969ccb27110476e8.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/0f0\/2a4\/50f\/0f02a450fb0da55765bb05b6a85e928a.jpeg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/bd0\/9c8\/4c2\/bd09c84c2b00a410590cf14b3346279d.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/df1\/7d8\/095\/df17d80953f134605473f5a5900e3f82.jpg"]}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1,user-scalable=0">
+  <meta name="referrer" content="unsafe-url">
+  <style>
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmojLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvk4jLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmYjLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" as="style" media="(prefers-color-scheme: light)">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" as="style" media="(prefers-color-scheme: dark)">
+  <link id="light-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" media="(prefers-color-scheme: light)">
+  <link id="dark-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" media="(prefers-color-scheme: dark)">
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.635b6c39236ebd33fa716c71ab0131a0.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script>
+  <style>
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+    </style>
+  <meta name="habr-version" content="2.241.0">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44">
+  <meta name="msapplication-TileColor" content="#629FBC">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png">
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png">
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg">
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest">
+  <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
+  <script>window.yaContextCb = window.yaContextCb || []</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.8599692f.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.58b8c457.js" as="script">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.8599692f.css">
+ </head>
+ <body>
+  <div id="mount">
+   <div id="app">
+    <div class="tm-layout__wrapper">
+     <!--[--><!---->
+     <div></div><!---->
+     <header class="tm-header" data-test-id="header">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-header__container">
+        <!----><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/">
+          <svg class="tm-svg-img tm-header__icon" height="16" width="16">
+           <title>
+            Хабр
+           </title><use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+          </svg></a><span style="display:none;" class="tm-header__beta-sign">β</span></span><!--[-->
+        <div class="tm-dropdown tm-header__projects">
+         <div class="tm-dropdown__head">
+          <!--[-->
+          <button class="tm-header__dropdown-toggle">
+           <svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16">
+            <title>
+             Открыть список
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#arrow-down"></use>
+           </svg></button><!--]-->
+         </div><!---->
+        </div><a href="/ru/sandbox/start/" class="tm-header__become-author-btn">Как стать автором</a>
+        <div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature">
+         <!---->
+        </div><!----><!--]--><!---->
+       </div><!--]-->
+      </div>
+     </header>
+     <div class="tm-layout">
+      <div class="tm-page-progress-bar"></div>
+      <div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true">
+       <div class="tm-page-width">
+        <!--[-->
+        <div class="tm-base-layout__header-wrapper">
+         <div class="tm-main-menu">
+          <div class="tm-main-menu__section">
+           <nav class="tm-main-menu__section-content">
+            <!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]-->
+           </nav>
+          </div>
+         </div>
+         <div class="tm-header-user-menu tm-base-layout__user-menu">
+          <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button">
+           <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24">
+            <title>
+             Поиск
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#search"></use>
+           </svg></a><!----><!---->
+          <div class="tm-header-user-menu__item tm-header-user-menu__write">
+           <div>
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Написать публикацию
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#write"></use>
+            </svg>
+           </div><!---->
+          </div><!--[-->
+          <div class="tm-header-user-menu__item">
+           <button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings">
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Настройки
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#page-settings"></use>
+            </svg></button>
+          </div><a href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/companies/bastion/articles/901478/&amp;hl=ru" rel="nofollow" class="tm-header-user-menu__item"><!--[-->
+           <button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!----><!--teleport start--><!--teleport end--><!---->
+         </div>
+        </div><!--]-->
+       </div>
+      </div><!---->
+      <div class="tm-page-width">
+       <!--[--><!--]-->
+      </div>
+      <main class="tm-layout__container">
+       <div class="tm-page" hl="ru" companyname="bastion" data-async-called="true" style="--5ab2e5a8:16px;--44c4f6f6:100%;--45ba7a3b:0;">
+        <div class="tm-page-width">
+         <!--[-->
+         <div class="tm-page__header">
+          <!--[--><!--]-->
+         </div>
+         <div class="tm-page__wrapper">
+          <div class="tm-page__main_has-sidebar tm-page__main">
+           <div class="pull-down">
+            <!---->
+            <div class="pull-down__header" style="height:0px;">
+             <div class="pull-down__content" style="bottom:10px;">
+              <svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24">
+               <title>
+                Обновить
+               </title><use xlink:href="/img/megazord-v28.7909a852..svg#pull-arrow"></use>
+              </svg>
+             </div>
+            </div><!--[--><!--[-->
+            <div class="tm-article-presenter">
+             <!--[--><!--[--><!---->
+             <div class="tm-company-profile-card tm-company-article__profile-card">
+              <div class="tm-company-card tm-company-profile-card__info">
+               <div class="tm-company-card__header">
+                <a href="/ru/companies/bastion/profile/" class="tm-company-card__avatar">
+                 <div class="tm-entity-image">
+                  <img alt="" class="tm-entity-image__pic" height="48" src="//habrastorage.org/getpro/habr/company/1f6/b14/514/1f6b14514c21b431a87f14cd869feba5.jpg" width="48">
+                 </div></a><!--[--><!---->
+                <div class="tm-counter-container tm-company-card__rating">
+                 <div class="tm-counter-container__header">
+                  <!--[--><!--[--><!--]-->
+                  <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                   <!---->
+                   <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score_no-margin tm-votes-lever__score">
+                    <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">209.1</span></span><!--]-->
+                   </div><!---->
+                  </div><!--]-->
+                 </div>
+                 <div class="tm-counter-container__footer">
+                  <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                 </div>
+                </div><!----><!--]-->
+               </div>
+               <div class="tm-company-card__info">
+                <a href="/ru/companies/bastion/profile/" class="tm-company-card__name"><span>Бастион</span></a>
+                <div class="tm-company-card__description">
+                 Проводим пентесты, проектируем защищенные системы
+                </div>
+               </div>
+              </div>
+              <div class="tm-company-profile-card__buttons">
+               <div class="tm-button-follow tm-company-profile-card__button tm-company-profile-card__button_follow">
+                <!---->
+                <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+               </div><!----><!----><!---->
+              </div>
+             </div><!----><!--]--><!--]-->
+             <div class="tm-article-presenter__body" data-test-id="article-body">
+              <div class="tm-misprint-area">
+               <div class="tm-misprint-area__wrapper">
+                <!--[-->
+                <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                 <!--[-->
+                 <div class="tm-article-presenter__header">
+                  <!--[--><!--]-->
+                  <div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet">
+                   <!--[--><!--]-->
+                   <div class="tm-article-snippet__meta-container">
+                    <div class="tm-article-snippet__meta">
+                     <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/Pavel_Kanaev/" class="tm-user-info__userpic" data-test-id="user-info-pic" title="Pavel_Kanaev">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" height="24" src="//habrastorage.org/r/w48/getpro/habr/avatars/c2d/3cc/bd0/c2d3ccbd07718e5f26ec906996811ca5.jpg" width="24">
+                       </div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a href="/ru/users/Pavel_Kanaev/" class="tm-user-info__username">Pavel_Kanaev <!----></a><!--[--><span class="tm-article-datetime-published"><time datetime="2025-05-06T09:31:03.000Z" title="2025-05-06, 12:31">20 часов назад</time></span><!--]--></span></span>
+                    </div><!---->
+                   </div>
+                   <h1 class="tm-title tm-title_h1" lang="ru" data-test-id="articleTitle"><span>Криптография эпохи Ренессанса: шифрование как искусство и рабочий инструмент</span></h1>
+                   <div class="tm-article-snippet__stats" data-test-id="articleStats">
+                    <div class="tm-article-complexity tm-article-complexity_complexity-low">
+                     <span class="tm-svg-icon__wrapper tm-article-complexity__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Уровень сложности
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#complexity-low"></use>
+                      </svg></span><span class="tm-article-complexity__label">Простой</span>
+                    </div>
+                    <div class="tm-article-reading-time">
+                     <span class="tm-svg-icon__wrapper tm-article-reading-time__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Время на прочтение
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#clock"></use>
+                      </svg></span><span class="tm-article-reading-time__label">15 мин</span>
+                    </div><span class="tm-icon-counter tm-data-icons__item">
+                     <svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24">
+                      <title>
+                       Количество просмотров
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-views"></use>
+                     </svg><span class="tm-icon-counter__value" title="1431">1.4K</span></span>
+                   </div>
+                   <div class="tm-publication-hubs__container" data-test-id="articleHubsList">
+                    <div class="tm-publication-hubs">
+                     <!--[--><span class="tm-publication-hub__link-container"><a href="/ru/companies/bastion/articles/" class="tm-publication-hub__link"><!--[--><span>Блог компании Бастион</span><!----><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/history/" class="tm-publication-hub__link"><!--[--><span>История IT</span><!----><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/read/" class="tm-publication-hub__link"><!--[--><span>Читальный зал</span><!----><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/crypto/" class="tm-publication-hub__link"><!--[--><span>Криптография</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/infosecurity/" class="tm-publication-hub__link"><!--[--><span>Информационная безопасность</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><!--]-->
+                    </div>
+                   </div>
+                   <div class="tm-article-labels" data-test-id="articleLabels">
+                    <div class="tm-article-labels__container">
+                     <div class="tm-publication-label tm-publication-label_variant-review">
+                      <span>Обзор</span>
+                     </div><!--[--><!--]-->
+                    </div>
+                   </div><!----><!---->
+                  </div>
+                 </div><!--[--><!---->
+                 <div class="tm-article-body" data-gallery-root lang="ru">
+                  <div>
+                   <!--[--><!--]-->
+                  </div>
+                  <div id="post-content-body">
+                   <div>
+                    <div class="article-formatted-body article-formatted-body article-formatted-body_version-2">
+                     <div xmlns="http://www.w3.org/1999/xhtml">
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/4a1/d37/e49/4a1d37e4935d324199b7c99a4b80e44b.jpg" alt="«Казнь Марии Стюарт». Картина кисти Абеля де Пюжоля. XIX век" title="«Казнь Марии Стюарт». Картина кисти Абеля де Пюжоля. XIX век" width="1200" height="927" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/4a1/d37/e49/4a1d37e4935d324199b7c99a4b80e44b.jpg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/4a1/d37/e49/4a1d37e4935d324199b7c99a4b80e44b.jpg 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         <em>«Казнь Марии Стюарт». Картина кисти Абеля де Пюжоля. XIX век</em>
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Эпоха Ренессанса стала рассветом не только науки и искусства, но также криптографии. Некоторые шифры этого периода для криптографа — все равно что Сикстинская капелла или Мона Лиза для ценителя живописи. При этом именно в эпоху Возрождения шифрование превратилось из магической абракадабры и способа пустить пыль в глаза читателю в полноценный рабочий инструмент для защиты ценных сведений.</p>
+                      <p>В блог Бастиона снова заглянула Анастасия Ашаева — кандидат исторических наук, старший научный сотрудник Московского музея криптографии. Эксперт рассказала о шифровании эпохи Ренессанса.&nbsp;</p>
+                      <p>Сразу оговоримся, что в этой статье речь идет в основном об историческом контексте, информация по некоторым шифрам дается дозированно. Ведь криптография не существует в отрыве от исторических реалий — ее развитие неразрывно связано с потребностями людей и временем. Зато следующая публикация цикла будет всецело посвящена шифрам и криптографическим разработкам — с подробными описаниями, иллюстрациями и даже таблицами.&nbsp;</p>
+                      <p>А пока настраиваемся на прекрасное (как-никак, говорим о Возрождении) и поехали!</p>
+                      <h2>От магии к практике</h2>
+                      <p>Как уже говорилось в <a href="https://habr.com/ru/companies/bastion/articles/865468/">предыдущей статье</a>, европейская криптография сделала первые робкие шаги от оккультизма и религии к практическому применению еще в Средневековье. В XIII веке английский мыслитель Роджер Бэкон создал свой труд «Послание монаха о тайнах искусства и природы и о ничтожности магии», где призывал ученых шифровать свои работы и впервые описывал методы защиты информации. Впрочем, то была лишь первая ласточка к становлению криптографии как самостоятельной дисциплины в этот исторический период. Да и единственная польза шифрования, по мнению автора, заключалась в ограждении научного знания от «простонародья». Увы, гуманизмом «Темные века» не отличались.</p>
+                      <p>В эпоху Ренессанса крестьяне и горожане тоже не строчили зашифрованные послания. А вот политики, дипломаты и военные с XV столетия уже не обходились без криптографии в своих «играх престолов».</p>
+                      <div class="floating-image">
+                       <figure class="float ">
+                        <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/771/16d/6d2/77116d6d24046f4ad8c34e6110a59c5c.jpg" alt="Блез де Виженер, французский дипломат, криптограф и алхимик, именем которого назван один из самых известных шифров эпохи" title="Блез де Виженер, французский дипломат, криптограф и алхимик, именем которого назван один из самых известных шифров эпохи" width="428" height="553" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/771/16d/6d2/77116d6d24046f4ad8c34e6110a59c5c.jpg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/771/16d/6d2/77116d6d24046f4ad8c34e6110a59c5c.jpg 781w" loading="lazy" decode="async">
+                        <div>
+                         <figcaption>
+                          <em>Блез де Виженер, французский дипломат, криптограф и алхимик, именем которого назван один из самых известных шифров эпохи</em>
+                         </figcaption>
+                        </div>
+                       </figure>
+                       <p>Еще одна криптографическая примета Ренессанса — обилие узкоспециализированных научных и методических трактатов о шифрах и способах их применения. Таким образом, криптография превратилась в полноценную упорядоченную область знаний. Одновременно на смену простым моноалфавитным шифрам (например, «шифру Цезаря») приходили коды полиалфавитной замены, более стойкие к частотному криптоанализу.</p>
+                       <p>Шифровальщики, которые цеплялись за устаревшие методики, в итоге проиграли и оказались, говоря по-простому, «мамонтами». Талантливые криптоаналитики начали щелкать их шифровки, как орешки. Полиалфавитные же системы совершенствовались на протяжении всего XVI столетия, а кульминацией стал знаменитый «шифр Виженера». Впрочем, обо всем по порядку.</p>
+                      </div>
+                      <h2>Криптография на службе политики и дипломатии</h2>
+                      <p>Бессмертные произведения искусства Ренессанса — это лишь верхушка культурно-исторического айсберга. В то время как Тициан и Леонардо рождали свои шедевры, в Европе шло становление полноценных государств и наций в современном понимании, развивались общеевропейские и мировые рынки, налаживалась международная логистика, наконец, появлялись дипломатические службы нового образца.</p>
+                      <p>Как подметил историк криптографии Дэвид Кан, в эпоху Возрождения «дипломатия вскормила криптографию». Средневековые рыцарские замашки наподобие «Иду на вы!» уходили в прошлое и сменялись хитроумными подковерными играми, в которых защищенная переписка играла ключевую роль.&nbsp;</p>
+                      <p>Дипломатический и криптографический бум затронул не только Западную Европу: достаточно вспомнить учрежденные в Москве еще в середине XVI века Посольский приказ с Цифирной избой, упомянутые Карамзиным шифровки послов царя Федора Иоанновича, патриарха Филарета <a href="https://habr.com/ru/companies/bastion/articles/812587/">с его Цифирной азбукой</a>.&nbsp;</p>
+                      <p>Однако наибольших высот в политических и посольских интригах, а также применении шифров достигли Италия, Франция и Англия.&nbsp;</p>
+                      <h2>Итальянский криптографический Ренессанс&nbsp;</h2>
+                      <p>Италия — душа и само воплощение Ренессанса. Логично, что именно она стала колыбелью и криптографического возрождения. К тому же Италия состояла из независимых городов-государств, которые боролись за место под солнцем: плели интриги, объединялись в альянсы, искали военной помощи у зарубежных стран. В такой обстановке послы неизбежно превращались в «почетных шпионов». А какой шпион обходится без криптографии?&nbsp;</p>
+                      <h3>С чего все начиналось</h3>
+                      <p>Пионером в шифровании дипломатических документов выступил Ватикан. В папских архивах хранится документ 1326 года, где скрыты имена людей и названия противоборствующих группировок — гвельфов и гибеллинов. Первые — это <s>разновидность эльфов</s> сторонники ограничения власти императора Священной Римской империи в Италии и приверженцы папы римского. Вторые же, напротив, поддерживали императора. Гвельфы обозначаются в документе как «дети израилевы», а гибеллины — как «египтяне»: такая вот незатейливая «пасхалка» из библейской Книги Исход. Авторы пытались скрыть поддержку той или иной группы на случай, если документ попадет не в те руки. Вдобавок некоторые слова в папской документации маскировались отдельными буквами: А — король, D — папа римский и т. д.</p>
+                      <p>Самые древние на Западе криптографические ключи также были созданы для канцелярии понтифика, точнее говоря, антипапы Климентия VII. В 1378 году он бежал в Авиньон и объявил себя законным владельцем папского трона. Показательно, что среди первых распоряжений самопровозглашенного понтифика было создание новых шифров. Секретарь антипапы Габриэли Лавинде разработал индивидуальные ключи для всех 24 корреспондентов Климентия VII.</p>
+                      <blockquote>
+                       <p><em>Ключи Лавинде сочетают фрагменты кода и шифра. Все 24 ключа содержат шифроалфавиты замены с пустышками, а также списки популярных слов или имен, скрытых кодами из двух букв. По сути, это первый известный исследователям шифр-номенклатор.</em></p>
+                      </blockquote>
+                      <h3>Криптографическая гонка</h3>
+                      <p>Венеция не уступала папскому престолу, а на первых порах и вовсе опережала его в шифровании и криптоанализе. Город каналов стал родиной первой в мире службы госбезопасности, отвечавшей за защиту и расшифровку переписки с XV по XVIII столетие. Таинственный «Совет десяти» (Consiglio di Dieci) готовил специалистов-криптографов и даже принимал у них «выпускной экзамен» по шифрованию. Этот венецианский «Большой брат» жестоко карал за нарушения «информационной безопасности»: раскрытие шифровального ключа считалось государственной изменой и влекло смертную казнь.&nbsp;</p>
+                      <p>Даже на первый взгляд безобидные учебные трактаты по криптографии держались в строжайшем секрете. Так, венецианский писатель Агостино Амади и его Trattato delle Cifre, где описывалось большинство известных во второй половине XV века шифров, стали достоянием общественности лишь в середине XIX столетия. До сих пор неясно, кто выступал заказчиком этого 700-страничного «талмуда» и как он применялся. Вот уж засекретили так засекретили!&nbsp;</p>
+                      <p>Первый выдающийся европейский криптоаналитик по имени Джованни Соро также был венецианцем. В 1506 году его назначили секретарем по шифрам Венецианской Республики. Одно только перечисление государств, шифры которых взломал Соро, по объему потянет на отдельную статью. Дошло до того, что с начала XVI века сам папа римский обращался к венецианцу за расшифровкой перехваченных посланий, оказавшихся не по зубам ватиканским криптографам.</p>
+                      <blockquote>
+                       <p><em>В источниках описывается случай, когда депеша понтифика Климентия VII (нет, это не упомянутый выше антипапа с таким же именем) досталась его противникам. Воскликнув: «Соро может вскрыть любой шифр!», папа направил копию послания венецианскому «маэстро» для проверки стойкости шифра. Криптоаналитик не сумел прочесть шифровку, а папа вздохнул с облегчением. Трудно сказать, было ли так на самом деле, или же перед нами непроверенная сплетня, которыми богаты нарративные источники. В любом случае, такие истории не рождаются на пустом месте.</em></p>
+                      </blockquote>
+                      <div class="floating-image">
+                       <figure class="float full-width ">
+                        <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/ac5/362/9db/ac53629db6f752707a72674cbca97612.jpeg" alt="Папа Климентий VII. Портрет кисти Себастьяно дель Пьомбо" title="Папа Климентий VII. Портрет кисти Себастьяно дель Пьомбо" width="800" height="968" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/ac5/362/9db/ac53629db6f752707a72674cbca97612.jpeg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/ac5/362/9db/ac53629db6f752707a72674cbca97612.jpeg 781w" loading="lazy" decode="async">
+                        <div>
+                         <figcaption>
+                          <em>Папа Климентий VII. Портрет кисти Себастьяно дель Пьомбо</em>
+                         </figcaption>
+                        </div>
+                       </figure>
+                       <p>В 1542 году Соро возглавил небольшой криптографический отдел из трех человек, включая его самого. Возможно, подразделение послужило прообразом тех самых Черных кабинетов.</p>
+                       <p>Команда Соро трудилась в укромном уголке дворца венецианского дожа, в помещении «без окон и дверей» и в атмосфере строжайшей секретности. Когда поступала очередная перехваченная депеша, беднягам запрещалось покидать свой тайный офис до полной расшифровки криптограммы. В перерывах между такими кранчами Соро с подчиненными <s>раскладывали пасьянс</s> описывали методы своей работы в трактатах. Словом, отдых криптоаналитикам только снился, и то, когда удавалось урвать хотя бы несколько часов для сна.</p>
+                      </div>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/b26/cca/fa8/b26ccafa81e3165a89bec0c144480c9f.jpg" alt="Дворец дожей в Венеции" title="Дворец дожей в Венеции" width="1000" height="606" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/b26/cca/fa8/b26ccafa81e3165a89bec0c144480c9f.jpg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/b26/cca/fa8/b26ccafa81e3165a89bec0c144480c9f.jpg 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         <em>Дворец дожей в Венеции</em>
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <div class="floating-image">
+                       <p>Теперь вернемся в Ватикан, который не собирался уступать Венеции в этой «гонке криптоанализа» и тем более зависеть от услуг зарубежных шифровальщиков. В 1555 году должность секретаря по шифрам была учреждена и в папской курии. Уже через два года криптоаналитики понтифика не оставили камня на камне от шифра испанского короля Филиппа II. Отдельным папским шифровальщикам даже не требовалось владеть языком, на котором написано послание. Так, в 1567 году викарий собора Святого Петра в Риме разгадал перехваченную османскую криптограмму. А ведь он «не знал и четырех слов» на турецком.</p>
+                       <p>Криптоанализ процветал и во Флоренции, где особенно отличился на этой ниве граф Сассетский Пирро Музефилли. В середине XVI столетия он разгадал номенклаторы короля Франции Гениха II и прочел множество зашифрованных депеш. Как и Соро, Музефилли стал звездой мирового масштаба и получал заказы от европейских правителей. Однажды король Англии обратился к нему за расшифровкой перехваченного французского послания, спрятанного в подметках золотых туфель. Что уж говорить, даже <a href="https://habr.com/ru/companies/bastion/articles/882522/">стеганоконтейнеры</a> времен Ренессанса — настоящие произведения искусства.</p>
+                      </div>
+                      <h2>Французский криптографический Ренессанс</h2>
+                      <p>В отличие от раздробленной Италии, страна королевских лилий была мощным централизованным государством. Но дипломатических и политических «скандалов, интриг, расследований» хватало и там. Во-первых, Франция постоянно боролась с сильными противниками — Испанией и Англией. Во-вторых, внутренняя ситуация в стране часто накалялась до предела, а трон шатался под монархами из-за угрозы переворотов. Политикам и послам приходилось постоянно шифровать самим и перехватывать чужие закодированные депеши.</p>
+                      <h3>Французская «машина» для криптоанализа</h3>
+                      <p>Среди французских мэтров криптоанализа эпохи Возрождения — первый госсекретарь и придворный дешифровщик при Франциске I Филибер Бабу. Современник описывал его как неутомимую машину для <s>убийства</s> расшифровки посланий. Причем Бабу разгадывал криптораммы даже на испанском, итальянском и немецком языках, которых не знал, и без алфавита под рукой.&nbsp;</p>
+                      <blockquote>
+                       <p><em>«Он упорно работал над сообщением дни и ночи напролет в течение трех недель, прежде чем разгадать одно слово, — пишет очевидец. — После того как брешь была проделана, остальное происходило очень быстро и напоминало разрушение стен».</em></p>
+                      </blockquote>
+                      <p>Как часто бывает с трудоголиками, работа от зари до зари вредила личной жизни криптоаналитика, награжденного за свои труды не только замком Бурдезьер близ Тура, но и… рогами. Прекрасная жена Бабу была любовницей самого Франциска I и регулярно посещала королевские покои, пока ее благоверный корпел над очередной расшифровкой на благо короны.</p>
+                      <h3>Как автор теоремы спас короля</h3>
+                      <p>Другой заслуженный французский криптограф эпохи Возрождение — Франсуа Виет. Да-да, тот самый, чью теорему проходят в школе на уроках алгебры.&nbsp;</p>
+                      <div class="floating-image">
+                       <figure class="float full-width ">
+                        <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/d6f/1bc/92e/d6f1bc92e69320cf45d1ee817a617a8f.jpeg" width="807" height="807" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/d6f/1bc/92e/d6f1bc92e69320cf45d1ee817a617a8f.jpeg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/d6f/1bc/92e/d6f1bc92e69320cf45d1ee817a617a8f.jpeg 781w" loading="lazy" decode="async">
+                       </figure>
+                       <p>В первую очередь Виет был адвокатом и членом тайного совета при короле Генрихе IV, математика же и криптоанализ являлись его хобби. Впрочем, именно благодаря своему увлечению советник помог королю выстоять в борьбе с так называемой Священной лигой. Это католическая фракция во главе с герцогом Майеннским, которой не давал покоя протестант на троне.<br></p>
+                       <p>Добившись военной и финансовой поддержки от еще одного истового католика, испанского короля Филиппа II, Священная лига взяла под контроль Париж и ряд других ключевых городов Франции. Генрих оказался в положении «гипс снимают, клиент уезжает!». Но, к счастью для короля, его агенты перехватили часть переписки Филиппа II cо своими военачальниками. Разумеется, послания были зашифрованы.</p>
+                       <p>Тут-то автор бессмертной теоремы и показал себя во всей красе. С 1588 года он расшифровал ряд испанских депеш, где говорилось о передвижении и планах войск Священной лиги. Ценные оперативные данные позволили Генриху действовать на опережение и разбить превосходящие силы герцога Майеннского в битве на реке Иври 14 марта 1590 года. Правда, последующая осада Парижа окончилась для короля неудачей. Хотя Генрих и не смог поставить противникам шах и мат, громкая победа в генеральном сражении помогла ему сохранить трон.</p>
+                      </div>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/f85/b74/fbb/f85b74fbb3dc9e67da8d8c842823745a.jpeg" alt="Генрих IV в битве при Иври. Картина Питера Пауля Рубенса" title="Генрих IV в битве при Иври. Картина Питера Пауля Рубенса" width="1226" height="800" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/f85/b74/fbb/f85b74fbb3dc9e67da8d8c842823745a.jpeg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/f85/b74/fbb/f85b74fbb3dc9e67da8d8c842823745a.jpeg 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         <em>Генрих IV в битве при Иври. Картина Питера Пауля Рубенса</em>
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <h3>Колдовской криптоанализ</h3>
+                      <p>Виет же был настолько уверен в своих талантах, что порой сам забывал об осторожности. На следующий день после битвы на Иври криптоаналитик отправил Генриху открытую расшифровку перехваченного послания испанского военачальника Морео в Мадрид. Депеша содержала подробности переговоров Морео с герцогом Майеннским и была защищена недавно разработанным испанцами шифром-номенклатором. Виет не только не удосужился сам защитить расшифровку, но и бравировал своим нарушением «информационной безопасности».</p>
+                      <blockquote>
+                       <p><em>«Не волнуйтесь из-за того, что для Ваших врагов это будет повод сменить свои шифры и еще больше замаскироваться, — хвастался Виет. — Они неоднократно меняли их, и тем не менее их уловки были и всегда будут раскрыты».</em></p>
+                      </blockquote>
+                      <p>Когда испанцы перехватили это письмо, Филипп II пришел в ярость: его очередной «неприступный» шифр оказался плевым делом для Виета. Не в силах противостоять проклятому французу в криптографической дуэли, испанский король решил буквально задать ему жару — отправить на костер. Филипп сообщил папе римскому, что Виет якобы вскрыл папские шифры с помощью колдовства и должен предстать перед судом кардиналов. В теории уловка могла сработать, ведь криптоаналитик оставался католиком, несмотря на свою службу протестантскому монарху. Но понтифик на это не купился, так как отлично знал о ненадежности испанских шифров и сразу догадался, в чем дело. Филипп перехитрил сам себя и оказался, мягко говоря, в неловком положении. Испанские криптографы также были посрамлены на весь мир.</p>
+                      <p>Этот достойный исторического ситкома эпизод ярко демонстрирует противоборство между криптографами старого образца и прогрессивными криптоаналитиками вроде Бабу и Виета. В конечном итоге «противоборство» превратилось в «избиение младенцев», хотя старые добрые номенклаторы оставались в ходу вплоть до XX столетия.</p>
+                      <p>В последствии Франция завоюет и надолго сохранит за собой пальму первенства в шифровании: недаром именно там в XVII веке появятся первые «Черные кабинеты» — государственные подразделения по перлюстрации и расшифровке посланий. Но об этом речь шла в <a href="https://habr.com/ru/companies/bastion/articles/802935/">отдельной статье</a>.</p>
+                      <h2>Английский криптографический Ренессанс</h2>
+                      <p>Родина Шекспира тоже пережила криптографический бум в эпоху Ренессанса. Более того, именно в Англии в это время произошел наиболее резонансный и драматичный случай, связанный с шифрованием. Но не будем забегать вперед.</p>
+                      <h3>Как неосторожность посла подстегнула развитие шифрования&nbsp;</h3>
+                      <p>До XVI века англичане смотрели на защиту информации сквозь пальцы. Например, английский посол в Мадриде Томас Спинелли за тринадцать лет ни разу не менял шифр при отправке в туманный альбион писем с ценными разведданными из Испании. Неудивительно, что в итоге этот код стал известен испанцам и разве что не был напечатан в газетах или, как их тогда называли, летучих листках. Большинство защищенных посланий сочетало зашифрованный текст и обычные слова, так что их взлом не представлял особого труда даже без ключа под рукой.&nbsp;</p>
+                      <p>Например, вот отрывок из письма испанского посла Родриго Гундисальви де Пуэбла тестю английского короля Генриха VIII Фердинанду Испанскому, где соседствуют шифр и открытый текст:&nbsp;</p>
+                      <blockquote>
+                       <p><em>Выплата приданого откладывается до праздника Архангела Святого Михаила [29 сентября]. Относительно CCCCXXIII (брака) DCCCLXXVIII (королевы Кастилии) CCCCLXXXVIII (с) DCCCLXXXVII (королем Англии)</em>, <em>король Генрих желает быть проинформирован, когда король Фердинанд вернется в Кастилию, чтобы DCCCCLXXXIII (отправить) DCCCCLXXVIIII (посольство).</em></p>
+                       <p><em>— Лондон, 15 апреля 1507 г. MMCCCXXXI (де Пуэбла).</em></p>
+                      </blockquote>
+                      <p>В период правления Генриха VIII в Англии решили: пора что-то менять. Криптографию поставили на широкие государственные рельсы, а каждое посольское письмо из-за рубежа стали защищать новым уникальным шифром, чтобы исключить компрометацию.&nbsp;</p>
+                      <h3>Шифр разведенной королевы&nbsp;</h3>
+                      <p>Перефразируя строки Шекспира, «нет повести печальнее на свете, чем повесть об отвергнутой женщине». Речь о первой супруге Генриха VIII Екатерине Арагонской, которая превратилась из любимой жены и сильной монархини в изгнанницу. За 24 года брака она так и не смогла родить наследника мужского пола, и король решил развестись с ней. Католическая церковь не благословила развод, что в итоге вылилось в конфликт Генриха с папой римским и создание в Англии протестантской англиканской конфессии. Как говорится, все могут короли.&nbsp;</p>
+                      <p>Екатерина Арагонская не смирилась с решением супруга и пыталась опротестовать развод в папском суде в Лондоне в 1529 году, но потерпела поражение. Так или иначе, она до конца своих дней считала себя единственной легитимной женой Генриха и настоящей королевой Англии, о чем аккуратно сигнализировала своим католическим сторонникам в надежде на помощь. Известно, что с 1532 года, уже находясь в изгнании, Екатерина носила драгоценный кулон с «безобидными» надписями. Как оказалось, это был шифр. Недавно его удалось взломать ребусным методом Wordle. Расшифровка гласит: «Генрих Король (Henricvs Rex) и Екатерина».&nbsp;</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/9fa/826/1e5/9fa8261e50f44e6dea864114d19beea5.png" alt="Эскиз кулона Екатерины Арагонской с зашифрованной надписью" title="Эскиз кулона Екатерины Арагонской с зашифрованной надписью" width="885" height="758" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/9fa/826/1e5/9fa8261e50f44e6dea864114d19beea5.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/9fa/826/1e5/9fa8261e50f44e6dea864114d19beea5.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         <em>Эскиз кулона Екатерины Арагонской с зашифрованной надписью</em>
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <h3>Политическая воля для криптоанализа</h3>
+                      <p>Дальнейшее развитие английской криптографической школы во многом связано с политической волей министра и начальника разведки Елизаветы I, Сэра Френсиса Уолсингема. Впервые он заинтересовался шифрованием, когда прочел работу итальянского математика и криптографа Джироламо Кардано — изобретателя знаменитой шифровальной решетки, о которой расскажем в следующей статье.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/406/8e6/389/4068e63896f4f74f2f222409105d33a4.jpeg" alt="Фрэнсис Уолсингем. Портрет кисти Джона де Крица Старшего, около 1585 г." title="Фрэнсис Уолсингем. Портрет кисти Джона де Крица Старшего, около 1585 г." width="640" height="784" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/406/8e6/389/4068e63896f4f74f2f222409105d33a4.jpeg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/406/8e6/389/4068e63896f4f74f2f222409105d33a4.jpeg 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         <em>Фрэнсис Уолсингем. Портрет кисти </em><a href="https://ru.wikipedia.org/wiki/%D0%94%D0%B5%D0%BA%D1%80%D0%B8%D1%86,_%D0%94%D0%B6%D0%BE%D0%BD"><em>Джона де Крица Старшего</em></a><em>, около 1585 г.</em>
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <div class="floating-image">
+                       <p>Теория теорией, но министр решился на создание полноценной криптографической службы, только увидев плоды шифрования на практике. В 1577 году на стол Уолсингему легли перехваченные в Нидерландах и расшифрованные фламандским криптоаналитиком Ван Марниксом письма короля Филиппа Испанского. Последний уговаривал своего сводного брата и такого же убежденного католика Хуана Австрийского, который правил значительной частью нидерландских земель, вместе напасть на протестантскую Англию. Сюрприза не получилось: англичане начали спешно готовиться к обороне, а испанцам пришлось отказаться от своей авантюры.&nbsp;</p>
+                       <p>Оценив практическую пользу криптографии, Уолсингем учредил в Лондоне шифровальную школу и пригласил на службу некоего Томаса Феллипеса. Этот невзрачный и «незначительный во всех отношениях» функционер свободно владел латынью, немецким, французским и испанским языками, а заодно искусно взламывал любые шифры. Именно его криптографическая работа поставила точку в нашумевшем судебном процессе над несчастной шотландской и, недолгое время, французской королевой Марией Стюарт.&nbsp;</p>
+                      </div>
+                      <h3>Случай Марии Стюарт, или «Как криптоанализ решил судьбу королевы»</h3>
+                      <p>Чтобы рассказать всю подоплеку этого интересного и запутанного дела, как минимум, понадобится отдельная статья. Если кратко, в 1585 году изгнанная из Шотландии Мария Стюарт волею судеб оказалась в английском плену из-за вражды с королевой-протестанткой Елизаветой и своей приверженности католичеству.</p>
+                      <p>Пленницу постоянно перевозили из поместья в поместье. Конечно, она не сидела «за решеткой в темнице сырой»: поначалу ей даже разрешались конные прогулки в парках и поездки на лечебные воды в Бакстон. Но со временем этот «санаторий» прикрыли, а условия содержания почетной узницы ужесточились. Елизавета потрудилась обрубить все контакты Марии с внешним миром, и, как оказалось, небезосновательно.</p>
+                      <div class="floating-image">
+                       <p>В Англии тут же отыскались сторонники Марии Стюарт из числа знатных католиков, недовольных королевой-протестанткой. Тем более бабушкой пленницы была Маргарет Тюдор, старшая сестра самого Генриха VIII. Этого хватало для обоснования претензий Марии на английский трон, случись что с действующей королевой (происшествие на охоте или «случайное» десятикратное падение на нож).</p>
+                       <p>Лидером заговора стал дворянин Энтони Бабингтон. Он вступил в переписку с узницей, чудом обойдя «семь печатей», за которыми она находилась. Все послания с обеих сторон были зашифрованы. Письма Марии шифровал ее личный секретарь Гилберт Керли.</p>
+                      </div>
+                      <figure class="">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/569/fc7/1da/569fc71da69f0e3d5ba5a1e58ceae954.png" alt="Частично дешифрованный текст из писем Бабингтона Марии Стюарт" title="Частично дешифрованный текст из писем Бабингтона Марии Стюарт" width="350" height="256" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/569/fc7/1da/569fc71da69f0e3d5ba5a1e58ceae954.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/569/fc7/1da/569fc71da69f0e3d5ba5a1e58ceae954.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         <em>Частично дешифрованный текст из писем Бабингтона Марии Стюарт</em>
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <blockquote>
+                       <p><em>Мария Стюарт и заговорщики использовали шифр простой моноалфавитной замены или, другими словами, все тот же номенклатор.</em> <em>Это была система из 23 знаков для обозначения английских букв, за исключением литер j, v и w. Чтобы повысить стойкость шифровок и усложнить криптоанализ, еще 35 символов маскировали отдельные слова и фразы. Также шифр включал четыре знака-пустышки. Наконец, символ σ указывал на последующий «дуплет» (удвоенную букву).</em></p>
+                      </blockquote>
+                      <div class="floating-image">
+                       <figure class="float ">
+                        <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/a0f/f8e/625/a0ff8e625867679a969ccb27110476e8.png" alt="Оригинальное шифрованное письмо Бабингтона из Национального архива Великобритании" title="Оригинальное шифрованное письмо Бабингтона из Национального архива Великобритании" width="500" height="737" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/a0f/f8e/625/a0ff8e625867679a969ccb27110476e8.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/a0f/f8e/625/a0ff8e625867679a969ccb27110476e8.png 781w" loading="lazy" decode="async">
+                        <div>
+                         <figcaption>
+                          <em>Оригинальное шифрованное письмо Бабингтона из Национального архива Великобритании</em>
+                         </figcaption>
+                        </div>
+                       </figure>
+                       <p>Другой доброхот Марии — английский католик Гилберт Джифорт — организовал передачу сообщений. Хитроумный Джифорт сумел обойти стражу замка Чартли Холл, где находилась арестантка, при помощи… пива. Нет, он не напоил охранников до беспамятства — такое возможно только в дешевых приключенческих фильмах.</p>
+                       <p>Гилберт применил «пивную стеганографию»: подкупленный местный пивовар прятал послания в выдолбленных затычках в бочках с пенным напитком. Когда груз поступал в замок, слуги Марии украдкой доставали письма и приносили своей госпоже.</p>
+                       <p>Ответы передавались аналогичным способом, когда пивовар забирал пустые бочонки. Итак, перед нами еще один пример стеганоконтейнера эпохи Ренессанса — не столь изящный, как французские золоченые туфли, но практичный и действенный.</p>
+                      </div>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/0f0/2a4/50f/0f02a450fb0da55765bb05b6a85e928a.jpeg" alt="Руины замка Чартли в Англии, где содержалась в заключении Мария Стюарт" title="Руины замка Чартли в Англии, где содержалась в заключении Мария Стюарт" width="1280" height="883" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/0f0/2a4/50f/0f02a450fb0da55765bb05b6a85e928a.jpeg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/0f0/2a4/50f/0f02a450fb0da55765bb05b6a85e928a.jpeg 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         <em>Руины замка Чартли в Англии, где содержалась в заключении Мария Стюарт</em>
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>В июле 1586 в Чартли Холл доставили очередное зашифрованное письмо от Бабингтона, который просил благословить убийство королевы и делился деталями своего плана. Шесть молодых дворян должны были заколоть Елизавету I в ее же дворце. 17 июля пленница направила ответ и дала добро на переворот.</p>
+                      <p>Но свет в конце тоннеля погас, не успев толком разгореться. Мастер «пивной стеганографии» Джифорт оказался двойным агентом и передавал все послания Уолсингему — так и напрашивается «Вот это поворот!». Роковой ответ Марии первым делом попал в руки вышеупомянутому придворному криптоаналитику Томасу Фелиппесу. Тот одной левой расшифровал послание, потом скопировал оригинал и приписал почерком пленницы короткий зашифрованный постскриптум с просьбой к Бабингтону назвать всех заговорщиков. Дескать, так Мария сможет лучше сориентироваться в происходящем и будет знать, кому доверять.</p>
+                      <p>Бабингтон наверняка сдал бы всех своих товарищей с потрохами в ответном письме, слепо надеясь на стойкость шифра и не чувствуя подвоха. Но судьба распорядилась иначе, хотя исход был один. На следующий день после получения фейкового ответа от Марии Стюарт глава заговорщиков сам отправился в ведомство Уолсингема, чтобы оформить паспорт для поездки за рубеж к своим католическим союзникам. Каково же было удивление и смущение чиновников, когда главный подследственный страны лично явился к ним в гости. Секретарь ведомства Скадемор все же взял себя в руки и вызвал солдат, которые арестовали Бабингтона. Дворянин так и не успел ответить пленнице и раскрыть своих подельников, но это и не понадобилось — пытки сделали свое дело. Вскоре всех остальных заговорщиков поймали и заключили в Тауэр.&nbsp;</p>
+                      <p>Семерых смутьянов жестоко казнили 20 сентября 1586 года. Секретаря Марии Стюарт как следует допросили, и тот сдал свою хозяйку. В октябре Марию перевезли в замок Фотерингей и предали суду. Все-таки пленница была королевских кровей, поэтому требовалось соблюсти внешние приличия и обосновать ее казнь в глазах общественности.</p>
+                      <p>Подсудимая до последнего отрицала свою причастность к заговору, но перехваченные и расшифрованные письма стали железобетонными уликами против нее. 1 февраля 1587 Елизавета подписала указ о казни Марии, а спустя 7 дней ее обезглавили. Эта трагическая история стала еще одним подтверждением значимости криптоанализа, который определил судьбу венценосной особы.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/bd0/9c8/4c2/bd09c84c2b00a410590cf14b3346279d.jpg" alt="«Казнь Марии, королевы Шотландской». Роберт Хердман, 1867 г. " title="«Казнь Марии, королевы Шотландской». Роберт Хердман, 1867 г. " width="3072" height="2378" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/bd0/9c8/4c2/bd09c84c2b00a410590cf14b3346279d.jpg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/bd0/9c8/4c2/bd09c84c2b00a410590cf14b3346279d.jpg 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         <em>«Казнь Марии, королевы Шотландской». Роберт Хердман, 1867 г</em>.
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <hr>
+                      <p>На закате эпохи Ренессанса шифрование и криптоанализ стали настолько незаменимыми, что при дворах большинства европейских монархов появились свои секретари по шифрам. Они разрабатывали новые коды, шифровали сообщения и разгадывали перехваченные депеши в режиме фулл-тайм. Такие функционеры послужили переходной ступенькой в эпоху «Черных кабинетов».</p>
+                      <p>В следующей публикации мы поговорим подробнее непосредственно о криптографии: ключевых деятелях, работах и методиках шифрования эпохи Возрождения.</p>
+                     </div>
+                    </div>
+                   </div><!----><!---->
+                  </div><!----><!---->
+                 </div><!--]--><!---->
+                 <div class="tm-article-presenter__meta" data-test-id="article-meta-links">
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Теги:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%8F]" class="tm-tags-list__link"><span>криптография</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%88%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5+%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%B8]" class="tm-tags-list__link"><span>шифрование информации</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%88%D0%B8%D1%84%D1%80%D1%8B+%D1%8D%D0%BF%D0%BE%D1%85%D0%B8+%D1%80%D0%B5%D0%BD%D0%B5%D1%81%D1%81%D0%B0%D0%BD%D1%81%D0%B0]" class="tm-tags-list__link"><span>шифры эпохи ренессанса</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%8F+%D1%8D%D0%BF%D0%BE%D1%85%D0%B8+%D1%80%D0%B5%D0%BD%D0%B5%D1%81%D1%81%D0%B0%D0%BD%D1%81%D0%B0]" class="tm-tags-list__link"><span>криптография эпохи ренессанса</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%8F+%D0%BD%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE+%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%B8]" class="tm-tags-list__link"><span>криптография нового времени</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F+%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B8]" class="tm-tags-list__link"><span>история криптографии</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%80%D0%BE%D0%BB%D1%8C+%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B8+%D0%B2+%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D0%B8]" class="tm-tags-list__link"><span>роль криптографии в истории</span></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Хабы:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/companies/bastion/articles/" class="tm-hubs-list__link"><!--[--><span>Блог компании Бастион</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/history/" class="tm-hubs-list__link"><!--[--><span>История IT</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/read/" class="tm-hubs-list__link"><!--[--><span>Читальный зал</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/crypto/" class="tm-hubs-list__link"><!--[--><span>Криптография</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/infosecurity/" class="tm-hubs-list__link"><!--[--><span>Информационная безопасность</span><!--]--></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                 </div><!----><!--]-->
+                </article><!--]-->
+               </div><!---->
+              </div>
+              <div style="" class="tm-article-sticky-panel" data-test-id="article-sticky-panel">
+               <div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons">
+                <div class="article-rating tm-data-icons__item" data-v-86aec4a7>
+                 <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-article votes-switcher" title="Всего голосов 14: ↑14 и ↓0" data-v-86aec4a7>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-upvote-button" title="Нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon" height="24" width="24">
+                    <title>
+                     Нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                  <div class="tm-votes-lever__score tm-votes-lever__score_appearance-article tm-votes-lever__score">
+                   <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_positive tm-votes-lever__score-counter" data-test-id="votes-score-counter">+15</span></span><!--]-->
+                  </div>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-downvote-button" title="Не нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon tm-votes-lever__icon_arrow-down" height="24" width="24">
+                    <title>
+                     Не нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                 </div><!--teleport start--><!--teleport end--><!---->
+                </div><!----><!---->
+                <button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon">
+                  <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                   <title>
+                    Добавить в закладки
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-favorite"></use>
+                  </svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">21</span></button>
+                <div class="tm-sharing tm-data-icons__item" title="Поделиться">
+                 <button class="tm-sharing__button" type="button">
+                  <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                   <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                  </svg></button><!--teleport start--><!--teleport end-->
+                </div>
+                <div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии">
+                 <a href="/ru/companies/bastion/articles/901478/comments/" class="tm-article-comments-counter-link__link" data-test-id="counter-comments"><!--[-->
+                  <svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24">
+                   <title>
+                    Комментарии
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                  </svg><span class="tm-article-comments-counter-link__value">1</span><!--]--></a><!---->
+                </div><!--[--><!--[--><!--[--><!----><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!---->
+               </div>
+              </div>
+             </div><!--[--><!--]-->
+             <div class="tm-article-presenter__footer">
+              <!--[--><!--[-->
+              <div class="tm-article-blocks">
+               <!----><!--[-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <!----><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-balanced">
+                 <!--[-->
+                 <div class="tm-article-author" data-test-id="article-author-info" data-async-called="true">
+                  <!--[--><!--[-->
+                  <div class="tm-article-author__company">
+                   <div class="tm-article-author__company-card">
+                    <div class="tm-company-snippet">
+                     <a href="/ru/companies/bastion/profile/" class="tm-company-snippet__logo-link">
+                      <div class="tm-entity-image">
+                       <img alt="" class="tm-entity-image__pic" height="40" src="//habrastorage.org/getpro/habr/company/1f6/b14/514/1f6b14514c21b431a87f14cd869feba5.jpg" width="40">
+                      </div></a>
+                     <div class="tm-company-snippet__info">
+                      <a href="/ru/companies/bastion/profile/" class="tm-company-snippet__title" data-test-id="company-title"><span>Бастион</span></a>
+                      <div class="tm-company-snippet__description">
+                       Проводим пентесты, проектируем защищенные системы
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-article-author__buttons">
+                     <!----><!---->
+                    </div>
+                   </div>
+                   <div class="tm-article-author__company-contacts">
+                    <!--[--><a class="tm-article-author__contact" href="https://bastion-tech.ru" rel="noopener" target="_blank">Сайт</a><!--]-->
+                   </div>
+                   <div class="tm-article-author__separator"></div>
+                  </div><!--]--><!--]-->
+                  <div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true">
+                   <div class="tm-user-card__info-container">
+                    <div class="tm-user-card__header">
+                     <div class="tm-user-card__header-data">
+                      <a href="/ru/users/Pavel_Kanaev/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" src="//habrastorage.org/getpro/habr/avatars/c2d/3cc/bd0/c2d3ccbd07718e5f26ec906996811ca5.jpg">
+                       </div></a>
+                      <div class="tm-user-card__meta">
+                       <div class="tm-counter-container karma" title=" 39 голосов " data-v-f7c0e283>
+                        <div class="tm-counter-container__header">
+                         <!--[-->
+                         <div class="karma-display positive" data-v-f7c0e283 data-v-7635202e>
+                          37
+                         </div><!----><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[-->
+                         <div class="karma-text" data-v-f7c0e283>
+                          Карма
+                         </div><!--teleport start--><!--teleport end--><!--]-->
+                        </div>
+                       </div>
+                       <div class="tm-counter-container" title="Рейтинг пользователя">
+                        <div class="tm-counter-container__header">
+                         <!--[--><!--[--><!--]-->
+                         <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                          <!---->
+                          <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score">
+                           <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">15</span></span><!--]-->
+                          </div><!---->
+                         </div><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info">
+                     <div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title">
+                      <span class="tm-user-card__name tm-user-card__name_variant-article tm-user-card__name">Павел Канаев</span><a href="/ru/users/Pavel_Kanaev/" class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article"> @Pavel_Kanaev</a><!---->
+                     </div>
+                     <p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Пользователь</p>
+                    </div>
+                   </div><!---->
+                   <div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons">
+                    <!---->
+                    <div class="tm-user-card__button">
+                     <div class="tm-button-follow tm-user-card__button-follow">
+                      <!---->
+                      <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+                     </div>
+                    </div><!---->
+                    <div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations">
+                     <svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16">
+                      <title>
+                       Отправить сообщение
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#mail"></use>
+                     </svg>
+                    </div><!---->
+                   </div><!---->
+                  </div>
+                  <div class="tm-article-author__user-contacts" data-test-id="author-contacts">
+                   <!----><!----><!---->
+                  </div>
+                 </div><!--]-->
+                </div><!--]--><!---->
+               </section><!----><!--[-->
+               <div class="banner-wrapper leaderboard tm-company-article__banner" style="--38f3d936:200px;--78a3cd06:auto;" data-v-f4bf0d24>
+                <!--[-->
+                <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="adfox-banner-placeholder leaderboard" data-v-12f7bcca>
+                  <div class="image loads" data-v-12f7bcca></div>
+                  <div class="lines" data-v-12f7bcca>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                  </div>
+                 </div><!----><!----><!---->
+                </div>
+                <div id="adfox_164725660339535756" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+               </div><!----><!--]--><!--]-->
+               <div class="tm-article-blocks__comments">
+                <div id="publication-comments" class="tm-article-page-comments">
+                 <div>
+                  <!--[-->
+                  <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                   <a href="/ru/companies/bastion/articles/901478/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments"><!--[-->
+                    <svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24">
+                     <title>
+                      Комментарии
+                     </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                    </svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 1 </span><!--]--></a><!---->
+                  </div><!--]-->
+                 </div>
+                </div>
+               </div><!--[--><!--[--><!--]-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <header class="tm-block__header tm-block__header tm-block__header_variant-borderless">
+                 <div class="tm-block__header-container">
+                  <h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]-->
+                 </div><!---->
+                </header><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim">
+                 <!--[--><!--[-->
+                 <div class="tm-tabs tm-tabs">
+                  <div class="">
+                   <!--[--><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]-->
+                  </div><!---->
+                 </div>
+                 <div class="similar-and-daily__tab-view">
+                  <div class="placeholder-wrapper">
+                   <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                   <div class="tm-placeholder-article-cards">
+                    <!--[-->
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div><!--]-->
+                   </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                  </div><!---->
+                 </div><!--]--><!--]-->
+                </div><!--]--><!---->
+               </section><!--[--><!--[-->
+               <div>
+                <div class="placeholder-wrapper">
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="tm-placeholder-promo">
+                  <div class="tm-placeholder-promo__header">
+                   <div class="tm-placeholder__line tm-placeholder__line_promo-title"></div>
+                  </div>
+                  <div class="tm-placeholder-promo__body">
+                   <div class="tm-placeholder-promo__posts">
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                   </div>
+                   <div class="tm-placeholder-promo__dots">
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                   </div>
+                  </div>
+                 </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                </div>
+               </div>
+               <div class="placeholder-wrapper">
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="tm-placeholder-inset tm-placeholder-courses">
+                 <div class="tm-placeholder-inset__header">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div>
+                 </div>
+                 <div class="tm-placeholder-inset__body">
+                  <ul class="tm-placeholder-list">
+                   <!--[-->
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li><!--]-->
+                  </ul>
+                 </div>
+                 <div class="tm-placeholder-inset__footer">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div>
+                 </div>
+                </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               </div><!--]--><!--]--><!----><!--[--><!--]--><!--]-->
+              </div><!--]--><!--]-->
+             </div>
+            </div><!--]--><!--]-->
+           </div>
+          </div>
+          <div class="tm-page__sidebar">
+           <!--[-->
+           <div class="tm-layout-sidebar">
+            <div class="tm-layout-sidebar__placeholder_initial"></div>
+            <div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;">
+             <!--[--><!--]--><!---->
+             <div class="tm-layout-sidebar__ads_initial tm-layout-sidebar__ads">
+              <div class="banner-wrapper half-page tm-layout-sidebar__banner tm-layout-sidebar__banner_top" style="--38f3d936:600px;--78a3cd06:auto;" data-v-f4bf0d24>
+               <!--[-->
+               <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="adfox-banner-placeholder half-page" data-v-12f7bcca>
+                 <div class="image loads" data-v-12f7bcca></div>
+                 <div class="lines" data-v-12f7bcca>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                 </div>
+                </div><!----><!----><!---->
+               </div>
+               <div id="adfox_164725680533065327" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+              </div>
+             </div><!--[-->
+             <section class="tm-block tm-block tm-block_spacing-bottom">
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Информация</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[-->
+               <div class="tm-company-basic-info">
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Сайт
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[--><a class="tm-company-basic-info__link" href="https://bastion-tech.ru" target="_blank">bastion-tech.ru</a><!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Дата регистрации
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[--><time datetime="2021-10-08T08:16:41.000Z" title="2021-10-08, 11:16">8 октября 2021</time><!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Дата основания
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[--><span>2014</span><!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Численность
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[-->101–200 человек<!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Местоположение
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[-->Россия<!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Представитель
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[--><a href="/ru/users/SantrY/" class="tm-company-basic-info__link">Игорь Santry</a><!--]-->
+                 </dd>
+                </dl>
+               </div><!--]-->
+              </div><!--]--><!---->
+             </section>
+             <div class="tm-company-widgets">
+              <!--[--><!--]-->
+             </div><!---->
+             <div></div><!--]-->
+             <div class="banner-wrapper medium-rectangle tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom" style="--38f3d936:250px;--78a3cd06:auto;" data-v-f4bf0d24>
+              <!--[-->
+              <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+               <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               <div class="adfox-banner-placeholder medium-rectangle" data-v-12f7bcca>
+                <div class="image loads" data-v-12f7bcca></div>
+                <div class="lines" data-v-12f7bcca>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                </div>
+               </div><!----><!----><!---->
+              </div>
+              <div id="adfox_164725691003361602" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+             </div>
+            </div>
+           </div><!--]-->
+          </div>
+         </div><!----><!--]-->
+        </div>
+       </div>
+      </main><!---->
+     </div>
+     <div class="tm-footer-menu">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer-menu__container">
+        <!--[-->
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Ваш аккаунт</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/companies/bastion/articles/901478/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/companies/bastion/articles/901478/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Разделы</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/articles/" class="footer-menu__item-link">Статьи</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link">Новости</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link">Хабы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link">Компании</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link">Авторы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link">Песочница</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Информация</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link">Устройство сайта</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link">Для авторов</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link">Для компаний</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link">Документы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Услуги</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]-->
+          </ul>
+         </div>
+        </div><!--]-->
+       </div><!--]-->
+      </div>
+     </div>
+     <div class="tm-footer">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer__container">
+        <!---->
+        <div class="tm-footer__social">
+         <!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Facebook
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Twitter
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            VK
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Telegram
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Youtube
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Яндекс Дзен
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use>
+          </svg></a><!--]-->
+        </div><!--teleport start--><!--teleport end-->
+        <button class="tm-footer__link"><!----> Настройка языка</button><a href="/ru/feedback/" class="tm-footer__link">Техническая поддержка</a>
+        <div class="tm-footer-copyright">
+         <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span>
+        </div>
+       </div><!--]-->
+      </div>
+     </div><!----><!--]-->
+    </div><!---->
+   </div>
+   <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"901478":{"id":"901478","timePublished":"2025-05-06T09:31:03+00:00","isCorporative":true,"lang":"ru","titleHtml":"Криптография эпохи Ренессанса: шифрование как искусство и рабочий инструмент","leadData":{"textHtml":"\u003Cp\u003EЭпоха Ренессанса стала рассветом не только науки и искусства, но также криптографии. Некоторые шифры этого периода для криптографа – все равно что Сикстинская капелла или Мона Лиза для ценителя живописи. При этом именно в эпоху Возрождения шифрование превратилось из магической абракадабры и способа пустить пыль в глаза читателю в полноценный рабочий инструмент для защиты ценных сведений.\u003C\u002Fp\u003E\u003Cp\u003EВ блог Бастиона снова заглянула Анастасия Ашаева – кандидат исторических наук, старший научный сотрудник Московского музея криптографии. Эксперт рассказала о шифровании эпохи Ренессанса.&nbsp;\u003C\u002Fp\u003E\u003Cp\u003EСразу оговоримся, что в этой статье речь идет в основном об историческом контексте, информация по некоторым шифрам дается дозировано. Ведь криптография не существует в отрыве от исторических реалий — ее развитие неразрывно связано с потребностями людей и временем. Зато следующая публикация цикла будет всецело посвящена шифрам и криптографическим разработкам — с подробными описаниями, иллюстрациями и даже таблицами.&nbsp;\u003C\u002Fp\u003E\u003Cp\u003EА пока настраиваемся на прекрасное (как-никак, говорим о Возрождении) и поехали!\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fdf1\u002F7d8\u002F095\u002Fdf17d80953f134605473f5a5900e3f82.jpg","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fdf1\u002F7d8\u002F095\u002Fdf17d80953f134605473f5a5900e3f82.jpg","fit":"cover","positionY":55,"positionX":2}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"id":"3808892","alias":"Pavel_Kanaev","fullname":"Павел Канаев","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002Fc2d\u002F3cc\u002Fbd0\u002Fc2d3ccbd07718e5f26ec906996811ca5.jpg","speciality":null,"scoreStats":{"score":37,"votesCount":39},"rating":15,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"donationsMethod":null,"isInBlacklist":null,"careerProfile":null},"statistics":{"commentsCount":1,"favoritesCount":21,"readingCount":1431,"score":15,"votesCount":14,"votesCountPlus":14,"votesCountMinus":0},"hubs":[{"id":"22828","alias":"bastion","type":"corporative","title":"Блог компании Бастион","titleHtml":"Блог компании Бастион","isProfiled":false,"relatedData":null},{"id":"21906","alias":"history","type":"collective","title":"История IT","titleHtml":"История IT","isProfiled":false,"relatedData":null},{"id":"20742","alias":"read","type":"collective","title":"Читальный зал","titleHtml":"Читальный зал","isProfiled":false,"relatedData":null},{"id":"118","alias":"crypto","type":"collective","title":"Криптография","titleHtml":"Криптография","isProfiled":true,"relatedData":null},{"id":"50","alias":"infosecurity","type":"collective","title":"Информационная безопасность","titleHtml":"Информационная безопасность","isProfiled":true,"relatedData":null}],"flows":[{"id":"1","alias":"develop","title":"Разработка","titleHtml":"Разработка"},{"id":"3","alias":"management","title":"Менеджмент","titleHtml":"Менеджмент"},{"id":"7","alias":"popsci","title":"Научпоп","titleHtml":"Научпоп"}],"relatedData":{"vote":null,"unreadCommentsCount":0,"bookmarked":false,"canComment":false,"canEdit":false,"canViewVotes":false,"votePlus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"voteMinus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"canModerateComments":false,"trackerSubscribed":false,"emailSubscribed":false},"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F4a1\u002Fd37\u002Fe49\u002F4a1d37e4935d324199b7c99a4b80e44b.jpg\" alt=\"«Казнь Марии Стюарт». Картина кисти Абеля де Пюжоля. XIX век\" title=\"«Казнь Марии Стюарт». Картина кисти Абеля де Пюжоля. XIX век\" width=\"1200\" height=\"927\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F4a1\u002Fd37\u002Fe49\u002F4a1d37e4935d324199b7c99a4b80e44b.jpg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F4a1\u002Fd37\u002Fe49\u002F4a1d37e4935d324199b7c99a4b80e44b.jpg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003E\u003Cem\u003E«Казнь Марии Стюарт». Картина кисти Абеля де Пюжоля. XIX век\u003C\u002Fem\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EЭпоха Ренессанса стала рассветом не только науки и искусства, но также криптографии. Некоторые шифры этого периода для криптографа — все равно что Сикстинская капелла или Мона Лиза для ценителя живописи. При этом именно в эпоху Возрождения шифрование превратилось из магической абракадабры и способа пустить пыль в глаза читателю в полноценный рабочий инструмент для защиты ценных сведений.\u003C\u002Fp\u003E\u003Cp\u003EВ блог Бастиона снова заглянула Анастасия Ашаева — кандидат исторических наук, старший научный сотрудник Московского музея криптографии. Эксперт рассказала о шифровании эпохи Ренессанса. \u003C\u002Fp\u003E\u003Cp\u003EСразу оговоримся, что в этой статье речь идет в основном об историческом контексте, информация по некоторым шифрам дается дозированно. Ведь криптография не существует в отрыве от исторических реалий — ее развитие неразрывно связано с потребностями людей и временем. Зато следующая публикация цикла будет всецело посвящена шифрам и криптографическим разработкам — с подробными описаниями, иллюстрациями и даже таблицами. \u003C\u002Fp\u003E\u003Cp\u003EА пока настраиваемся на прекрасное (как-никак, говорим о Возрождении) и поехали! \u003C\u002Fp\u003E\u003Ch2\u003EОт магии к практике\u003C\u002Fh2\u003E\u003Cp\u003EКак уже говорилось в \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fcompanies\u002Fbastion\u002Farticles\u002F865468\u002F\"\u003Eпредыдущей статье\u003C\u002Fa\u003E, европейская криптография сделала первые робкие шаги от оккультизма и религии к практическому применению еще в Средневековье. В XIII веке английский мыслитель Роджер Бэкон создал свой труд «Послание монаха о тайнах искусства и природы и о ничтожности магии», где призывал ученых шифровать свои работы и впервые описывал методы защиты информации. Впрочем, то была лишь первая ласточка к становлению криптографии как самостоятельной дисциплины в этот исторический период. Да и единственная польза шифрования, по мнению автора, заключалась в ограждении научного знания от «простонародья». Увы, гуманизмом «Темные века» не отличались.\u003C\u002Fp\u003E\u003Cp\u003EВ эпоху Ренессанса крестьяне и горожане тоже не строчили зашифрованные послания. А вот политики, дипломаты и военные с XV столетия уже не обходились без криптографии в своих «играх престолов».\u003C\u002Fp\u003E\u003Cdiv class=\"floating-image\"\u003E\u003Cfigure class=\"float \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F771\u002F16d\u002F6d2\u002F77116d6d24046f4ad8c34e6110a59c5c.jpg\" alt=\"Блез де Виженер, французский дипломат, криптограф и алхимик, именем которого назван один из самых известных шифров эпохи\" title=\"Блез де Виженер, французский дипломат, криптограф и алхимик, именем которого назван один из самых известных шифров эпохи\" width=\"428\" height=\"553\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F771\u002F16d\u002F6d2\u002F77116d6d24046f4ad8c34e6110a59c5c.jpg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F771\u002F16d\u002F6d2\u002F77116d6d24046f4ad8c34e6110a59c5c.jpg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003E\u003Cem\u003EБлез де Виженер, французский дипломат, криптограф и алхимик, именем которого назван один из самых известных шифров эпохи\u003C\u002Fem\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EЕще одна криптографическая примета Ренессанса — обилие узкоспециализированных научных и методических трактатов о шифрах и способах их применения. Таким образом, криптография превратилась в полноценную упорядоченную область знаний. Одновременно на смену простым моноалфавитным шифрам (например, «шифру Цезаря») приходили коды полиалфавитной замены, более стойкие к частотному криптоанализу. \u003C\u002Fp\u003E\u003Cp\u003EШифровальщики, которые цеплялись за устаревшие методики, в итоге проиграли и оказались, говоря по-простому, «мамонтами». Талантливые криптоаналитики начали щелкать их шифровки, как орешки. Полиалфавитные же системы совершенствовались на протяжении всего XVI столетия, а кульминацией стал знаменитый «шифр Виженера». Впрочем, обо всем по порядку.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003Ch2\u003EКриптография на службе политики и дипломатии\u003C\u002Fh2\u003E\u003Cp\u003EБессмертные произведения искусства Ренессанса — это лишь верхушка культурно-исторического айсберга. В то время как Тициан и Леонардо рождали свои шедевры, в Европе шло становление полноценных государств и наций в современном понимании, развивались общеевропейские и мировые рынки, налаживалась международная логистика, наконец, появлялись дипломатические службы нового образца.\u003C\u002Fp\u003E\u003Cp\u003EКак подметил историк криптографии Дэвид Кан, в эпоху Возрождения «дипломатия вскормила криптографию». Средневековые рыцарские замашки наподобие «Иду на вы!» уходили в прошлое и сменялись хитроумными подковерными играми, в которых защищенная переписка играла ключевую роль. \u003C\u002Fp\u003E\u003Cp\u003EДипломатический и криптографический бум затронул не только Западную Европу: достаточно вспомнить учрежденные в Москве еще в середине XVI века Посольский приказ с Цифирной избой, упомянутые Карамзиным шифровки послов царя Федора Иоанновича, патриарха Филарета \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fcompanies\u002Fbastion\u002Farticles\u002F812587\u002F\"\u003Eс его Цифирной азбукой\u003C\u002Fa\u003E. \u003C\u002Fp\u003E\u003Cp\u003EОднако наибольших высот в политических и посольских интригах, а также применении шифров достигли Италия, Франция и Англия. \u003C\u002Fp\u003E\u003Ch2\u003EИтальянский криптографический Ренессанс \u003C\u002Fh2\u003E\u003Cp\u003EИталия — душа и само воплощение Ренессанса. Логично, что именно она стала колыбелью и криптографического возрождения. К тому же Италия состояла из независимых городов-государств, которые боролись за место под солнцем: плели интриги, объединялись в альянсы, искали военной помощи у зарубежных стран. В такой обстановке послы неизбежно превращались в «почетных шпионов». А какой шпион обходится без криптографии? \u003C\u002Fp\u003E\u003Ch3\u003EС чего все начиналось\u003C\u002Fh3\u003E\u003Cp\u003EПионером в шифровании дипломатических документов выступил Ватикан. В папских архивах хранится документ 1326 года, где скрыты имена людей и названия противоборствующих группировок — гвельфов и гибеллинов. Первые — это \u003Cs\u003Eразновидность эльфов\u003C\u002Fs\u003E сторонники ограничения власти императора Священной Римской империи в Италии и приверженцы папы римского. Вторые же, напротив, поддерживали императора. Гвельфы обозначаются в документе как «дети израилевы», а гибеллины — как «египтяне»: такая вот незатейливая «пасхалка» из библейской Книги Исход. Авторы пытались скрыть поддержку той или иной группы на случай, если документ попадет не в те руки. Вдобавок некоторые слова в папской документации маскировались отдельными буквами: А — король, D — папа римский и т. д.\u003C\u002Fp\u003E\u003Cp\u003EСамые древние на Западе криптографические ключи также были созданы для канцелярии понтифика, точнее говоря, антипапы Климентия VII. В 1378 году он бежал в Авиньон и объявил себя законным владельцем папского трона. Показательно, что среди первых распоряжений самопровозглашенного понтифика было создание новых шифров. Секретарь антипапы Габриэли Лавинде разработал индивидуальные ключи для всех 24 корреспондентов Климентия VII.\u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E\u003Cem\u003EКлючи Лавинде сочетают фрагменты кода и шифра. Все 24 ключа содержат шифроалфавиты замены с пустышками, а также списки популярных слов или имен, скрытых кодами из двух букв. По сути, это первый известный исследователям шифр-номенклатор.\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Ch3\u003EКриптографическая гонка\u003C\u002Fh3\u003E\u003Cp\u003EВенеция не уступала папскому престолу, а на первых порах и вовсе опережала его в шифровании и криптоанализе. Город каналов стал родиной первой в мире службы госбезопасности, отвечавшей за защиту и расшифровку переписки с XV по XVIII столетие. Таинственный «Совет десяти» (Consiglio di Dieci) готовил специалистов-криптографов и даже принимал у них «выпускной экзамен» по шифрованию. Этот венецианский «Большой брат» жестоко карал за нарушения «информационной безопасности»: раскрытие шифровального ключа считалось государственной изменой и влекло смертную казнь. \u003C\u002Fp\u003E\u003Cp\u003EДаже на первый взгляд безобидные учебные трактаты по криптографии держались в строжайшем секрете. Так, венецианский писатель Агостино Амади и его Trattato delle Cifre, где описывалось большинство известных во второй половине XV века шифров, стали достоянием общественности лишь в середине XIX столетия. До сих пор неясно, кто выступал заказчиком этого 700-страничного «талмуда» и как он применялся. Вот уж засекретили так засекретили! \u003C\u002Fp\u003E\u003Cp\u003EПервый выдающийся европейский криптоаналитик по имени Джованни Соро также был венецианцем. В 1506 году его назначили секретарем по шифрам Венецианской Республики. Одно только перечисление государств, шифры которых взломал Соро, по объему потянет на отдельную статью. Дошло до того, что с начала XVI века сам папа римский обращался к венецианцу за расшифровкой перехваченных посланий, оказавшихся не по зубам ватиканским криптографам.\u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E\u003Cem\u003EВ источниках описывается случай, когда депеша понтифика Климентия VII (нет, это не упомянутый выше антипапа с таким же именем) досталась его противникам. Воскликнув: «Соро может вскрыть любой шифр!», папа направил копию послания венецианскому «маэстро» для проверки стойкости шифра. Криптоаналитик не сумел прочесть шифровку, а папа вздохнул с облегчением. Трудно сказать, было ли так на самом деле, или же перед нами непроверенная сплетня, которыми богаты нарративные источники. В любом случае, такие истории не рождаются на пустом месте.\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cdiv class=\"floating-image\"\u003E\u003Cfigure class=\"float full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fac5\u002F362\u002F9db\u002Fac53629db6f752707a72674cbca97612.jpeg\" alt=\"Папа Климентий VII. Портрет кисти Себастьяно дель Пьомбо\" title=\"Папа Климентий VII. Портрет кисти Себастьяно дель Пьомбо\" width=\"800\" height=\"968\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fac5\u002F362\u002F9db\u002Fac53629db6f752707a72674cbca97612.jpeg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fac5\u002F362\u002F9db\u002Fac53629db6f752707a72674cbca97612.jpeg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003E\u003Cem\u003EПапа Климентий VII. Портрет кисти Себастьяно дель Пьомбо\u003C\u002Fem\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EВ 1542 году Соро возглавил небольшой криптографический отдел из трех человек, включая его самого. Возможно, подразделение послужило прообразом тех самых Черных кабинетов. \u003C\u002Fp\u003E\u003Cp\u003EКоманда Соро трудилась в укромном уголке дворца венецианского дожа, в помещении «без окон и дверей» и в атмосфере строжайшей секретности. Когда поступала очередная перехваченная депеша, беднягам запрещалось покидать свой тайный офис до полной расшифровки криптограммы. В перерывах между такими кранчами Соро с подчиненными \u003Cs\u003Eраскладывали пасьянс\u003C\u002Fs\u003E описывали методы своей работы в трактатах. Словом, отдых криптоаналитикам только снился, и то, когда удавалось урвать хотя бы несколько часов для сна.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb26\u002Fcca\u002Ffa8\u002Fb26ccafa81e3165a89bec0c144480c9f.jpg\" alt=\"Дворец дожей в Венеции\" title=\"Дворец дожей в Венеции\" width=\"1000\" height=\"606\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb26\u002Fcca\u002Ffa8\u002Fb26ccafa81e3165a89bec0c144480c9f.jpg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb26\u002Fcca\u002Ffa8\u002Fb26ccafa81e3165a89bec0c144480c9f.jpg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003E\u003Cem\u003EДворец дожей в Венеции\u003C\u002Fem\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cdiv class=\"floating-image\"\u003E\u003Cp\u003EТеперь вернемся в Ватикан, который не собирался уступать Венеции в этой «гонке криптоанализа» и тем более зависеть от услуг зарубежных шифровальщиков. В 1555 году должность секретаря по шифрам была учреждена и в папской курии. Уже через два года криптоаналитики понтифика не оставили камня на камне от шифра испанского короля Филиппа II. Отдельным папским шифровальщикам даже не требовалось владеть языком, на котором написано послание. Так, в 1567 году викарий собора Святого Петра в Риме разгадал перехваченную османскую криптограмму. А ведь он «не знал и четырех слов» на турецком.\u003C\u002Fp\u003E\u003Cp\u003EКриптоанализ процветал и во Флоренции, где особенно отличился на этой ниве граф Сассетский Пирро Музефилли. В середине XVI столетия он разгадал номенклаторы короля Франции Гениха II и прочел множество зашифрованных депеш. Как и Соро, Музефилли стал звездой мирового масштаба и получал заказы от европейских правителей. Однажды король Англии обратился к нему за расшифровкой перехваченного французского послания, спрятанного в подметках золотых туфель. Что уж говорить, даже \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fcompanies\u002Fbastion\u002Farticles\u002F882522\u002F\"\u003Eстеганоконтейнеры\u003C\u002Fa\u003E времен Ренессанса — настоящие произведения искусства.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003Ch2\u003EФранцузский криптографический Ренессанс\u003C\u002Fh2\u003E\u003Cp\u003EВ отличие от раздробленной Италии, страна королевских лилий была мощным централизованным государством. Но дипломатических и политических «скандалов, интриг, расследований» хватало и там. Во-первых, Франция постоянно боролась с сильными противниками — Испанией и Англией. Во-вторых, внутренняя ситуация в стране часто накалялась до предела, а трон шатался под монархами из-за угрозы переворотов. Политикам и послам приходилось постоянно шифровать самим и перехватывать чужие закодированные депеши. \u003C\u002Fp\u003E\u003Ch3\u003EФранцузская «машина» для криптоанализа\u003C\u002Fh3\u003E\u003Cp\u003EСреди французских мэтров криптоанализа эпохи Возрождения — первый госсекретарь и придворный дешифровщик при Франциске I Филибер Бабу. Современник описывал его как неутомимую машину для \u003Cs\u003Eубийства\u003C\u002Fs\u003E расшифровки посланий. Причем Бабу разгадывал криптораммы даже на испанском, итальянском и немецком языках, которых не знал, и без алфавита под рукой. \u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E\u003Cem\u003E«Он упорно работал над сообщением дни и ночи напролет в течение трех недель, прежде чем разгадать одно слово, — пишет очевидец. — После того как брешь была проделана, остальное происходило очень быстро и напоминало разрушение стен».\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cp\u003EКак часто бывает с трудоголиками, работа от зари до зари вредила личной жизни криптоаналитика, награжденного за свои труды не только замком Бурдезьер близ Тура, но и… рогами. Прекрасная жена Бабу была любовницей самого Франциска I и регулярно посещала королевские покои, пока ее благоверный корпел над очередной расшифровкой на благо короны.\u003C\u002Fp\u003E\u003Ch3\u003EКак автор теоремы спас короля\u003C\u002Fh3\u003E\u003Cp\u003EДругой заслуженный французский криптограф эпохи Возрождение — Франсуа Виет. Да-да, тот самый, чью теорему проходят в школе на уроках алгебры. \u003C\u002Fp\u003E\u003Cdiv class=\"floating-image\"\u003E\u003Cfigure class=\"float full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd6f\u002F1bc\u002F92e\u002Fd6f1bc92e69320cf45d1ee817a617a8f.jpeg\" width=\"807\" height=\"807\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd6f\u002F1bc\u002F92e\u002Fd6f1bc92e69320cf45d1ee817a617a8f.jpeg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd6f\u002F1bc\u002F92e\u002Fd6f1bc92e69320cf45d1ee817a617a8f.jpeg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EВ первую очередь Виет был адвокатом и членом тайного совета при короле Генрихе IV, математика же и криптоанализ являлись его хобби. Впрочем, именно благодаря своему увлечению советник помог королю выстоять в борьбе с так называемой Священной лигой. Это католическая фракция во главе с герцогом Майеннским, которой не давал покоя протестант на троне.\u003Cbr\u002F\u003E\u003C\u002Fp\u003E\u003Cp\u003EДобившись военной и финансовой поддержки от еще одного истового католика, испанского короля Филиппа II, Священная лига взяла под контроль Париж и ряд других ключевых городов Франции. Генрих оказался в положении «гипс снимают, клиент уезжает!». Но, к счастью для короля, его агенты перехватили часть переписки Филиппа II cо своими военачальниками. Разумеется, послания были зашифрованы.\u003C\u002Fp\u003E\u003Cp\u003EТут-то автор бессмертной теоремы и показал себя во всей красе. С 1588 года он расшифровал ряд испанских депеш, где говорилось о передвижении и планах войск Священной лиги. Ценные оперативные данные позволили Генриху действовать на опережение и разбить превосходящие силы герцога Майеннского в битве на реке Иври 14 марта 1590 года. Правда, последующая осада Парижа окончилась для короля неудачей. Хотя Генрих и не смог поставить противникам шах и мат, громкая победа в генеральном сражении помогла ему сохранить трон.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff85\u002Fb74\u002Ffbb\u002Ff85b74fbb3dc9e67da8d8c842823745a.jpeg\" alt=\"Генрих IV в битве при Иври. Картина Питера Пауля Рубенса\" title=\"Генрих IV в битве при Иври. Картина Питера Пауля Рубенса\" width=\"1226\" height=\"800\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff85\u002Fb74\u002Ffbb\u002Ff85b74fbb3dc9e67da8d8c842823745a.jpeg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff85\u002Fb74\u002Ffbb\u002Ff85b74fbb3dc9e67da8d8c842823745a.jpeg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003E\u003Cem\u003EГенрих IV в битве при Иври. Картина Питера Пауля Рубенса\u003C\u002Fem\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EКолдовской криптоанализ\u003C\u002Fh3\u003E\u003Cp\u003EВиет же был настолько уверен в своих талантах, что порой сам забывал об осторожности. На следующий день после битвы на Иври криптоаналитик отправил Генриху открытую расшифровку перехваченного послания испанского военачальника Морео в Мадрид. Депеша содержала подробности переговоров Морео с герцогом Майеннским и была защищена недавно разработанным испанцами шифром-номенклатором. Виет не только не удосужился сам защитить расшифровку, но и бравировал своим нарушением «информационной безопасности».\u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E\u003Cem\u003E«Не волнуйтесь из-за того, что для Ваших врагов это будет повод сменить свои шифры и еще больше замаскироваться, — хвастался Виет. — Они неоднократно меняли их, и тем не менее их уловки были и всегда будут раскрыты».\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cp\u003EКогда испанцы перехватили это письмо, Филипп II пришел в ярость: его очередной «неприступный» шифр оказался плевым делом для Виета. Не в силах противостоять проклятому французу в криптографической дуэли, испанский король решил буквально задать ему жару — отправить на костер. Филипп сообщил папе римскому, что Виет якобы вскрыл папские шифры с помощью колдовства и должен предстать перед судом кардиналов. В теории уловка могла сработать, ведь криптоаналитик оставался католиком, несмотря на свою службу протестантскому монарху. Но понтифик на это не купился, так как отлично знал о ненадежности испанских шифров и сразу догадался, в чем дело. Филипп перехитрил сам себя и оказался, мягко говоря, в неловком положении. Испанские криптографы также были посрамлены на весь мир.\u003C\u002Fp\u003E\u003Cp\u003EЭтот достойный исторического ситкома эпизод ярко демонстрирует противоборство между криптографами старого образца и прогрессивными криптоаналитиками вроде Бабу и Виета. В конечном итоге «противоборство» превратилось в «избиение младенцев», хотя старые добрые номенклаторы оставались в ходу вплоть до XX столетия.\u003C\u002Fp\u003E\u003Cp\u003EВ последствии Франция завоюет и надолго сохранит за собой пальму первенства в шифровании: недаром именно там в XVII веке появятся первые «Черные кабинеты» — государственные подразделения по перлюстрации и расшифровке посланий. Но об этом речь шла в \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fcompanies\u002Fbastion\u002Farticles\u002F802935\u002F\"\u003Eотдельной статье\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Ch2\u003EАнглийский криптографический Ренессанс\u003C\u002Fh2\u003E\u003Cp\u003EРодина Шекспира тоже пережила криптографический бум в эпоху Ренессанса. Более того, именно в Англии в это время произошел наиболее резонансный и драматичный случай, связанный с шифрованием. Но не будем забегать вперед.\u003C\u002Fp\u003E\u003Ch3\u003EКак неосторожность посла подстегнула развитие шифрования \u003C\u002Fh3\u003E\u003Cp\u003EДо XVI века англичане смотрели на защиту информации сквозь пальцы. Например, английский посол в Мадриде Томас Спинелли за тринадцать лет ни разу не менял шифр при отправке в туманный альбион писем с ценными разведданными из Испании. Неудивительно, что в итоге этот код стал известен испанцам и разве что не был напечатан в газетах или, как их тогда называли, летучих листках. Большинство защищенных посланий сочетало зашифрованный текст и обычные слова, так что их взлом не представлял особого труда даже без ключа под рукой. \u003C\u002Fp\u003E\u003Cp\u003EНапример, вот отрывок из письма испанского посла Родриго Гундисальви де Пуэбла тестю английского короля Генриха VIII Фердинанду Испанскому, где соседствуют шифр и открытый текст: \u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E\u003Cem\u003EВыплата приданого откладывается до праздника Архангела Святого Михаила [29 сентября]. Относительно CCCCXXIII (брака) DCCCLXXVIII (королевы Кастилии) CCCCLXXXVIII (с) DCCCLXXXVII (королем Англии)\u003C\u002Fem\u003E, \u003Cem\u003Eкороль Генрих желает быть проинформирован, когда король Фердинанд вернется в Кастилию, чтобы DCCCCLXXXIII (отправить) DCCCCLXXVIIII (посольство).\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cem\u003E— Лондон, 15 апреля 1507 г. MMCCCXXXI (де Пуэбла).\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cp\u003EВ период правления Генриха VIII в Англии решили: пора что-то менять. Криптографию поставили на широкие государственные рельсы, а каждое посольское письмо из-за рубежа стали защищать новым уникальным шифром, чтобы исключить компрометацию. \u003C\u002Fp\u003E\u003Ch3\u003EШифр разведенной королевы \u003C\u002Fh3\u003E\u003Cp\u003EПерефразируя строки Шекспира, «нет повести печальнее на свете, чем повесть об отвергнутой женщине». Речь о первой супруге Генриха VIII Екатерине Арагонской, которая превратилась из любимой жены и сильной монархини в изгнанницу. За 24 года брака она так и не смогла родить наследника мужского пола, и король решил развестись с ней. Католическая церковь не благословила развод, что в итоге вылилось в конфликт Генриха с папой римским и создание в Англии протестантской англиканской конфессии. Как говорится, все могут короли. \u003C\u002Fp\u003E\u003Cp\u003EЕкатерина Арагонская не смирилась с решением супруга и пыталась опротестовать развод в папском суде в Лондоне в 1529 году, но потерпела поражение. Так или иначе, она до конца своих дней считала себя единственной легитимной женой Генриха и настоящей королевой Англии, о чем аккуратно сигнализировала своим католическим сторонникам в надежде на помощь. Известно, что с 1532 года, уже находясь в изгнании, Екатерина носила драгоценный кулон с «безобидными» надписями. Как оказалось, это был шифр. Недавно его удалось взломать ребусным методом Wordle. Расшифровка гласит: «Генрих Король (Henricvs Rex) и Екатерина». \u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F9fa\u002F826\u002F1e5\u002F9fa8261e50f44e6dea864114d19beea5.png\" alt=\"Эскиз кулона Екатерины Арагонской с зашифрованной надписью\" title=\"Эскиз кулона Екатерины Арагонской с зашифрованной надписью\" width=\"885\" height=\"758\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F9fa\u002F826\u002F1e5\u002F9fa8261e50f44e6dea864114d19beea5.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F9fa\u002F826\u002F1e5\u002F9fa8261e50f44e6dea864114d19beea5.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003E\u003Cem\u003EЭскиз кулона Екатерины Арагонской с зашифрованной надписью\u003C\u002Fem\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EПолитическая воля для криптоанализа\u003C\u002Fh3\u003E\u003Cp\u003EДальнейшее развитие английской криптографической школы во многом связано с политической волей министра и начальника разведки Елизаветы I, Сэра Френсиса Уолсингема. Впервые он заинтересовался шифрованием, когда прочел работу итальянского математика и криптографа Джироламо Кардано — изобретателя знаменитой шифровальной решетки, о которой расскажем в следующей статье.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F406\u002F8e6\u002F389\u002F4068e63896f4f74f2f222409105d33a4.jpeg\" alt=\"Фрэнсис Уолсингем. Портрет кисти Джона де Крица Старшего, около 1585 г.\" title=\"Фрэнсис Уолсингем. Портрет кисти Джона де Крица Старшего, около 1585 г.\" width=\"640\" height=\"784\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F406\u002F8e6\u002F389\u002F4068e63896f4f74f2f222409105d33a4.jpeg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F406\u002F8e6\u002F389\u002F4068e63896f4f74f2f222409105d33a4.jpeg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003E\u003Cem\u003EФрэнсис Уолсингем. Портрет кисти \u003C\u002Fem\u003E\u003Ca href=\"https:\u002F\u002Fru.wikipedia.org\u002Fwiki\u002F%D0%94%D0%B5%D0%BA%D1%80%D0%B8%D1%86,_%D0%94%D0%B6%D0%BE%D0%BD\"\u003E\u003Cem\u003EДжона де Крица Старшего\u003C\u002Fem\u003E\u003C\u002Fa\u003E\u003Cem\u003E, около 1585 г.\u003C\u002Fem\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cdiv class=\"floating-image\"\u003E\u003Cp\u003EТеория теорией, но министр решился на создание полноценной криптографической службы, только увидев плоды шифрования на практике. В 1577 году на стол Уолсингему легли перехваченные в Нидерландах и расшифрованные фламандским криптоаналитиком Ван Марниксом письма короля Филиппа Испанского. Последний уговаривал своего сводного брата и такого же убежденного католика Хуана Австрийского, который правил значительной частью нидерландских земель, вместе напасть на протестантскую Англию. Сюрприза не получилось: англичане начали спешно готовиться к обороне, а испанцам пришлось отказаться от своей авантюры. \u003C\u002Fp\u003E\u003Cp\u003EОценив практическую пользу криптографии, Уолсингем учредил в Лондоне шифровальную школу и пригласил на службу некоего Томаса Феллипеса. Этот невзрачный и «незначительный во всех отношениях» функционер свободно владел латынью, немецким, французским и испанским языками, а заодно искусно взламывал любые шифры. Именно его криптографическая работа поставила точку в нашумевшем судебном процессе над несчастной шотландской и, недолгое время, французской королевой Марией Стюарт. \u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003Ch3\u003EСлучай Марии Стюарт, или «Как криптоанализ решил судьбу королевы»\u003C\u002Fh3\u003E\u003Cp\u003EЧтобы рассказать всю подоплеку этого интересного и запутанного дела, как минимум, понадобится отдельная статья. Если кратко, в 1585 году изгнанная из Шотландии Мария Стюарт волею судеб оказалась в английском плену из-за вражды с королевой-протестанткой Елизаветой и своей приверженности католичеству.\u003C\u002Fp\u003E\u003Cp\u003EПленницу постоянно перевозили из поместья в поместье. Конечно, она не сидела «за решеткой в темнице сырой»: поначалу ей даже разрешались конные прогулки в парках и поездки на лечебные воды в Бакстон. Но со временем этот «санаторий» прикрыли, а условия содержания почетной узницы ужесточились. Елизавета потрудилась обрубить все контакты Марии с внешним миром, и, как оказалось, небезосновательно.\u003C\u002Fp\u003E\u003Cdiv class=\"floating-image\"\u003E\u003Cp\u003EВ Англии тут же отыскались сторонники Марии Стюарт из числа знатных католиков, недовольных королевой-протестанткой. Тем более бабушкой пленницы была Маргарет Тюдор, старшая сестра самого Генриха VIII. Этого хватало для обоснования претензий Марии на английский трон, случись что с действующей королевой (происшествие на охоте или «случайное» десятикратное падение на нож).\u003C\u002Fp\u003E\u003Cp\u003EЛидером заговора стал дворянин Энтони Бабингтон. Он вступил в переписку с узницей, чудом обойдя «семь печатей», за которыми она находилась. Все послания с обеих сторон были зашифрованы. Письма Марии шифровал ее личный секретарь Гилберт Керли.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003Cfigure class=\"\"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F569\u002Ffc7\u002F1da\u002F569fc71da69f0e3d5ba5a1e58ceae954.png\" alt=\"Частично дешифрованный текст из писем Бабингтона Марии Стюарт\" title=\"Частично дешифрованный текст из писем Бабингтона Марии Стюарт\" width=\"350\" height=\"256\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F569\u002Ffc7\u002F1da\u002F569fc71da69f0e3d5ba5a1e58ceae954.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F569\u002Ffc7\u002F1da\u002F569fc71da69f0e3d5ba5a1e58ceae954.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003E\u003Cem\u003EЧастично дешифрованный текст из писем Бабингтона Марии Стюарт\u003C\u002Fem\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cblockquote\u003E\u003Cp\u003E\u003Cem\u003EМария Стюарт и заговорщики использовали шифр простой моноалфавитной замены или, другими словами, все тот же номенклатор.\u003C\u002Fem\u003E \u003Cem\u003EЭто была система из 23 знаков для обозначения английских букв, за исключением литер j, v и w. Чтобы повысить стойкость шифровок и усложнить криптоанализ, еще 35 символов маскировали отдельные слова и фразы. Также шифр включал четыре знака-пустышки. Наконец, символ σ указывал на последующий «дуплет» (удвоенную букву).\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cdiv class=\"floating-image\"\u003E\u003Cfigure class=\"float \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa0f\u002Ff8e\u002F625\u002Fa0ff8e625867679a969ccb27110476e8.png\" alt=\"Оригинальное шифрованное письмо Бабингтона из Национального архива Великобритании\" title=\"Оригинальное шифрованное письмо Бабингтона из Национального архива Великобритании\" width=\"500\" height=\"737\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa0f\u002Ff8e\u002F625\u002Fa0ff8e625867679a969ccb27110476e8.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa0f\u002Ff8e\u002F625\u002Fa0ff8e625867679a969ccb27110476e8.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003E\u003Cem\u003EОригинальное шифрованное письмо Бабингтона из Национального архива Великобритании\u003C\u002Fem\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EДругой доброхот Марии — английский католик Гилберт Джифорт — организовал передачу сообщений. Хитроумный Джифорт сумел обойти стражу замка Чартли Холл, где находилась арестантка, при помощи… пива. Нет, он не напоил охранников до беспамятства — такое возможно только в дешевых приключенческих фильмах. \u003C\u002Fp\u003E\u003Cp\u003EГилберт применил «пивную стеганографию»: подкупленный местный пивовар прятал послания в выдолбленных затычках в бочках с пенным напитком. Когда груз поступал в замок, слуги Марии украдкой доставали письма и приносили своей госпоже. \u003C\u002Fp\u003E\u003Cp\u003EОтветы передавались аналогичным способом, когда пивовар забирал пустые бочонки. Итак, перед нами еще один пример стеганоконтейнера эпохи Ренессанса — не столь изящный, как французские золоченые туфли, но практичный и действенный.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0f0\u002F2a4\u002F50f\u002F0f02a450fb0da55765bb05b6a85e928a.jpeg\" alt=\"Руины замка Чартли в Англии, где содержалась в заключении Мария Стюарт\" title=\"Руины замка Чартли в Англии, где содержалась в заключении Мария Стюарт\" width=\"1280\" height=\"883\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0f0\u002F2a4\u002F50f\u002F0f02a450fb0da55765bb05b6a85e928a.jpeg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0f0\u002F2a4\u002F50f\u002F0f02a450fb0da55765bb05b6a85e928a.jpeg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003E\u003Cem\u003EРуины замка Чартли в Англии, где содержалась в заключении Мария Стюарт\u003C\u002Fem\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EВ июле 1586 в Чартли Холл доставили очередное зашифрованное письмо от Бабингтона, который просил благословить убийство королевы и делился деталями своего плана. Шесть молодых дворян должны были заколоть Елизавету I в ее же дворце. 17 июля пленница направила ответ и дала добро на переворот.\u003C\u002Fp\u003E\u003Cp\u003EНо свет в конце тоннеля погас, не успев толком разгореться. Мастер «пивной стеганографии» Джифорт оказался двойным агентом и передавал все послания Уолсингему — так и напрашивается «Вот это поворот!». Роковой ответ Марии первым делом попал в руки вышеупомянутому придворному криптоаналитику Томасу Фелиппесу. Тот одной левой расшифровал послание, потом скопировал оригинал и приписал почерком пленницы короткий зашифрованный постскриптум с просьбой к Бабингтону назвать всех заговорщиков. Дескать, так Мария сможет лучше сориентироваться в происходящем и будет знать, кому доверять.\u003C\u002Fp\u003E\u003Cp\u003EБабингтон наверняка сдал бы всех своих товарищей с потрохами в ответном письме, слепо надеясь на стойкость шифра и не чувствуя подвоха. Но судьба распорядилась иначе, хотя исход был один. На следующий день после получения фейкового ответа от Марии Стюарт глава заговорщиков сам отправился в ведомство Уолсингема, чтобы оформить паспорт для поездки за рубеж к своим католическим союзникам. Каково же было удивление и смущение чиновников, когда главный подследственный страны лично явился к ним в гости. Секретарь ведомства Скадемор все же взял себя в руки и вызвал солдат, которые арестовали Бабингтона. Дворянин так и не успел ответить пленнице и раскрыть своих подельников, но это и не понадобилось — пытки сделали свое дело. Вскоре всех остальных заговорщиков поймали и заключили в Тауэр. \u003C\u002Fp\u003E\u003Cp\u003EСемерых смутьянов жестоко казнили 20 сентября 1586 года. Секретаря Марии Стюарт как следует допросили, и тот сдал свою хозяйку. В октябре Марию перевезли в замок Фотерингей и предали суду. Все-таки пленница была королевских кровей, поэтому требовалось соблюсти внешние приличия и обосновать ее казнь в глазах общественности. \u003C\u002Fp\u003E\u003Cp\u003EПодсудимая до последнего отрицала свою причастность к заговору, но перехваченные и расшифрованные письма стали железобетонными уликами против нее. 1 февраля 1587 Елизавета подписала указ о казни Марии, а спустя 7 дней ее обезглавили. Эта трагическая история стала еще одним подтверждением значимости криптоанализа, который определил судьбу венценосной особы.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbd0\u002F9c8\u002F4c2\u002Fbd09c84c2b00a410590cf14b3346279d.jpg\" alt=\"«Казнь Марии, королевы Шотландской». Роберт Хердман, 1867 г. \" title=\"«Казнь Марии, королевы Шотландской». Роберт Хердман, 1867 г. \" width=\"3072\" height=\"2378\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbd0\u002F9c8\u002F4c2\u002Fbd09c84c2b00a410590cf14b3346279d.jpg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbd0\u002F9c8\u002F4c2\u002Fbd09c84c2b00a410590cf14b3346279d.jpg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003E\u003Cem\u003E«Казнь Марии, королевы Шотландской». Роберт Хердман, 1867 г\u003C\u002Fem\u003E. \u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Chr\u002F\u003E\u003Cp\u003EНа закате эпохи Ренессанса шифрование и криптоанализ стали настолько незаменимыми, что при дворах большинства европейских монархов появились свои секретари по шифрам. Они разрабатывали новые коды, шифровали сообщения и разгадывали перехваченные депеши в режиме фулл-тайм. Такие функционеры послужили переходной ступенькой в эпоху «Черных кабинетов».\u003C\u002Fp\u003E\u003Cp\u003EВ следующей публикации мы поговорим подробнее непосредственно о криптографии: ключевых деятелях, работах и методиках шифрования эпохи Возрождения.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"криптография"},{"titleHtml":"шифрование информации"},{"titleHtml":"шифры эпохи ренессанса"},{"titleHtml":"криптография эпохи ренессанса"},{"titleHtml":"криптография нового времени"},{"titleHtml":"история криптографии"},{"titleHtml":"роль криптографии в истории"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fdf1\u002F7d8\u002F095\u002Fdf17d80953f134605473f5a5900e3f82.jpg","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fdf1\u002F7d8\u002F095\u002Fdf17d80953f134605473f5a5900e3f82.jpg","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fcompanies\\\u002Fbastion\\\u002Farticles\\\u002F901478\\\u002F\"},\"headline\":\"Криптография эпохи Ренессанса: шифрование как искусство и рабочий инструмент\",\"datePublished\":\"2025-05-06T12:31:03+03:00\",\"dateModified\":\"2025-05-06T13:38:49+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Павел Канаев\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"&laquo;Казнь Марии Стюарт&raquo;. Картина кисти Абеля де Пюжоля. XIX векЭпоха Ренессанса стала рассветом не только науки и искусства, но также криптографии. Некоторые шифры...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fcompanies\\\u002Fbastion\\\u002Farticles\\\u002F901478\\\u002F#post-content-body\",\"about\":[\"c_bastion\",\"h_history\",\"h_read\",\"h_crypto\",\"h_infosecurity\",\"f_develop\",\"f_management\",\"f_popsci\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F901478\\\u002F4ac877c6616d589caf9fafa55a00d28a\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F4a1\\\u002Fd37\\\u002Fe49\\\u002F4a1d37e4935d324199b7c99a4b80e44b.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F771\\\u002F16d\\\u002F6d2\\\u002F77116d6d24046f4ad8c34e6110a59c5c.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fac5\\\u002F362\\\u002F9db\\\u002Fac53629db6f752707a72674cbca97612.jpeg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fb26\\\u002Fcca\\\u002Ffa8\\\u002Fb26ccafa81e3165a89bec0c144480c9f.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fd6f\\\u002F1bc\\\u002F92e\\\u002Fd6f1bc92e69320cf45d1ee817a617a8f.jpeg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Ff85\\\u002Fb74\\\u002Ffbb\\\u002Ff85b74fbb3dc9e67da8d8c842823745a.jpeg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F9fa\\\u002F826\\\u002F1e5\\\u002F9fa8261e50f44e6dea864114d19beea5.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F406\\\u002F8e6\\\u002F389\\\u002F4068e63896f4f74f2f222409105d33a4.jpeg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F569\\\u002Ffc7\\\u002F1da\\\u002F569fc71da69f0e3d5ba5a1e58ceae954.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fa0f\\\u002Ff8e\\\u002F625\\\u002Fa0ff8e625867679a969ccb27110476e8.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F0f0\\\u002F2a4\\\u002F50f\\\u002F0f02a450fb0da55765bb05b6a85e928a.jpeg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fbd0\\\u002F9c8\\\u002F4c2\\\u002Fbd09c84c2b00a410590cf14b3346279d.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fdf1\\\u002F7d8\\\u002F095\\\u002Fdf17d80953f134605473f5a5900e3f82.jpg\"]}","metaDescription":"«Казнь Марии Стюарт». Картина кисти Абеля де Пюжоля. XIX век Эпоха Ренессанса стала рассветом не только науки и искусства, но также криптографии. Некоторые шифры этого периода для криптографа — все...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":{"status":true,"reason":null},"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"hasPinnedComments":false,"format":"review","banner":null,"multiwidget":null,"multiwidgetUuid":null,"readingTime":15,"complexity":"low","isEditorial":false,"allowedFeatures":{"isTestTargetAllow":true}}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"postReasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"viewedPosts":[],"myFeedFilter":{"complexity":"all","score":"all","types":["articles","posts","news"]},"myFeedIsApplyFilters":false,"myFeedIsForce":false,"karma":{"userReasonsList":null}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":""},"comments":{"articleComments":{},"articlePinnedComments":{},"searchCommentsResults":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":"","idempotenceKey":""}},"companies":{"companyRefs":{"bastion":{"alias":"bastion","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fcompany\u002F1f6\u002Fb14\u002F514\u002F1f6b14514c21b431a87f14cd869feba5.jpg","titleHtml":"Бастион","descriptionHtml":"Проводим пентесты, проектируем защищенные системы","relatedData":null,"statistics":{"subscribersCount":17318,"rating":209.1,"invest":null,"postsCount":121,"threadsCount":3,"newsCount":8,"vacanciesCount":0,"employeesCount":19,"careerRating":null},"foundationDate":{"year":"2014","month":null,"day":null},"location":{"city":{"id":"447159","title":"Москва"},"region":{"id":"1885","title":"Москва и Московская обл."},"country":{"id":"168","title":"Россия"}},"siteUrl":"https:\u002F\u002Fbastion-tech.ru","staffNumber":"101–200 человек","registrationDate":"2021-10-08T08:16:41+00:00","representativeUser":{"alias":"SantrY","fullname":"Игорь Santry"},"contacts":[{"title":"Сайт","url":"https:\u002F\u002Fbastion-tech.ru","siteTitle":"Бастион — информационная безопасность","favicon":"https:\u002F\u002Fbastion-tech.ru\u002Ffavicon.ico"}],"settings":{"analyticsSettings":[{"type":"ym","trackingId":"85989044"}],"branding":null,"status":"active","isStartup":false,"hasActivePolls":false,"shouldShowHabrAds":true},"metadata":{"titleHtml":"Бастион, Москва - Проводим пентесты, проектируем защищенные системы с 2014 год","title":"Бастион, Москва - Проводим пентесты, проектируем защищенные системы с 2014 год","keywords":["кибербезопасность","информационная безопасность","реверс-инжиниринг","взлом электронного замка","взлом скуд","социальная инженерия","фишинг","расследование инцидентов","стеганография","цифровая стеганография","аппаратный хакинг","usergate ngfw"],"descriptionHtml":"121 статья от авторов компании Бастион","description":"121 статья от авторов компании Бастион"},"aDeskSettings":null,"careerAlias":"bastion-tech","schoolAlias":null}},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"multiwidgets":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"multiwidgetLoading":false,"vacancies":{},"companiesGalleries":{},"companiesBanners":{},"companiesLandingVacancies":{},"companiesTechnologies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null,"jivoStatus":0,"adminNotifications":null,"availableInvitesCount":{}},"companyAdd":{"currentStep":"","stepsData":{},"uncompletedSteps":[],"isStepLoading":true,"isStepCommitting":false,"isInitialized":false,"agreementContent":""},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"pagesCount":0},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":true},"fixedBanner":{"isArticleStickyPanelVisible":false,"isArticleStickyPanelAtTheBottom":false,"isFixedBannerVisible":false,"isStickyPanelIconsHidden":false},"flows":{"updates":{}},"global":{"isPwa":false,"device":"desktop","isHabrCom":true,"requestId":"f19a3eb2001f9a6bcb890bf53b1aa56b"},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"welcomePage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"query":{},"pathname":"\u002Fru\u002Fcompanies\u002Fbastion\u002Farticles\u002F901478\u002F","path":"\u002Fru\u002Fcompanies\u002Fbastion\u002Farticles\u002F901478\u002F","href":"\u002Fru\u002Fcompanies\u002Fbastion\u002Farticles\u002F901478\u002F"}},"me":{"user":null,"uuid":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null,"userUpdates":{"feeds":{"newPostsCount":null,"newThreadsCount":null,"newNewsCount":null,"newCount":null},"conversationUnreadCount":0},"features":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"onboarding":{"currentStep":null,"stepsData":{},"stepsErrors":{},"completedSteps":[],"isStepCommitting":false,"isCommitDisabled":true},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{"courses":"project-block-company-article"}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null,"sticker":null},"publicationStatistics":{"statsInfo":{},"statsFunnels":{},"statsGraph":{},"defaultSuggest":{},"suggest":{},"timeTracker":{},"isTrackingActivity":false,"isUserActive":true,"otherPublicationStats":{}},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":true,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"stories":{"stories":null},"technotext":{"years":[],"technotextDocForNominees":null,"technotextDocForWinners":null,"technotextInfo":{},"technotextInfoLoading":false,"technotextWinners":{},"technotextWinnersLoading":false},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"userVotes":{"karmaVotesList":[],"karmaVotesPagesCount":null,"karmaVotesListLoading":false,"commentsVotesList":[],"commentsVotesPagesCount":null,"commentsVotesListLoading":false,"postsVotesList":[],"postsVotesPagesCount":null,"postsVotesListLoading":false,"userVotesList":[],"userVotesPagesCount":null,"userVotesListLoading":false},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"notificationsLoading":false,"notificationsList":[],"notificationsPageCount":0,"pendingMarkNotificationsRead":[],"publicationsLoading":true,"publicationsList":[],"publicationsPageCount":0,"pendingDeletePublications":false,"pendingMarkPublicationsRead":false},"events":{"eventRefs":{},"eventIds":[],"pagesCount":0,"categories":[],"cities":[],"actualEvents":null,"currentEvent":null,"eventsFilter":{"city":"all","timeStarted":null,"timeEnded":null}},"wysiwyg":{"WYSIWYGRulesRefs":null},"refs":{"specializationRefs":[]},"hint":{"hints":{}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script>
+   <script src="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" defer></script>
+   <script src="https://assets.habr.com/habr-web/js/app.58b8c457.js" defer></script>
+  </div>
+  <div id="overlays">
+   <!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor-->
+  </div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S28W1WC23F"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  </script>
+  <script type="text/javascript">
+      window.addEventListener('load', function () {
+        setTimeout(() => {
+          const img = new Image();
+          img.src = 'https://vk.com/rtrg?p=VK-RTRG-421343-57vKE';
+        }, 0);
+      });
+    </script>
+ </body>
+</html>

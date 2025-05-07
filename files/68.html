@@ -1,0 +1,1502 @@
+<!doctype html>
+<html lang="ru">
+ <head>
+  <title>Возможности реагирования на инциденты информационной безопасности с помощью KSC Open API / Хабр</title>
+  <meta property="fb:app_id" content="444736788986613">
+  <meta property="fb:pages" content="472597926099084">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@habr_com">
+  <meta property="og:site_name" content="Хабр">
+  <link href="https://habr.com/ru/rss/post/903668/?fl=ru" type="application/rss+xml" title rel="alternate" name="rss">
+  <link href="https://habr.com/ru/companies/step_logic/articles/903668/" rel="canonical" data-hid="e3fa780">
+  <link rel="image_src" href="https://habrastorage.org/getpro/habr/upload_files/102/7d5/171/1027d51713b8974e27a4b543ed506b33.png" data-hid="2a79c45">
+  <link rel="amphtml" href="https://habr.com/ru/amp/publications/903668/">
+  <meta property="og:title" content="Возможности реагирования на инциденты информационной безопасности с помощью KSC Open API">
+  <meta name="twitter:title" content="Возможности реагирования на инциденты информационной безопасности с помощью KSC Open API">
+  <meta name="aiturec:title" content="Возможности реагирования на инциденты информационной безопасности с помощью KSC Open API">
+  <meta name="description" content="Всем привет! Меня зовут Арсений, я работаю инженером анализа машинных данных в команде разработки программного обеспечения STEP Security Data Lake (SDL). Недавно наша команда разработала новый...">
+  <meta itemprop="description" content="Всем привет! Меня зовут Арсений, я работаю инженером анализа машинных данных в команде разработки программного обеспечения STEP Security Data Lake (SDL). Недавно наша команда разработала новый...">
+  <meta property="og:description" content="Всем привет! Меня зовут Арсений, я работаю инженером анализа машинных данных в команде разработки программного обеспечения STEP Security Data Lake (SDL). Недавно наша команда разработала новый...">
+  <meta name="twitter:description" content="Всем привет! Меня зовут Арсений, я работаю инженером анализа машинных данных в команде разработки программного обеспечения STEP Security Data Lake (SDL). Недавно наша команда разработала новый...">
+  <meta property="aiturec:description" content="Всем привет! Меня зовут Арсений, я работаю инженером анализа машинных данных в команде разработки программного обеспечения STEP Security Data Lake (SDL). Недавно наша команда разработала новый...">
+  <meta itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/102/7d5/171/1027d51713b8974e27a4b543ed506b33.png">
+  <meta property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/102/7d5/171/1027d51713b8974e27a4b543ed506b33.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/102/7d5/171/1027d51713b8974e27a4b543ed506b33.png">
+  <meta name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/102/7d5/171/1027d51713b8974e27a4b543ed506b33.png">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/102/7d5/171/1027d51713b8974e27a4b543ed506b33.png?format=vk">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/102/7d5/171/1027d51713b8974e27a4b543ed506b33.png?format=vk">
+  <meta property="aiturec:item_id" content="903668">
+  <meta property="aiturec:datetime" content="2025-05-06T07:35:18.000Z">
+  <meta content="https://habr.com/ru/companies/step_logic/articles/903668/" property="og:url">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="keywords" content="STEP LOGIC, иб, информационная безопасность, soc, sdl, управление инцидентами, кибербезопасность">
+  <script type="application/ld+json" data-hid="1e0f0a2">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/companies\/step_logic\/articles\/903668\/"},"headline":"Возможности реагирования на инциденты информационной безопасности с помощью KSC Open API","datePublished":"2025-05-06T10:35:18+03:00","dateModified":"2025-05-07T00:51:11+03:00","author":{"@type":"Person","name":"STEPLOGIC"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"Всем привет! Меня зовут Арсений, я работаю инженером анализа машинных данных в команде разработки программного обеспечения STEP Security Data Lake (SDL). Недавно...","url":"https:\/\/habr.com\/ru\/companies\/step_logic\/articles\/903668\/#post-content-body","about":["c_step_logic","h_infosecurity","h_sys_admin","h_analysis_design","f_develop","f_admin"],"image":["https:\/\/habr.com\/share\/publication\/903668\/2fcc78f4faec62039270646d32d47691\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/d48\/c56\/759\/d48c567599c9b974a565a0c56421d580.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/102\/7d5\/171\/1027d51713b8974e27a4b543ed506b33.png"]}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1,user-scalable=0">
+  <meta name="referrer" content="unsafe-url">
+  <style>
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmojLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvk4jLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmYjLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" as="style" media="(prefers-color-scheme: light)">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" as="style" media="(prefers-color-scheme: dark)">
+  <link id="light-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" media="(prefers-color-scheme: light)">
+  <link id="dark-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" media="(prefers-color-scheme: dark)">
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.635b6c39236ebd33fa716c71ab0131a0.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script>
+  <style>
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+    </style>
+  <meta name="habr-version" content="2.241.0">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44">
+  <meta name="msapplication-TileColor" content="#629FBC">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png">
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png">
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg">
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest">
+  <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
+  <script>window.yaContextCb = window.yaContextCb || []</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.8599692f.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.58b8c457.js" as="script">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.8599692f.css">
+ </head>
+ <body>
+  <div id="mount">
+   <div id="app">
+    <div class="tm-layout__wrapper">
+     <!--[--><!---->
+     <div></div><!---->
+     <header class="tm-header" data-test-id="header">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-header__container">
+        <!----><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/">
+          <svg class="tm-svg-img tm-header__icon" height="16" width="16">
+           <title>
+            Хабр
+           </title><use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+          </svg></a><span style="display:none;" class="tm-header__beta-sign">β</span></span><!--[-->
+        <div class="tm-dropdown tm-header__projects">
+         <div class="tm-dropdown__head">
+          <!--[-->
+          <button class="tm-header__dropdown-toggle">
+           <svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16">
+            <title>
+             Открыть список
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#arrow-down"></use>
+           </svg></button><!--]-->
+         </div><!---->
+        </div><a href="/ru/sandbox/start/" class="tm-header__become-author-btn">Как стать автором</a>
+        <div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature">
+         <!---->
+        </div><!----><!--]--><!---->
+       </div><!--]-->
+      </div>
+     </header>
+     <div class="tm-layout">
+      <div class="tm-page-progress-bar"></div>
+      <div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true">
+       <div class="tm-page-width">
+        <!--[-->
+        <div class="tm-base-layout__header-wrapper">
+         <div class="tm-main-menu">
+          <div class="tm-main-menu__section">
+           <nav class="tm-main-menu__section-content">
+            <!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]-->
+           </nav>
+          </div>
+         </div>
+         <div class="tm-header-user-menu tm-base-layout__user-menu">
+          <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button">
+           <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24">
+            <title>
+             Поиск
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#search"></use>
+           </svg></a><!----><!---->
+          <div class="tm-header-user-menu__item tm-header-user-menu__write">
+           <div>
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Написать публикацию
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#write"></use>
+            </svg>
+           </div><!---->
+          </div><!--[-->
+          <div class="tm-header-user-menu__item">
+           <button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings">
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Настройки
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#page-settings"></use>
+            </svg></button>
+          </div><a href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/companies/step_logic/articles/903668/&amp;hl=ru" rel="nofollow" class="tm-header-user-menu__item"><!--[-->
+           <button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!----><!--teleport start--><!--teleport end--><!---->
+         </div>
+        </div><!--]-->
+       </div>
+      </div><!---->
+      <div class="tm-page-width">
+       <!--[--><!--]-->
+      </div>
+      <main class="tm-layout__container">
+       <div class="tm-page" hl="ru" companyname="step_logic" data-async-called="true" style="--5ab2e5a8:16px;--44c4f6f6:100%;--45ba7a3b:0;">
+        <div class="tm-page-width">
+         <!--[-->
+         <div class="tm-page__header">
+          <!--[--><!--]-->
+         </div>
+         <div class="tm-page__wrapper">
+          <div class="tm-page__main_has-sidebar tm-page__main">
+           <div class="pull-down">
+            <!---->
+            <div class="pull-down__header" style="height:0px;">
+             <div class="pull-down__content" style="bottom:10px;">
+              <svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24">
+               <title>
+                Обновить
+               </title><use xlink:href="/img/megazord-v28.7909a852..svg#pull-arrow"></use>
+              </svg>
+             </div>
+            </div><!--[--><!--[-->
+            <div class="tm-article-presenter">
+             <!--[--><!--[--><!---->
+             <div class="tm-company-profile-card tm-company-article__profile-card">
+              <div class="tm-company-card tm-company-profile-card__info">
+               <div class="tm-company-card__header">
+                <a href="/ru/companies/step_logic/profile/" class="tm-company-card__avatar">
+                 <div class="tm-entity-image">
+                  <img alt="" class="tm-entity-image__pic" height="48" src="//habrastorage.org/getpro/habr/company/41e/19c/261/41e19c261894f1ecab725b32a9a18753.png" width="48">
+                 </div></a><!--[--><!---->
+                <div class="tm-counter-container tm-company-card__rating">
+                 <div class="tm-counter-container__header">
+                  <!--[--><!--[--><!--]-->
+                  <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                   <!---->
+                   <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score">
+                    <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">52.59</span></span><!--]-->
+                   </div><!---->
+                  </div><!--]-->
+                 </div>
+                 <div class="tm-counter-container__footer">
+                  <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                 </div>
+                </div><!----><!--]-->
+               </div>
+               <div class="tm-company-card__info">
+                <a href="/ru/companies/step_logic/profile/" class="tm-company-card__name"><span>STEP LOGIC</span></a><!---->
+               </div>
+              </div>
+              <div class="tm-company-profile-card__buttons">
+               <div class="tm-button-follow tm-company-profile-card__button tm-company-profile-card__button_follow">
+                <!---->
+                <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+               </div><!----><!----><!---->
+              </div>
+             </div><!----><!--]--><!--]-->
+             <div class="tm-article-presenter__body" data-test-id="article-body">
+              <div class="tm-misprint-area">
+               <div class="tm-misprint-area__wrapper">
+                <!--[-->
+                <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                 <!--[-->
+                 <div class="tm-article-presenter__header">
+                  <!--[--><!--]-->
+                  <div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet">
+                   <!--[--><!--]-->
+                   <div class="tm-article-snippet__meta-container">
+                    <div class="tm-article-snippet__meta">
+                     <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/STEPLOGIC/" class="tm-user-info__userpic" data-test-id="user-info-pic" title="STEPLOGIC">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" height="24" src="//habrastorage.org/r/w48/getpro/habr/avatars/fbf/185/4f6/fbf1854f61459e185b3a76a4a0ba7cbd.png" width="24">
+                       </div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a href="/ru/users/STEPLOGIC/" class="tm-user-info__username">STEPLOGIC <!----></a><!--[--><span class="tm-article-datetime-published"><time datetime="2025-05-06T07:35:18.000Z" title="2025-05-06, 10:35">22 часа назад</time></span><!--]--></span></span>
+                    </div><!---->
+                   </div>
+                   <h1 class="tm-title tm-title_h1" lang="ru" data-test-id="articleTitle"><span>Возможности реагирования на инциденты информационной безопасности с помощью KSC Open API</span></h1>
+                   <div class="tm-article-snippet__stats" data-test-id="articleStats">
+                    <div class="tm-article-complexity tm-article-complexity_complexity-medium">
+                     <span class="tm-svg-icon__wrapper tm-article-complexity__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Уровень сложности
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#complexity-medium"></use>
+                      </svg></span><span class="tm-article-complexity__label">Средний</span>
+                    </div>
+                    <div class="tm-article-reading-time">
+                     <span class="tm-svg-icon__wrapper tm-article-reading-time__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Время на прочтение
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#clock"></use>
+                      </svg></span><span class="tm-article-reading-time__label">10 мин</span>
+                    </div><span class="tm-icon-counter tm-data-icons__item">
+                     <svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24">
+                      <title>
+                       Количество просмотров
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-views"></use>
+                     </svg><span class="tm-icon-counter__value" title="729">729</span></span>
+                   </div>
+                   <div class="tm-publication-hubs__container" data-test-id="articleHubsList">
+                    <div class="tm-publication-hubs">
+                     <!--[--><span class="tm-publication-hub__link-container"><a href="/ru/companies/step_logic/articles/" class="tm-publication-hub__link"><!--[--><span>Блог компании STEP LOGIC</span><!----><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/infosecurity/" class="tm-publication-hub__link"><!--[--><span>Информационная безопасность</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/sys_admin/" class="tm-publication-hub__link"><!--[--><span>Системное администрирование</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/analysis_design/" class="tm-publication-hub__link"><!--[--><span>Анализ и проектирование систем</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><!--]-->
+                    </div>
+                   </div>
+                   <div class="tm-article-labels" data-test-id="articleLabels">
+                    <div class="tm-article-labels__container">
+                     <div class="tm-publication-label tm-publication-label_variant-review">
+                      <span>Обзор</span>
+                     </div><!--[--><!--]-->
+                    </div>
+                   </div><!----><!---->
+                  </div>
+                 </div><!--[--><!---->
+                 <div class="tm-article-body" data-gallery-root lang="ru">
+                  <div>
+                   <!--[--><!--]-->
+                  </div>
+                  <div id="post-content-body">
+                   <div>
+                    <div class="article-formatted-body article-formatted-body article-formatted-body_version-2">
+                     <div xmlns="http://www.w3.org/1999/xhtml">
+                      <p>Всем привет! Меня зовут Арсений, я работаю инженером анализа машинных данных в команде разработки программного обеспечения STEP Security Data Lake (SDL). Недавно наша команда разработала новый фреймворк противодействия инцидентам информационной безопасности – адаптивные действия, благодаря которым аналитики центров кибербезопасности (Security Operation Center, SOC) смогут быстрее принимать меры по сдерживанию и ликвидации последствий инцидентов непосредственно через единый графический интерфейс нашего продукта. Я использовал этот фреймворк для взаимодействия через Kaspersky Security Center Open API и хотел бы рассказать об этом в статье.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/d48/c56/759/d48c567599c9b974a565a0c56421d580.png" width="2125" height="1208" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/d48/c56/759/d48c567599c9b974a565a0c56421d580.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/d48/c56/759/d48c567599c9b974a565a0c56421d580.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <h2>Немного о STEP SDL</h2>
+                      <p>Наша платформа предоставляет руководителям и специалистам центров кибербезопасности набор инструментов анализа больших массивов машинных данных для наблюдения за состоянием защищённости вычислительной сети и управления инцидентами информационной безопасности.</p>
+                      <p>SDL реализует принцип единого окна доступа к данным о событиях, активах, угрозах и инцидентах. Он обеспечивает их наглядное представление и корреляцию с использованием единого конструктора визуализаций, языков поисковых запросов и описания алгоритмов. Особенности продукта – полноценная мультитенантность, гибкость и встроенная функциональность сразу нескольких классов решений, таких как SIEM и IRP/SOAR.</p>
+                      <h2>Немного о Kaspersky EDR для бизнеса Оптимальный</h2>
+                      <p>Kaspersky EDR для бизнеса Оптимальный с расширенными возможностями обнаружения угроз, базового расследования инцидентов и автоматизированного реагирования позволяет идентифицировать, анализировать и нейтрализовывать маскирующиеся угрозы.</p>
+                      <p>Он предоставляет полный обзор происходящего в инфраструктуре, а также управление всеми функциями через единую консоль Kaspersky Security Center c системой отчетов и возможностью распределять зоны ответственности администраторов.</p>
+                      <h2>Проблематика</h2>
+                      <p>В любой компании есть риск наступления инцидентов информационной безопасности и необходимость применять комплекс мер защиты информации. К ним относятся задачи своевременного обнаружения вредоносной активности и задачи быстрого и эффективного сдерживания угроз, чтобы минимизировать возможный ущерб. Наши заказчики зачастую для этого используют решение Kaspersky EDR для бизнеса Оптимальный, которое обладает функциями по реагированию на инциденты информационной безопасности вручную, например, для помещения подозрительного файла на карантин или сетевой изоляции хоста. Но делают это только в рамках контекста событий сервера Kaspersky Security Center (KSC), в котором он развернут, и только в ручном режиме.</p>
+                      <p>Для обнаружения широкого круга инцидентов информационной безопасности и автоматического реагирования на них заказчики используют STEP Security Data Lake, обладающий функциональностью решений класса Security Information and Event Management (SIEM) и Incident Response Platform (IRP). Чтобы автоматизировать реагирование на инциденты в SOC, и за счёт этого повысить скорость и удобство работы, мы реализовали интеграцию наших решений с использованием открытого API.</p>
+                      <p>Данная статья будет полезна инженерам и разработчикам, реализующим интеграцию своих решений с Kaspersky EDR для бизнеса Оптимальный.</p>
+                      <h2>API Kaspersky EDR Optimum</h2>
+                      <p>Архитектура Kaspersky EDR для бизнеса Оптимальный включает в себя агента Kaspersky Endpoint Security (KES) с функциональным модулем EDR, агента администрирования KSC и сервер управления агентами Kaspersky Security Center (KSC). Соответственно, взаимодействие с ними предусмотрено через единый API-интерфейс – KSC Open API. В примерах я использовал 14 версию. Подробнее о KSC Open API можно прочитать по <a href="https://support.kaspersky.com/help/KSC/14/KSCAPI/index.html">ссылке</a>.</p>
+                      <p>API-запрос имеет следующий общий вид:</p>
+                      <p>https://ksc_address:13299/api/v1.0/Instance.Class.MethodName</p>
+                      <p>где:</p>
+                      <ul>
+                       <li>
+                        <p>Class – имя класса</p></li>
+                       <li>
+                        <p>MethodName – имя функции класса</p></li>
+                       <li>
+                        <p>Instance – имя сущности, например, HostTags (тэги хоста) или InventoryTags (тэги ПО). Требуется только для определенных классов, например, ListTags, так что чаще всего применяется запрос https://ksc_address:13299/api/v1.0/Class.MethodName</p></li>
+                      </ul>
+                      <p>Классы отвечают за те или иные функции KSC, будь то запуск задач (Task), проставление тэгов, импорт и экспорт политик безопасности и т. д. В данной статье я покажу примеры работы с классами:</p>
+                      <ul>
+                       <li>
+                        <p>Session – создание и прекращение сессии</p></li>
+                       <li>
+                        <p>HostGroup – проведение поиска хоста по его атрибутам</p></li>
+                       <li>
+                        <p>ChunkAccessor – работа с массивами, содержащими данные поисков</p></li>
+                       <li>
+                        <p>Tasks – работа с задачами KSC</p></li>
+                       <li>
+                        <p>ListTags – работа с тэгами</p></li>
+                       <li>
+                        <p>Instance – имя сущности, например, HostTags (тэги хоста) или InventoryTags (тэги ПО)</p></li>
+                      </ul>
+                      <p>Взаимодействие всегда начинается с создания сессии, ID которой потом постоянно необходимо добавлять в заголовок при последующих запросах. Желательно предварительно создать отдельную внутреннюю учетную запись в KSC, через которую затем будет осуществляться взаимодействие с API.</p>
+                      <p>Далее пойдут примеры без использования Python и прочих языков программирования (у «Лаборатории Касперского» есть python-модуль для упрощения работы с API). Я буду использовать только API-вебхуки как наиболее универсальный вариант.</p>
+                      <p>Я рассмотрю два варианта реагирования:</p>
+                      <ul>
+                       <li>
+                        <p>помещение файла на карантин;</p></li>
+                       <li>
+                        <p>сетевая изоляция хоста с помощью проставления тэгов.</p></li>
+                      </ul>
+                      <h2>Помещение файла на карантин</h2>
+                      <p>Суть этого действия заключается в запуске специализированной Задачи (Task) на выбранном узле сети с установленным KES, который поместит выбранный файл на карантин. Подробная инструкция по созданию задачи через веб-консоль KSC находится на <a href="https://support.kaspersky.com/help/KSC/14.2/ru-RU/175983.htm">сайте</a> вендора.</p>
+                      <p>Для реализации нам потребуется предварительно провести небольшую настройку KSC под нужды каждой отдельной задачи.</p>
+                      <ul>
+                       <li>
+                        <p>Необходимо создать внутреннюю учетную запись для API-запросов в KSC и выдать ей права для возможности запуска Задач (Tasks)</p></li>
+                       <li>
+                        <p>Создать отдельную задачу на помещение файла на карантин. Необходимо включить следующую настройку для «Устройства, которым будет назначена задача» – «Задать адреса устройств вручную или импортировать из списка»</p></li>
+                       <li>
+                        <p>Зафиксировать идентификатор задачи, который отображается в адресной строке Веб-интерфейса KSC в виде десятичного числа (например, 145)</p></li>
+                      </ul>
+                      <h4>Создание удаленной сессии</h4>
+                      <pre><code class="bash">curl -X POST \
+  https://ksc_address:13299/api/v1.0/Session.StartSession \
+  -H 'Authorization: KSCBasic user="&lt;ksc_username_base64&gt;",pass="&lt;ksc_password_base64&gt;",internal="1”'</code></pre>
+                      <ul>
+                       <li>
+                        <p>user – имя пользователя API в кодировке Base64</p></li>
+                       <li>
+                        <p>pass – пароль пользователя API в кодировке Base64</p></li>
+                       <li>
+                        <p>internal – число, где 0 – это учетная запись хоста, на котором установлен KSC, а 1 – это учетная запись самого KSC</p></li>
+                      </ul>
+                      <p>Ответ сервера:</p>
+                      <pre><code class="json">{
+	PxgRetVal: &lt;id_сессии&gt;
+}</code></pre>
+                      <p>Полученный ID указывается каждый раз при последующих обращениях к KSC в заголовке X-KSC-Session.</p>
+                      <h4>Получение ссылки на массив, хранящий ID выбранного хоста</h4>
+                      <pre><code class="bash">curl -X POST \
+ https://ksc_address:13299/api/v1.0/HostGroup.FindHosts \
+  -H ' X-KSC-Session: &lt;id_сессии&gt; ' \
+  -d '{
+	"wstrFilter": "(| (KLHST_WKS_FQDN=\"&lt;fqdn&gt;\")  (KLHST_WKS_DN=\"&lt;display_name&gt;\") 	(KLHST_WKS_WINHOSTNAME=\"&lt;netBIOS_name&gt;\")  (KLHST_WKS_DNSNAME=\"&lt;dns_name&gt;\") 	(KLHST_WKS_IP_LONG=&lt;host_ip_in_bytes&gt;) )",
+	"vecFieldsToReturn": [
+		"KLHST_WKS_HOSTNAME",
+		"KLHST_WKS_DN"
+	],
+	"pParams": {
+		"KLGRP_FIND_FROM_CUR_VS_ONLY": true
+	},
+	"lMaxLifeTime": 120
+}
+'</code></pre>
+                      <ul>
+                       <li>
+                        <p>wstrFilter – содержит фильтр с атрибутами хоста, по которому будет производиться его поиск: KLHST_WKS_FQDN – полное доменное имя узла, KLHST_WKS_DN – имя, присвоенное узлу в KSC, KLHST_WKS_WINHOSTNAME – netBIOS – имя узла, KLHST_WKS_DNSNAME – DNS – имя узла, KLHST_WKS_IP_LONG – IP узла в байтах в порядке little endian</p></li>
+                       <li>
+                        <p>vecFieldsToReturn – содержит список полей, которые будут возвращены в одном элементе массива. Нас в основном интересуют поля KLHST_WKS_HOSTNAME, которое содержит ID нашего узла, а также KLHST_WKS_DN</p></li>
+                       <li>
+                        <p>pParams – содержит один единственный параметр KLGRP_FIND_FROM_CUR_VS_ONLY, который принимает значение true, если необходимо вернуть данные только с текущего сервера KSC, false – со всех доступных серверов</p></li>
+                       <li>
+                        <p>lMaxLifeTime – время жизни запрашиваемого массива в секундах</p></li>
+                      </ul>
+                      <p>&nbsp;Ответ сервера:</p>
+                      <pre><code class="json">{
+	strAccessor: &lt;id_массива&gt;,
+	"PxgRetVal": 1
+}</code></pre>
+                      <ul>
+                       <li>
+                        <p>strAccessor – ссылка на массив, содержащий запрошенные нами данные</p></li>
+                       <li>
+                        <p>PxgRetVal – размер массива</p></li>
+                      </ul>
+                      <h4>Обращение к массиву с ID хоста</h4>
+                      <pre><code class="bash">curl -X POST \
+ https://ksc_address:13299/api/v1.0/ChunkAccessor.GetItemsChunk \
+  -H ' X-KSC-Session: &lt;id_сессии&gt; ' \
+  -d '{
+	"strAccessor": "&lt;id_массива&gt;",
+	"nStart": 0,
+	"nCount": 1
+}
+'</code></pre>
+                      <ul>
+                       <li>
+                        <p>strAccessor – ID массива, в котором находится результат наших поисков</p></li>
+                       <li>
+                        <p>nStart – номер элемента массива, к которому мы хотим обратиться</p></li>
+                       <li>
+                        <p>nCount – количество элементов в массиве, то есть количество найденных значений, удовлетворяющим фильтру</p></li>
+                      </ul>
+                      <p>Ответ сервера:</p>
+                      <pre><code class="json">{
+	"pChunk": {
+	"KLCSP_ITERATOR_ARRAY": [
+	{
+	"type": "params",
+                "value": {
+                    "KLHST_WKS_DN": "WIN-TEST-2",
+                    "KLHST_WKS_HOSTNAME": "h6116814-adc1-1fab-9ded-6e219356027a"
+                }
+            }
+        ]
+    },
+    "PxgRetVal": 1
+}</code></pre>
+                      <p>В ответе нас интересуют поля KLHST_WKS_DN и KLHST_WKS_HOSTNAME, которые мы будем использовать на одном из следующих этапов при обновлении задачи.</p>
+                      <h4>Получаем данные задачи</h4>
+                      <pre><code class="bash">curl -X POST \
+ https://ksc_address:13299/api/v1.0/Tasks.GetTaskData \
+  -H ' X-KSC-Session: &lt;id_сессии&gt; ' \
+  -d '{
+	"strTask": "145"
+}
+'</code></pre>
+                      <ul>
+                       <li>
+                        <p>strTask – номер задачи в десятичном формате, которую можно узнать из адресной строки веб интерфейса KSC</p></li>
+                      </ul>
+                      <p>Ответ сервера:</p>
+                      <pre><code class="json">{ }</code></pre>
+                      <h4>Обновляем задачу</h4>
+                      <pre><code class="json">curl -X POST \
+ https://ksc_address:13299/api/v1.0/Tasks.UpdateTask \
+  -H ' X-KSC-Session: &lt;id_сессии&gt; ' \
+  -d '{
+	"pData": {
+    "TASK_ADDITIONAL_PARAMS": {
+      "type": "params",
+      "value": {
+        "files": [
+          {
+            "type": "params",
+            "value": {
+              "fileId": {
+                "type": "params",
+                "value": {
+                  "filePath": "&lt;путь_к_файлу&gt;"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "TASK_INFO_PARAMS": {
+      "type": "params",
+      "value": {
+        "HostList": [
+          {
+            "type": "params",
+            "value": {
+              "HostDispName": "&lt;KLHST_WKS_DN_с_4_этапа&gt;",
+              "HostName": "&lt;KLHST_WKS_HOSTNAME_с_4_этапа&gt;",
+              "Preliminary": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  "strTask": "145"
+}
+'</code></pre>
+                      <p>Ответ сервера:</p>
+                      <pre><code class="json">{
+	"1": "0"
+	"2": "0"
+	"4": "1"
+	"8": "0"
+	"16": "0"
+	"32": "0"
+	"64": "0"
+	"KLTSK_NEED_RBT_CNT": "0"
+	"GNRL_COMPLETED_PERCENT": "100"
+
+}</code></pre>
+                      <p>Здесь я не привел все тело запроса, а указал только лишь те параметры, на которых стоит сфокусироваться в первую очередь. Я рекомендую копировать все остальные параметры при обновлении задачи на всякий случай, так как мне не удалось найти в документации информации, что можно обновлять настройки той или иной задачи выборочно.</p>
+                      <h4>Запускаем задачу</h4>
+                      <pre><code class="bash">curl -X POST \
+ https://ksc_address:13299/api/v1.0/Tasks.RunTask \
+  -H ' X-KSC-Session: &lt;id_сессии&gt; ' \
+  -d '{
+	"strTask": "145"
+}
+'</code></pre>
+                      <ul>
+                       <li>
+                        <p>strTask – номер задачи</p></li>
+                      </ul>
+                      <p>Ответ сервера:</p>
+                      <pre><code class="json">{
+	"1": "0"
+	"2": "0"
+	"4": "1"
+	"8": "0"
+	"16": "0"
+	"32": "0"
+	"64": "0"
+	"KLTSK_NEED_RBT_CNT": "0"
+	"GNRL_COMPLETED_PERCENT": "100"
+
+}</code></pre>
+                      <p>Таким образом, мы запустили процесс помещения файла на карантин, однако сразу узнать результаты работы задачи не получится. Для этого спустя секунд 30 необходимо выполнить следующее:</p>
+                      <h4>Получение статистики запуска задачи</h4>
+                      <pre><code class="bash">curl -X POST \
+ https://ksc_address:13299/api/v1.0/Tasks.GetTaskStatistics \
+  -H ' X-KSC-Session: &lt;id_сессии&gt; ' \
+  -d '{
+	"strTask": "145"
+}
+'</code></pre>
+                      <ul>
+                       <li>
+                        <p>strTask – номер задачи</p></li>
+                      </ul>
+                      <p>Ответ сервера:</p>
+                      <pre><code class="json">{
+	"1": "0"
+	"2": "0"
+	"4": "1"
+	"8": "0"
+	"16": "0"
+	"32": "0"
+	"64": "0"
+	"KLTSK_NEED_RBT_CNT": "0"
+	"GNRL_COMPLETED_PERCENT": "100"
+
+}</code></pre>
+                      <ul>
+                       <li>
+                        <p>1 – количество хостов, на которых задача еще не обновилась</p></li>
+                       <li>
+                        <p>2 – количество хостов, на которых задача запущена</p></li>
+                       <li>
+                        <p>4 – количество хостов, на которых задача завершена успешно</p></li>
+                       <li>
+                        <p>8 – количество хостов, на которых задача завершена с предупреждением</p></li>
+                       <li>
+                        <p>16 – количество хостов, на которых задача завершена с ошибкой</p></li>
+                       <li>
+                        <p>32 – количество хостов, на которых запланирован запуск задачи</p></li>
+                       <li>
+                        <p>64 – количество хостов, на которых выполнение задачи поставлено на паузу</p></li>
+                       <li>
+                        <p>KLTSK_NEED_RBT_CNT – количество хостов, на которых задача запросила перезапуск ОС</p></li>
+                       <li>
+                        <p>GNRL_COMPLETED_PERCENT – общий процент успешности запуска задачи</p></li>
+                      </ul>
+                      <p>К сожалению, я не смог найти в документации информации, за какой временной период происходит получение статистики запуска по итогам тестирования. Я пришел к выводу, что берется общая статистка за все время, поэтому альтернативной командой для получения результатов запуска может послужить https://ksc_address:13299/api/v1.0/Tasks.GetTaskHistory</p>
+                      <p>В своем ответе оно возвращает history events, которые содержат в себе гораздо больше информации. В результате мы получим ссылку на массив, который и будет хранить интересующие нас данные, а именно:</p>
+                      <ul>
+                       <li>
+                        <p>task_old_state – предыдущее состояние выполнения задачи</p></li>
+                       <li>
+                        <p>task_new_state – новое состояние выполнения задачи. Тут мы ожидаем увидеть значение 4 (completed successfully)</p></li>
+                       <li>
+                        <p>rise_time – время публикации события в формате UTC</p></li>
+                       <li>
+                        <p>registration_time – время регистрации события сервером администрирования в UTC формате</p></li>
+                      </ul>
+                      <p>Теперь у нас есть информация о времени изменения статуса задачи, с помощью которого мы сможем отфильтровать события и узнать статус выполнения именно той задачи, которую мы запускали.</p>
+                      <h4>Завершаем сессию</h4>
+                      <pre><code class="bash">curl -X POST \
+ https://ksc_address:13299/api/v1.0/Session.EndSession \
+  -H ' X-KSC-Session: &lt;id_сессии&gt; '</code></pre>
+                      <p>Таким образом, если все выполнено без ошибок, то мы сможем добиться помещения выбранного нами файла на карантин.</p>
+                      <h2>Сетевая изоляция хоста</h2>
+                      <p>В данном случае посредством проставления тэгов мы будем активировать выбранный профиль политики безопасности с заранее настроенным межсетевым экраном, который будет блокировать все TCP- и UDP-подключения.</p>
+                      <p>Как и в первом примере, нам потребуется сначала провести небольшую настройку KSC и получить ID хоста.</p>
+                      <p>В действующей на устройствах политике KSC создаем профиль политики. Во вкладке «Правила активации» создаем «Правило для использования тега». Добавляем тег, который будет отражать применение сетевой изоляции хоста, например, Network Isolation. Сохраняем правило активации. В созданном профиле политики во вкладке «Параметры программы» → «Базовая защита» → «Сетевой экран» включаем «Сетевой экран» и «Настройки сетевого экрана». Во вкладках «Сетевые правила приложений» и «Сетевые пакетные правила» указываем желаемые настройки, которые будут применяться во время изоляции хоста, например, будем блокировать весь трафик для протоколов TCP и UDP.</p>
+                      <p>Подробная инструкция предусмотрена на <a href="https://support.kaspersky.com/KSC/14.2/ru-ru/144953.htm">сайте</a> вендора.</p>
+                      <p>Далее повторяем этапы из предыдущего примера: создание удаленной сессии, получение ссылки на объект, хранящий ID выбранного хоста, обращение к объекту с ID хоста.</p>
+                      <h4>Добавление тэгов</h4>
+                      <pre><code class="bash">curl -X POST \
+ https://ksc_address:13299/api/v1.0/HostTags.ListTags.SetTags \
+  -H ' X-KSC-Session: &lt;id_сессии&gt; ' \
+  -d '{
+	"pListItemsTags": [
+    {
+      "type": "params",
+      "value": {
+        "KLTAGS_ITEM_ID": "&lt;ID_хоста&gt;",
+        "KLTAGS_TAGS": [
+          {
+            "type": "params",
+            "value": {
+              "KLTAGS_SET": true,
+              "KLTAGS_VALUE": "tag1"
+            }
+          },
+          {
+            "type": "params",
+            "value": {
+              "KLTAGS_SET": true,
+              "KLTAGS_VALUE": "tag2"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "pParams": {
+    "KLTAGS_FULL_REPLACE": true
+  }
+}
+'
+</code></pre>
+                      <ul>
+                       <li>
+                        <p>pListItemsTags – список, содержащий в себе параметры, простановки тэгов;</p></li>
+                       <li>
+                        <p>KLTAGS_ITEM_ID – ID элемента (в данном случае ID хоста), для которого будут проставлены тэги;</p></li>
+                       <li>
+                        <p>KLTAGS_TAGS – список тэгов, которые содержат следующие параметры: KLTAGS_VALUE – название тэга, KLTAGS_SET – true для проставления тэга и false для его удаления;</p></li>
+                       <li>
+                        <p>KLTAGS_FULL_REPLACE – флаг, принимающий значение true, если требуется полностью перезаписать все тэги на узле, false – не требуется.</p></li>
+                      </ul>
+                      <p>Ответ сервера:</p>
+                      <pre><code class="json">{ }</code></pre>
+                      <p>Завершаем сессию.</p>
+                      <h2>Заключение</h2>
+                      <p>KSC Open API предоставляет достаточно широкий спектр возможностей реагирования, который напрямую зависит от типов продуктов «Лаборатории Касперского», подключенных к KSC. Документация у API подробная, однако начинающему разработчику сразу разобраться в тонкостях ее работы будет нелегко. Причина – неоднозначные названия аргументов, которые могут быть не задокументированными, а также неочевидные требования к структуре самих запросов, как, например, тот же тип params. Помочь в решении данной проблемы может приведение примеров напрямую с использованием вебхук-запросов для каждой функции класса, которые содержали бы в себе также примеры ответов со ссылками на объяснение возвращаемых атрибутов.</p>
+                      <p>&nbsp;</p>
+                     </div>
+                    </div>
+                   </div><!----><!---->
+                  </div><!----><!---->
+                 </div><!--]--><!---->
+                 <div class="tm-article-presenter__meta" data-test-id="article-meta-links">
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Теги:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[STEP+LOGIC]" class="tm-tags-list__link"><span>STEP LOGIC</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%B8%D0%B1]" class="tm-tags-list__link"><span>иб</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F+%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C]" class="tm-tags-list__link"><span>информационная безопасность</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[soc]" class="tm-tags-list__link"><span>soc</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[sdl]" class="tm-tags-list__link"><span>sdl</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5+%D0%B8%D0%BD%D1%86%D0%B8%D0%B4%D0%B5%D0%BD%D1%82%D0%B0%D0%BC%D0%B8]" class="tm-tags-list__link"><span>управление инцидентами</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%BA%D0%B8%D0%B1%D0%B5%D1%80%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C]" class="tm-tags-list__link"><span>кибербезопасность</span></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Хабы:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/companies/step_logic/articles/" class="tm-hubs-list__link"><!--[--><span>Блог компании STEP LOGIC</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/infosecurity/" class="tm-hubs-list__link"><!--[--><span>Информационная безопасность</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/sys_admin/" class="tm-hubs-list__link"><!--[--><span>Системное администрирование</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/analysis_design/" class="tm-hubs-list__link"><!--[--><span>Анализ и проектирование систем</span><!--]--></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                 </div><!----><!--]-->
+                </article><!--]-->
+               </div><!---->
+              </div>
+              <div style="" class="tm-article-sticky-panel" data-test-id="article-sticky-panel">
+               <div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons">
+                <div class="article-rating tm-data-icons__item" data-v-86aec4a7>
+                 <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-article votes-switcher" title="Всего голосов 3: ↑3 и ↓0" data-v-86aec4a7>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-upvote-button" title="Нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon" height="24" width="24">
+                    <title>
+                     Нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                  <div class="tm-votes-lever__score tm-votes-lever__score_appearance-article tm-votes-lever__score">
+                   <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_positive tm-votes-lever__score-counter" data-test-id="votes-score-counter">+5</span></span><!--]-->
+                  </div>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-downvote-button" title="Не нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon tm-votes-lever__icon_arrow-down" height="24" width="24">
+                    <title>
+                     Не нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                 </div><!--teleport start--><!--teleport end--><!---->
+                </div><!----><!---->
+                <button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon">
+                  <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                   <title>
+                    Добавить в закладки
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-favorite"></use>
+                  </svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">5</span></button>
+                <div class="tm-sharing tm-data-icons__item" title="Поделиться">
+                 <button class="tm-sharing__button" type="button">
+                  <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                   <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                  </svg></button><!--teleport start--><!--teleport end-->
+                </div>
+                <div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии">
+                 <a href="/ru/companies/step_logic/articles/903668/comments/" class="tm-article-comments-counter-link__link" data-test-id="counter-comments"><!--[-->
+                  <svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24">
+                   <title>
+                    Комментарии
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                  </svg><span class="tm-article-comments-counter-link__value">0</span><!--]--></a><!---->
+                </div><!--[--><!--[--><!--[--><!----><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!---->
+               </div>
+              </div>
+             </div><!--[--><!--]-->
+             <div class="tm-article-presenter__footer">
+              <!--[--><!--[-->
+              <div class="tm-article-blocks">
+               <!----><!--[-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <!----><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-balanced">
+                 <!--[-->
+                 <div class="tm-article-author" data-test-id="article-author-info" data-async-called="true">
+                  <!--[--><!--[-->
+                  <div class="tm-article-author__company">
+                   <div class="tm-article-author__company-card">
+                    <div class="tm-company-snippet">
+                     <a href="/ru/companies/step_logic/profile/" class="tm-company-snippet__logo-link">
+                      <div class="tm-entity-image">
+                       <img alt="" class="tm-entity-image__pic" height="40" src="//habrastorage.org/getpro/habr/company/41e/19c/261/41e19c261894f1ecab725b32a9a18753.png" width="40">
+                      </div></a>
+                     <div class="tm-company-snippet__info">
+                      <a href="/ru/companies/step_logic/profile/" class="tm-company-snippet__title" data-test-id="company-title"><span>STEP LOGIC</span></a>
+                      <div class="tm-company-snippet__description">
+                       Компания
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-article-author__buttons">
+                     <!----><!---->
+                    </div>
+                   </div>
+                   <div class="tm-article-author__company-contacts">
+                    <!--[--><a class="tm-article-author__contact" href="https://step.ru/" rel="noopener" target="_blank">Сайт</a><!--]-->
+                   </div>
+                   <div class="tm-article-author__separator"></div>
+                  </div><!--]--><!--]-->
+                  <div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true">
+                   <div class="tm-user-card__info-container">
+                    <div class="tm-user-card__header">
+                     <div class="tm-user-card__header-data">
+                      <a href="/ru/users/STEPLOGIC/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" src="//habrastorage.org/getpro/habr/avatars/fbf/185/4f6/fbf1854f61459e185b3a76a4a0ba7cbd.png">
+                       </div></a>
+                      <div class="tm-user-card__meta">
+                       <div class="tm-counter-container karma" title=" 10 голосов " data-v-f7c0e283>
+                        <div class="tm-counter-container__header">
+                         <!--[-->
+                         <div class="karma-display positive" data-v-f7c0e283 data-v-7635202e>
+                          4
+                         </div><!----><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[-->
+                         <div class="karma-text" data-v-f7c0e283>
+                          Карма
+                         </div><!--teleport start--><!--teleport end--><!--]-->
+                        </div>
+                       </div>
+                       <div class="tm-counter-container" title="Рейтинг пользователя">
+                        <div class="tm-counter-container__header">
+                         <!--[--><!--[--><!--]-->
+                         <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                          <!---->
+                          <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score">
+                           <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">5</span></span><!--]-->
+                          </div><!---->
+                         </div><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info">
+                     <div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title">
+                      <!----><a href="/ru/users/STEPLOGIC/" class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article"> @STEPLOGIC</a><!---->
+                     </div>
+                     <p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Пользователь</p>
+                    </div>
+                   </div><!---->
+                   <div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons">
+                    <!---->
+                    <div class="tm-user-card__button">
+                     <div class="tm-button-follow tm-user-card__button-follow">
+                      <!---->
+                      <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+                     </div>
+                    </div><!---->
+                    <div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations">
+                     <svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16">
+                      <title>
+                       Отправить сообщение
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#mail"></use>
+                     </svg>
+                    </div><!---->
+                   </div><!---->
+                  </div>
+                  <div class="tm-article-author__user-contacts" data-test-id="author-contacts">
+                   <!----><!----><!---->
+                  </div>
+                 </div><!--]-->
+                </div><!--]--><!---->
+               </section><!----><!--[-->
+               <div class="banner-wrapper leaderboard tm-company-article__banner" style="--38f3d936:200px;--78a3cd06:auto;" data-v-f4bf0d24>
+                <!--[-->
+                <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="adfox-banner-placeholder leaderboard" data-v-12f7bcca>
+                  <div class="image loads" data-v-12f7bcca></div>
+                  <div class="lines" data-v-12f7bcca>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                  </div>
+                 </div><!----><!----><!---->
+                </div>
+                <div id="adfox_164725660339535756" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+               </div><!----><!--]--><!--]-->
+               <div class="tm-article-blocks__comments">
+                <div id="publication-comments" class="tm-article-page-comments">
+                 <div>
+                  <!--[-->
+                  <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                   <a href="/ru/companies/step_logic/articles/903668/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments"><!--[-->
+                    <svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24">
+                     <title>
+                      Комментарии
+                     </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                    </svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментировать </span><!--]--></a><!---->
+                  </div><!--]-->
+                 </div>
+                </div>
+               </div><!--[--><!--[--><!--]-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <header class="tm-block__header tm-block__header tm-block__header_variant-borderless">
+                 <div class="tm-block__header-container">
+                  <h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]-->
+                 </div><!---->
+                </header><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim">
+                 <!--[--><!--[-->
+                 <div class="tm-tabs tm-tabs">
+                  <div class="">
+                   <!--[--><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]-->
+                  </div><!---->
+                 </div>
+                 <div class="similar-and-daily__tab-view">
+                  <div class="placeholder-wrapper">
+                   <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                   <div class="tm-placeholder-article-cards">
+                    <!--[-->
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div>
+                    <div class="tm-placeholder-article-card">
+                     <div class="tm-placeholder__user">
+                      <div class="tm-placeholder__user-pic loads"></div>
+                      <div class="tm-placeholder__user-date loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__title">
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                      <div class="tm-placeholder__line tm-placeholder-article-card__title-line loads"></div>
+                     </div>
+                     <div class="tm-placeholder-article-card__icons tm-placeholder__counters">
+                      <!--[-->
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div>
+                      <div class="tm-placeholder-data-icon">
+                       <div class="tm-placeholder__icon tm-placeholder__icon_large loads"></div>
+                       <div class="tm-placeholder__line tm-placeholder__line_icon-text"></div>
+                      </div><!--]-->
+                     </div>
+                    </div><!--]-->
+                   </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                  </div><!---->
+                 </div><!--]--><!--]-->
+                </div><!--]--><!---->
+               </section><!--[--><!--[-->
+               <div>
+                <div class="placeholder-wrapper">
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="tm-placeholder-promo">
+                  <div class="tm-placeholder-promo__header">
+                   <div class="tm-placeholder__line tm-placeholder__line_promo-title"></div>
+                  </div>
+                  <div class="tm-placeholder-promo__body">
+                   <div class="tm-placeholder-promo__posts">
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                   </div>
+                   <div class="tm-placeholder-promo__dots">
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                   </div>
+                  </div>
+                 </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                </div>
+               </div>
+               <div class="placeholder-wrapper">
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="tm-placeholder-inset tm-placeholder-courses">
+                 <div class="tm-placeholder-inset__header">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div>
+                 </div>
+                 <div class="tm-placeholder-inset__body">
+                  <ul class="tm-placeholder-list">
+                   <!--[-->
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder-list__title-container">
+                     <div class="tm-placeholder__company-avatar"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    </div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li><!--]-->
+                  </ul>
+                 </div>
+                 <div class="tm-placeholder-inset__footer">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div>
+                 </div>
+                </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               </div><!--]--><!--]--><!----><!--[--><!--]--><!--]-->
+              </div><!--]--><!--]-->
+             </div>
+            </div><!--]--><!--]-->
+           </div>
+          </div>
+          <div class="tm-page__sidebar">
+           <!--[-->
+           <div class="tm-layout-sidebar">
+            <div class="tm-layout-sidebar__placeholder_initial"></div>
+            <div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;">
+             <!--[--><!--]--><!---->
+             <div class="tm-layout-sidebar__ads_initial tm-layout-sidebar__ads">
+              <div class="banner-wrapper half-page tm-layout-sidebar__banner tm-layout-sidebar__banner_top" style="--38f3d936:600px;--78a3cd06:auto;" data-v-f4bf0d24>
+               <!--[-->
+               <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="adfox-banner-placeholder half-page" data-v-12f7bcca>
+                 <div class="image loads" data-v-12f7bcca></div>
+                 <div class="lines" data-v-12f7bcca>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                 </div>
+                </div><!----><!----><!---->
+               </div>
+               <div id="adfox_164725680533065327" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+              </div>
+             </div><!--[-->
+             <section class="tm-block tm-block tm-block_spacing-bottom">
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Информация</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[-->
+               <div class="tm-company-basic-info">
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Сайт
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[--><a class="tm-company-basic-info__link" href="https://step.ru/" target="_blank">step.ru</a><!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Дата регистрации
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[--><time datetime="2021-01-27T12:16:36.000Z" title="2021-01-27, 15:16">27 января 2021</time><!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Дата основания
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[--><time datetime="1992-11-25T21:00:00.000Z" title="1992-11-26, 00:00">26 ноября 1992</time><!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Численность
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[-->501–1 000 человек<!--]-->
+                 </dd>
+                </dl>
+                <dl class="tm-description-list tm-description-list tm-description-list_variant-columns-nowrap">
+                 <dt class="tm-description-list__title tm-description-list__title_variant-columns-nowrap tm-description-list__title">
+                  Местоположение
+                 </dt>
+                 <dd class="tm-description-list__body tm-description-list__body_variant-columns-nowrap tm-description-list__body">
+                  <!--[-->Россия<!--]-->
+                 </dd>
+                </dl><!---->
+               </div><!--]-->
+              </div><!--]--><!---->
+             </section>
+             <div class="tm-company-widgets">
+              <!--[--><!--]-->
+             </div><!---->
+             <div></div><!--]-->
+             <div class="banner-wrapper medium-rectangle tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom" style="--38f3d936:250px;--78a3cd06:auto;" data-v-f4bf0d24>
+              <!--[-->
+              <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+               <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               <div class="adfox-banner-placeholder medium-rectangle" data-v-12f7bcca>
+                <div class="image loads" data-v-12f7bcca></div>
+                <div class="lines" data-v-12f7bcca>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                </div>
+               </div><!----><!----><!---->
+              </div>
+              <div id="adfox_164725691003361602" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+             </div>
+            </div>
+           </div><!--]-->
+          </div>
+         </div><!----><!--]-->
+        </div>
+       </div>
+      </main><!---->
+     </div>
+     <div class="tm-footer-menu">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer-menu__container">
+        <!--[-->
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Ваш аккаунт</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/companies/step_logic/articles/903668/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/companies/step_logic/articles/903668/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Разделы</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/articles/" class="footer-menu__item-link">Статьи</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link">Новости</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link">Хабы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link">Компании</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link">Авторы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link">Песочница</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Информация</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link">Устройство сайта</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link">Для авторов</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link">Для компаний</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link">Документы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Услуги</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]-->
+          </ul>
+         </div>
+        </div><!--]-->
+       </div><!--]-->
+      </div>
+     </div>
+     <div class="tm-footer">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer__container">
+        <!---->
+        <div class="tm-footer__social">
+         <!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Facebook
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Twitter
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            VK
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Telegram
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Youtube
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Яндекс Дзен
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use>
+          </svg></a><!--]-->
+        </div><!--teleport start--><!--teleport end-->
+        <button class="tm-footer__link"><!----> Настройка языка</button><a href="/ru/feedback/" class="tm-footer__link">Техническая поддержка</a>
+        <div class="tm-footer-copyright">
+         <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span>
+        </div>
+       </div><!--]-->
+      </div>
+     </div><!----><!--]-->
+    </div><!---->
+   </div>
+   <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"903668":{"id":"903668","timePublished":"2025-05-06T07:35:18+00:00","isCorporative":true,"lang":"ru","titleHtml":"Возможности реагирования на инциденты информационной безопасности с помощью KSC Open API","leadData":{"textHtml":"\u003Cp\u003EКоманда STEP LOGIC разработала новый фреймворк противодействия инцидентам информационной безопасности – адаптивные действия, благодаря которым аналитики центров кибербезопасности (SOC) смогут быстрее принимать меры по сдерживанию и ликвидации последствий инцидентов непосредственно через единый графический интерфейс продукта STEP Security Data Lake. Автор использовал этот фреймворк для взаимодействия через Kaspersky Security Center Open API и рассказывает об этом в статье.\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F102\u002F7d5\u002F171\u002F1027d51713b8974e27a4b543ed506b33.png","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F102\u002F7d5\u002F171\u002F1027d51713b8974e27a4b543ed506b33.png","fit":"cover","positionY":0,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"id":"2531069","alias":"STEPLOGIC","fullname":null,"avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002Ffbf\u002F185\u002F4f6\u002Ffbf1854f61459e185b3a76a4a0ba7cbd.png","speciality":null,"scoreStats":{"score":4,"votesCount":10},"rating":5,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"donationsMethod":null,"isInBlacklist":null,"careerProfile":null},"statistics":{"commentsCount":0,"favoritesCount":5,"readingCount":729,"score":5,"votesCount":3,"votesCountPlus":3,"votesCountMinus":0},"hubs":[{"id":"22608","alias":"step_logic","type":"corporative","title":"Блог компании STEP LOGIC","titleHtml":"Блог компании STEP LOGIC","isProfiled":false,"relatedData":null},{"id":"50","alias":"infosecurity","type":"collective","title":"Информационная безопасность","titleHtml":"Информационная безопасность","isProfiled":true,"relatedData":null},{"id":"221","alias":"sys_admin","type":"collective","title":"Системное администрирование","titleHtml":"Системное администрирование","isProfiled":true,"relatedData":null},{"id":"397","alias":"analysis_design","type":"collective","title":"Анализ и проектирование систем","titleHtml":"Анализ и проектирование систем","isProfiled":true,"relatedData":null}],"flows":[{"id":"1","alias":"develop","title":"Разработка","titleHtml":"Разработка"},{"id":"6","alias":"admin","title":"Администрирование","titleHtml":"Администрирование"}],"relatedData":{"vote":null,"unreadCommentsCount":0,"bookmarked":false,"canComment":false,"canEdit":false,"canViewVotes":false,"votePlus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"voteMinus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"canModerateComments":false,"trackerSubscribed":false,"emailSubscribed":false},"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EВсем привет! Меня зовут Арсений, я работаю инженером анализа машинных данных в команде разработки программного обеспечения STEP Security Data Lake (SDL). Недавно наша команда разработала новый фреймворк противодействия инцидентам информационной безопасности – адаптивные действия, благодаря которым аналитики центров кибербезопасности (Security Operation Center, SOC) смогут быстрее принимать меры по сдерживанию и ликвидации последствий инцидентов непосредственно через единый графический интерфейс нашего продукта. Я использовал этот фреймворк для взаимодействия через Kaspersky Security Center Open API и хотел бы рассказать об этом в статье.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd48\u002Fc56\u002F759\u002Fd48c567599c9b974a565a0c56421d580.png\" width=\"2125\" height=\"1208\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd48\u002Fc56\u002F759\u002Fd48c567599c9b974a565a0c56421d580.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd48\u002Fc56\u002F759\u002Fd48c567599c9b974a565a0c56421d580.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Ch2\u003EНемного о STEP SDL\u003C\u002Fh2\u003E\u003Cp\u003EНаша платформа предоставляет руководителям и специалистам центров кибербезопасности набор инструментов анализа больших массивов машинных данных для наблюдения за состоянием защищённости вычислительной сети и управления инцидентами информационной безопасности. \u003C\u002Fp\u003E\u003Cp\u003ESDL реализует принцип единого окна доступа к данным о событиях, активах, угрозах и инцидентах. Он обеспечивает их наглядное представление и корреляцию с использованием единого конструктора визуализаций, языков поисковых запросов и описания алгоритмов. Особенности продукта – полноценная мультитенантность, гибкость и встроенная функциональность сразу нескольких классов решений, таких как SIEM и IRP\u002FSOAR.\u003C\u002Fp\u003E\u003Ch2\u003EНемного о Kaspersky EDR для бизнеса Оптимальный\u003C\u002Fh2\u003E\u003Cp\u003EKaspersky EDR для бизнеса Оптимальный с расширенными возможностями обнаружения угроз, базового расследования инцидентов и автоматизированного реагирования позволяет идентифицировать, анализировать и нейтрализовывать маскирующиеся угрозы.\u003C\u002Fp\u003E\u003Cp\u003EОн предоставляет полный обзор происходящего в инфраструктуре, а также управление всеми функциями через единую консоль Kaspersky Security Center c системой отчетов и возможностью распределять зоны ответственности администраторов.\u003C\u002Fp\u003E\u003Ch2\u003EПроблематика\u003C\u002Fh2\u003E\u003Cp\u003EВ любой компании есть риск наступления инцидентов информационной безопасности и необходимость применять комплекс мер защиты информации. К ним относятся задачи своевременного обнаружения вредоносной активности и задачи быстрого и эффективного сдерживания угроз, чтобы минимизировать возможный ущерб. Наши заказчики зачастую для этого используют решение Kaspersky EDR для бизнеса Оптимальный, которое обладает функциями по реагированию на инциденты информационной безопасности вручную, например, для помещения подозрительного файла на карантин или сетевой изоляции хоста. Но делают это только в рамках контекста событий сервера Kaspersky Security Center (KSC), в котором он развернут, и только в ручном режиме. \u003C\u002Fp\u003E\u003Cp\u003EДля обнаружения широкого круга инцидентов информационной безопасности и автоматического реагирования на них заказчики используют STEP Security Data Lake, обладающий функциональностью решений класса Security Information and Event Management (SIEM) и Incident Response Platform (IRP). Чтобы автоматизировать реагирование на инциденты в SOC, и за счёт этого повысить скорость и удобство работы, мы реализовали интеграцию наших решений с использованием открытого API. \u003C\u002Fp\u003E\u003Cp\u003EДанная статья будет полезна инженерам и разработчикам, реализующим интеграцию своих решений с Kaspersky EDR для бизнеса Оптимальный.\u003C\u002Fp\u003E\u003Ch2\u003EAPI Kaspersky EDR Optimum \u003C\u002Fh2\u003E\u003Cp\u003EАрхитектура Kaspersky EDR для бизнеса Оптимальный включает в себя агента Kaspersky Endpoint Security (KES) с функциональным модулем EDR, агента администрирования KSC и сервер управления агентами Kaspersky Security Center (KSC). Соответственно, взаимодействие с ними предусмотрено через единый API-интерфейс – KSC Open API. В примерах я использовал 14 версию. Подробнее о KSC Open API можно прочитать по \u003Ca href=\"https:\u002F\u002Fsupport.kaspersky.com\u002Fhelp\u002FKSC\u002F14\u002FKSCAPI\u002Findex.html\"\u003Eссылке\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cp\u003EAPI-запрос имеет следующий общий вид:\u003C\u002Fp\u003E\u003Cp\u003Ehttps:\u002F\u002Fksc_address:13299\u002Fapi\u002Fv1.0\u002FInstance.Class.MethodName\u003C\u002Fp\u003E\u003Cp\u003Eгде:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EClass – имя класса\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EMethodName – имя функции класса \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EInstance – имя сущности, например, HostTags (тэги хоста) или InventoryTags (тэги ПО). Требуется только для определенных классов, например, ListTags, так что чаще всего применяется запрос https:\u002F\u002Fksc_address:13299\u002Fapi\u002Fv1.0\u002FClass.MethodName\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EКлассы отвечают за те или иные функции KSC, будь то запуск задач (Task), проставление тэгов, импорт и экспорт политик безопасности и т. д. В данной статье я покажу примеры работы с классами:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003ESession – создание и прекращение сессии\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EHostGroup – проведение поиска хоста по его атрибутам\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EChunkAccessor – работа с массивами, содержащими данные поисков\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003ETasks – работа с задачами KSC\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EListTags – работа с тэгами\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EInstance – имя сущности, например, HostTags (тэги хоста) или InventoryTags (тэги ПО)\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EВзаимодействие всегда начинается с создания сессии, ID которой потом постоянно необходимо добавлять в заголовок при последующих запросах. Желательно предварительно создать отдельную внутреннюю учетную запись в KSC, через которую затем будет осуществляться взаимодействие с API. \u003C\u002Fp\u003E\u003Cp\u003EДалее пойдут примеры без использования Python и прочих языков программирования (у «Лаборатории Касперского» есть python-модуль для упрощения работы с API). Я буду использовать только API-вебхуки как наиболее универсальный вариант.\u003C\u002Fp\u003E\u003Cp\u003EЯ рассмотрю два варианта реагирования:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003Eпомещение файла на карантин;\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eсетевая изоляция хоста с помощью проставления тэгов. \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Ch2\u003EПомещение файла на карантин\u003C\u002Fh2\u003E\u003Cp\u003EСуть этого действия заключается в запуске специализированной Задачи (Task) на выбранном узле сети с установленным KES, который поместит выбранный файл на карантин. Подробная инструкция по созданию задачи через веб-консоль KSC находится на \u003Ca href=\"https:\u002F\u002Fsupport.kaspersky.com\u002Fhelp\u002FKSC\u002F14.2\u002Fru-RU\u002F175983.htm\"\u003Eсайте\u003C\u002Fa\u003E вендора.\u003C\u002Fp\u003E\u003Cp\u003EДля реализации нам потребуется предварительно провести небольшую настройку KSC под нужды каждой отдельной задачи.\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EНеобходимо создать внутреннюю учетную запись для API-запросов в KSC и выдать ей права для возможности запуска Задач (Tasks)\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСоздать отдельную задачу на помещение файла на карантин. Необходимо включить следующую настройку для «Устройства, которым будет назначена задача» – «Задать адреса устройств вручную или импортировать из списка» \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EЗафиксировать идентификатор задачи, который отображается в адресной строке Веб-интерфейса KSC в виде десятичного числа (например, 145)\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Ch4\u003EСоздание удаленной сессии\u003C\u002Fh4\u003E\u003Cpre\u003E\u003Ccode class=\"bash\"\u003Ecurl -X POST \\\n  https:\u002F\u002Fksc_address:13299\u002Fapi\u002Fv1.0\u002FSession.StartSession \\\n  -H 'Authorization: KSCBasic user=\"&lt;ksc_username_base64&gt;\",pass=\"&lt;ksc_password_base64&gt;\",internal=\"1”'\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003Euser – имя пользователя API в кодировке Base64\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Epass – пароль пользователя API в кодировке Base64\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Einternal – число, где 0 – это учетная запись хоста, на котором установлен KSC, а 1 – это учетная запись самого KSC\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EОтвет сервера:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"json\"\u003E{\n\tPxgRetVal: &lt;id_сессии&gt;\n}\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EПолученный ID указывается каждый раз при последующих обращениях к KSC в заголовке X-KSC-Session.\u003C\u002Fp\u003E\u003Ch4\u003EПолучение ссылки на массив, хранящий ID выбранного хоста\u003C\u002Fh4\u003E\u003Cpre\u003E\u003Ccode class=\"bash\"\u003Ecurl -X POST \\\n https:\u002F\u002Fksc_address:13299\u002Fapi\u002Fv1.0\u002FHostGroup.FindHosts \\\n  -H ' X-KSC-Session: &lt;id_сессии&gt; ' \\\n  -d '{\n\t\"wstrFilter\": \"(| (KLHST_WKS_FQDN=\\\"&lt;fqdn&gt;\\\")  (KLHST_WKS_DN=\\\"&lt;display_name&gt;\\\") \t(KLHST_WKS_WINHOSTNAME=\\\"&lt;netBIOS_name&gt;\\\")  (KLHST_WKS_DNSNAME=\\\"&lt;dns_name&gt;\\\") \t(KLHST_WKS_IP_LONG=&lt;host_ip_in_bytes&gt;) )\",\n\t\"vecFieldsToReturn\": [\n\t\t\"KLHST_WKS_HOSTNAME\",\n\t\t\"KLHST_WKS_DN\"\n\t],\n\t\"pParams\": {\n\t\t\"KLGRP_FIND_FROM_CUR_VS_ONLY\": true\n\t},\n\t\"lMaxLifeTime\": 120\n}\n'\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EwstrFilter – содержит фильтр с атрибутами хоста, по которому будет производиться его поиск: KLHST_WKS_FQDN – полное доменное имя узла, KLHST_WKS_DN – имя, присвоенное узлу в KSC, KLHST_WKS_WINHOSTNAME – netBIOS – имя узла, KLHST_WKS_DNSNAME – DNS – имя узла, KLHST_WKS_IP_LONG – IP узла в байтах в порядке little endian\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EvecFieldsToReturn – содержит список полей, которые будут возвращены в одном элементе массива. Нас в основном интересуют поля KLHST_WKS_HOSTNAME, которое содержит ID нашего узла, а также KLHST_WKS_DN\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EpParams – содержит один единственный параметр KLGRP_FIND_FROM_CUR_VS_ONLY, который принимает значение true, если необходимо вернуть данные только с текущего сервера KSC, false – со всех доступных серверов\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003ElMaxLifeTime – время жизни запрашиваемого массива в секундах\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003E Ответ сервера:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"json\"\u003E{\n\tstrAccessor: &lt;id_массива&gt;,\n\t\"PxgRetVal\": 1\n}\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EstrAccessor – ссылка на массив, содержащий запрошенные нами данные\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EPxgRetVal – размер массива\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Ch4\u003EОбращение к массиву с ID хоста\u003C\u002Fh4\u003E\u003Cpre\u003E\u003Ccode class=\"bash\"\u003Ecurl -X POST \\\n https:\u002F\u002Fksc_address:13299\u002Fapi\u002Fv1.0\u002FChunkAccessor.GetItemsChunk \\\n  -H ' X-KSC-Session: &lt;id_сессии&gt; ' \\\n  -d '{\n\t\"strAccessor\": \"&lt;id_массива&gt;\",\n\t\"nStart\": 0,\n\t\"nCount\": 1\n}\n'\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EstrAccessor – ID массива, в котором находится результат наших поисков\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EnStart – номер элемента массива, к которому мы хотим обратиться\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EnCount – количество элементов в массиве, то есть количество найденных значений, удовлетворяющим фильтру\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EОтвет сервера:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"json\"\u003E{\n\t\"pChunk\": {\n\t\"KLCSP_ITERATOR_ARRAY\": [\n\t{\n\t\"type\": \"params\",\n                \"value\": {\n                    \"KLHST_WKS_DN\": \"WIN-TEST-2\",\n                    \"KLHST_WKS_HOSTNAME\": \"h6116814-adc1-1fab-9ded-6e219356027a\"\n                }\n            }\n        ]\n    },\n    \"PxgRetVal\": 1\n}\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EВ ответе нас интересуют поля KLHST_WKS_DN и KLHST_WKS_HOSTNAME, которые мы будем использовать на одном из следующих этапов  при обновлении задачи.\u003C\u002Fp\u003E\u003Ch4\u003EПолучаем данные задачи\u003C\u002Fh4\u003E\u003Cpre\u003E\u003Ccode class=\"bash\"\u003Ecurl -X POST \\\n https:\u002F\u002Fksc_address:13299\u002Fapi\u002Fv1.0\u002FTasks.GetTaskData \\\n  -H ' X-KSC-Session: &lt;id_сессии&gt; ' \\\n  -d '{\n\t\"strTask\": \"145\"\n}\n'\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EstrTask – номер задачи в десятичном формате, которую можно узнать из адресной строки веб интерфейса KSC\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EОтвет сервера:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"json\"\u003E{ }\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Ch4\u003EОбновляем задачу\u003C\u002Fh4\u003E\u003Cpre\u003E\u003Ccode class=\"json\"\u003Ecurl -X POST \\\n https:\u002F\u002Fksc_address:13299\u002Fapi\u002Fv1.0\u002FTasks.UpdateTask \\\n  -H ' X-KSC-Session: &lt;id_сессии&gt; ' \\\n  -d '{\n\t\"pData\": {\n    \"TASK_ADDITIONAL_PARAMS\": {\n      \"type\": \"params\",\n      \"value\": {\n        \"files\": [\n          {\n            \"type\": \"params\",\n            \"value\": {\n              \"fileId\": {\n                \"type\": \"params\",\n                \"value\": {\n                  \"filePath\": \"&lt;путь_к_файлу&gt;\"\n                }\n              }\n            }\n          }\n        ]\n      }\n    },\n    \"TASK_INFO_PARAMS\": {\n      \"type\": \"params\",\n      \"value\": {\n        \"HostList\": [\n          {\n            \"type\": \"params\",\n            \"value\": {\n              \"HostDispName\": \"&lt;KLHST_WKS_DN_с_4_этапа&gt;\",\n              \"HostName\": \"&lt;KLHST_WKS_HOSTNAME_с_4_этапа&gt;\",\n              \"Preliminary\": false\n            }\n          }\n        ]\n      }\n    }\n  },\n  \"strTask\": \"145\"\n}\n'\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EОтвет сервера:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"json\"\u003E{\n\t\"1\": \"0\"\n\t\"2\": \"0\"\n\t\"4\": \"1\"\n\t\"8\": \"0\"\n\t\"16\": \"0\"\n\t\"32\": \"0\"\n\t\"64\": \"0\"\n\t\"KLTSK_NEED_RBT_CNT\": \"0\"\n\t\"GNRL_COMPLETED_PERCENT\": \"100\"\n\n}\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EЗдесь я не привел все тело запроса, а указал только лишь те параметры, на которых стоит сфокусироваться в первую очередь. Я рекомендую копировать все остальные параметры при обновлении задачи на всякий случай, так как мне не удалось найти в документации информации, что можно обновлять настройки той или иной задачи выборочно.\u003C\u002Fp\u003E\u003Ch4\u003EЗапускаем задачу\u003C\u002Fh4\u003E\u003Cpre\u003E\u003Ccode class=\"bash\"\u003Ecurl -X POST \\\n https:\u002F\u002Fksc_address:13299\u002Fapi\u002Fv1.0\u002FTasks.RunTask \\\n  -H ' X-KSC-Session: &lt;id_сессии&gt; ' \\\n  -d '{\n\t\"strTask\": \"145\"\n}\n'\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EstrTask – номер задачи\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EОтвет сервера:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"json\"\u003E{\n\t\"1\": \"0\"\n\t\"2\": \"0\"\n\t\"4\": \"1\"\n\t\"8\": \"0\"\n\t\"16\": \"0\"\n\t\"32\": \"0\"\n\t\"64\": \"0\"\n\t\"KLTSK_NEED_RBT_CNT\": \"0\"\n\t\"GNRL_COMPLETED_PERCENT\": \"100\"\n\n}\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EТаким образом, мы запустили процесс помещения файла на карантин, однако сразу узнать результаты работы задачи не получится. Для этого спустя секунд 30 необходимо выполнить следующее:\u003C\u002Fp\u003E\u003Ch4\u003EПолучение статистики запуска задачи    \u003C\u002Fh4\u003E\u003Cpre\u003E\u003Ccode class=\"bash\"\u003Ecurl -X POST \\\n https:\u002F\u002Fksc_address:13299\u002Fapi\u002Fv1.0\u002FTasks.GetTaskStatistics \\\n  -H ' X-KSC-Session: &lt;id_сессии&gt; ' \\\n  -d '{\n\t\"strTask\": \"145\"\n}\n'\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EstrTask – номер задачи\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EОтвет сервера:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"json\"\u003E{\n\t\"1\": \"0\"\n\t\"2\": \"0\"\n\t\"4\": \"1\"\n\t\"8\": \"0\"\n\t\"16\": \"0\"\n\t\"32\": \"0\"\n\t\"64\": \"0\"\n\t\"KLTSK_NEED_RBT_CNT\": \"0\"\n\t\"GNRL_COMPLETED_PERCENT\": \"100\"\n\n}\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003E1 – количество хостов, на которых задача еще не обновилась\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E2 – количество хостов, на которых задача запущена\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E4 – количество хостов, на которых задача завершена успешно\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E8 – количество хостов, на которых задача завершена с предупреждением\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E16 – количество хостов, на которых задача завершена с ошибкой\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E32 – количество хостов, на которых запланирован запуск задачи\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E64 – количество хостов, на которых выполнение задачи поставлено на паузу\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EKLTSK_NEED_RBT_CNT – количество хостов, на которых задача запросила перезапуск ОС\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EGNRL_COMPLETED_PERCENT – общий процент успешности запуска задачи\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EК сожалению, я не смог найти в документации информации, за какой временной период происходит получение статистики запуска по итогам тестирования. Я пришел к выводу, что берется общая статистка за все время, поэтому альтернативной командой для получения результатов запуска может послужить https:\u002F\u002Fksc_address:13299\u002Fapi\u002Fv1.0\u002FTasks.GetTaskHistory\u003C\u002Fp\u003E\u003Cp\u003EВ своем ответе оно возвращает history events, которые содержат в себе гораздо больше информации. В результате мы получим ссылку на массив, который и будет хранить интересующие нас данные, а именно:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003Etask_old_state – предыдущее состояние выполнения задачи\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Etask_new_state – новое состояние выполнения задачи. Тут мы ожидаем увидеть значение 4 (completed successfully)\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Erise_time – время публикации события в формате UTC\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eregistration_time – время регистрации события сервером администрирования в UTC формате\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EТеперь у нас есть информация о времени изменения статуса задачи, с помощью которого мы сможем отфильтровать события и узнать статус выполнения именно той задачи, которую мы запускали.\u003C\u002Fp\u003E\u003Ch4\u003EЗавершаем сессию\u003C\u002Fh4\u003E\u003Cpre\u003E\u003Ccode class=\"bash\"\u003Ecurl -X POST \\\n https:\u002F\u002Fksc_address:13299\u002Fapi\u002Fv1.0\u002FSession.EndSession \\\n  -H ' X-KSC-Session: &lt;id_сессии&gt; '\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EТаким образом, если все выполнено без ошибок, то мы сможем добиться помещения выбранного нами файла на карантин.\u003C\u002Fp\u003E\u003Ch2\u003EСетевая изоляция хоста\u003C\u002Fh2\u003E\u003Cp\u003EВ данном случае посредством проставления тэгов мы будем активировать выбранный профиль политики безопасности с заранее настроенным межсетевым экраном, который будет блокировать все TCP- и UDP-подключения.\u003C\u002Fp\u003E\u003Cp\u003EКак и в первом примере, нам потребуется сначала провести небольшую настройку KSC и получить ID хоста.\u003C\u002Fp\u003E\u003Cp\u003EВ действующей на устройствах политике KSC создаем профиль политики. Во вкладке «Правила активации» создаем «Правило для использования тега». Добавляем тег, который будет отражать применение сетевой изоляции хоста, например, Network Isolation. Сохраняем правило активации. В созданном профиле политики во вкладке «Параметры программы» → «Базовая защита» → «Сетевой экран» включаем «Сетевой экран» и «Настройки сетевого экрана». Во вкладках «Сетевые правила приложений» и «Сетевые пакетные правила» указываем желаемые настройки, которые будут применяться во время изоляции хоста, например, будем блокировать весь трафик для протоколов TCP и UDP.\u003C\u002Fp\u003E\u003Cp\u003EПодробная инструкция предусмотрена на \u003Ca href=\"https:\u002F\u002Fsupport.kaspersky.com\u002FKSC\u002F14.2\u002Fru-ru\u002F144953.htm\"\u003Eсайте\u003C\u002Fa\u003E вендора.\u003C\u002Fp\u003E\u003Cp\u003EДалее повторяем этапы из предыдущего примера: создание удаленной сессии, получение ссылки на объект, хранящий ID выбранного хоста, обращение к объекту с ID хоста.\u003C\u002Fp\u003E\u003Ch4\u003EДобавление тэгов\u003C\u002Fh4\u003E\u003Cpre\u003E\u003Ccode class=\"bash\"\u003Ecurl -X POST \\\n https:\u002F\u002Fksc_address:13299\u002Fapi\u002Fv1.0\u002FHostTags.ListTags.SetTags \\\n  -H ' X-KSC-Session: &lt;id_сессии&gt; ' \\\n  -d '{\n\t\"pListItemsTags\": [\n    {\n      \"type\": \"params\",\n      \"value\": {\n        \"KLTAGS_ITEM_ID\": \"&lt;ID_хоста&gt;\",\n        \"KLTAGS_TAGS\": [\n          {\n            \"type\": \"params\",\n            \"value\": {\n              \"KLTAGS_SET\": true,\n              \"KLTAGS_VALUE\": \"tag1\"\n            }\n          },\n          {\n            \"type\": \"params\",\n            \"value\": {\n              \"KLTAGS_SET\": true,\n              \"KLTAGS_VALUE\": \"tag2\"\n            }\n          }\n        ]\n      }\n    }\n  ],\n  \"pParams\": {\n    \"KLTAGS_FULL_REPLACE\": true\n  }\n}\n'\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EpListItemsTags – список, содержащий в себе параметры, простановки тэгов;\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EKLTAGS_ITEM_ID – ID элемента (в данном случае ID хоста), для которого будут проставлены тэги;\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EKLTAGS_TAGS – список тэгов, которые содержат следующие параметры: KLTAGS_VALUE – название тэга, KLTAGS_SET – true для проставления тэга и false для его удаления;\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EKLTAGS_FULL_REPLACE – флаг, принимающий значение true, если требуется полностью перезаписать все тэги на узле, false – не требуется.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EОтвет сервера:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"json\"\u003E{ }\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EЗавершаем сессию.\u003C\u002Fp\u003E\u003Ch2\u003EЗаключение\u003C\u002Fh2\u003E\u003Cp\u003EKSC Open API предоставляет достаточно широкий спектр возможностей реагирования, который напрямую зависит от типов продуктов «Лаборатории Касперского», подключенных к KSC. Документация у API подробная, однако начинающему разработчику сразу разобраться в тонкостях ее работы будет нелегко. Причина – неоднозначные названия аргументов, которые могут быть не задокументированными, а также неочевидные требования к структуре самих запросов, как, например, тот же тип params. Помочь в решении данной проблемы может приведение примеров напрямую с использованием вебхук-запросов для каждой функции класса, которые содержали бы в себе также примеры ответов со ссылками на объяснение возвращаемых атрибутов.\u003C\u002Fp\u003E\u003Cp\u003E \u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"STEP LOGIC"},{"titleHtml":"иб"},{"titleHtml":"информационная безопасность"},{"titleHtml":"soc"},{"titleHtml":"sdl"},{"titleHtml":"управление инцидентами"},{"titleHtml":"кибербезопасность"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F102\u002F7d5\u002F171\u002F1027d51713b8974e27a4b543ed506b33.png","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F102\u002F7d5\u002F171\u002F1027d51713b8974e27a4b543ed506b33.png","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fcompanies\\\u002Fstep_logic\\\u002Farticles\\\u002F903668\\\u002F\"},\"headline\":\"Возможности реагирования на инциденты информационной безопасности с помощью KSC Open API\",\"datePublished\":\"2025-05-06T10:35:18+03:00\",\"dateModified\":\"2025-05-07T00:51:11+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"STEPLOGIC\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Всем привет! Меня зовут Арсений, я работаю инженером анализа машинных данных в команде разработки программного обеспечения STEP Security Data Lake (SDL). Недавно...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fcompanies\\\u002Fstep_logic\\\u002Farticles\\\u002F903668\\\u002F#post-content-body\",\"about\":[\"c_step_logic\",\"h_infosecurity\",\"h_sys_admin\",\"h_analysis_design\",\"f_develop\",\"f_admin\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F903668\\\u002F2fcc78f4faec62039270646d32d47691\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fd48\\\u002Fc56\\\u002F759\\\u002Fd48c567599c9b974a565a0c56421d580.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F102\\\u002F7d5\\\u002F171\\\u002F1027d51713b8974e27a4b543ed506b33.png\"]}","metaDescription":"Всем привет! Меня зовут Арсений, я работаю инженером анализа машинных данных в команде разработки программного обеспечения STEP Security Data Lake (SDL). Недавно наша команда разработала новый...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":{"status":true,"reason":null},"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"hasPinnedComments":false,"format":"review","banner":null,"multiwidget":null,"multiwidgetUuid":null,"readingTime":10,"complexity":"medium","isEditorial":false,"allowedFeatures":{"isTestTargetAllow":true}}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"postReasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"viewedPosts":[],"myFeedFilter":{"complexity":"all","score":"all","types":["articles","posts","news"]},"myFeedIsApplyFilters":false,"myFeedIsForce":false,"karma":{"userReasonsList":null}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":""},"comments":{"articleComments":{},"articlePinnedComments":{},"searchCommentsResults":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":"","idempotenceKey":""}},"companies":{"companyRefs":{"step_logic":{"alias":"step_logic","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fcompany\u002F41e\u002F19c\u002F261\u002F41e19c261894f1ecab725b32a9a18753.png","titleHtml":"STEP LOGIC","descriptionHtml":null,"relatedData":null,"statistics":{"subscribersCount":76,"rating":52.59,"invest":null,"postsCount":19,"threadsCount":0,"newsCount":0,"vacanciesCount":0,"employeesCount":7,"careerRating":null},"foundationDate":{"year":"1992","month":"11","day":"26"},"location":{"city":{"id":"447159","title":"Москва"},"region":{"id":"1885","title":"Москва и Московская обл."},"country":{"id":"168","title":"Россия"}},"siteUrl":"https:\u002F\u002Fstep.ru\u002F","staffNumber":"501–1 000 человек","registrationDate":"2021-01-27T12:16:36+00:00","representativeUser":null,"contacts":[{"title":"Сайт","url":"https:\u002F\u002Fstep.ru\u002F","siteTitle":"STEP LOGIC - Сетевая и системная интеграция с 1992 года","favicon":"https:\u002F\u002Fstep.ru\u002Ffavicon.ico"}],"settings":{"analyticsSettings":[{"type":"ym","trackingId":"39791675"}],"branding":null,"status":"active","isStartup":false,"hasActivePolls":false,"shouldShowHabrAds":true},"metadata":{"titleHtml":"STEP LOGIC, Москва -  с 26 ноября 1992 г.","title":"STEP LOGIC, Москва -  с 26 ноября 1992 г.","keywords":["импортозамещение","цод","cisco","step logic","системная интеграция","системное администрирование","системы хранения данных","схд","отказоустойчивость","инженерные системы","информационная безопасность","cfd-моделирование","нейросеть","сетевое администрирование","chatgpt","кибербезопасность","почтовые системы","почтовый клиент","rupost","vk workspace"],"descriptionHtml":"19 статей от авторов компании STEP LOGIC","description":"19 статей от авторов компании STEP LOGIC"},"aDeskSettings":null,"careerAlias":"steplogic","schoolAlias":null}},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"multiwidgets":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"multiwidgetLoading":false,"vacancies":{},"companiesGalleries":{},"companiesBanners":{},"companiesLandingVacancies":{},"companiesTechnologies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null,"jivoStatus":0,"adminNotifications":null,"availableInvitesCount":{}},"companyAdd":{"currentStep":"","stepsData":{},"uncompletedSteps":[],"isStepLoading":true,"isStepCommitting":false,"isInitialized":false,"agreementContent":""},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"pagesCount":0},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":true},"fixedBanner":{"isArticleStickyPanelVisible":false,"isArticleStickyPanelAtTheBottom":false,"isFixedBannerVisible":false,"isStickyPanelIconsHidden":false},"flows":{"updates":{}},"global":{"isPwa":false,"device":"desktop","isHabrCom":true,"requestId":"8baf13c208c2fe6f3ddddde31ff98509"},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"welcomePage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"query":{},"pathname":"\u002Fru\u002Fcompanies\u002Fstep_logic\u002Farticles\u002F903668\u002F","path":"\u002Fru\u002Fcompanies\u002Fstep_logic\u002Farticles\u002F903668\u002F","href":"\u002Fru\u002Fcompanies\u002Fstep_logic\u002Farticles\u002F903668\u002F"}},"me":{"user":null,"uuid":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null,"userUpdates":{"feeds":{"newPostsCount":null,"newThreadsCount":null,"newNewsCount":null,"newCount":null},"conversationUnreadCount":0},"features":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"onboarding":{"currentStep":null,"stepsData":{},"stepsErrors":{},"completedSteps":[],"isStepCommitting":false,"isCommitDisabled":true},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{"courses":"project-block-company-article"}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null,"sticker":null},"publicationStatistics":{"statsInfo":{},"statsFunnels":{},"statsGraph":{},"defaultSuggest":{},"suggest":{},"timeTracker":{},"isTrackingActivity":false,"isUserActive":true,"otherPublicationStats":{}},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":true,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"stories":{"stories":null},"technotext":{"years":[],"technotextDocForNominees":null,"technotextDocForWinners":null,"technotextInfo":{},"technotextInfoLoading":false,"technotextWinners":{},"technotextWinnersLoading":false},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"userVotes":{"karmaVotesList":[],"karmaVotesPagesCount":null,"karmaVotesListLoading":false,"commentsVotesList":[],"commentsVotesPagesCount":null,"commentsVotesListLoading":false,"postsVotesList":[],"postsVotesPagesCount":null,"postsVotesListLoading":false,"userVotesList":[],"userVotesPagesCount":null,"userVotesListLoading":false},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"notificationsLoading":false,"notificationsList":[],"notificationsPageCount":0,"pendingMarkNotificationsRead":[],"publicationsLoading":true,"publicationsList":[],"publicationsPageCount":0,"pendingDeletePublications":false,"pendingMarkPublicationsRead":false},"events":{"eventRefs":{},"eventIds":[],"pagesCount":0,"categories":[],"cities":[],"actualEvents":null,"currentEvent":null,"eventsFilter":{"city":"all","timeStarted":null,"timeEnded":null}},"wysiwyg":{"WYSIWYGRulesRefs":null},"refs":{"specializationRefs":[]},"hint":{"hints":{}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script>
+   <script src="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" defer></script>
+   <script src="https://assets.habr.com/habr-web/js/app.58b8c457.js" defer></script>
+  </div>
+  <div id="overlays">
+   <!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor-->
+  </div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S28W1WC23F"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  </script>
+  <script type="text/javascript">
+      window.addEventListener('load', function () {
+        setTimeout(() => {
+          const img = new Image();
+          img.src = 'https://vk.com/rtrg?p=VK-RTRG-421343-57vKE';
+        }, 0);
+      });
+    </script>
+ </body>
+</html>

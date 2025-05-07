@@ -1,0 +1,1111 @@
+<!doctype html>
+<html lang="ru">
+ <head>
+  <title>Webhook у Harbor или как я оповещения о пушах docker images нашей команды делал часть — 1 / Хабр</title>
+  <meta property="fb:app_id" content="444736788986613">
+  <meta property="fb:pages" content="472597926099084">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@habr_com">
+  <meta property="og:site_name" content="Хабр">
+  <link href="https://habr.com/ru/rss/post/905006/?fl=ru" type="application/rss+xml" title rel="alternate" name="rss">
+  <link href="https://habr.com/ru/articles/905006/" rel="canonical" data-hid="e3fa780">
+  <link rel="image_src" href="https://habrastorage.org/getpro/habr/upload_files/96a/a90/776/96aa907766adbcf30aa89578e13101df.png" data-hid="2a79c45">
+  <meta property="og:title" content="Webhook у Harbor или как я оповещения о пушах docker images нашей команды делал часть — 1">
+  <meta name="twitter:title" content="Webhook у Harbor или как я оповещения о пушах docker images нашей команды делал часть — 1">
+  <meta name="aiturec:title" content="Webhook у Harbor или как я оповещения о пушах docker images нашей команды делал часть — 1">
+  <meta name="description" content="Будучи руководителем группы разработки или просто частью команды по разработке часто встает вопросы информированности коллег о релизах новых версий внутренних инструментов. И порой даже сообщения в...">
+  <meta itemprop="description" content="Будучи руководителем группы разработки или просто частью команды по разработке часто встает вопросы информированности коллег о релизах новых версий внутренних инструментов. И порой даже сообщения в...">
+  <meta property="og:description" content="Будучи руководителем группы разработки или просто частью команды по разработке часто встает вопросы информированности коллег о релизах новых версий внутренних инструментов. И порой даже сообщения в...">
+  <meta name="twitter:description" content="Будучи руководителем группы разработки или просто частью команды по разработке часто встает вопросы информированности коллег о релизах новых версий внутренних инструментов. И порой даже сообщения в...">
+  <meta property="aiturec:description" content="Будучи руководителем группы разработки или просто частью команды по разработке часто встает вопросы информированности коллег о релизах новых версий внутренних инструментов. И порой даже сообщения в...">
+  <meta itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/96a/a90/776/96aa907766adbcf30aa89578e13101df.png">
+  <meta property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/96a/a90/776/96aa907766adbcf30aa89578e13101df.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/96a/a90/776/96aa907766adbcf30aa89578e13101df.png">
+  <meta name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/96a/a90/776/96aa907766adbcf30aa89578e13101df.png">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/96a/a90/776/96aa907766adbcf30aa89578e13101df.png?format=vk">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/96a/a90/776/96aa907766adbcf30aa89578e13101df.png?format=vk">
+  <meta property="aiturec:item_id" content="905006">
+  <meta property="aiturec:datetime" content="2025-05-06T02:10:08.000Z">
+  <meta content="https://habr.com/ru/articles/905006/" property="og:url">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="keywords" content="docker images, harbor, python, telegram, notifications, webhooks, сезон open source">
+  <script type="application/ld+json" data-hid="1e0f0a2">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/articles\/905006\/"},"headline":"Webhook у Harbor или как я оповещения о пушах docker images нашей команды делал часть — 1","datePublished":"2025-05-06T05:10:08+03:00","dateModified":"2025-05-07T01:17:22+03:00","author":{"@type":"Person","name":"Сергей Ахминеев"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"Будучи руководителем группы разработки или просто частью команды по разработке часто встает вопросы информированности коллег о релизах новых версий внутренних ин...","url":"https:\/\/habr.com\/ru\/articles\/905006\/#post-content-body","about":["h_python","h_github","h_api","h_open_source","f_develop"],"image":["https:\/\/habr.com\/share\/publication\/905006\/9bf043aa857527e57b98b89110a6c8c0\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/342\/697\/2d5\/3426972d5b6625d0c8e7bd891bc72bfb.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/fba\/357\/4aa\/fba3574aa6665774475d4abba2fcf665.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/96a\/a90\/776\/96aa907766adbcf30aa89578e13101df.png"]}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1,user-scalable=0">
+  <meta name="referrer" content="unsafe-url">
+  <style>
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmojLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvk4jLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmYjLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" as="style" media="(prefers-color-scheme: light)">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" as="style" media="(prefers-color-scheme: dark)">
+  <link id="light-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" media="(prefers-color-scheme: light)">
+  <link id="dark-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" media="(prefers-color-scheme: dark)">
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.635b6c39236ebd33fa716c71ab0131a0.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script>
+  <style>
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+    </style>
+  <meta name="habr-version" content="2.241.0">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44">
+  <meta name="msapplication-TileColor" content="#629FBC">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png">
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png">
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg">
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest">
+  <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
+  <script>window.yaContextCb = window.yaContextCb || []</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.8599692f.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.58b8c457.js" as="script">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.8599692f.css">
+ </head>
+ <body>
+  <div id="mount">
+   <div id="app">
+    <div class="tm-layout__wrapper">
+     <!--[--><!---->
+     <div></div><!---->
+     <header class="tm-header" data-test-id="header">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-header__container">
+        <!----><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/">
+          <svg class="tm-svg-img tm-header__icon" height="16" width="16">
+           <title>
+            Хабр
+           </title><use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+          </svg></a><span style="display:none;" class="tm-header__beta-sign">β</span></span><!--[-->
+        <div class="tm-dropdown tm-header__projects">
+         <div class="tm-dropdown__head">
+          <!--[-->
+          <button class="tm-header__dropdown-toggle">
+           <svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16">
+            <title>
+             Открыть список
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#arrow-down"></use>
+           </svg></button><!--]-->
+         </div><!---->
+        </div><a href="/ru/sandbox/start/" class="tm-header__become-author-btn">Как стать автором</a>
+        <div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature">
+         <!---->
+        </div><!----><!--]--><!---->
+       </div><!--]-->
+      </div>
+     </header>
+     <div class="tm-layout">
+      <div class="tm-page-progress-bar"></div>
+      <div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true">
+       <div class="tm-page-width">
+        <!--[-->
+        <div class="tm-base-layout__header-wrapper">
+         <div class="tm-main-menu">
+          <div class="tm-main-menu__section">
+           <nav class="tm-main-menu__section-content">
+            <!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]-->
+           </nav>
+          </div>
+         </div>
+         <div class="tm-header-user-menu tm-base-layout__user-menu">
+          <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button">
+           <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24">
+            <title>
+             Поиск
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#search"></use>
+           </svg></a><!----><!---->
+          <div class="tm-header-user-menu__item tm-header-user-menu__write">
+           <div>
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Написать публикацию
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#write"></use>
+            </svg>
+           </div><!---->
+          </div><!--[-->
+          <div class="tm-header-user-menu__item">
+           <button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings">
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Настройки
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#page-settings"></use>
+            </svg></button>
+          </div><a href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/articles/905006/&amp;hl=ru" rel="nofollow" class="tm-header-user-menu__item"><!--[-->
+           <button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!----><!--teleport start--><!--teleport end--><!---->
+         </div>
+        </div><!--]-->
+       </div>
+      </div><!---->
+      <div class="tm-page-width">
+       <!--[--><!--]-->
+      </div>
+      <main class="tm-layout__container">
+       <div class="tm-page" hl="ru" data-async-called="true" style="--5ab2e5a8:16px;--44c4f6f6:100%;--45ba7a3b:0;">
+        <div class="tm-page-width">
+         <!--[--><!---->
+         <div class="tm-page__wrapper">
+          <div class="tm-page__main_has-sidebar tm-page__main">
+           <div class="pull-down">
+            <!---->
+            <div class="pull-down__header" style="height:0px;">
+             <div class="pull-down__content" style="bottom:10px;">
+              <svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24">
+               <title>
+                Обновить
+               </title><use xlink:href="/img/megazord-v28.7909a852..svg#pull-arrow"></use>
+              </svg>
+             </div>
+            </div><!--[--><!--[--><!---->
+            <div class="tm-article-presenter">
+             <!--[--><!--]-->
+             <div class="tm-article-presenter__body" data-test-id="article-body">
+              <div class="tm-misprint-area">
+               <div class="tm-misprint-area__wrapper">
+                <!--[-->
+                <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                 <!--[-->
+                 <div class="tm-article-presenter__header">
+                  <!--[--><!--]-->
+                  <div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet">
+                   <!--[--><!--]-->
+                   <div class="tm-article-snippet__meta-container">
+                    <div class="tm-article-snippet__meta">
+                     <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/sergey-akhmineev/" class="tm-user-info__userpic" data-test-id="user-info-pic" title="sergey-akhmineev">
+                       <div class="tm-entity-image">
+                        <!--[--><img alt="" class="tm-entity-image__pic" height="24" src="https://assets.habr.com/habr-web/img/avatars/053.png" width="24"><!--]-->
+                       </div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a href="/ru/users/sergey-akhmineev/" class="tm-user-info__username">sergey-akhmineev <!----></a><!--[--><span class="tm-article-datetime-published"><time datetime="2025-05-06T02:10:08.000Z" title="2025-05-06, 05:10">вчера в 05:10</time></span><!--]--></span></span>
+                    </div><!---->
+                   </div>
+                   <h1 class="tm-title tm-title_h1" lang="ru" data-test-id="articleTitle"><span>Webhook у Harbor или как я оповещения о пушах docker images нашей команды делал часть — 1</span></h1>
+                   <div class="tm-article-snippet__stats" data-test-id="articleStats">
+                    <div class="tm-article-complexity tm-article-complexity_complexity-low">
+                     <span class="tm-svg-icon__wrapper tm-article-complexity__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Уровень сложности
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#complexity-low"></use>
+                      </svg></span><span class="tm-article-complexity__label">Простой</span>
+                    </div>
+                    <div class="tm-article-reading-time">
+                     <span class="tm-svg-icon__wrapper tm-article-reading-time__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Время на прочтение
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#clock"></use>
+                      </svg></span><span class="tm-article-reading-time__label">4 мин</span>
+                    </div><span class="tm-icon-counter tm-data-icons__item">
+                     <svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24">
+                      <title>
+                       Количество просмотров
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-views"></use>
+                     </svg><span class="tm-icon-counter__value" title="575">575</span></span>
+                   </div>
+                   <div class="tm-publication-hubs__container" data-test-id="articleHubsList">
+                    <div class="tm-publication-hubs">
+                     <!--[--><span class="tm-publication-hub__link-container"><a href="/ru/hubs/python/" class="tm-publication-hub__link"><!--[--><span>Python</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/github/" class="tm-publication-hub__link"><!--[--><span>GitHub</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/api/" class="tm-publication-hub__link"><!--[--><span>API</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/open_source/" class="tm-publication-hub__link"><!--[--><span>Open source</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><!--]-->
+                    </div>
+                   </div>
+                   <div class="tm-article-labels" data-test-id="articleLabels">
+                    <div class="tm-article-labels__container">
+                     <div class="tm-publication-label tm-publication-label_variant-tutorial">
+                      <span>Туториал</span>
+                     </div><!--[--><!--]-->
+                    </div>
+                   </div><!----><!---->
+                  </div>
+                 </div><!--[--><!---->
+                 <div class="tm-article-body" data-gallery-root lang="ru">
+                  <div>
+                   <!--[--><!--]-->
+                  </div>
+                  <div id="post-content-body">
+                   <div>
+                    <div class="article-formatted-body article-formatted-body article-formatted-body_version-2">
+                     <div xmlns="http://www.w3.org/1999/xhtml">
+                      <p>Будучи руководителем группы разработки или просто частью команды по разработке часто встает вопросы информированности коллег о релизах новых версий внутренних инструментов. И порой даже сообщения в общие чаты не помогают, да и руками писать это практика плохая скажу я вам.</p>
+                      <p>И вот решил я разработать инструмент который слал бы сообщения о пуша\удаления и проверках в наш harbor. Оповещения должны были слаться в телеграм чаты, в том числе в разные топики для удобства координации наших команд. В общем создали мы топик "Releases and Updates" и начал я думать как реализовать, первым делом подумал про API, но как я понял оно там несколько для других целей. Проще всего было это организовать через webhook'и, оно к слову в harbor из коробки, как раз для тех целей которые были нужны.</p>
+                      <p>Вот следующая последовательность действий для настройки этого добра:</p>
+                      <ol>
+                       <li>
+                        <p>Откройте Telegram и найдите пользователя BotFather.</p></li>
+                       <li>
+                        <p>Создайте нового бота, отправив команду /newbot и следуйте инструкциям.</p></li>
+                       <li>
+                        <p>Запишите ваш токен бота, который вы получите в результате.</p></li>
+                       <li>
+                        <p>Добавьте бота в канал\группу.</p></li>
+                       <li>
+                        <p>У бота должны быть админские права, чтобы он мог слать оповещения.</p></li>
+                      </ol>
+                      <p>На этом пока отложим telegram и перейдем к настройкам harbor.</p>
+                      <ol>
+                       <li>
+                        <p>Зайдите в harbor.</p></li>
+                       <li>
+                        <p>Перейдите в настройки репозитория.</p></li>
+                       <li>
+                        <p>Настройте новый Webhook, указав URL вашего сервера, который будет принимать уведомления (например, <a href="http://your-server-ip:5000/webhook" rel="noopener noreferrer nofollow">http://your-server-ip:5000/webhook</a>).</p></li>
+                      </ol>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/342/697/2d5/3426972d5b6625d0c8e7bd891bc72bfb.png" width="1588" height="410" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/342/697/2d5/3426972d5b6625d0c8e7bd891bc72bfb.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/342/697/2d5/3426972d5b6625d0c8e7bd891bc72bfb.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Убедитесь, что вы выбрали необходимое событие, push.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/fba/357/4aa/fba3574aa6665774475d4abba2fcf665.png" width="602" height="722" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/fba/357/4aa/fba3574aa6665774475d4abba2fcf665.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/fba/357/4aa/fba3574aa6665774475d4abba2fcf665.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Далее переходим к тонкостям отправки сообщений в telegram, а именно к отправки сообщений в конкретный топик. А нюанс вот в чем:</p>
+                      <ul>
+                       <li>
+                        <p>Чат id можно скопировал через ссылку на сообщение по типу -&nbsp;<a href="https://t.me/c/123xxxx567/17/16" rel="noopener noreferrer nofollow">https://t.me/c/123xxxx567/17/16</a></p>
+                        <p>(Вот расшифровка ссылки&nbsp;<a href="https://t.me/c/%7Bchat_id%7D/%7Bmessage_thread_id%7D/%7Bmessage_id%7D" rel="noopener noreferrer nofollow">https://t.me/c/{chat_id}/{message_thread_id}/{message_id}</a>)</p></li>
+                       <li>
+                        <p>Для использования chat_id в API надо добавить -100, получите -100123xxxx567</p></li>
+                      </ul>
+                      <p>Теперь переходим к разработке, я решил использовать flask для этих целей.</p>
+                      <p>Примерный вид POST сообщения о пуше от harbor -</p>
+                      <p>INFO:werkzeug:127.0.0.1 - - [30/Apr/2025 10:21:33] "POST /webhook HTTP/1.1" 200 -</p>
+                      <p>вот тело сообщения:</p>
+                      <pre><code class="json">{
+  "type": "PUSH_ARTIFACT",
+  "occur_at": 1746008487,
+  "operator": "sergey.akhmineev",
+  "event_data": {
+    "resources": [
+      {
+        "digest": "sha256:9sdfgsdfgsdfgsdfgsgdfgsfgsdfgsdfgsdfgsdfgsdfgsfdgs",
+        "tag": "1.9.0",
+        "resource_url": "your-server-ip/your-repo/your-images:1.9.0"
+      }
+    ],
+    "repository": {
+      "date_created": 1733465413,
+      "name": "your-images",
+      "namespace": "your-repo",
+      "repo_full_name": "your-repo/your-images",
+      "repo_type": "public"
+    }
+  }
+}</code></pre>
+                      <p>таким образом все необходимое нам есть + webhook по сути убирает необходимость запуска скрипта по расписанию для чтения API, ведь мы просто ждем когда прилетит сообщение.</p>
+                      <p>Переходим к разработке, вот минимум для отправки сообщения в telegram</p>
+                      <pre><code class="python"># Извлечение токена Telegram и Chat ID из конфигурации
+
+TELEGRAM_API_URL = f'https://api.telegram.org/bot{conf_dict["telegram"]["bot_token"]}/sendMessage'
+CHAT_ID = conf_dict["telegram"]["chat_id"]
+MESSAGE_THREAD_ID = conf_dict.get("telegram", {}).get("message_thread_id")
+
+# Отправка сообщения 
+
+def send_message_to_telegram(message):
+    payload = {
+        'chat_id': CHAT_ID,
+        'text': message,
+        'parse_mode': 'Markdown',  # Для форматирования сообщения
+    }
+    if MESSAGE_THREAD_ID:
+        payload['message_thread_id'] = MESSAGE_THREAD_ID
+
+    try:
+        response = requests.post(TELEGRAM_API_URL, json=payload)
+        response.raise_for_status()  # Проверка на HTTP-ошибки
+        logging.info("Сообщение успешно отправлено в Telegram.")
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Ошибка при отправке сообщения: {str(e)}")
+</code></pre>
+                      <p>А вот и само приложение для того чтобы слушать webhook:</p>
+                      <pre><code class="python">@app.route('/webhook', methods=['POST'])
+def webhook():
+    data = request.json
+    logging.info(f"Получены данные вебхука: {data}")
+
+    if data and data.get('type') == 'PUSH_ARTIFACT':
+        event_data = data.get('event_data', {})
+        repository_info = event_data.get('repository', {})
+        resources = event_data.get('resources', [])
+
+        repo_full_name = repository_info.get('repo_full_name', 'неизвестный репозиторий')
+        repo_full_name = escape_markdown(repo_full_name)  # Экранирование
+
+        if not resources:
+            logging.warning("Нет ресурсов для обработки.")
+            return 'No resources to process', 200
+        # Формарование сообщения для отправки
+        messages = []
+        for resource in resources:
+            tag = escape_markdown(resource.get('tag', 'неизвестный тег'))  # Экранирование тега
+            resource_url = resource.get('resource_url', 'неизвестный URL')
+            operator = escape_markdown(data.get('operator', 'неизвестный'))  # Экранирование оператора
+            message = (
+                f"📦 *Новый пуш в Harbor*\n"
+                f"*Репозиторий:* {repo_full_name}\n"
+                f"*Тег:* {tag}\n"
+                f"*URL:* `{resource_url}`\n"
+                f"*Автор пуша:* {operator}"
+            )
+            messages.append(message)
+
+        # Отправка всех сообщений последовательно
+        for msg in messages:
+            logging.info(f"Отправка сообщения: {msg}")
+            send_message_to_telegram(msg)
+    else:
+        logging.warning("Получены некорректные данные вебхука или отсутствует тип 'PUSH_ARTIFACT'.")
+
+    return 'OK', 200
+</code></pre>
+                      <p>В целом остается сделать экранирование спецсимволов -</p>
+                      <pre><code class="python">def escape_markdown(text):
+    """
+    Экранирует специальные символы Markdown в тексте.
+    """
+    escape_chars = ['\\', '_', '*', '[', ']', '(', ')', '~', '`', '&gt;', '#', '+', '-', '=', '|', '{', '}', '!']
+    for char in escape_chars:
+        text = text.replace(char, f'\\{char}')
+    return text</code></pre>
+                      <p>и наконец добавить чтение данных для скрипта через конфиг. На этом первая часть заканчивается, оповещения работают, но я собираюсь вынести спецсимволы в конфиг, так как у многих свои способы именования образов, а так же добавить сообщения по удалению, проверку образов и прочее. Надеюсь кому то пригодится, а если кому необходимо, <a href="https://github.com/sergey-akhmineev/webhook-harbor-telegram" rel="noopener noreferrer nofollow">вот репозиторий с проектом</a>.</p>
+                     </div>
+                    </div>
+                   </div><!----><!---->
+                  </div><!---->
+                  <div class="tm-article-poll-container">
+                   <!--[-->
+                   <div class="tm-article-poll tm-article-poll_variant-bordered">
+                    <div class="tm-notice tm-notice_positive tm-article-poll__notice">
+                     <!---->
+                     <div class="tm-notice__inner">
+                      <!---->
+                      <div class="tm-notice__content" data-test-id="notice-content">
+                       <!--[--><span>Только зарегистрированные пользователи могут участвовать в опросе. <a rel="nofollow" href="/kek/v1/auth/habrahabr/?back=/ru/articles/905006/&amp;hl=ru">Войдите</a>, пожалуйста.</span><!--]-->
+                      </div>
+                     </div>
+                    </div><!--[-->
+                    <div class="tm-article-poll__header">
+                     Интересно ли вам продолжение статьи?
+                    </div>
+                    <div class="tm-article-poll__answers">
+                     <!--[-->
+                     <div class="tm-article-poll__answer">
+                      <div class="tm-article-poll__answer-data">
+                       <span class="tm-article-poll__answer-percent tm-article-poll__answer-percent_winning">71.43% </span><span class="tm-article-poll__answer-label">Да</span><span class="tm-article-poll__answer-votes">5</span>
+                      </div>
+                      <div class="tm-article-poll__answer-bar">
+                       <div class="tm-article-poll__answer-progress tm-article-poll__answer-progress_winning" style="width: 71.43%"></div>
+                      </div>
+                     </div>
+                     <div class="tm-article-poll__answer">
+                      <div class="tm-article-poll__answer-data">
+                       <span class="tm-article-poll__answer-percent">28.57% </span><span class="tm-article-poll__answer-label">Нет</span><span class="tm-article-poll__answer-votes">2</span>
+                      </div>
+                      <div class="tm-article-poll__answer-bar">
+                       <div class="tm-article-poll__answer-progress" style="width: 28.57%"></div>
+                      </div>
+                     </div><!--]-->
+                    </div>
+                    <div class="tm-article-poll__stats">
+                     Проголосовали 7 пользователей. Воздержавшихся нет.
+                    </div><!--]-->
+                   </div><!--]-->
+                  </div>
+                 </div><!--]--><!---->
+                 <div class="tm-article-presenter__meta" data-test-id="article-meta-links">
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Теги:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[docker+images]" class="tm-tags-list__link"><span>docker images</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[harbor]" class="tm-tags-list__link"><span>harbor</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[python]" class="tm-tags-list__link"><span>python</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[telegram]" class="tm-tags-list__link"><span>telegram</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[notifications]" class="tm-tags-list__link"><span>notifications</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[webhooks]" class="tm-tags-list__link"><span>webhooks</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%81%D0%B5%D0%B7%D0%BE%D0%BD+open+source]" class="tm-tags-list__link"><span>сезон open source</span></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Хабы:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/python/" class="tm-hubs-list__link"><!--[--><span>Python</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/github/" class="tm-hubs-list__link"><!--[--><span>GitHub</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/api/" class="tm-hubs-list__link"><!--[--><span>API</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/open_source/" class="tm-hubs-list__link"><!--[--><span>Open source</span><!--]--></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                 </div><!----><!--]-->
+                </article><!--]-->
+               </div><!---->
+              </div>
+              <div style="" class="tm-article-sticky-panel" data-test-id="article-sticky-panel">
+               <div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons">
+                <div class="article-rating tm-data-icons__item" data-v-86aec4a7>
+                 <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-article votes-switcher" title="Всего голосов 2: ↑2 и ↓0" data-v-86aec4a7>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-upvote-button" title="Нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon" height="24" width="24">
+                    <title>
+                     Нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                  <div class="tm-votes-lever__score tm-votes-lever__score_appearance-article tm-votes-lever__score">
+                   <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_positive tm-votes-lever__score-counter" data-test-id="votes-score-counter">+5</span></span><!--]-->
+                  </div>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-downvote-button" title="Не нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon tm-votes-lever__icon_arrow-down" height="24" width="24">
+                    <title>
+                     Не нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                 </div><!--teleport start--><!--teleport end--><!---->
+                </div><!----><!---->
+                <button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon">
+                  <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                   <title>
+                    Добавить в закладки
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-favorite"></use>
+                  </svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">6</span></button>
+                <div class="tm-sharing tm-data-icons__item" title="Поделиться">
+                 <button class="tm-sharing__button" type="button">
+                  <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                   <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                  </svg></button><!--teleport start--><!--teleport end-->
+                </div>
+                <div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии">
+                 <a href="/ru/articles/905006/comments/" class="tm-article-comments-counter-link__link" data-test-id="counter-comments"><!--[-->
+                  <svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24">
+                   <title>
+                    Комментарии
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                  </svg><span class="tm-article-comments-counter-link__value">0</span><!--]--></a><!---->
+                </div><!--[--><!--[--><!--[--><!----><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!---->
+               </div>
+              </div>
+             </div><!--[--><!--]-->
+             <div class="tm-article-presenter__footer">
+              <!--[--><!--[-->
+              <div class="tm-article-blocks">
+               <!----><!--[-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <!----><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-balanced">
+                 <!--[-->
+                 <div class="tm-article-author" data-test-id="article-author-info" data-async-called="true">
+                  <!--[--><!--]-->
+                  <div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true">
+                   <div class="tm-user-card__info-container">
+                    <div class="tm-user-card__header">
+                     <div class="tm-user-card__header-data">
+                      <a href="/ru/users/sergey-akhmineev/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                       <div class="tm-entity-image">
+                        <!--[--><img alt="" class="tm-entity-image__pic" src="https://assets.habr.com/habr-web/img/avatars/053.png"><!--]-->
+                       </div></a>
+                      <div class="tm-user-card__meta">
+                       <div class="tm-counter-container karma" title=" 4 голоса " data-v-f7c0e283>
+                        <div class="tm-counter-container__header">
+                         <!--[-->
+                         <div class="karma-display positive" data-v-f7c0e283 data-v-7635202e>
+                          4
+                         </div><!----><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[-->
+                         <div class="karma-text" data-v-f7c0e283>
+                          Карма
+                         </div><!--teleport start--><!--teleport end--><!--]-->
+                        </div>
+                       </div>
+                       <div class="tm-counter-container" title="Рейтинг пользователя">
+                        <div class="tm-counter-container__header">
+                         <!--[--><!--[--><!--]-->
+                         <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                          <!---->
+                          <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score">
+                           <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">6</span></span><!--]-->
+                          </div><!---->
+                         </div><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info">
+                     <div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title">
+                      <span class="tm-user-card__name tm-user-card__name_variant-article tm-user-card__name">Сергей Ахминеев</span><a href="/ru/users/sergey-akhmineev/" class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article"> @sergey-akhmineev</a><!---->
+                     </div>
+                     <p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Пользователь</p>
+                    </div>
+                   </div><!---->
+                   <div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons">
+                    <!---->
+                    <div class="tm-user-card__button">
+                     <div class="tm-button-follow tm-user-card__button-follow">
+                      <!---->
+                      <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+                     </div>
+                    </div><!---->
+                    <div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations">
+                     <svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16">
+                      <title>
+                       Отправить сообщение
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#mail"></use>
+                     </svg>
+                    </div><!---->
+                   </div><!---->
+                  </div>
+                  <div class="tm-article-author__user-contacts" data-test-id="author-contacts">
+                   <!----><!----><!--[--><a class="tm-article-author__contact" data-test-id="author-contact-link" href="https://github.com/sergey-akhmineev" rel="noopener" target="_blank">Сайт</a><!--]-->
+                  </div>
+                 </div><!--]-->
+                </div><!--]--><!---->
+               </section><!----><!--[-->
+               <div class="banner-wrapper leaderboard tm-page-article__banner" style="--38f3d936:200px;--78a3cd06:auto;" data-v-f4bf0d24>
+                <!--[-->
+                <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="adfox-banner-placeholder leaderboard" data-v-12f7bcca>
+                  <div class="image loads" data-v-12f7bcca></div>
+                  <div class="lines" data-v-12f7bcca>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                  </div>
+                 </div><!----><!----><!---->
+                </div>
+                <div id="adfox_164725660339535756" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+               </div><!--]--><!--]-->
+               <div class="tm-article-blocks__comments">
+                <div id="publication-comments" class="tm-article-page-comments">
+                 <div>
+                  <!--[-->
+                  <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                   <a href="/ru/articles/905006/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments"><!--[-->
+                    <svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24">
+                     <title>
+                      Комментарии
+                     </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                    </svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментировать </span><!--]--></a><!---->
+                  </div><!--]-->
+                 </div>
+                </div>
+               </div><!--[--><!--[--><!--]-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <header class="tm-block__header tm-block__header tm-block__header_variant-borderless">
+                 <div class="tm-block__header-container">
+                  <h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]-->
+                 </div><!---->
+                </header><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim">
+                 <!--[--><!--[-->
+                 <div class="tm-tabs tm-tabs">
+                  <div class="">
+                   <!--[--><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]-->
+                  </div><!---->
+                 </div>
+                 <div class="similar-and-daily__tab-view">
+                  <div class="daily-articles-list">
+                   <ul class="tm-article-card-list">
+                    <!--[--><!--]-->
+                    <div class="tm-bordered-card">
+                     <!----><!--[--><!--]-->
+                    </div>
+                   </ul>
+                   <div class="daily-articles-block__button-container">
+                    <button class="btn btn_transparent btn_small tm-button tm-button_color-horizon" type="button"><!--[--><!--[-->Показать лучшие за всё время<!--]--><!--]--></button>
+                   </div>
+                  </div><!---->
+                 </div><!--]--><!--]-->
+                </div><!--]--><!---->
+               </section><!--[-->
+               <div>
+                <div class="placeholder-wrapper">
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="tm-placeholder-promo">
+                  <div class="tm-placeholder-promo__header">
+                   <div class="tm-placeholder__line tm-placeholder__line_promo-title"></div>
+                  </div>
+                  <div class="tm-placeholder-promo__body">
+                   <div class="tm-placeholder-promo__posts">
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                   </div>
+                   <div class="tm-placeholder-promo__dots">
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                   </div>
+                  </div>
+                 </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                </div>
+               </div>
+               <div class="placeholder-wrapper">
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="tm-placeholder-inset tm-placeholder-questions">
+                 <div class="tm-placeholder-inset__header">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div>
+                 </div>
+                 <div class="tm-placeholder-inset__body">
+                  <ul class="tm-placeholder-list">
+                   <!--[-->
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li><!--]-->
+                  </ul>
+                 </div>
+                 <div class="tm-placeholder-inset__footer">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div>
+                 </div>
+                </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               </div><!--]--><!----><!--[--><!--]--><!--]-->
+              </div><!--]--><!--]-->
+             </div>
+            </div><!--]--><!--]-->
+           </div>
+          </div>
+          <div class="tm-page__sidebar">
+           <!--[-->
+           <div class="tm-layout-sidebar">
+            <div class="tm-layout-sidebar__placeholder_initial"></div>
+            <div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;">
+             <!--[--><!--]--><!---->
+             <div class="tm-layout-sidebar__ads_initial tm-layout-sidebar__ads">
+              <div class="banner-wrapper half-page tm-layout-sidebar__banner tm-layout-sidebar__banner_top" style="--38f3d936:600px;--78a3cd06:auto;" data-v-f4bf0d24>
+               <!--[-->
+               <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="adfox-banner-placeholder half-page" data-v-12f7bcca>
+                 <div class="image loads" data-v-12f7bcca></div>
+                 <div class="lines" data-v-12f7bcca>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                 </div>
+                </div><!----><!----><!---->
+               </div>
+               <div id="adfox_164725680533065327" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+              </div>
+             </div><!--[--><!---->
+             <div></div>
+             <section class="tm-block tm-block tm-block_spacing-around" data-async-called="true">
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Работа</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[--><!--[-->
+               <div class="tm-vacancies-block__item">
+                <a class="tm-vacancies-block__vacancy-title" href="https://career.habr.com/vacancies/data_scientist" target="_blank">Data Scientist</a>
+                <div class="tm-vacancies-block__vacancies-count">
+                 41 вакансия
+                </div>
+               </div>
+               <div class="tm-vacancies-block__item">
+                <a class="tm-vacancies-block__vacancy-title" href="https://career.habr.com/vacancies/django_razrabotchik" target="_blank">Django разработчик</a>
+                <div class="tm-vacancies-block__vacancies-count">
+                 20 вакансий
+                </div>
+               </div>
+               <div class="tm-vacancies-block__item">
+                <a class="tm-vacancies-block__vacancy-title" href="https://career.habr.com/vacancies/programmist_python" target="_blank">Python разработчик</a>
+                <div class="tm-vacancies-block__vacancies-count">
+                 67 вакансий
+                </div>
+               </div><!--]--><!--]-->
+              </div><!--]-->
+              <footer class="tm-block__footer">
+               <!--[--><a class="tm-block-extralink" href="https://career.habr.com/catalog">Все вакансии</a><!--]-->
+              </footer>
+             </section>
+             <section class="tm-block tm-block tm-block_spacing-around block" data-v-6f380946>
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Ближайшие события</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[-->
+               <div class="placeholder-wrapper" data-v-6f380946>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <section class="tm-block tm-block tm-block_spacing-none" tabindex="-1" data-v-9caf0b82>
+                 <!----><!--[-->
+                 <div class="event-card-placeholder is-widget" data-v-9caf0b82>
+                  <div class="image loads" data-v-9caf0b82></div>
+                  <div class="info" data-v-9caf0b82>
+                   <div class="date line" data-v-9caf0b82></div>
+                   <div class="title line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                  </div>
+                  <div class="footer widget" data-v-9caf0b82>
+                   <div class="link line" data-v-9caf0b82></div>
+                   <div class="categories" data-v-9caf0b82>
+                    <!--[-->
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div><!--]-->
+                   </div>
+                  </div>
+                 </div><!--]--><!---->
+                </section><!---->
+               </div><!--]-->
+              </div><!--]--><!---->
+             </section><!--]-->
+             <div class="banner-wrapper medium-rectangle tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom" style="--38f3d936:250px;--78a3cd06:auto;" data-v-f4bf0d24>
+              <!--[-->
+              <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+               <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               <div class="adfox-banner-placeholder medium-rectangle" data-v-12f7bcca>
+                <div class="image loads" data-v-12f7bcca></div>
+                <div class="lines" data-v-12f7bcca>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                </div>
+               </div><!----><!----><!---->
+              </div>
+              <div id="adfox_164725691003361602" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+             </div>
+            </div>
+           </div><!--]-->
+          </div>
+         </div><!----><!--]-->
+        </div>
+       </div>
+      </main><!---->
+     </div>
+     <div class="tm-footer-menu">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer-menu__container">
+        <!--[-->
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Ваш аккаунт</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/articles/905006/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/articles/905006/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Разделы</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/articles/" class="footer-menu__item-link">Статьи</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link">Новости</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link">Хабы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link">Компании</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link">Авторы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link">Песочница</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Информация</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link">Устройство сайта</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link">Для авторов</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link">Для компаний</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link">Документы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Услуги</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]-->
+          </ul>
+         </div>
+        </div><!--]-->
+       </div><!--]-->
+      </div>
+     </div>
+     <div class="tm-footer">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer__container">
+        <!---->
+        <div class="tm-footer__social">
+         <!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Facebook
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Twitter
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            VK
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Telegram
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Youtube
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Яндекс Дзен
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use>
+          </svg></a><!--]-->
+        </div><!--teleport start--><!--teleport end-->
+        <button class="tm-footer__link"><!----> Настройка языка</button><a href="/ru/feedback/" class="tm-footer__link">Техническая поддержка</a>
+        <div class="tm-footer-copyright">
+         <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span>
+        </div>
+       </div><!--]-->
+      </div>
+     </div><!----><!--]-->
+    </div><!---->
+   </div>
+   <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"905006":{"id":"905006","timePublished":"2025-05-06T02:10:08+00:00","isCorporative":false,"lang":"ru","titleHtml":"Webhook у Harbor или как я оповещения о пушах docker images нашей команды делал часть — 1","leadData":{"textHtml":"\u003Cp\u003EРуководителям групп разработки и членам команды часто приходится сталкиваться с проблемой информирования коллег о новых версиях docker image внутренних инструментов. Сообщения в общих чатах не всегда эффективны, а писать вручную — не лучшая практика. И тут мы рассмотрим разработку решения по автоматическому информированию.\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F96a\u002Fa90\u002F776\u002F96aa907766adbcf30aa89578e13101df.png","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F96a\u002Fa90\u002F776\u002F96aa907766adbcf30aa89578e13101df.png","fit":"cover","positionY":60,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"id":"4994419","alias":"sergey-akhmineev","fullname":"Сергей Ахминеев","avatarUrl":null,"speciality":null,"scoreStats":{"score":4,"votesCount":4},"rating":6,"relatedData":null,"contacts":[{"title":"Сайт","url":"https:\u002F\u002Fgithub.com\u002Fsergey-akhmineev","value":"https:\u002F\u002Fgithub.com\u002Fsergey-akhmineev","siteTitle":null,"favicon":null}],"authorContacts":[{"title":"Сайт","url":"https:\u002F\u002Fgithub.com\u002Fsergey-akhmineev","value":"https:\u002F\u002Fgithub.com\u002Fsergey-akhmineev","siteTitle":null,"favicon":null}],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"donationsMethod":null,"isInBlacklist":null,"careerProfile":null},"statistics":{"commentsCount":0,"favoritesCount":6,"readingCount":575,"score":5,"votesCount":2,"votesCountPlus":2,"votesCountMinus":0},"hubs":[{"id":"340","alias":"python","type":"collective","title":"Python","titleHtml":"Python","isProfiled":true,"relatedData":null},{"id":"18790","alias":"github","type":"collective","title":"GitHub","titleHtml":"GitHub","isProfiled":true,"relatedData":null},{"id":"17690","alias":"api","type":"collective","title":"API","titleHtml":"API","isProfiled":true,"relatedData":null},{"id":"144","alias":"open_source","type":"collective","title":"Open source","titleHtml":"Open source","isProfiled":true,"relatedData":null}],"flows":[{"id":"1","alias":"develop","title":"Разработка","titleHtml":"Разработка"}],"relatedData":{"vote":null,"unreadCommentsCount":0,"bookmarked":false,"canComment":false,"canEdit":false,"canViewVotes":false,"votePlus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"voteMinus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"canModerateComments":false,"trackerSubscribed":false,"emailSubscribed":false},"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EБудучи руководителем группы разработки или просто частью команды по разработке часто встает вопросы информированности коллег о релизах новых версий внутренних инструментов. И порой даже сообщения в общие чаты не помогают, да и руками писать это практика плохая скажу я вам.\u003C\u002Fp\u003E\u003Cp\u003EИ вот решил я разработать инструмент который слал бы сообщения о пуша\\удаления и проверках в наш harbor. Оповещения должны были слаться в телеграм чаты, в том числе в разные топики для удобства координации наших команд. В общем создали мы топик \"Releases and Updates\" и начал я думать как реализовать, первым делом подумал про API, но как я понял оно там несколько для других целей. Проще всего было это организовать через webhook'и, оно к слову в harbor из коробки, как раз для тех целей которые были нужны.\u003C\u002Fp\u003E\u003Cp\u003EВот следующая последовательность действий для настройки этого добра:\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EОткройте Telegram и найдите пользователя BotFather.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСоздайте нового бота, отправив команду \u002Fnewbot и следуйте инструкциям.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EЗапишите ваш токен бота, который вы получите в результате.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДобавьте бота в канал\\группу.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУ бота должны быть админские права, чтобы он мог слать оповещения.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003EНа этом пока отложим telegram и перейдем к настройкам harbor.\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EЗайдите в harbor.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПерейдите в настройки репозитория.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EНастройте новый Webhook, указав URL вашего сервера, который будет принимать уведомления (например, \u003Ca href=\"http:\u002F\u002Fyour-server-ip:5000\u002Fwebhook\" rel=\"noopener noreferrer nofollow\"\u003Ehttp:\u002F\u002Fyour-server-ip:5000\u002Fwebhook\u003C\u002Fa\u003E).\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F342\u002F697\u002F2d5\u002F3426972d5b6625d0c8e7bd891bc72bfb.png\" width=\"1588\" height=\"410\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F342\u002F697\u002F2d5\u002F3426972d5b6625d0c8e7bd891bc72bfb.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F342\u002F697\u002F2d5\u002F3426972d5b6625d0c8e7bd891bc72bfb.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EУбедитесь, что вы выбрали необходимое событие, push.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ffba\u002F357\u002F4aa\u002Ffba3574aa6665774475d4abba2fcf665.png\" width=\"602\" height=\"722\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ffba\u002F357\u002F4aa\u002Ffba3574aa6665774475d4abba2fcf665.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ffba\u002F357\u002F4aa\u002Ffba3574aa6665774475d4abba2fcf665.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EДалее переходим к тонкостям отправки сообщений в telegram, а именно к отправки сообщений в конкретный топик. А нюанс вот в чем:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EЧат id можно скопировал через ссылку на сообщение по типу - \u003Ca href=\"https:\u002F\u002Ft.me\u002Fc\u002F123xxxx567\u002F17\u002F16\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Ft.me\u002Fc\u002F123xxxx567\u002F17\u002F16\u003C\u002Fa\u003E \u003C\u002Fp\u003E\u003Cp\u003E(Вот расшифровка ссылки \u003Ca href=\"https:\u002F\u002Ft.me\u002Fc\u002F%7Bchat_id%7D\u002F%7Bmessage_thread_id%7D\u002F%7Bmessage_id%7D\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Ft.me\u002Fc\u002F{chat_id}\u002F{message_thread_id}\u002F{message_id}\u003C\u002Fa\u003E)\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДля использования chat_id в API надо добавить -100, получите -100123xxxx567\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EТеперь переходим к разработке, я решил использовать flask для этих целей.\u003C\u002Fp\u003E\u003Cp\u003EПримерный вид POST сообщения о пуше от harbor -\u003C\u002Fp\u003E\u003Cp\u003EINFO:werkzeug:127.0.0.1 - - [30\u002FApr\u002F2025 10:21:33] \"POST \u002Fwebhook HTTP\u002F1.1\" 200 -\u003C\u002Fp\u003E\u003Cp\u003Eвот тело сообщения:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"json\"\u003E{\n  \"type\": \"PUSH_ARTIFACT\",\n  \"occur_at\": 1746008487,\n  \"operator\": \"sergey.akhmineev\",\n  \"event_data\": {\n    \"resources\": [\n      {\n        \"digest\": \"sha256:9sdfgsdfgsdfgsdfgsgdfgsfgsdfgsdfgsdfgsdfgsdfgsfdgs\",\n        \"tag\": \"1.9.0\",\n        \"resource_url\": \"your-server-ip\u002Fyour-repo\u002Fyour-images:1.9.0\"\n      }\n    ],\n    \"repository\": {\n      \"date_created\": 1733465413,\n      \"name\": \"your-images\",\n      \"namespace\": \"your-repo\",\n      \"repo_full_name\": \"your-repo\u002Fyour-images\",\n      \"repo_type\": \"public\"\n    }\n  }\n}\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003Eтаким образом все необходимое нам есть + webhook по сути убирает необходимость запуска скрипта по расписанию для чтения API, ведь мы просто ждем когда прилетит сообщение.\u003C\u002Fp\u003E\u003Cp\u003EПереходим к разработке, вот минимум для отправки сообщения в telegram\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E# Извлечение токена Telegram и Chat ID из конфигурации\n\nTELEGRAM_API_URL = f'https:\u002F\u002Fapi.telegram.org\u002Fbot{conf_dict[\"telegram\"][\"bot_token\"]}\u002FsendMessage'\nCHAT_ID = conf_dict[\"telegram\"][\"chat_id\"]\nMESSAGE_THREAD_ID = conf_dict.get(\"telegram\", {}).get(\"message_thread_id\")\n\n# Отправка сообщения \n\ndef send_message_to_telegram(message):\n    payload = {\n        'chat_id': CHAT_ID,\n        'text': message,\n        'parse_mode': 'Markdown',  # Для форматирования сообщения\n    }\n    if MESSAGE_THREAD_ID:\n        payload['message_thread_id'] = MESSAGE_THREAD_ID\n\n    try:\n        response = requests.post(TELEGRAM_API_URL, json=payload)\n        response.raise_for_status()  # Проверка на HTTP-ошибки\n        logging.info(\"Сообщение успешно отправлено в Telegram.\")\n    except requests.exceptions.RequestException as e:\n        logging.error(f\"Ошибка при отправке сообщения: {str(e)}\")\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EА вот и само приложение для того чтобы слушать webhook:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003E@app.route('\u002Fwebhook', methods=['POST'])\ndef webhook():\n    data = request.json\n    logging.info(f\"Получены данные вебхука: {data}\")\n\n    if data and data.get('type') == 'PUSH_ARTIFACT':\n        event_data = data.get('event_data', {})\n        repository_info = event_data.get('repository', {})\n        resources = event_data.get('resources', [])\n\n        repo_full_name = repository_info.get('repo_full_name', 'неизвестный репозиторий')\n        repo_full_name = escape_markdown(repo_full_name)  # Экранирование\n\n        if not resources:\n            logging.warning(\"Нет ресурсов для обработки.\")\n            return 'No resources to process', 200\n        # Формарование сообщения для отправки\n        messages = []\n        for resource in resources:\n            tag = escape_markdown(resource.get('tag', 'неизвестный тег'))  # Экранирование тега\n            resource_url = resource.get('resource_url', 'неизвестный URL')\n            operator = escape_markdown(data.get('operator', 'неизвестный'))  # Экранирование оператора\n            message = (\n                f\"📦 *Новый пуш в Harbor*\\n\"\n                f\"*Репозиторий:* {repo_full_name}\\n\"\n                f\"*Тег:* {tag}\\n\"\n                f\"*URL:* `{resource_url}`\\n\"\n                f\"*Автор пуша:* {operator}\"\n            )\n            messages.append(message)\n\n        # Отправка всех сообщений последовательно\n        for msg in messages:\n            logging.info(f\"Отправка сообщения: {msg}\")\n            send_message_to_telegram(msg)\n    else:\n        logging.warning(\"Получены некорректные данные вебхука или отсутствует тип 'PUSH_ARTIFACT'.\")\n\n    return 'OK', 200\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EВ целом остается сделать экранирование спецсимволов -\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"python\"\u003Edef escape_markdown(text):\n    \"\"\"\n    Экранирует специальные символы Markdown в тексте.\n    \"\"\"\n    escape_chars = ['\\\\', '_', '*', '[', ']', '(', ')', '~', '`', '&gt;', '#', '+', '-', '=', '|', '{', '}', '!']\n    for char in escape_chars:\n        text = text.replace(char, f'\\\\{char}')\n    return text\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003Eи наконец добавить чтение данных для скрипта через конфиг. На этом первая часть заканчивается, оповещения работают, но я собираюсь вынести спецсимволы в конфиг, так как у многих свои способы именования образов, а так же добавить сообщения по удалению, проверку образов и прочее. Надеюсь кому то пригодится, а если кому необходимо, \u003Ca href=\"https:\u002F\u002Fgithub.com\u002Fsergey-akhmineev\u002Fwebhook-harbor-telegram\" rel=\"noopener noreferrer nofollow\"\u003Eвот репозиторий с проектом\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"docker images"},{"titleHtml":"harbor"},{"titleHtml":"python"},{"titleHtml":"telegram"},{"titleHtml":"notifications"},{"titleHtml":"webhooks"},{"titleHtml":"сезон open source"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F96a\u002Fa90\u002F776\u002F96aa907766adbcf30aa89578e13101df.png","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F96a\u002Fa90\u002F776\u002F96aa907766adbcf30aa89578e13101df.png","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F905006\\\u002F\"},\"headline\":\"Webhook у Harbor или как я оповещения о пушах docker images нашей команды делал часть — 1\",\"datePublished\":\"2025-05-06T05:10:08+03:00\",\"dateModified\":\"2025-05-07T01:17:22+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Сергей Ахминеев\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Будучи руководителем группы разработки или просто частью команды по разработке часто встает вопросы информированности коллег о релизах новых версий внутренних ин...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F905006\\\u002F#post-content-body\",\"about\":[\"h_python\",\"h_github\",\"h_api\",\"h_open_source\",\"f_develop\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F905006\\\u002F9bf043aa857527e57b98b89110a6c8c0\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F342\\\u002F697\\\u002F2d5\\\u002F3426972d5b6625d0c8e7bd891bc72bfb.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Ffba\\\u002F357\\\u002F4aa\\\u002Ffba3574aa6665774475d4abba2fcf665.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F96a\\\u002Fa90\\\u002F776\\\u002F96aa907766adbcf30aa89578e13101df.png\"]}","metaDescription":"Будучи руководителем группы разработки или просто частью команды по разработке часто встает вопросы информированности коллег о релизах новых версий внутренних инструментов. И порой даже сообщения в...","mainImageUrl":null,"amp":false,"customTrackerLinks":[]},"polls":[{"id":"47314","timeElapsed":null,"answersType":"radio","votesCount":7,"passCount":0,"textHtml":"Интересно ли вам продолжение статьи?","relatedData":null,"variants":[{"id":"215922","textHtml":"Да","votesCount":5,"percent":71.43,"selected":false},{"id":"215924","textHtml":"Нет","votesCount":2,"percent":28.57,"selected":false}]}],"commentsEnabled":{"status":true,"reason":null},"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"hasPinnedComments":false,"format":"tutorial","banner":null,"multiwidget":null,"multiwidgetUuid":null,"readingTime":4,"complexity":"low","isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"postReasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"viewedPosts":[],"myFeedFilter":{"complexity":"all","score":"all","types":["articles","posts","news"]},"myFeedIsApplyFilters":false,"myFeedIsForce":false,"karma":{"userReasonsList":null}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[{"title":"Data Scientist","vacanciesCount":41,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Fdata_scientist","itemHubs":["bigdata","r","data_mining","python","machine_learning"]},{"title":"Django разработчик","vacanciesCount":20,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Fdjango_razrabotchik","itemHubs":["django","python"]},{"title":"Python разработчик","vacanciesCount":67,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Fprogrammist_python","itemHubs":["django","flask","python"]}],"hubs":"python,github,api,open_source"},"comments":{"articleComments":{},"articlePinnedComments":{},"searchCommentsResults":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":"","idempotenceKey":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"multiwidgets":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"multiwidgetLoading":false,"vacancies":{},"companiesGalleries":{},"companiesBanners":{},"companiesLandingVacancies":{},"companiesTechnologies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null,"jivoStatus":0,"adminNotifications":null,"availableInvitesCount":{}},"companyAdd":{"currentStep":"","stepsData":{},"uncompletedSteps":[],"isStepLoading":true,"isStepCommitting":false,"isInitialized":false,"agreementContent":""},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"pagesCount":0},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":true},"fixedBanner":{"isArticleStickyPanelVisible":false,"isArticleStickyPanelAtTheBottom":false,"isFixedBannerVisible":false,"isStickyPanelIconsHidden":false},"flows":{"updates":{}},"global":{"isPwa":false,"device":"desktop","isHabrCom":true,"requestId":"7ddbe90691fe45e808ca45e79c86b098"},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"welcomePage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"query":{},"pathname":"\u002Fru\u002Farticles\u002F905006\u002F","path":"\u002Fru\u002Farticles\u002F905006\u002F","href":"\u002Fru\u002Farticles\u002F905006\u002F"}},"me":{"user":null,"uuid":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null,"userUpdates":{"feeds":{"newPostsCount":null,"newThreadsCount":null,"newNewsCount":null,"newCount":null},"conversationUnreadCount":0},"features":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"onboarding":{"currentStep":null,"stepsData":{},"stepsErrors":{},"completedSteps":[],"isStepCommitting":false,"isCommitDisabled":true},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{"questions":"project-block-article"}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null,"sticker":null},"publicationStatistics":{"statsInfo":{},"statsFunnels":{},"statsGraph":{},"defaultSuggest":{},"suggest":{},"timeTracker":{},"isTrackingActivity":false,"isUserActive":true,"otherPublicationStats":{}},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":true,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"stories":{"stories":null},"technotext":{"years":[],"technotextDocForNominees":null,"technotextDocForWinners":null,"technotextInfo":{},"technotextInfoLoading":false,"technotextWinners":{},"technotextWinnersLoading":false},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"userVotes":{"karmaVotesList":[],"karmaVotesPagesCount":null,"karmaVotesListLoading":false,"commentsVotesList":[],"commentsVotesPagesCount":null,"commentsVotesListLoading":false,"postsVotesList":[],"postsVotesPagesCount":null,"postsVotesListLoading":false,"userVotesList":[],"userVotesPagesCount":null,"userVotesListLoading":false},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"notificationsLoading":false,"notificationsList":[],"notificationsPageCount":0,"pendingMarkNotificationsRead":[],"publicationsLoading":true,"publicationsList":[],"publicationsPageCount":0,"pendingDeletePublications":false,"pendingMarkPublicationsRead":false},"events":{"eventRefs":{},"eventIds":[],"pagesCount":0,"categories":[],"cities":[],"actualEvents":null,"currentEvent":null,"eventsFilter":{"city":"all","timeStarted":null,"timeEnded":null}},"wysiwyg":{"WYSIWYGRulesRefs":null},"refs":{"specializationRefs":[]},"hint":{"hints":{}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script>
+   <script src="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" defer></script>
+   <script src="https://assets.habr.com/habr-web/js/app.58b8c457.js" defer></script>
+  </div>
+  <div id="overlays">
+   <!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor-->
+  </div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S28W1WC23F"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  </script>
+  <script type="text/javascript">
+      window.addEventListener('load', function () {
+        setTimeout(() => {
+          const img = new Image();
+          img.src = 'https://vk.com/rtrg?p=VK-RTRG-421343-57vKE';
+        }, 0);
+      });
+    </script>
+ </body>
+</html>

@@ -1,0 +1,931 @@
+<!doctype html>
+<html lang="ru">
+ <head>
+  <title>Коацерваты, дождь и химическая эволюция / Хабр</title>
+  <meta property="fb:app_id" content="444736788986613">
+  <meta property="fb:pages" content="472597926099084">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@habr_com">
+  <meta property="og:site_name" content="Хабр">
+  <link href="https://habr.com/ru/rss/post/907468/?fl=ru" type="application/rss+xml" title rel="alternate" name="rss">
+  <link href="https://habr.com/ru/articles/907468/" rel="canonical" data-hid="e3fa780">
+  <link rel="image_src" href="https://habrastorage.org/getpro/habr/upload_files/5a4/e77/955/5a4e779559548faf2f6ed6edddeda2d0.jpg" data-hid="2a79c45">
+  <link rel="amphtml" href="https://habr.com/ru/amp/publications/907468/">
+  <meta property="og:title" content="Коацерваты, дождь и химическая эволюция">
+  <meta name="twitter:title" content="Коацерваты, дождь и химическая эволюция">
+  <meta name="aiturec:title" content="Коацерваты, дождь и химическая эволюция">
+  <meta name="description" content="На страницах этого блога я пару раз пытался говорить с вами о том, в чём заключается разница между биологическими и псевдобиологическими системами, то есть, между одноклеточной «жизнью» и «нежизнью»....">
+  <meta itemprop="description" content="На страницах этого блога я пару раз пытался говорить с вами о том, в чём заключается разница между биологическими и псевдобиологическими системами, то есть, между одноклеточной «жизнью» и «нежизнью»....">
+  <meta property="og:description" content="На страницах этого блога я пару раз пытался говорить с вами о том, в чём заключается разница между биологическими и псевдобиологическими системами, то есть, между одноклеточной «жизнью» и «нежизнью»....">
+  <meta name="twitter:description" content="На страницах этого блога я пару раз пытался говорить с вами о том, в чём заключается разница между биологическими и псевдобиологическими системами, то есть, между одноклеточной «жизнью» и «нежизнью»....">
+  <meta property="aiturec:description" content="На страницах этого блога я пару раз пытался говорить с вами о том, в чём заключается разница между биологическими и псевдобиологическими системами, то есть, между одноклеточной «жизнью» и «нежизнью»....">
+  <meta itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/5a4/e77/955/5a4e779559548faf2f6ed6edddeda2d0.jpg">
+  <meta property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/5a4/e77/955/5a4e779559548faf2f6ed6edddeda2d0.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/5a4/e77/955/5a4e779559548faf2f6ed6edddeda2d0.jpg">
+  <meta name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/5a4/e77/955/5a4e779559548faf2f6ed6edddeda2d0.jpg">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/5a4/e77/955/5a4e779559548faf2f6ed6edddeda2d0.jpg?format=vk">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/5a4/e77/955/5a4e779559548faf2f6ed6edddeda2d0.jpg?format=vk">
+  <meta property="aiturec:item_id" content="907468">
+  <meta property="aiturec:datetime" content="2025-05-06T20:58:30.000Z">
+  <meta content="https://habr.com/ru/articles/907468/" property="og:url">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="keywords" content="абиогенез, рнк, биохимия, синтетическая биология">
+  <script type="application/ld+json" data-hid="1e0f0a2">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/articles\/907468\/"},"headline":"Коацерваты, дождь и химическая эволюция","datePublished":"2025-05-06T23:58:30+03:00","dateModified":"2025-05-07T09:14:56+03:00","author":{"@type":"Person","name":"Олег Сивченко"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"На страницах этого блога я пару раз пытался говорить с вами о том, в чём заключается разница между биологическими и псевдобиологическими системами, то есть, межд...","url":"https:\/\/habr.com\/ru\/articles\/907468\/#post-content-body","about":["h_popular_science","h_biology","h_Chemistry","f_popsci"],"image":["https:\/\/habr.com\/share\/publication\/907468\/8d73a697a6a7fb49c329200ced561544\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/1a7\/cae\/947\/1a7cae94755fa107126726838e420347.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/a19\/4d6\/75e\/a194d675ef5760ef814439cf28f1382f.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/15b\/ff5\/2d8\/15bff52d8992e1061d4bab518f074809.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/dbe\/c11\/270\/dbec112702e4f4e6484ee8f2e03e700d.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/247\/112\/920\/2471129204adee1acf8ff37cba74ad1b.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/5a4\/e77\/955\/5a4e779559548faf2f6ed6edddeda2d0.jpg"]}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1,user-scalable=0">
+  <meta name="referrer" content="unsafe-url">
+  <style>
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmojLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvk4jLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmYjLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" as="style" media="(prefers-color-scheme: light)">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" as="style" media="(prefers-color-scheme: dark)">
+  <link id="light-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" media="(prefers-color-scheme: light)">
+  <link id="dark-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" media="(prefers-color-scheme: dark)">
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.635b6c39236ebd33fa716c71ab0131a0.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script>
+  <style>
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+    </style>
+  <meta name="habr-version" content="2.241.0">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44">
+  <meta name="msapplication-TileColor" content="#629FBC">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png">
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png">
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg">
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest">
+  <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
+  <script>window.yaContextCb = window.yaContextCb || []</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.8599692f.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.58b8c457.js" as="script">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.8599692f.css">
+ </head>
+ <body>
+  <div id="mount">
+   <div id="app">
+    <div class="tm-layout__wrapper">
+     <!--[--><!---->
+     <div></div><!---->
+     <header class="tm-header" data-test-id="header">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-header__container">
+        <!----><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/">
+          <svg class="tm-svg-img tm-header__icon" height="16" width="16">
+           <title>
+            Хабр
+           </title><use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+          </svg></a><span style="display:none;" class="tm-header__beta-sign">β</span></span><!--[-->
+        <div class="tm-dropdown tm-header__projects">
+         <div class="tm-dropdown__head">
+          <!--[-->
+          <button class="tm-header__dropdown-toggle">
+           <svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16">
+            <title>
+             Открыть список
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#arrow-down"></use>
+           </svg></button><!--]-->
+         </div><!---->
+        </div><a href="/ru/sandbox/start/" class="tm-header__become-author-btn">Как стать автором</a>
+        <div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature">
+         <!---->
+        </div><!----><!--]--><!---->
+       </div><!--]-->
+      </div>
+     </header>
+     <div class="tm-layout">
+      <div class="tm-page-progress-bar"></div>
+      <div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true">
+       <div class="tm-page-width">
+        <!--[-->
+        <div class="tm-base-layout__header-wrapper">
+         <div class="tm-main-menu">
+          <div class="tm-main-menu__section">
+           <nav class="tm-main-menu__section-content">
+            <!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]-->
+           </nav>
+          </div>
+         </div>
+         <div class="tm-header-user-menu tm-base-layout__user-menu">
+          <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button">
+           <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24">
+            <title>
+             Поиск
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#search"></use>
+           </svg></a><!----><!---->
+          <div class="tm-header-user-menu__item tm-header-user-menu__write">
+           <div>
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Написать публикацию
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#write"></use>
+            </svg>
+           </div><!---->
+          </div><!--[-->
+          <div class="tm-header-user-menu__item">
+           <button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings">
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Настройки
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#page-settings"></use>
+            </svg></button>
+          </div><a href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/articles/907468/&amp;hl=ru" rel="nofollow" class="tm-header-user-menu__item"><!--[-->
+           <button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!----><!--teleport start--><!--teleport end--><!---->
+         </div>
+        </div><!--]-->
+       </div>
+      </div><!---->
+      <div class="tm-page-width">
+       <!--[--><!--]-->
+      </div>
+      <main class="tm-layout__container">
+       <div class="tm-page" hl="ru" data-async-called="true" style="--5ab2e5a8:16px;--44c4f6f6:100%;--45ba7a3b:0;">
+        <div class="tm-page-width">
+         <!--[--><!---->
+         <div class="tm-page__wrapper">
+          <div class="tm-page__main_has-sidebar tm-page__main">
+           <div class="pull-down">
+            <!---->
+            <div class="pull-down__header" style="height:0px;">
+             <div class="pull-down__content" style="bottom:10px;">
+              <svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24">
+               <title>
+                Обновить
+               </title><use xlink:href="/img/megazord-v28.7909a852..svg#pull-arrow"></use>
+              </svg>
+             </div>
+            </div><!--[--><!--[--><!---->
+            <div class="tm-article-presenter">
+             <!--[--><!--]-->
+             <div class="tm-article-presenter__body" data-test-id="article-body">
+              <div class="tm-misprint-area">
+               <div class="tm-misprint-area__wrapper">
+                <!--[-->
+                <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                 <!--[-->
+                 <div class="tm-article-presenter__header">
+                  <!--[--><!--]-->
+                  <div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet">
+                   <!--[--><!--]-->
+                   <div class="tm-article-snippet__meta-container">
+                    <div class="tm-article-snippet__meta">
+                     <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/OlegSivchenko/" class="tm-user-info__userpic" data-test-id="user-info-pic" title="OlegSivchenko">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" height="24" src="//habrastorage.org/r/w48/getpro/habr/avatars/b1d/837/b76/b1d837b766660497c38e419b0e7ce482.jpeg" width="24">
+                       </div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a href="/ru/users/OlegSivchenko/" class="tm-user-info__username">OlegSivchenko <!----></a><!--[--><span class="tm-article-datetime-published"><time datetime="2025-05-06T20:58:30.000Z" title="2025-05-06, 23:58">9 часов назад</time></span><!--]--></span></span>
+                    </div><!---->
+                   </div>
+                   <h1 class="tm-title tm-title_h1" lang="ru" data-test-id="articleTitle"><span>Коацерваты, дождь и химическая эволюция</span></h1>
+                   <div class="tm-article-snippet__stats" data-test-id="articleStats">
+                    <!---->
+                    <div class="tm-article-reading-time">
+                     <span class="tm-svg-icon__wrapper tm-article-reading-time__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Время на прочтение
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#clock"></use>
+                      </svg></span><span class="tm-article-reading-time__label">9 мин</span>
+                    </div><span class="tm-icon-counter tm-data-icons__item">
+                     <svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24">
+                      <title>
+                       Количество просмотров
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-views"></use>
+                     </svg><span class="tm-icon-counter__value" title="1328">1.3K</span></span>
+                   </div>
+                   <div class="tm-publication-hubs__container" data-test-id="articleHubsList">
+                    <div class="tm-publication-hubs">
+                     <!--[--><span class="tm-publication-hub__link-container"><a href="/ru/hubs/popular_science/" class="tm-publication-hub__link"><!--[--><span>Научно-популярное</span><!----><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/biology/" class="tm-publication-hub__link"><!--[--><span>Биология</span><!----><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/Chemistry/" class="tm-publication-hub__link"><!--[--><span>Химия</span><!----><!--]--></a></span><!--]-->
+                    </div>
+                   </div><!----><!----><!---->
+                  </div>
+                 </div><!--[--><!---->
+                 <div class="tm-article-body" data-gallery-root lang="ru">
+                  <div>
+                   <!--[--><!--]-->
+                  </div>
+                  <div id="post-content-body">
+                   <div>
+                    <div class="article-formatted-body article-formatted-body article-formatted-body_version-2">
+                     <div xmlns="http://www.w3.org/1999/xhtml">
+                      <p>На страницах этого блога я пару раз пытался говорить с вами о том, в чём заключается разница между биологическими и псевдобиологическими системами, то есть, между одноклеточной «жизнью» и «нежизнью». В частности, большой интерес вызвала статья «<a href="https://habr.com/ru/articles/771154/" rel="noopener noreferrer nofollow">Вы, конечно, шутите, мистер Нейман! Страшная сказка о серой слизи</a>» (+41, 11 тысяч просмотров). Также на Хабре есть отличная статья «<a href="https://habr.com/ru/articles/543710/" rel="noopener noreferrer nofollow">Что такое Жизнь во Вселенной: четыре базовых принципа вместо трёх характерных функций</a>» в переводе уважаемого Дмитрия Диля <a href="https://habr.com/ru/users/MetromDouble/" rel="noopener noreferrer nofollow">@MetromDouble</a>: в ней рассматриваются базовые биохимические предпосылки для возникновения альтернативной жизни, которая в оригинале называется «lyfe». В сегодняшней статье я хочу рассказать о современных взглядах на абиогенез, а именно о «суббиохимических» свойствах коацерватных капель. Интересную обзорную <a href="https://biomolecula.ru/articles/chto-bylo-ranshe-kuritsa-ili-pervichnyi-bulon-koatservaty" rel="noopener noreferrer nofollow">статью</a> на эту тему опубликовал на сайте «Биомолекула» уважаемый Кирилл Вакулин, я же под катом рассмотрю, как дождевые капли могли поспособствовать возникновению жизни, и какую роль эти идеи играют сегодня при проектировании синтетических клеток.</p>
+                      <p>Термин «коацерват» в переводе с латыни означает «собранный в кучу». Он был введён в научный оборот Александром Ивановичем Опариным не позже 1924 года. Коацерват — это многослойная вязкая жидкость, где неорганические коллоидные слои чередуются со слоями или вкраплениями биомолекул. В этой статье под «коацерватами» будут пониматься, прежде всего, коацерватные капли. Опарин полагал, что в первобытных водоёмах коацерватные капли стали переходным звеном, обеспечившим переход от абиогенеза к зарождению жизни. Сегодня гипотеза Опарина признана явно недостаточной и устаревшей, однако я предлагаю вам почитать <a href="https://elementy.ru/novosti_nauki/434227/Retsept_pervichnogo_bulona_k_stoletiyu_pervoy_gipotezy_abiogeneza" rel="noopener noreferrer nofollow">статью</a> о ней, подготовленную уважаемым Михаилом Орловым к столетию этой гипотезы.</p>
+                      <p>Коацерваты — это капли внутри жидкости или коллоида, образующиеся из полимерных молекул с противоположными электрическими зарядами. Свойства коацерватов подробно изучены в <a href="https://studbooks.net/2294759/matematika_himiya_fizika/otlichaetsya_denaturatsiya_koatservatsii" rel="noopener noreferrer nofollow">коллоидной химии</a> и науке о межфазных границах (interface science), а также в материаловедении. Но с биохимической точки зрения разделение жидкости на фазы или фракции с образованием коацерватных капель, по-видимому, непосредственно предшествует формированию немембранных органелл, которые в изобилии встречаются в животных клетках. Современная биохимия позволяет создавать в лабораторных условиях (in vitro) коацерваты различного состава, которые имитируют разные аспекты таких органелл: физические и химические свойства, селективность всасывания жидкостей, динамику формирования.</p>
+                      <p>Классическая попытка создать искусственный «первичный бульон» в лабораторных условиях – это <a href="https://ru.wikipedia.org/wiki/%D0%AD%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82_%D0%9C%D0%B8%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_%E2%80%94_%D0%AE%D1%80%D0%B8" rel="noopener noreferrer nofollow">эксперимент Миллера-Юри</a>, впервые поставленный Стэнли Миллером и Гарольдом Юри в Университете Чикаго в 1953 году.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/1a7/cae/947/1a7cae94755fa107126726838e420347.png" width="624" height="581" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/1a7/cae/947/1a7cae94755fa107126726838e420347.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/1a7/cae/947/1a7cae94755fa107126726838e420347.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Пропуская электрические разряды через газовую смесь, напоминающую по составу первобытную земную атмосферу, а также растворяя продукты реакций в тёплой воде, Миллер смог получить синильную кислоту (HCN), формальдегид (CH<sub>2</sub>O) ацетилен (C<sub>2</sub>H<sub>2</sub>), а уже из них при дальнейших реакциях — аминокислоту глицин. В дальнейшем этот эксперимент неоднократно повторяли и корректировали — на Хабре об этом <a href="https://habr.com/ru/articles/744142/" rel="noopener noreferrer nofollow">писал</a>, в частности, уважаемый Арис Ефимович Ваулин @VAE. Тем не менее, общей проблемой этого эксперимента и его более поздних итераций является пока не преодолённый разрыв между биомолекулами и, собственно, жизнью. Биомолекулы, легко образующиеся в растворе, столь же легко и распадаются. В наше время интерес к исследованию коацерватов возрос во многом потому, что такие пузырьки могут изолировать от окружающей среды реагирующие в них молекулы, а также легче сливаются с другими коацерватами, чем выплёскиваются в окружающую среду. Это один из вариантов компартментализации (обособления органелл), которую в живом организме обеспечивает клеточная мембрана. Пока отсутствует общее мнение, какая естественная среда наиболее адекватно заменяет в таком качестве живую клетку, но, учитывая необходимую минерализацию и температуру, это могли быть как органические, так и неорганические среды, богатые полостями. Этот вопрос подробно рассмотрен на Хабре в статье «И в воде, и в камне» уважаемого <a href="https://habr.com/ru/users/Dmytro_Kikot/" rel="noopener noreferrer nofollow">@Dmytro_Kikot</a>.&nbsp;&nbsp;</p>
+                      <p>Сегодня считается, что самыми ранними формами жизни были <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2890201/pdf/cshperspect-ORI-a002170.pdf" rel="noopener noreferrer nofollow">протоклетки</a>, спонтанно сформировавшиеся на древней Земле из сложных органических молекул. Две основные составляющие протколетки — это матрикс, который позволял пузырьку поддерживать форму, и генетический материал (РНК), обеспечивавший функционирование протоклетки.</p>
+                      <p>Развиваясь, протоклетки освоили репликацию, а также в них наладился обмен веществ. Протоклетки должны были формироваться в таких условиях, где им обеспечен стабильный приток энергии и защита от пересыхания – например, в «<a href="https://news.yale.edu/2021/01/04/ancient-earth-may-have-birthed-islands-life" rel="noopener noreferrer nofollow">маленьком тёплом пруду</a>» Дарвина в местности с активным вулканизмом. При этом критически важный шаг на пути к возникновению клетки — это обрастание пузырька мембраной.</p>
+                      <p>Существует <a href="https://biomolecula.ru/articles/poiavlenie-i-evoliutsiia-kletochnoi-membrany" rel="noopener noreferrer nofollow">два подхода</a> к выстраиванию эволюции клеточных мембран: восходящий и нисходящий. При нисходящем подходе берётся современная клетка и прослеживается её родословное древо. Так удалось выявить специфические последовательности, ведущие к универсальному общему предку (<a href="https://habr.com/ru/articles/901550/" rel="noopener noreferrer nofollow">LUCA</a>) всех ныне живущих организмов. Тем не менее, можно не сомневаться, что LUCA был довольно сложным организмом, напоминающим бактерию или архея, и от протоклеток до него был пройден долгий путь.</p>
+                      <figure class="">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/a19/4d6/75e/a194d675ef5760ef814439cf28f1382f.png" width="452" height="459" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/a19/4d6/75e/a194d675ef5760ef814439cf28f1382f.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/a19/4d6/75e/a194d675ef5760ef814439cf28f1382f.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Вооружившись нисходящим подходом, мы не находим источника жизни, однако, весьма точно представляем, каков был минимальный биохимический набор, необходимый для её возникновения. Так, теория о вулканическом происхождении «маленького тёплого пруда» обусловлена тем, что для полноценного набора белков в «первичном бульоне» <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10192010/" rel="noopener noreferrer nofollow">не обойтись без содержания серы</a>. Также нисходящий подход помогает понять, какова связь между жирами и <a href="https://biomolecula.ru/articles/lipidnyi-fundament-zhizni" rel="noopener noreferrer nofollow">липидами</a>, а ещё как могли естественным образом сформироваться нуклеотиды.</p>
+                      <p>Восходящий подход связан с относительно новыми гипотезами «<a href="https://biomolecula.ru/articles/rnk-u-istokov-zhizni" rel="noopener noreferrer nofollow">мира РНК</a>» и «<a href="https://elementy.ru/novosti_nauki/433970/Molekuly_RNK_umeyut_sintezirovat_peptidy_pri_pomoshchi_reliktovykh_nestandartnykh_nukleotidov" rel="noopener noreferrer nofollow">РНК-пептидного мира</a>». Когда камера для химических реакций настолько невелика, что сравнима с размерами самих биомолекул, она становится похожа на живую клетку. В то же время, молекула РНК не только несёт генетическую информацию, но и может <a href="https://sci-hub.ru/https:/doi.org/10.1038/nchem.1466" rel="noopener noreferrer nofollow">выступать катализатором</a> — то есть, отчасти берёт на себя функции ферментов. В чисто теоретическом изложении подобную концепцию разрабатывал венгерский биолог Тибор Ганти, сформулировавший в начале 1950-х гипотезу о «<a href="https://en.wikipedia.org/wiki/Chemoton" rel="noopener noreferrer nofollow">хемотонах</a>» и описавший их в книге «Az élet princípiuma» («Принципы жизни»). В частности, Ганти полагал, что такой «химический автомат» должен стремиться не только к размножению и поддержанию внутренней стабильности, но и к обособлению от окружающей среды — то есть, обрастать мембраной. Логично предположить, что до начала биологической эволюции уже существовала биохимическая эволюция, развивавшаяся, как минимум, по трём трекам: нуклеотидному, пептидному и липидному.</p>
+                      <p>Суть гипотезы РНК-пептидного мира заключается в древней коэволюции РНК и пептидов. Короткие нуклеотидные цепочки и аминокислоты могли образовываться и полимеризоваться без участия ферментов только в очень небольших протоклетках, которые при этом могли бы сливаться друг с другом, не нарушая уже идущих биохимических реакций. Коацерватные капли очень хорошо подходят на роль таких первичных биологических пузырьков, поскольку смешиваются друг с другом и при этом не смешиваются с водой. Именно поэтому гипотеза Опарина, слишком примитивная для объяснения жизни, может помочь с описанием пребиотической эволюции.</p>
+                      <h2>Коацерваты и везикулы</h2>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/15b/ff5/2d8/15bff52d8992e1061d4bab518f074809.png" width="624" height="333" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/15b/ff5/2d8/15bff52d8992e1061d4bab518f074809.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/15b/ff5/2d8/15bff52d8992e1061d4bab518f074809.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Здесь представлены две разные модели протоклеток — везикулы и коацерваты.</p>
+                      <p><a href="https://pubs.acs.org/doi/10.1021/ja900919c" rel="noopener noreferrer nofollow">Везикулы</a>&nbsp;— это жиросодержащие пузырьки, напоминающие мыльные. Они состоят из липидов – жироподобных соединений, образующих тонкие слои-листы. Везикула формируется, когда такой лист самопроизвольно свёртывается в шарик, а в шарике оказываются заключены биомолекулы. Структурно везикула напоминает животную клетку, в которой нет ядра, а также нет мембраны, подобной клеточной. Клеточная мембрана состоит из специальных белков, обеспечивающих выборочное поступление молекул в клетку и из клетки в окружающую среду, а также отвечающих за <a href="https://elementy.ru/novosti_nauki/432189/Prostaya_sistema_mezhkletochnoy_kommunikatsii_obespechivaet_raznoobraznoe_kollektivnoe_povedenie" rel="noopener noreferrer nofollow">межклеточную коммуникацию</a>. У везикул аналогичные коммуникационные возможности не развиты, поэтому они не образуют ни тканей, ни «культур».</p>
+                      <p><a href="https://doi.org/10.1039/C2SM25604E" rel="noopener noreferrer nofollow">Коацерваты</a>, в свою очередь, содержат одновременно пептиды и нуклеиновые кислоты. Эти вещества скапливаются в коацерватных каплях благодаря электрохимическим взаимодействием — например, благодаря электрохимическому контакту между молекулами с противоположным зарядом. Коацерватные капли представляются более вероятными кандидатами на роль протоклеток, так как в них присутствуют катализаторы биохимических реакций. Но собственная мембрана у них не формируется, поэтому коацерватам (в отличие от везикул) требуется дополнительный стабилизатор. &nbsp;</p>
+                      <p>Главный камень преткновения между химией коацерватов и биохимией заключается в том, что все коацерватные капли очень похожи друг на друга, так как слишком активно сливаются с другими коацерватными каплями и обмениваются молекулами.</p>
+                      <p>Если в какой-то из капель возникает полезная мутация РНК, капля просто не успевает её закрепить, поскольку в течение считанных минут смешается с какой-то другой каплей. В такой среде отсутствует конкуренция, а значит – и эволюция (отбор).&nbsp;</p>
+                      <h2>Дождь как стабилизатор протоклеток</h2>
+                      <p>В 2022 году в университете Чикаго группа учёных из Иллинойса и Миннесоты под руководством Амина Агравала провела ключевое <a href="https://www.pnas.org/doi/full/10.1073/pnas.2203483119" rel="noopener noreferrer nofollow">исследование</a> в духе Миллера-Юри. Согласно их гипотезе, коацерватные капли можно стабилизировать и не допускать их слишком быстрого перемешивания, если подмешивать их в <a href="https://doi.org/10.1073/pnas.2203483119" rel="noopener noreferrer nofollow">&nbsp;деионизированную воду</a>&nbsp;– такую, которая не содержит растворённых металлических ионов. Капли, в свою очередь, ионы содержат. Расположенные на периферии каждой из капель полимеры с противоположными зарядами&nbsp;<a href="https://doi.org/10.1038/s42004-024-01304-1" rel="noopener noreferrer nofollow">сближаются друг с другом</a>&nbsp;и образуют ячеистый слой.</p>
+                      <p>Далее к работе Агравала подключились Мэтью Тиррелл и Джек Шостак — лауреат <a href="https://kodomo.fbb.msu.ru/~sunnymouse/term2/nobel_2009.html" rel="noopener noreferrer nofollow">Нобелевской премии по физиологии и медицине за 2009 год</a>, получивший её за исследование теломер. В частности, Шостак прославился тем, что совместно с Эндрю Мюрреем собрал <a href="https://sci-hub.ru/10.1038/305189a0" rel="noopener noreferrer nofollow">искусственную дрожжевую хромосому</a>.</p>
+                      <p>В рамках описываемого опыта Агравал с коллегами вырастили в пробирках с деионизированной водой две разные популяции протоклеток, причём, экземпляры лишь из одной популяции содержали РНК. После смешивания протоклеток из обеих групп РНК сохранялась в пределах исходной популяции на протяжении нескольких дней. Стенки протоклеток были ячеистыми, но всё-таки удерживали нуклеиновую кислоту.</p>
+                      <p>В качестве раствора использовалась дистиллированная лабораторная вода. Однако, поскольку уровень pH такой воды близок к нейтральному, а также в ней не содержится никаких примесей, она едва ли похожа на воду, существовавшую на пребиотической Земле. Согласно <a href="https://galspace.spb.ru/index23.html" rel="noopener noreferrer nofollow">имеющимся моделям древней атмосферы</a>, в ней доминировал азот, смешанный с различными кислотными примесями, в частности, соединениями серы. Кроме того, в результате вулканической активности атмосфера насыщалась углекислым газом. Агравал более двух лет пытался смоделировать раствор с нужной кислотностью, пока не вступил в коллаборацию с химиками из университета Хьюстона – и вместе они решили опробовать гениально простую идею. Что может быть больше похоже на доисторический дождь, чем дождь из современного мегаполиса, пропитанный смогом.</p>
+                      <p>Соответствующее исследование было <a href="https://pme.uchicago.edu/news/life-drop-rain-new-research-suggests-rainwater-helped-form-first-protocell-walls" rel="noopener noreferrer nofollow">опубликовано</a> в августе 2024 года в журнале Science Advances. Оказалось, что дождевая вода из Хьюстона вполне сносно обеспечивает целостность коацерватных капель (не даёт им слишком быстро сливаться друг с другом). Чтобы в этом убедиться, три популяции коацерватов с разными наборами РНК были помечены флуоресцентными красками, и под электронным микроскопом выглядели так:</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/dbe/c11/270/dbec112702e4f4e6484ee8f2e03e700d.png" width="624" height="624" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/dbe/c11/270/dbec112702e4f4e6484ee8f2e03e700d.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/dbe/c11/270/dbec112702e4f4e6484ee8f2e03e700d.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <h2>Искусственные модели протоклеточных сетей и тканей</h2>
+                      <p>Ещё более амбициозные исследования, связанные с созданием искусственных протоклеток, ведутся в Китае. В конце 2023 года была <a href="https://phys.org/news/2023-11-self-sorting-coacervates-high-order-protocell-networks.html" rel="noopener noreferrer nofollow">опубликована</a> работа, выполненная в основном силами Института химии китайской Академии Наук (профессор Цяо Янь), Пекинского университета химических технологий (Юань Линь) совместно со Стивеном Манном из Бристольского университета. &nbsp;</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/247/112/920/2471129204adee1acf8ff37cba74ad1b.png" width="624" height="349" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/247/112/920/2471129204adee1acf8ff37cba74ad1b.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/247/112/920/2471129204adee1acf8ff37cba74ad1b.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Авторы этих исследований целенаправленно настраивают протоклетки, добиваясь в них имитации различных клеточных функций: химической сигнализации, морфологической дифференциации, экспрессии белков, запасания энергии. Такие культуры собирают из разных сортов коацерватов, которые не смешиваются друг с другом, но выстраиваются в последовательности и слои, форму и структуру которых можно заранее рассчитать. В рамках данного исследования коацерваты называются «микрокаплями».</p>
+                      <p>Как видно на приведённой иллюстрации, такая протоклеточная структура спонтанно сортируется на упорядоченные слои жидкокристаллических коацерватов и неупорядоченных микрокапелек. Сцепление между коацерватами возникает благодаря поверхностной адгезии. Жидкокристаллические коацерваты селективно впускают в себя белки, полисахариды, липиды и АТФ. В то же время, в неструктурированных коацерватах концентрируются нуклеиновые кислоты. Соответственно, учёным удалось смоделировать две взаимопроникающие «ткани», одна из которых отвечает за биохимические реакции, а другая – за хранение генетического материала. Среда в коацерватах с РНК «спокойнее», чем в коацерватах с белками и прочими биомолекулами, поэтому РНК сохраняется лучше.</p>
+                      <p>В таких культурах удалось смоделировать и значительно более сложные явления, в частности, изомеризацию под действием света, образование химических комплексов <a href="https://elementy.ru/kartinka_dnya/631/Nano_Saturn" rel="noopener noreferrer nofollow">по модели «гость-хозяин»</a>, а также спонтанную сборку протоклеток в плоские листы, напоминающие зачаточные ткани. Таким образом, в течение 2020-х эти опыты показали возможные модели формирования как одноклеточной, так и многоклеточной биологии.</p>
+                      <h2>Заключение</h2>
+                      <p>Я заинтересовался этими исследованиями в основном в поисках ответа на вопрос, насколько правдоподобна гипотеза о «мире РНК» в свете современных представлений. Возможно, я когда-нибудь напишу об этой гипотезе отдельную статью. Но, если формирование подобных коацерватных взвесей действительно наблюдалось в древних пресных лужицах с pH, близким к нейтральному, то описанные здесь опыты и модели вполне адекватно описывают возможный абиогенез. Возможно, биологической эволюции в «тёплом пруду Дарвина» предшествовала длительная добиологическая эволюция, которая могла качнуться как в сторону мира нуклеиновых кислот, где живём мы, так и в сторону мира, в котором доминируют белковые молекулы и органические кристаллы. Был бы такой мир безжизненным? Сложный вопрос, однако, он мог навсегда застрять на стадии смешивающихся капелек, оставаясь при этом вполне жизнепригодным.</p>
+                     </div>
+                    </div>
+                   </div><!----><!---->
+                  </div><!----><!---->
+                 </div><!--]--><!---->
+                 <div class="tm-article-presenter__meta" data-test-id="article-meta-links">
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Теги:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%B0%D0%B1%D0%B8%D0%BE%D0%B3%D0%B5%D0%BD%D0%B5%D0%B7]" class="tm-tags-list__link"><span>абиогенез</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%80%D0%BD%D0%BA]" class="tm-tags-list__link"><span>рнк</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D0%B1%D0%B8%D0%BE%D1%85%D0%B8%D0%BC%D0%B8%D1%8F]" class="tm-tags-list__link"><span>биохимия</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[%D1%81%D0%B8%D0%BD%D1%82%D0%B5%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F+%D0%B1%D0%B8%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F]" class="tm-tags-list__link"><span>синтетическая биология</span></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Хабы:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/popular_science/" class="tm-hubs-list__link"><!--[--><span>Научно-популярное</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/biology/" class="tm-hubs-list__link"><!--[--><span>Биология</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/Chemistry/" class="tm-hubs-list__link"><!--[--><span>Химия</span><!--]--></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                 </div><!----><!--]-->
+                </article><!--]-->
+               </div><!---->
+              </div>
+              <div style="" class="tm-article-sticky-panel" data-test-id="article-sticky-panel">
+               <div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons">
+                <div class="article-rating tm-data-icons__item" data-v-86aec4a7>
+                 <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-article votes-switcher" title="Всего голосов 6: ↑6 и ↓0" data-v-86aec4a7>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-upvote-button" title="Нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon" height="24" width="24">
+                    <title>
+                     Нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                  <div class="tm-votes-lever__score tm-votes-lever__score_appearance-article tm-votes-lever__score">
+                   <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_positive tm-votes-lever__score-counter" data-test-id="votes-score-counter">+7</span></span><!--]-->
+                  </div>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-downvote-button" title="Не нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon tm-votes-lever__icon_arrow-down" height="24" width="24">
+                    <title>
+                     Не нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                 </div><!--teleport start--><!--teleport end--><!---->
+                </div><!----><!---->
+                <button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon">
+                  <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                   <title>
+                    Добавить в закладки
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-favorite"></use>
+                  </svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">9</span></button>
+                <div class="tm-sharing tm-data-icons__item" title="Поделиться">
+                 <button class="tm-sharing__button" type="button">
+                  <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                   <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                  </svg></button><!--teleport start--><!--teleport end-->
+                </div>
+                <div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии">
+                 <a href="/ru/articles/907468/comments/" class="tm-article-comments-counter-link__link" data-test-id="counter-comments"><!--[-->
+                  <svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24">
+                   <title>
+                    Комментарии
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                  </svg><span class="tm-article-comments-counter-link__value">5</span><!--]--></a><!---->
+                </div><!--[--><!--[--><!--[--><!----><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!---->
+               </div>
+              </div>
+             </div><!--[--><!--]-->
+             <div class="tm-article-presenter__footer">
+              <!--[--><!--[-->
+              <div class="tm-article-blocks">
+               <!----><!--[-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <!----><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-balanced">
+                 <!--[-->
+                 <div class="tm-article-author" data-test-id="article-author-info" data-async-called="true">
+                  <!--[--><!--]-->
+                  <div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true">
+                   <div class="tm-user-card__info-container">
+                    <div class="tm-user-card__header">
+                     <div class="tm-user-card__header-data">
+                      <a href="/ru/users/OlegSivchenko/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                       <div class="tm-entity-image">
+                        <img alt="" class="tm-entity-image__pic" src="//habrastorage.org/getpro/habr/avatars/b1d/837/b76/b1d837b766660497c38e419b0e7ce482.jpeg">
+                       </div></a>
+                      <div class="tm-user-card__meta">
+                       <div class="tm-counter-container karma" title=" 612 голосов " data-v-f7c0e283>
+                        <div class="tm-counter-container__header">
+                         <!--[-->
+                         <div class="karma-display positive" data-v-f7c0e283 data-v-7635202e>
+                          300
+                         </div><!----><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[-->
+                         <div class="karma-text" data-v-f7c0e283>
+                          Карма
+                         </div><!--teleport start--><!--teleport end--><!--]-->
+                        </div>
+                       </div>
+                       <div class="tm-counter-container" title="Рейтинг пользователя">
+                        <div class="tm-counter-container__header">
+                         <!--[--><!--[--><!--]-->
+                         <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                          <!---->
+                          <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score">
+                           <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">88.1</span></span><!--]-->
+                          </div><!---->
+                         </div><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info">
+                     <div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title">
+                      <span class="tm-user-card__name tm-user-card__name_variant-article tm-user-card__name">Олег Сивченко</span><a href="/ru/users/OlegSivchenko/" class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article"> @OlegSivchenko</a><!---->
+                     </div>
+                     <p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Переводчик, PM, автор, просветитель-любитель</p>
+                    </div>
+                   </div><!---->
+                   <div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons">
+                    <!---->
+                    <div class="tm-user-card__button">
+                     <div class="tm-button-follow tm-user-card__button-follow">
+                      <!---->
+                      <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+                     </div>
+                    </div><!---->
+                    <div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations">
+                     <svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16">
+                      <title>
+                       Отправить сообщение
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#mail"></use>
+                     </svg>
+                    </div><!---->
+                   </div><!---->
+                  </div>
+                  <div class="tm-article-author__user-contacts" data-test-id="author-contacts">
+                   <!----><!----><!---->
+                  </div>
+                 </div><!--]-->
+                </div><!--]--><!---->
+               </section><!----><!--[-->
+               <div class="banner-wrapper leaderboard tm-page-article__banner" style="--38f3d936:200px;--78a3cd06:auto;" data-v-f4bf0d24>
+                <!--[-->
+                <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="adfox-banner-placeholder leaderboard" data-v-12f7bcca>
+                  <div class="image loads" data-v-12f7bcca></div>
+                  <div class="lines" data-v-12f7bcca>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                  </div>
+                 </div><!----><!----><!---->
+                </div>
+                <div id="adfox_164725660339535756" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+               </div><!--]--><!--]-->
+               <div class="tm-article-blocks__comments">
+                <div id="publication-comments" class="tm-article-page-comments">
+                 <div>
+                  <!--[-->
+                  <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                   <a href="/ru/articles/907468/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments"><!--[-->
+                    <svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24">
+                     <title>
+                      Комментарии
+                     </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                    </svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 5 </span><!--]--></a><!---->
+                  </div><!--]-->
+                 </div>
+                </div>
+               </div><!--[--><!--[--><!--]-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <header class="tm-block__header tm-block__header tm-block__header_variant-borderless">
+                 <div class="tm-block__header-container">
+                  <h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]-->
+                 </div><!---->
+                </header><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim">
+                 <!--[--><!--[-->
+                 <div class="tm-tabs tm-tabs">
+                  <div class="">
+                   <!--[--><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]-->
+                  </div><!---->
+                 </div>
+                 <div class="similar-and-daily__tab-view">
+                  <div class="daily-articles-list">
+                   <ul class="tm-article-card-list">
+                    <!--[--><!--]-->
+                    <div class="tm-bordered-card">
+                     <!----><!--[--><!--]-->
+                    </div>
+                   </ul>
+                   <div class="daily-articles-block__button-container">
+                    <button class="btn btn_transparent btn_small tm-button tm-button_color-horizon" type="button"><!--[--><!--[-->Показать лучшие за всё время<!--]--><!--]--></button>
+                   </div>
+                  </div><!---->
+                 </div><!--]--><!--]-->
+                </div><!--]--><!---->
+               </section><!--[-->
+               <div>
+                <div class="placeholder-wrapper">
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="tm-placeholder-promo">
+                  <div class="tm-placeholder-promo__header">
+                   <div class="tm-placeholder__line tm-placeholder__line_promo-title"></div>
+                  </div>
+                  <div class="tm-placeholder-promo__body">
+                   <div class="tm-placeholder-promo__posts">
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                   </div>
+                   <div class="tm-placeholder-promo__dots">
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                   </div>
+                  </div>
+                 </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                </div>
+               </div>
+               <div class="placeholder-wrapper">
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="tm-placeholder-inset tm-placeholder-questions">
+                 <div class="tm-placeholder-inset__header">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div>
+                 </div>
+                 <div class="tm-placeholder-inset__body">
+                  <ul class="tm-placeholder-list">
+                   <!--[-->
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li><!--]-->
+                  </ul>
+                 </div>
+                 <div class="tm-placeholder-inset__footer">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div>
+                 </div>
+                </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               </div><!--]--><!----><!--[--><!--]--><!--]-->
+              </div><!--]--><!--]-->
+             </div>
+            </div><!--]--><!--]-->
+           </div>
+          </div>
+          <div class="tm-page__sidebar">
+           <!--[-->
+           <div class="tm-layout-sidebar">
+            <div class="tm-layout-sidebar__placeholder_initial"></div>
+            <div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;">
+             <!--[--><!--]--><!---->
+             <div class="tm-layout-sidebar__ads_initial tm-layout-sidebar__ads">
+              <div class="banner-wrapper half-page tm-layout-sidebar__banner tm-layout-sidebar__banner_top" style="--38f3d936:600px;--78a3cd06:auto;" data-v-f4bf0d24>
+               <!--[-->
+               <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="adfox-banner-placeholder half-page" data-v-12f7bcca>
+                 <div class="image loads" data-v-12f7bcca></div>
+                 <div class="lines" data-v-12f7bcca>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                 </div>
+                </div><!----><!----><!---->
+               </div>
+               <div id="adfox_164725680533065327" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+              </div>
+             </div><!--[--><!---->
+             <div></div><!---->
+             <section class="tm-block tm-block tm-block_spacing-around block" data-v-6f380946>
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Ближайшие события</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[-->
+               <div class="placeholder-wrapper" data-v-6f380946>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <section class="tm-block tm-block tm-block_spacing-none" tabindex="-1" data-v-9caf0b82>
+                 <!----><!--[-->
+                 <div class="event-card-placeholder is-widget" data-v-9caf0b82>
+                  <div class="image loads" data-v-9caf0b82></div>
+                  <div class="info" data-v-9caf0b82>
+                   <div class="date line" data-v-9caf0b82></div>
+                   <div class="title line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                  </div>
+                  <div class="footer widget" data-v-9caf0b82>
+                   <div class="link line" data-v-9caf0b82></div>
+                   <div class="categories" data-v-9caf0b82>
+                    <!--[-->
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div><!--]-->
+                   </div>
+                  </div>
+                 </div><!--]--><!---->
+                </section><!---->
+               </div><!--]-->
+              </div><!--]--><!---->
+             </section><!--]-->
+             <div class="banner-wrapper medium-rectangle tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom" style="--38f3d936:250px;--78a3cd06:auto;" data-v-f4bf0d24>
+              <!--[-->
+              <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+               <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               <div class="adfox-banner-placeholder medium-rectangle" data-v-12f7bcca>
+                <div class="image loads" data-v-12f7bcca></div>
+                <div class="lines" data-v-12f7bcca>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                </div>
+               </div><!----><!----><!---->
+              </div>
+              <div id="adfox_164725691003361602" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+             </div>
+            </div>
+           </div><!--]-->
+          </div>
+         </div><!----><!--]-->
+        </div>
+       </div>
+      </main><!---->
+     </div>
+     <div class="tm-footer-menu">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer-menu__container">
+        <!--[-->
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Ваш аккаунт</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/articles/907468/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/articles/907468/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Разделы</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/articles/" class="footer-menu__item-link">Статьи</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link">Новости</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link">Хабы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link">Компании</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link">Авторы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link">Песочница</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Информация</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link">Устройство сайта</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link">Для авторов</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link">Для компаний</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link">Документы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Услуги</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]-->
+          </ul>
+         </div>
+        </div><!--]-->
+       </div><!--]-->
+      </div>
+     </div>
+     <div class="tm-footer">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer__container">
+        <!---->
+        <div class="tm-footer__social">
+         <!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Facebook
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Twitter
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            VK
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Telegram
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Youtube
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Яндекс Дзен
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use>
+          </svg></a><!--]-->
+        </div><!--teleport start--><!--teleport end-->
+        <button class="tm-footer__link"><!----> Настройка языка</button><a href="/ru/feedback/" class="tm-footer__link">Техническая поддержка</a>
+        <div class="tm-footer-copyright">
+         <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span>
+        </div>
+       </div><!--]-->
+      </div>
+     </div><!----><!--]-->
+    </div><!---->
+   </div>
+   <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"907468":{"id":"907468","timePublished":"2025-05-06T20:58:30+00:00","isCorporative":false,"lang":"ru","titleHtml":"Коацерваты, дождь и химическая эволюция","leadData":{"textHtml":"\u003Cp\u003EНа страницах этого блога я пару раз пытался говорить с вами о том, в чём заключается разница между биологическими и псевдобиологическими системами, то есть, между одноклеточной «жизнью» и «нежизнью». В частности, большой интерес вызвала статья «\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Farticles\u002F771154\u002F\" rel=\"noopener noreferrer nofollow\"\u003EВы, конечно, шутите, мистер Нейман! Страшная сказка о серой слизи\u003C\u002Fa\u003E» (+41, 11 тысяч просмотров). Также на Хабре есть отличная статья «\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Farticles\u002F543710\u002F\" rel=\"noopener noreferrer nofollow\"\u003EЧто такое Жизнь во Вселенной: четыре базовых принципа вместо трёх характерных функций\u003C\u002Fa\u003E» в переводе уважаемого Дмитрия Диля \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fusers\u002FMetromDouble\u002F\" rel=\"noopener noreferrer nofollow\"\u003E@MetromDouble\u003C\u002Fa\u003E: в ней рассматриваются базовые биохимические предпосылки для возникновения альтернативной жизни, которая в оригинале называется «lyfe». В сегодняшней статье я хочу рассказать о современных взглядах на абиогенез, а именно о «суббиохимических» свойствах коацерватных капель. Интересную обзорную \u003Ca href=\"https:\u002F\u002Fbiomolecula.ru\u002Farticles\u002Fchto-bylo-ranshe-kuritsa-ili-pervichnyi-bulon-koatservaty\" rel=\"noopener noreferrer nofollow\"\u003Eстатью\u003C\u002Fa\u003E на эту тему опубликовал на сайте «Биомолекула» уважаемый Кирилл Вакулин, я же под катом рассмотрю, как дождевые капли могли поспособствовать возникновению жизни, и какую роль эти идеи играют сегодня при проектировании синтетических клеток. \u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F5a4\u002Fe77\u002F955\u002F5a4e779559548faf2f6ed6edddeda2d0.jpg","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F5a4\u002Fe77\u002F955\u002F5a4e779559548faf2f6ed6edddeda2d0.jpg","fit":"cover","positionY":0,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"id":"2534007","alias":"OlegSivchenko","fullname":"Олег Сивченко","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002Fb1d\u002F837\u002Fb76\u002Fb1d837b766660497c38e419b0e7ce482.jpeg","speciality":"Переводчик, PM, автор, просветитель-любитель","scoreStats":{"score":300,"votesCount":612},"rating":88.1,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"donationsMethod":null,"isInBlacklist":null,"careerProfile":null},"statistics":{"commentsCount":5,"favoritesCount":9,"readingCount":1328,"score":7,"votesCount":6,"votesCountPlus":6,"votesCountMinus":0},"hubs":[{"id":"21910","alias":"popular_science","type":"collective","title":"Научно-популярное","titleHtml":"Научно-популярное","isProfiled":false,"relatedData":null},{"id":"22750","alias":"biology","type":"collective","title":"Биология","titleHtml":"Биология","isProfiled":false,"relatedData":null},{"id":"22010","alias":"Chemistry","type":"collective","title":"Химия","titleHtml":"Химия","isProfiled":false,"relatedData":null}],"flows":[{"id":"7","alias":"popsci","title":"Научпоп","titleHtml":"Научпоп"}],"relatedData":{"vote":null,"unreadCommentsCount":0,"bookmarked":false,"canComment":false,"canEdit":false,"canViewVotes":false,"votePlus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"voteMinus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"canModerateComments":false,"trackerSubscribed":false,"emailSubscribed":false},"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EНа страницах этого блога я пару раз пытался говорить с вами о том, в чём заключается разница между биологическими и псевдобиологическими системами, то есть, между одноклеточной «жизнью» и «нежизнью». В частности, большой интерес вызвала статья «\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Farticles\u002F771154\u002F\" rel=\"noopener noreferrer nofollow\"\u003EВы, конечно, шутите, мистер Нейман! Страшная сказка о серой слизи\u003C\u002Fa\u003E» (+41, 11 тысяч просмотров). Также на Хабре есть отличная статья «\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Farticles\u002F543710\u002F\" rel=\"noopener noreferrer nofollow\"\u003EЧто такое Жизнь во Вселенной: четыре базовых принципа вместо трёх характерных функций\u003C\u002Fa\u003E» в переводе уважаемого Дмитрия Диля \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fusers\u002FMetromDouble\u002F\" rel=\"noopener noreferrer nofollow\"\u003E@MetromDouble\u003C\u002Fa\u003E: в ней рассматриваются базовые биохимические предпосылки для возникновения альтернативной жизни, которая в оригинале называется «lyfe». В сегодняшней статье я хочу рассказать о современных взглядах на абиогенез, а именно о «суббиохимических» свойствах коацерватных капель. Интересную обзорную \u003Ca href=\"https:\u002F\u002Fbiomolecula.ru\u002Farticles\u002Fchto-bylo-ranshe-kuritsa-ili-pervichnyi-bulon-koatservaty\" rel=\"noopener noreferrer nofollow\"\u003Eстатью\u003C\u002Fa\u003E на эту тему опубликовал на сайте «Биомолекула» уважаемый Кирилл Вакулин, я же под катом рассмотрю, как дождевые капли могли поспособствовать возникновению жизни, и какую роль эти идеи играют сегодня при проектировании синтетических клеток. \u003C\u002Fp\u003E\u003Cp\u003EТермин «коацерват» в переводе с латыни означает «собранный в кучу». Он был введён в научный оборот Александром Ивановичем Опариным не позже 1924 года. Коацерват — это многослойная вязкая жидкость, где неорганические коллоидные слои чередуются со слоями или вкраплениями биомолекул. В этой статье под «коацерватами» будут пониматься, прежде всего, коацерватные капли. Опарин полагал, что в первобытных водоёмах коацерватные капли стали переходным звеном, обеспечившим переход от абиогенеза к зарождению жизни. Сегодня гипотеза Опарина признана явно недостаточной и устаревшей, однако я предлагаю вам почитать \u003Ca href=\"https:\u002F\u002Felementy.ru\u002Fnovosti_nauki\u002F434227\u002FRetsept_pervichnogo_bulona_k_stoletiyu_pervoy_gipotezy_abiogeneza\" rel=\"noopener noreferrer nofollow\"\u003Eстатью\u003C\u002Fa\u003E о ней, подготовленную уважаемым Михаилом Орловым к столетию этой гипотезы. \u003C\u002Fp\u003E\u003Cp\u003EКоацерваты — это капли внутри жидкости или коллоида, образующиеся из полимерных молекул с противоположными электрическими зарядами. Свойства коацерватов подробно изучены в \u003Ca href=\"https:\u002F\u002Fstudbooks.net\u002F2294759\u002Fmatematika_himiya_fizika\u002Fotlichaetsya_denaturatsiya_koatservatsii\" rel=\"noopener noreferrer nofollow\"\u003Eколлоидной химии\u003C\u002Fa\u003E и науке о межфазных границах (interface science), а также в материаловедении. Но с биохимической точки зрения разделение жидкости на фазы или фракции с образованием коацерватных капель, по-видимому, непосредственно предшествует формированию немембранных органелл, которые в изобилии встречаются в животных клетках. Современная биохимия позволяет создавать в лабораторных условиях (in vitro) коацерваты различного состава, которые имитируют разные аспекты таких органелл: физические и химические свойства, селективность всасывания жидкостей, динамику формирования.\u003C\u002Fp\u003E\u003Cp\u003EКлассическая попытка создать искусственный «первичный бульон» в лабораторных условиях – это \u003Ca href=\"https:\u002F\u002Fru.wikipedia.org\u002Fwiki\u002F%D0%AD%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D1%82_%D0%9C%D0%B8%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_%E2%80%94_%D0%AE%D1%80%D0%B8\" rel=\"noopener noreferrer nofollow\"\u003Eэксперимент Миллера-Юри\u003C\u002Fa\u003E, впервые поставленный Стэнли Миллером и Гарольдом Юри в Университете Чикаго в 1953 году.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F1a7\u002Fcae\u002F947\u002F1a7cae94755fa107126726838e420347.png\" width=\"624\" height=\"581\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F1a7\u002Fcae\u002F947\u002F1a7cae94755fa107126726838e420347.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F1a7\u002Fcae\u002F947\u002F1a7cae94755fa107126726838e420347.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EПропуская электрические разряды через газовую смесь, напоминающую по составу первобытную земную атмосферу, а также растворяя продукты реакций в тёплой воде, Миллер смог получить синильную кислоту (HCN), формальдегид (CH\u003Csub\u003E2\u003C\u002Fsub\u003EO) ацетилен (C\u003Csub\u003E2\u003C\u002Fsub\u003EH\u003Csub\u003E2\u003C\u002Fsub\u003E), а уже из них при дальнейших реакциях — аминокислоту глицин. В дальнейшем этот эксперимент неоднократно повторяли и корректировали — на Хабре об этом \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Farticles\u002F744142\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eписал\u003C\u002Fa\u003E, в частности, уважаемый Арис Ефимович Ваулин @VAE. Тем не менее, общей проблемой этого эксперимента и его более поздних итераций является пока не преодолённый разрыв между биомолекулами и, собственно, жизнью. Биомолекулы, легко образующиеся в растворе, столь же легко и распадаются. В наше время интерес к исследованию коацерватов возрос во многом потому, что такие пузырьки могут изолировать от окружающей среды реагирующие в них молекулы, а также легче сливаются с другими коацерватами, чем выплёскиваются в окружающую среду. Это один из вариантов компартментализации (обособления органелл), которую в живом организме обеспечивает клеточная мембрана. Пока отсутствует общее мнение, какая естественная среда наиболее адекватно заменяет в таком качестве живую клетку, но, учитывая необходимую минерализацию и температуру, это могли быть как органические, так и неорганические среды, богатые полостями. Этот вопрос подробно рассмотрен на Хабре в статье «И в воде, и в камне» уважаемого \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fusers\u002FDmytro_Kikot\u002F\" rel=\"noopener noreferrer nofollow\"\u003E@Dmytro_Kikot\u003C\u002Fa\u003E.   \u003C\u002Fp\u003E\u003Cp\u003EСегодня считается, что самыми ранними формами жизни были \u003Ca href=\"https:\u002F\u002Fpmc.ncbi.nlm.nih.gov\u002Farticles\u002FPMC2890201\u002Fpdf\u002Fcshperspect-ORI-a002170.pdf\" rel=\"noopener noreferrer nofollow\"\u003Eпротоклетки\u003C\u002Fa\u003E, спонтанно сформировавшиеся на древней Земле из сложных органических молекул. Две основные составляющие протколетки — это матрикс, который позволял пузырьку поддерживать форму, и генетический материал (РНК), обеспечивавший функционирование протоклетки.\u003C\u002Fp\u003E\u003Cp\u003EРазвиваясь, протоклетки освоили репликацию, а также в них наладился обмен веществ. Протоклетки должны были формироваться в таких условиях, где им обеспечен стабильный приток энергии и защита от пересыхания – например, в «\u003Ca href=\"https:\u002F\u002Fnews.yale.edu\u002F2021\u002F01\u002F04\u002Fancient-earth-may-have-birthed-islands-life\" rel=\"noopener noreferrer nofollow\"\u003Eмаленьком тёплом пруду\u003C\u002Fa\u003E» Дарвина в местности с активным вулканизмом. При этом критически важный шаг на пути к возникновению клетки — это обрастание пузырька мембраной.\u003C\u002Fp\u003E\u003Cp\u003EСуществует \u003Ca href=\"https:\u002F\u002Fbiomolecula.ru\u002Farticles\u002Fpoiavlenie-i-evoliutsiia-kletochnoi-membrany\" rel=\"noopener noreferrer nofollow\"\u003Eдва подхода\u003C\u002Fa\u003E к выстраиванию эволюции клеточных мембран: восходящий и нисходящий. При нисходящем подходе берётся современная клетка и прослеживается её родословное древо. Так удалось выявить специфические последовательности, ведущие к универсальному общему предку (\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Farticles\u002F901550\u002F\" rel=\"noopener noreferrer nofollow\"\u003ELUCA\u003C\u002Fa\u003E) всех ныне живущих организмов. Тем не менее, можно не сомневаться, что LUCA был довольно сложным организмом, напоминающим бактерию или архея, и от протоклеток до него был пройден долгий путь.\u003C\u002Fp\u003E\u003Cfigure class=\"\"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa19\u002F4d6\u002F75e\u002Fa194d675ef5760ef814439cf28f1382f.png\" width=\"452\" height=\"459\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa19\u002F4d6\u002F75e\u002Fa194d675ef5760ef814439cf28f1382f.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa19\u002F4d6\u002F75e\u002Fa194d675ef5760ef814439cf28f1382f.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EВооружившись нисходящим подходом, мы не находим источника жизни, однако, весьма точно представляем, каков был минимальный биохимический набор, необходимый для её возникновения. Так, теория о вулканическом происхождении «маленького тёплого пруда» обусловлена тем, что для полноценного набора белков в «первичном бульоне» \u003Ca href=\"https:\u002F\u002Fpmc.ncbi.nlm.nih.gov\u002Farticles\u002FPMC10192010\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eне обойтись без содержания серы\u003C\u002Fa\u003E. Также нисходящий подход помогает понять, какова связь между жирами и \u003Ca href=\"https:\u002F\u002Fbiomolecula.ru\u002Farticles\u002Flipidnyi-fundament-zhizni\" rel=\"noopener noreferrer nofollow\"\u003Eлипидами\u003C\u002Fa\u003E, а ещё как могли естественным образом сформироваться нуклеотиды.\u003C\u002Fp\u003E\u003Cp\u003EВосходящий подход связан с относительно новыми гипотезами «\u003Ca href=\"https:\u002F\u002Fbiomolecula.ru\u002Farticles\u002Frnk-u-istokov-zhizni\" rel=\"noopener noreferrer nofollow\"\u003Eмира РНК\u003C\u002Fa\u003E» и «\u003Ca href=\"https:\u002F\u002Felementy.ru\u002Fnovosti_nauki\u002F433970\u002FMolekuly_RNK_umeyut_sintezirovat_peptidy_pri_pomoshchi_reliktovykh_nestandartnykh_nukleotidov\" rel=\"noopener noreferrer nofollow\"\u003EРНК-пептидного мира\u003C\u002Fa\u003E». Когда камера для химических реакций настолько невелика, что сравнима с размерами самих биомолекул, она становится похожа на живую клетку. В то же время, молекула РНК не только несёт генетическую информацию, но и может \u003Ca href=\"https:\u002F\u002Fsci-hub.ru\u002Fhttps:\u002Fdoi.org\u002F10.1038\u002Fnchem.1466\" rel=\"noopener noreferrer nofollow\"\u003Eвыступать катализатором\u003C\u002Fa\u003E — то есть, отчасти берёт на себя функции ферментов. В чисто теоретическом изложении подобную концепцию разрабатывал венгерский биолог Тибор Ганти, сформулировавший в начале 1950-х гипотезу о «\u003Ca href=\"https:\u002F\u002Fen.wikipedia.org\u002Fwiki\u002FChemoton\" rel=\"noopener noreferrer nofollow\"\u003Eхемотонах\u003C\u002Fa\u003E» и описавший их в книге «Az élet princípiuma» («Принципы жизни»). В частности, Ганти полагал, что такой «химический автомат» должен стремиться не только к размножению и поддержанию внутренней стабильности, но и к обособлению от окружающей среды — то есть, обрастать мембраной. Логично предположить, что до начала биологической эволюции уже существовала биохимическая эволюция, развивавшаяся, как минимум, по трём трекам: нуклеотидному, пептидному и липидному. \u003C\u002Fp\u003E\u003Cp\u003EСуть гипотезы РНК-пептидного мира заключается в древней коэволюции РНК и пептидов. Короткие нуклеотидные цепочки и аминокислоты могли образовываться и полимеризоваться без участия ферментов только в очень небольших протоклетках, которые при этом могли бы сливаться друг с другом, не нарушая уже идущих биохимических реакций. Коацерватные капли очень хорошо подходят на роль таких первичных биологических пузырьков, поскольку смешиваются друг с другом и при этом не смешиваются с водой. Именно поэтому гипотеза Опарина, слишком примитивная для объяснения жизни, может помочь с описанием пребиотической эволюции. \u003C\u002Fp\u003E\u003Ch2\u003EКоацерваты и везикулы\u003C\u002Fh2\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F15b\u002Fff5\u002F2d8\u002F15bff52d8992e1061d4bab518f074809.png\" width=\"624\" height=\"333\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F15b\u002Fff5\u002F2d8\u002F15bff52d8992e1061d4bab518f074809.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F15b\u002Fff5\u002F2d8\u002F15bff52d8992e1061d4bab518f074809.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EЗдесь представлены две разные модели протоклеток — везикулы и коацерваты.\u003C\u002Fp\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fpubs.acs.org\u002Fdoi\u002F10.1021\u002Fja900919c\" rel=\"noopener noreferrer nofollow\"\u003EВезикулы\u003C\u002Fa\u003E — это жиросодержащие пузырьки, напоминающие мыльные. Они состоят из липидов – жироподобных соединений, образующих тонкие слои-листы. Везикула формируется, когда такой лист самопроизвольно свёртывается в шарик, а в шарике оказываются заключены биомолекулы. Структурно везикула напоминает животную клетку, в которой нет ядра, а также нет мембраны, подобной клеточной. Клеточная мембрана состоит из специальных белков, обеспечивающих выборочное поступление молекул в клетку и из клетки в окружающую среду, а также отвечающих за \u003Ca href=\"https:\u002F\u002Felementy.ru\u002Fnovosti_nauki\u002F432189\u002FProstaya_sistema_mezhkletochnoy_kommunikatsii_obespechivaet_raznoobraznoe_kollektivnoe_povedenie\" rel=\"noopener noreferrer nofollow\"\u003Eмежклеточную коммуникацию\u003C\u002Fa\u003E. У везикул аналогичные коммуникационные возможности не развиты, поэтому они не образуют ни тканей, ни «культур».\u003C\u002Fp\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fdoi.org\u002F10.1039\u002FC2SM25604E\" rel=\"noopener noreferrer nofollow\"\u003EКоацерваты\u003C\u002Fa\u003E, в свою очередь, содержат одновременно пептиды и нуклеиновые кислоты. Эти вещества скапливаются в коацерватных каплях благодаря электрохимическим взаимодействием — например, благодаря электрохимическому контакту между молекулами с противоположным зарядом. Коацерватные капли представляются более вероятными кандидатами на роль протоклеток, так как в них присутствуют катализаторы биохимических реакций. Но собственная мембрана у них не формируется, поэтому коацерватам (в отличие от везикул) требуется дополнительный стабилизатор.  \u003C\u002Fp\u003E\u003Cp\u003EГлавный камень преткновения между химией коацерватов и биохимией заключается в том, что все коацерватные капли очень похожи друг на друга, так как слишком активно сливаются с другими коацерватными каплями и обмениваются молекулами. \u003C\u002Fp\u003E\u003Cp\u003EЕсли в какой-то из капель возникает полезная мутация РНК, капля просто не успевает её закрепить, поскольку в течение считанных минут смешается с какой-то другой каплей. В такой среде отсутствует конкуренция, а значит – и эволюция (отбор).  \u003C\u002Fp\u003E\u003Ch2\u003EДождь как стабилизатор протоклеток\u003C\u002Fh2\u003E\u003Cp\u003EВ 2022 году в университете Чикаго группа учёных из Иллинойса и Миннесоты под руководством Амина Агравала провела ключевое \u003Ca href=\"https:\u002F\u002Fwww.pnas.org\u002Fdoi\u002Ffull\u002F10.1073\u002Fpnas.2203483119\" rel=\"noopener noreferrer nofollow\"\u003Eисследование\u003C\u002Fa\u003E в духе Миллера-Юри. Согласно их гипотезе, коацерватные капли можно стабилизировать и не допускать их слишком быстрого перемешивания, если подмешивать их в \u003Ca href=\"https:\u002F\u002Fdoi.org\u002F10.1073\u002Fpnas.2203483119\" rel=\"noopener noreferrer nofollow\"\u003E деионизированную воду\u003C\u002Fa\u003E – такую, которая не содержит растворённых металлических ионов. Капли, в свою очередь, ионы содержат. Расположенные на периферии каждой из капель полимеры с противоположными зарядами \u003Ca href=\"https:\u002F\u002Fdoi.org\u002F10.1038\u002Fs42004-024-01304-1\" rel=\"noopener noreferrer nofollow\"\u003Eсближаются друг с другом\u003C\u002Fa\u003E и образуют ячеистый слой.\u003C\u002Fp\u003E\u003Cp\u003EДалее к работе Агравала подключились Мэтью Тиррелл и Джек Шостак — лауреат \u003Ca href=\"https:\u002F\u002Fkodomo.fbb.msu.ru\u002F~sunnymouse\u002Fterm2\u002Fnobel_2009.html\" rel=\"noopener noreferrer nofollow\"\u003EНобелевской премии по физиологии и медицине за 2009 год\u003C\u002Fa\u003E, получивший её за исследование теломер. В частности, Шостак прославился тем, что совместно с Эндрю Мюрреем собрал \u003Ca href=\"https:\u002F\u002Fsci-hub.ru\u002F10.1038\u002F305189a0\" rel=\"noopener noreferrer nofollow\"\u003Eискусственную дрожжевую хромосому\u003C\u002Fa\u003E. \u003C\u002Fp\u003E\u003Cp\u003EВ рамках описываемого опыта Агравал с коллегами вырастили в пробирках с деионизированной водой две разные популяции протоклеток, причём, экземпляры лишь из одной популяции содержали РНК. После смешивания протоклеток из обеих групп РНК сохранялась в пределах исходной популяции на протяжении нескольких дней. Стенки протоклеток были ячеистыми, но всё-таки удерживали нуклеиновую кислоту.\u003C\u002Fp\u003E\u003Cp\u003EВ качестве раствора использовалась дистиллированная лабораторная вода. Однако, поскольку уровень pH такой воды близок к нейтральному, а также в ней не содержится никаких примесей, она едва ли похожа на воду, существовавшую на пребиотической Земле. Согласно \u003Ca href=\"https:\u002F\u002Fgalspace.spb.ru\u002Findex23.html\" rel=\"noopener noreferrer nofollow\"\u003Eимеющимся моделям древней атмосферы\u003C\u002Fa\u003E, в ней доминировал азот, смешанный с различными кислотными примесями, в частности, соединениями серы. Кроме того, в результате вулканической активности атмосфера насыщалась углекислым газом. Агравал более двух лет пытался смоделировать раствор с нужной кислотностью, пока не вступил в коллаборацию с химиками из университета Хьюстона – и вместе они решили опробовать гениально простую идею. Что может быть больше похоже на доисторический дождь, чем дождь из современного мегаполиса, пропитанный смогом. \u003C\u002Fp\u003E\u003Cp\u003EСоответствующее исследование было \u003Ca href=\"https:\u002F\u002Fpme.uchicago.edu\u002Fnews\u002Flife-drop-rain-new-research-suggests-rainwater-helped-form-first-protocell-walls\" rel=\"noopener noreferrer nofollow\"\u003Eопубликовано\u003C\u002Fa\u003E в августе 2024 года в журнале Science Advances. Оказалось, что дождевая вода из Хьюстона вполне сносно обеспечивает целостность коацерватных капель (не даёт им слишком быстро сливаться друг с другом). Чтобы в этом убедиться, три популяции коацерватов с разными наборами РНК были помечены флуоресцентными красками, и под электронным микроскопом выглядели так:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fdbe\u002Fc11\u002F270\u002Fdbec112702e4f4e6484ee8f2e03e700d.png\" width=\"624\" height=\"624\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fdbe\u002Fc11\u002F270\u002Fdbec112702e4f4e6484ee8f2e03e700d.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fdbe\u002Fc11\u002F270\u002Fdbec112702e4f4e6484ee8f2e03e700d.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Ch2\u003EИскусственные модели протоклеточных сетей и тканей\u003C\u002Fh2\u003E\u003Cp\u003EЕщё более амбициозные исследования, связанные с созданием искусственных протоклеток, ведутся в Китае. В конце 2023 года была \u003Ca href=\"https:\u002F\u002Fphys.org\u002Fnews\u002F2023-11-self-sorting-coacervates-high-order-protocell-networks.html\" rel=\"noopener noreferrer nofollow\"\u003Eопубликована\u003C\u002Fa\u003E работа, выполненная в основном силами Института химии китайской Академии Наук (профессор Цяо Янь), Пекинского университета химических технологий (Юань Линь) совместно со Стивеном Манном из Бристольского университета.  \u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F247\u002F112\u002F920\u002F2471129204adee1acf8ff37cba74ad1b.png\" width=\"624\" height=\"349\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F247\u002F112\u002F920\u002F2471129204adee1acf8ff37cba74ad1b.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F247\u002F112\u002F920\u002F2471129204adee1acf8ff37cba74ad1b.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EАвторы этих исследований целенаправленно настраивают протоклетки, добиваясь в них имитации различных клеточных функций: химической сигнализации, морфологической дифференциации, экспрессии белков, запасания энергии. Такие культуры собирают из разных сортов коацерватов, которые не смешиваются друг с другом, но выстраиваются в последовательности и слои, форму и структуру которых можно заранее рассчитать. В рамках данного исследования коацерваты называются «микрокаплями».\u003C\u002Fp\u003E\u003Cp\u003EКак видно на приведённой иллюстрации, такая протоклеточная структура спонтанно сортируется на упорядоченные слои жидкокристаллических коацерватов и неупорядоченных микрокапелек. Сцепление между коацерватами возникает благодаря поверхностной адгезии. Жидкокристаллические коацерваты селективно впускают в себя белки, полисахариды, липиды и АТФ. В то же время, в неструктурированных коацерватах концентрируются нуклеиновые кислоты. Соответственно, учёным удалось смоделировать две взаимопроникающие «ткани», одна из которых отвечает за биохимические реакции, а другая – за хранение генетического материала. Среда в коацерватах с РНК «спокойнее», чем в коацерватах с белками и прочими биомолекулами, поэтому РНК сохраняется лучше.\u003C\u002Fp\u003E\u003Cp\u003EВ таких культурах удалось смоделировать и значительно более сложные явления, в частности, изомеризацию под действием света, образование химических комплексов \u003Ca href=\"https:\u002F\u002Felementy.ru\u002Fkartinka_dnya\u002F631\u002FNano_Saturn\" rel=\"noopener noreferrer nofollow\"\u003Eпо модели «гость-хозяин»\u003C\u002Fa\u003E, а также спонтанную сборку протоклеток в плоские листы, напоминающие зачаточные ткани. Таким образом, в течение 2020-х эти опыты показали возможные модели формирования как одноклеточной, так и многоклеточной биологии.\u003C\u002Fp\u003E\u003Ch2\u003EЗаключение\u003C\u002Fh2\u003E\u003Cp\u003EЯ заинтересовался этими исследованиями в основном в поисках ответа на вопрос, насколько правдоподобна гипотеза о «мире РНК» в свете современных представлений. Возможно, я когда-нибудь напишу об этой гипотезе отдельную статью. Но, если формирование подобных коацерватных взвесей действительно наблюдалось в древних пресных лужицах с pH, близким к нейтральному, то описанные здесь опыты и модели вполне адекватно описывают возможный абиогенез. Возможно, биологической эволюции в «тёплом пруду Дарвина» предшествовала длительная добиологическая эволюция, которая могла качнуться как в сторону мира нуклеиновых кислот, где живём мы, так и в сторону мира, в котором доминируют белковые молекулы и органические кристаллы. Был бы такой мир безжизненным? Сложный вопрос, однако, он мог навсегда застрять на стадии смешивающихся капелек, оставаясь при этом вполне жизнепригодным. \u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"абиогенез"},{"titleHtml":"рнк"},{"titleHtml":"биохимия"},{"titleHtml":"синтетическая биология"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F5a4\u002Fe77\u002F955\u002F5a4e779559548faf2f6ed6edddeda2d0.jpg","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F5a4\u002Fe77\u002F955\u002F5a4e779559548faf2f6ed6edddeda2d0.jpg","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F907468\\\u002F\"},\"headline\":\"Коацерваты, дождь и химическая эволюция\",\"datePublished\":\"2025-05-06T23:58:30+03:00\",\"dateModified\":\"2025-05-07T09:14:56+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Олег Сивченко\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"На страницах этого блога я пару раз пытался говорить с вами о том, в чём заключается разница между биологическими и псевдобиологическими системами, то есть, межд...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F907468\\\u002F#post-content-body\",\"about\":[\"h_popular_science\",\"h_biology\",\"h_Chemistry\",\"f_popsci\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F907468\\\u002F8d73a697a6a7fb49c329200ced561544\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F1a7\\\u002Fcae\\\u002F947\\\u002F1a7cae94755fa107126726838e420347.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fa19\\\u002F4d6\\\u002F75e\\\u002Fa194d675ef5760ef814439cf28f1382f.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F15b\\\u002Fff5\\\u002F2d8\\\u002F15bff52d8992e1061d4bab518f074809.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fdbe\\\u002Fc11\\\u002F270\\\u002Fdbec112702e4f4e6484ee8f2e03e700d.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F247\\\u002F112\\\u002F920\\\u002F2471129204adee1acf8ff37cba74ad1b.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F5a4\\\u002Fe77\\\u002F955\\\u002F5a4e779559548faf2f6ed6edddeda2d0.jpg\"]}","metaDescription":"На страницах этого блога я пару раз пытался говорить с вами о том, в чём заключается разница между биологическими и псевдобиологическими системами, то есть, между одноклеточной «жизнью» и «нежизнью»....","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":{"status":true,"reason":null},"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"hasPinnedComments":false,"format":null,"banner":null,"multiwidget":null,"multiwidgetUuid":null,"readingTime":9,"complexity":null,"isEditorial":true}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"postReasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"viewedPosts":[],"myFeedFilter":{"complexity":"all","score":"all","types":["articles","posts","news"]},"myFeedIsApplyFilters":false,"myFeedIsForce":false,"karma":{"userReasonsList":null}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":"popular_science,biology,Chemistry"},"comments":{"articleComments":{},"articlePinnedComments":{},"searchCommentsResults":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":"","idempotenceKey":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"multiwidgets":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"multiwidgetLoading":false,"vacancies":{},"companiesGalleries":{},"companiesBanners":{},"companiesLandingVacancies":{},"companiesTechnologies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null,"jivoStatus":0,"adminNotifications":null,"availableInvitesCount":{}},"companyAdd":{"currentStep":"","stepsData":{},"uncompletedSteps":[],"isStepLoading":true,"isStepCommitting":false,"isInitialized":false,"agreementContent":""},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"pagesCount":0},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":true},"fixedBanner":{"isArticleStickyPanelVisible":false,"isArticleStickyPanelAtTheBottom":false,"isFixedBannerVisible":false,"isStickyPanelIconsHidden":false},"flows":{"updates":{}},"global":{"isPwa":false,"device":"desktop","isHabrCom":true,"requestId":"4128270a312dc5eedf7ff102fa49a966"},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"welcomePage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"query":{},"pathname":"\u002Fru\u002Farticles\u002F907468\u002F","path":"\u002Fru\u002Farticles\u002F907468\u002F","href":"\u002Fru\u002Farticles\u002F907468\u002F"}},"me":{"user":null,"uuid":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null,"userUpdates":{"feeds":{"newPostsCount":null,"newThreadsCount":null,"newNewsCount":null,"newCount":null},"conversationUnreadCount":0},"features":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"onboarding":{"currentStep":null,"stepsData":{},"stepsErrors":{},"completedSteps":[],"isStepCommitting":false,"isCommitDisabled":true},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{"questions":"project-block-article"}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null,"sticker":null},"publicationStatistics":{"statsInfo":{},"statsFunnels":{},"statsGraph":{},"defaultSuggest":{},"suggest":{},"timeTracker":{},"isTrackingActivity":false,"isUserActive":true,"otherPublicationStats":{}},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":true,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"stories":{"stories":null},"technotext":{"years":[],"technotextDocForNominees":null,"technotextDocForWinners":null,"technotextInfo":{},"technotextInfoLoading":false,"technotextWinners":{},"technotextWinnersLoading":false},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"userVotes":{"karmaVotesList":[],"karmaVotesPagesCount":null,"karmaVotesListLoading":false,"commentsVotesList":[],"commentsVotesPagesCount":null,"commentsVotesListLoading":false,"postsVotesList":[],"postsVotesPagesCount":null,"postsVotesListLoading":false,"userVotesList":[],"userVotesPagesCount":null,"userVotesListLoading":false},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"notificationsLoading":false,"notificationsList":[],"notificationsPageCount":0,"pendingMarkNotificationsRead":[],"publicationsLoading":true,"publicationsList":[],"publicationsPageCount":0,"pendingDeletePublications":false,"pendingMarkPublicationsRead":false},"events":{"eventRefs":{},"eventIds":[],"pagesCount":0,"categories":[],"cities":[],"actualEvents":null,"currentEvent":null,"eventsFilter":{"city":"all","timeStarted":null,"timeEnded":null}},"wysiwyg":{"WYSIWYGRulesRefs":null},"refs":{"specializationRefs":[]},"hint":{"hints":{}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script>
+   <script src="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" defer></script>
+   <script src="https://assets.habr.com/habr-web/js/app.58b8c457.js" defer></script>
+  </div>
+  <div id="overlays">
+   <!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor-->
+  </div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S28W1WC23F"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  </script>
+  <script type="text/javascript">
+      window.addEventListener('load', function () {
+        setTimeout(() => {
+          const img = new Image();
+          img.src = 'https://vk.com/rtrg?p=VK-RTRG-421343-57vKE';
+        }, 0);
+      });
+    </script>
+ </body>
+</html>

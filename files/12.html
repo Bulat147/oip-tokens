@@ -1,0 +1,1266 @@
+<!doctype html>
+<html lang="ru">
+ <head>
+  <title>История одной разработки: передвижные барабаны в&nbsp;стиле классики Sokoban в&nbsp;инди платформере&nbsp;X-Drums&nbsp;2.0 / Хабр</title>
+  <meta property="fb:app_id" content="444736788986613">
+  <meta property="fb:pages" content="472597926099084">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@habr_com">
+  <meta property="og:site_name" content="Хабр">
+  <link href="https://habr.com/ru/rss/post/907306/?fl=ru" type="application/rss+xml" title rel="alternate" name="rss">
+  <link href="https://habr.com/ru/articles/907306/" rel="canonical" data-hid="e3fa780">
+  <link rel="image_src" href="https://habrastorage.org/getpro/habr/upload_files/815/1fe/533/8151fe533d33c47154f682d7112f7693.jpg" data-hid="2a79c45">
+  <link rel="amphtml" href="https://habr.com/ru/amp/publications/907306/">
+  <meta property="og:title" content="История одной разработки: передвижные барабаны в&nbsp;стиле классики Sokoban в&nbsp;инди платформере&nbsp;X-Drums&nbsp;2.0">
+  <meta name="twitter:title" content="История одной разработки: передвижные барабаны в&nbsp;стиле классики Sokoban в&nbsp;инди платформере&nbsp;X-Drums&nbsp;2.0">
+  <meta name="aiturec:title" content="История одной разработки: передвижные барабаны в&nbsp;стиле классики Sokoban в&nbsp;инди платформере&nbsp;X-Drums&nbsp;2.0">
+  <meta name="description" content="В Steam завершился «Фестиваль передвижных ящиков», посвященный играм, где разными способами можно передвигать ящики. На английском фестиваль называется «Sokoban Fest» в честь первой игры, где...">
+  <meta itemprop="description" content="В Steam завершился «Фестиваль передвижных ящиков», посвященный играм, где разными способами можно передвигать ящики. На английском фестиваль называется «Sokoban Fest» в честь первой игры, где...">
+  <meta property="og:description" content="В Steam завершился «Фестиваль передвижных ящиков», посвященный играм, где разными способами можно передвигать ящики. На английском фестиваль называется «Sokoban Fest» в честь первой игры, где...">
+  <meta name="twitter:description" content="В Steam завершился «Фестиваль передвижных ящиков», посвященный играм, где разными способами можно передвигать ящики. На английском фестиваль называется «Sokoban Fest» в честь первой игры, где...">
+  <meta property="aiturec:description" content="В Steam завершился «Фестиваль передвижных ящиков», посвященный играм, где разными способами можно передвигать ящики. На английском фестиваль называется «Sokoban Fest» в честь первой игры, где...">
+  <meta itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/815/1fe/533/8151fe533d33c47154f682d7112f7693.jpg">
+  <meta property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/815/1fe/533/8151fe533d33c47154f682d7112f7693.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/815/1fe/533/8151fe533d33c47154f682d7112f7693.jpg">
+  <meta name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/815/1fe/533/8151fe533d33c47154f682d7112f7693.jpg">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/815/1fe/533/8151fe533d33c47154f682d7112f7693.jpg?format=vk">
+  <meta property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/815/1fe/533/8151fe533d33c47154f682d7112f7693.jpg?format=vk">
+  <meta property="aiturec:item_id" content="907306">
+  <meta property="aiturec:datetime" content="2025-05-06T19:52:30.000Z">
+  <meta content="https://habr.com/ru/articles/907306/" property="og:url">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="keywords" content="gamedev, gamedevelopment, gamedevelop, unrealengine, unreal engine 5, storytelling, gamedesign">
+  <script type="application/ld+json" data-hid="1e0f0a2">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/articles\/907306\/"},"headline":"История одной разработки: передвижные барабаны в стиле классики Sokoban в инди платформере X-Drums 2.0","datePublished":"2025-05-06T22:52:30+03:00","dateModified":"2025-05-06T23:55:37+03:00","author":{"@type":"Person","name":"Rena"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"В Steam завершился &laquo;Фестиваль передвижных ящиков&raquo;, посвященный играм, где разными способами можно передвигать ящики. На английском фестиваль называется &laquo;Sokoban...","url":"https:\/\/habr.com\/ru\/articles\/907306\/#post-content-body","about":["h_game_design","h_gamedev","h_unreal_engine","h_cpp","h_games","f_develop","f_design","f_popsci"],"image":["https:\/\/habr.com\/share\/publication\/907306\/4740795dd288f0e7c6775387df91a7da\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/cce\/4d6\/b86\/cce4d6b8636d007b88ef4bc20702a803.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/e86\/8d4\/e8d\/e868d4e8df2ebb6f6c7bae562128a184.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/fc2\/8d8\/beb\/fc28d8beb7171218ca6fe24efd23ddb5.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/ac3\/86b\/120\/ac386b12008c8da5e58440f91e7937b1.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/599\/082\/023\/599082023c408b1737a56d5c3151cc56.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/bc8\/d46\/d8f\/bc8d46d8fe40faa0b55c02b2a5653dac.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/c70\/4e8\/70c\/c704e870cd584ce07831fa7bdd027ac6.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/f1b\/003\/8da\/f1b0038da726d724e00697a640f58110.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/a21\/0ca\/077\/a210ca0778e0d93acce296d9e44b5683.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/72f\/b84\/a41\/72fb84a41aec41c92b6a39f24309af91.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/623\/612\/489\/623612489f7a9291c4c4797bd77b3bd2.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/f0c\/f02\/a53\/f0cf02a53b5ebe03c456e5267bd82352.gif","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/e1a\/0ca\/431\/e1a0ca43176712becb940261efba85f4.gif","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/0bc\/847\/ed6\/0bc847ed6731bf5f247f43871ade1f6f.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/60c\/d3d\/231\/60cd3d231add6b0cc31279effa47ba48.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/07c\/393\/78d\/07c39378dea64a1ec4b86f97b137f344.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/1b2\/50b\/863\/1b250b863a4d1424892e14f63621985e.gif","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/731\/d64\/c7f\/731d64c7fc38f0885c71a5335c65362c.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/815\/1fe\/533\/8151fe533d33c47154f682d7112f7693.jpg"]}</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1,user-scalable=0">
+  <meta name="referrer" content="unsafe-url">
+  <style>
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmojLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvk4jLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5VvmYjLazX3dGTP.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnZKveRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSxf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+
+      /* cyrillic */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eQhf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eSBf6Xl7Gl3LX.woff2) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+
+      /* latin */
+      @font-face {
+        font-family: 'Fira Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/firasans/v17/va9B4kDNxMZdWfMOD5VnLK3eRhf6Xl7Glw.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" as="style" media="(prefers-color-scheme: light)">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" as="style" media="(prefers-color-scheme: dark)">
+  <link id="light-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/light-v1.css" media="(prefers-color-scheme: light)">
+  <link id="dark-colors" rel="stylesheet" href="https://assets.habr.com/habr-web/css/theme/dark-v1.css" media="(prefers-color-scheme: dark)">
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.635b6c39236ebd33fa716c71ab0131a0.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script>
+  <style>
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+    </style>
+  <meta name="habr-version" content="2.241.0">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44">
+  <meta name="msapplication-TileColor" content="#629FBC">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png">
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png">
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png">
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg">
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest">
+  <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
+  <script>window.yaContextCb = window.yaContextCb || []</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.8599692f.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.58b8c457.js" as="script">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.04465f7c.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.8599692f.css">
+ </head>
+ <body>
+  <div id="mount">
+   <div id="app">
+    <div class="tm-layout__wrapper">
+     <!--[--><!---->
+     <div></div><!---->
+     <header class="tm-header" data-test-id="header">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-header__container">
+        <!----><span class="tm-header__logo-wrap"><a class="tm-header__logo tm-header__logo_hl-ru tm-header__logo" href="/ru/">
+          <svg class="tm-svg-img tm-header__icon" height="16" width="16">
+           <title>
+            Хабр
+           </title><use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+          </svg></a><span style="display:none;" class="tm-header__beta-sign">β</span></span><!--[-->
+        <div class="tm-dropdown tm-header__projects">
+         <div class="tm-dropdown__head">
+          <!--[-->
+          <button class="tm-header__dropdown-toggle">
+           <svg class="tm-svg-img tm-header__icon tm-header__icon_dropdown" height="16" width="16">
+            <title>
+             Открыть список
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#arrow-down"></use>
+           </svg></button><!--]-->
+         </div><!---->
+        </div><a href="/ru/sandbox/start/" class="tm-header__become-author-btn">Как стать автором</a>
+        <div class="tm-feature tm-feature tm-feature_variant-inline tm-header__feature">
+         <!---->
+        </div><!----><!--]--><!---->
+       </div><!--]-->
+      </div>
+     </header>
+     <div class="tm-layout">
+      <div class="tm-page-progress-bar"></div>
+      <div class="tm-base-layout__header_is-sticky tm-base-layout__header" data-menu-sticky="true">
+       <div class="tm-page-width">
+        <!--[-->
+        <div class="tm-base-layout__header-wrapper">
+         <div class="tm-main-menu">
+          <div class="tm-main-menu__section">
+           <nav class="tm-main-menu__section-content">
+            <!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/feed/">Моя лента</a><!--]--><!--[--><a class="tm-main-menu__item" href="/ru/articles/">Все потоки</a><!--]--><!--[--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/develop/">Разработка</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/admin/">Администрирование</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/design/">Дизайн</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/management/">Менеджмент</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/marketing/">Маркетинг</a><!--]--><!--[--><a class="tm-main-menu__item" data-test-id="main-menu-item" href="/ru/flows/popsci/">Научпоп</a><!--]--><!--]-->
+           </nav>
+          </div>
+         </div>
+         <div class="tm-header-user-menu tm-base-layout__user-menu">
+          <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search" data-test-id="search-button">
+           <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark" height="24" width="24">
+            <title>
+             Поиск
+            </title><use xlink:href="/img/megazord-v28.7909a852..svg#search"></use>
+           </svg></a><!----><!---->
+          <div class="tm-header-user-menu__item tm-header-user-menu__write">
+           <div>
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_write tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Написать публикацию
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#write"></use>
+            </svg>
+           </div><!---->
+          </div><!--[-->
+          <div class="tm-header-user-menu__item">
+           <button class="tm-header-user-menu__toggle" data-test-id="user-menu-settings">
+            <svg class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_dark" height="24" width="24">
+             <title>
+              Настройки
+             </title><use xlink:href="/img/megazord-v28.7909a852..svg#page-settings"></use>
+            </svg></button>
+          </div><a href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/articles/907306/&amp;hl=ru" rel="nofollow" class="tm-header-user-menu__item"><!--[-->
+           <button class="btn btn_solid btn_small tm-header-user-menu__login" type="button"><!--[-->Войти<!--]--></button><!--]--></a><!--]--><!----><!--teleport start--><!--teleport end--><!---->
+         </div>
+        </div><!--]-->
+       </div>
+      </div><!---->
+      <div class="tm-page-width">
+       <!--[--><!--]-->
+      </div>
+      <main class="tm-layout__container">
+       <div class="tm-page" hl="ru" data-async-called="true" style="--5ab2e5a8:16px;--44c4f6f6:100%;--45ba7a3b:0;">
+        <div class="tm-page-width">
+         <!--[--><!---->
+         <div class="tm-page__wrapper">
+          <div class="tm-page__main_has-sidebar tm-page__main">
+           <div class="pull-down">
+            <!---->
+            <div class="pull-down__header" style="height:0px;">
+             <div class="pull-down__content" style="bottom:10px;">
+              <svg class="tm-svg-img pull-down__icon pull-down__arrow" height="24" width="24">
+               <title>
+                Обновить
+               </title><use xlink:href="/img/megazord-v28.7909a852..svg#pull-arrow"></use>
+              </svg>
+             </div>
+            </div><!--[--><!--[--><!---->
+            <div class="tm-article-presenter">
+             <!--[--><!--]-->
+             <div class="tm-article-presenter__body" data-test-id="article-body">
+              <div class="tm-misprint-area">
+               <div class="tm-misprint-area__wrapper">
+                <!--[-->
+                <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                 <!--[-->
+                 <div class="tm-article-presenter__header">
+                  <!--[--><!--]-->
+                  <div class="tm-article-snippet tm-article-snippet tm-article-presenter__snippet">
+                   <!--[--><!--]-->
+                   <div class="tm-article-snippet__meta-container">
+                    <div class="tm-article-snippet__meta">
+                     <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/xdrumsteam/" class="tm-user-info__userpic" data-test-id="user-info-pic" title="xdrumsteam">
+                       <div class="tm-entity-image">
+                        <!--[--><img alt="" class="tm-entity-image__pic" height="24" src="https://assets.habr.com/habr-web/img/avatars/099.png" width="24"><!--]-->
+                       </div></a><span class="tm-user-info__user tm-user-info__user_appearance-default" data-test-id="user-info-description"><a href="/ru/users/xdrumsteam/" class="tm-user-info__username">xdrumsteam <!----></a><!--[--><span class="tm-article-datetime-published"><time datetime="2025-05-06T19:52:30.000Z" title="2025-05-06, 22:52">10 часов назад</time></span><!--]--></span></span>
+                    </div><!---->
+                   </div>
+                   <h1 class="tm-title tm-title_h1" lang="ru" data-test-id="articleTitle"><span>История одной разработки: передвижные барабаны в&nbsp;стиле классики Sokoban в&nbsp;инди платформере&nbsp;X-Drums&nbsp;2.0</span></h1>
+                   <div class="tm-article-snippet__stats" data-test-id="articleStats">
+                    <div class="tm-article-complexity tm-article-complexity_complexity-medium">
+                     <span class="tm-svg-icon__wrapper tm-article-complexity__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Уровень сложности
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#complexity-medium"></use>
+                      </svg></span><span class="tm-article-complexity__label">Средний</span>
+                    </div>
+                    <div class="tm-article-reading-time">
+                     <span class="tm-svg-icon__wrapper tm-article-reading-time__icon">
+                      <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                       <title>
+                        Время на прочтение
+                       </title><use xlink:href="/img/megazord-v28.7909a852..svg#clock"></use>
+                      </svg></span><span class="tm-article-reading-time__label">11 мин</span>
+                    </div><span class="tm-icon-counter tm-data-icons__item">
+                     <svg class="tm-svg-img tm-icon-counter__icon" height="24" width="24">
+                      <title>
+                       Количество просмотров
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-views"></use>
+                     </svg><span class="tm-icon-counter__value" title="572">572</span></span>
+                   </div>
+                   <div class="tm-publication-hubs__container" data-test-id="articleHubsList">
+                    <div class="tm-publication-hubs">
+                     <!--[--><span class="tm-publication-hub__link-container"><a href="/ru/hubs/game_design/" class="tm-publication-hub__link"><!--[--><span>Дизайн игр</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/gamedev/" class="tm-publication-hub__link"><!--[--><span>Разработка игр</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/unreal_engine/" class="tm-publication-hub__link"><!--[--><span>Unreal Engine</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/cpp/" class="tm-publication-hub__link"><!--[--><span>C++</span><span class="tm-article-snippet__profiled-hub" title="Профильный хаб">*</span><!--]--></a></span><span class="tm-publication-hub__link-container"><a href="/ru/hubs/games/" class="tm-publication-hub__link"><!--[--><span>Игры и игровые консоли</span><!----><!--]--></a></span><!--]-->
+                    </div>
+                   </div>
+                   <div class="tm-article-labels" data-test-id="articleLabels">
+                    <div class="tm-article-labels__container">
+                     <div class="tm-publication-label tm-publication-label_variant-case">
+                      <span>Кейс</span>
+                     </div><!--[--><!--]-->
+                    </div>
+                   </div><!----><!---->
+                  </div>
+                 </div><!--[--><!---->
+                 <div class="tm-article-body" data-gallery-root lang="ru">
+                  <div>
+                   <!--[--><!--]-->
+                  </div>
+                  <div id="post-content-body">
+                   <div>
+                    <div class="article-formatted-body article-formatted-body article-formatted-body_version-2">
+                     <div xmlns="http://www.w3.org/1999/xhtml">
+                      <p>В Steam завершился «Фестиваль передвижных ящиков», посвященный играм, где разными способами можно передвигать ящики. На английском фестиваль называется «Sokoban Fest» в честь первой игры, где появилась эта механика.</p>
+                      <p>Игра-головоломка «Sokoban» (яп. 倉庫番, рус. кладовщик) вышла в Японии в 1982 году и вскоре стала абсолютным хитом. Разработал ее годом ранее Хироюки Имабаяси (яп. 今林宏行). Как пишет сам автор в своем приветствии <a href="https://sokoban.jp/greeting.html" rel="noopener noreferrer nofollow">на официальном сайте</a>, ему захотелось создать игру, где персонаж может толкать груз и таким образом перемещать его в пространстве. Используя эту простую механику, он решил собрать головоломку, где этот самый груз, который необходимо перемещать, еще и мешает самому процессу.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/cce/4d6/b86/cce4d6b8636d007b88ef4bc20702a803.png" alt="PC-8801 倉庫番" title="PC-8801 倉庫番" width="1920" height="1080" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/cce/4d6/b86/cce4d6b8636d007b88ef4bc20702a803.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/cce/4d6/b86/cce4d6b8636d007b88ef4bc20702a803.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         PC-8801 倉庫番
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>«Sokoban» имела колоссальный успех. И механика привлекла тогда внимание многих геймдизайнеров, которые стали применять ее в новых играх и продолжают применять в современных играх разных жанров.</p>
+                      <p>В своем проекте X-Drums 2.0 на Unreal Engine 5 мне захотелось добавить эту механику. И в этой статье я расскажу, что из этого получилось и какие еще игры повлияли на финальную реализацию.</p>
+                      <h2>Как делали в разных играх</h2>
+                      <p>На фестивале «Sokoban Fest» было представлено около 500 небольших игр, где механика передвижных ящиков была ключевой. Но как одна из множества, механика чаще встречается в платформерах, но нередко и в RPG, JRPG и action играх.</p>
+                      <p>В моем игровом опыте передвижные ящики (они же кубы) встретились мне в играх NieR: Automata, NieR Replicant ver. 1.22, Final Fantasy VII Remake, STAR WARS Jedi: Survivor. Примеры из этих игр и предлагаю рассмотреть для формирования требований к механике в своем проекте.</p>
+                      <h3>NieR: Automata</h3>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/e86/8d4/e8d/e868d4e8df2ebb6f6c7bae562128a184.jpg" alt="NieR: Automata | A2 толкает куб" title="NieR: Automata | A2 толкает куб" width="1920" height="1080" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/e86/8d4/e8d/e868d4e8df2ebb6f6c7bae562128a184.jpg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/e86/8d4/e8d/e868d4e8df2ebb6f6c7bae562128a184.jpg 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         NieR: Automata | A2 толкает куб
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>В игре NieR: Automata передвижной куб встречается в нескольких локациях. Один из кубов находится в Пустыне, в тоннеле между Котлованом (англ. Pit Hollow), где происходит первая встреча с Адамом и Евой, и ее Пограничной зоной (англ. Border Area). Еще один закрывает проход между Городскими руинами (англ. City Ruins) и деревней Паскаля (англ. Pascal’s Village). Эти кубы предназначены для того, чтобы <strong>открыть проход </strong>между локациями во время выполнения заданий основного сюжета, поэтому встреча с ними неизбежна.</p>
+                      <p>Еще два куба находятся в Лесном замке (англ. Forest Castle). Один блокирует проход в кузницу Масамуне (англ. Masamune Blacksmith), а второй расположен в подвале, где проходит встреча машин. Кубы в Лесном замке не связаны с сюжетом, и их можно даже не найти, если не исследовать территорию.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/fc2/8d8/beb/fc28d8beb7171218ca6fe24efd23ddb5.jpg" alt="NieR: Automata | Проход в кузницу Масамуне" title="NieR: Automata | Проход в кузницу Масамуне" width="1920" height="1080" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/fc2/8d8/beb/fc28d8beb7171218ca6fe24efd23ddb5.jpg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/fc2/8d8/beb/fc28d8beb7171218ca6fe24efd23ddb5.jpg 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         NieR: Automata | Проход в кузницу Масамуне
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Главные герои игры андроиды 2B, 9S и A2 могут <strong>толкать куб вперед</strong> и<strong> тянуть его на себя</strong>, используя физическую силу. Для этого игроку необходимо удерживать триггер, чтобы ухватить объект (англ. Grab), а потом двигаться в одном из интересующих направлений вперед или назад. Какой именно триггер, указано в подсказке, всплывающей, когда герой находится рядом с гранью.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/ac3/86b/120/ac386b12008c8da5e58440f91e7937b1.jpg" alt="NieR: Automata | A2 тянет куб" title="NieR: Automata | A2 тянет куб" width="1920" height="1080" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/ac3/86b/120/ac386b12008c8da5e58440f91e7937b1.jpg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/ac3/86b/120/ac386b12008c8da5e58440f91e7937b1.jpg 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         NieR: Automata | A2 тянет куб
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <details class="spoiler">
+                       <summary>Видео передвижения куба</summary>
+                       <div class="spoiler__content">
+                        <div class="tm-iframe_temp" data-src="https://embedd.srv.habr.com/iframe/681a0a591b6bd2ba7cea5015" data-style="" id="681a0a591b6bd2ba7cea5015" width=""></div>
+                       </div>
+                      </details>
+                      <p>Кроме этих кубов, геймдизайнеры NieR: Automata предлагают игрокам <strong>передвигать </strong>и <strong>классические коробки на складах </strong>одного из обитателей Лагеря сопротивления (англ. Resistance Camp) в серии сайд квестов «Проблемы сортировки» (англ. Sorting Trouble). Как в той самой игре «Sokoban».</p>
+                      <p>Всего в этой серии три квеста, которые необходимо выполнять последовательно. Два из них проходят на складе в Лагере сопротивления, а заключительный — в Городских руинах на одной из крыш здания. Квесты представляют из себя <strong>легкую головоломку</strong>, где игроку нужно толкать вперед деревянные ящики, чтобы освободить проход к целям. В отличие от взаимодействия с кубами, эти ящики нельзя тянуть на себя, как и в оригинальной игре «Sokoban».</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/599/082/023/599082023c408b1737a56d5c3151cc56.jpg" alt="NieR: Automata | Квест «Проблемы сортировки» 3" title="NieR: Automata | Квест «Проблемы сортировки» 3" width="1920" height="1080" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/599/082/023/599082023c408b1737a56d5c3151cc56.jpg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/599/082/023/599082023c408b1737a56d5c3151cc56.jpg 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         NieR: Automata | Квест «Проблемы сортировки» 3
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <details class="spoiler">
+                       <summary>Скрытый текст</summary>
+                       <div class="spoiler__content">
+                        <p>Следующая за персонажем камера в этих квестах меняет обзор на топ-даун (англ. Top-down view), что является очередным примером оригинальных решений геймдизайнеров серии. Наряду с 2D камерой на некоторых локациях (англ. 2D Side View Camera) и другими приемами.</p>
+                       </div>
+                      </details>
+                      <h3>NieR Replicant ver. 1.22</h3>
+                      <p><strong>Похожая головоломка</strong> есть и в игре NieR Replicant ver. 1.22, но она не является квестом, который выдается и требует выполнения. Это просто одна из небольших локаций. И доступ к ней открыт в любое время игры, а ящики всегда активны для взаимодействия. Находится она на Почте в Приморье (англ. Seafront).</p>
+                      <p>Главному герою необходимо передвигать ящики, чтобы <strong>освободить проход</strong> в следующую комнату, где находится ценный лут. Схема взаимодействия с ящиками такая же, как в NieR: Automata, но здесь герой может двигать их в обоих направлениях, то есть и тянуть на себя. Ящики, которые можно сдвинуть, имеют более светлый оттенок и маркируются с помощью белого UI ромба. Он становится желтым, если захват объекта (англ. Grab) уже произошел.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/bc8/d46/d8f/bc8d46d8fe40faa0b55c02b2a5653dac.jpg" alt="NieR Replicant ver. 1.22 | Головоломка на почте" title="NieR Replicant ver. 1.22 | Головоломка на почте" width="1920" height="1080" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/bc8/d46/d8f/bc8d46d8fe40faa0b55c02b2a5653dac.jpg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/bc8/d46/d8f/bc8d46d8fe40faa0b55c02b2a5653dac.jpg 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         NieR Replicant ver. 1.22 | Головоломка на почте
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Еще несколько головоломок, но уже с <strong>перемещением кубов</strong> и с привычным видом от третьего лица, предстоит решать игроку в комнатах в Пустынном храме (англ. The Barren Temple). Это локация из первой части игры, которая является частью основной сюжетной линии.</p>
+                      <p>Главный герой в команде с напарниками Кайне и Вайсом должен помочь жителям города Фасада (англ. Facade) найти принца, пропавшего на территории храма. В поисках героям предстоит последовательно пройти <strong>7 непростых комнат</strong>. Задача в каждой — добраться до красного куба в конце комнаты и уничтожить его. Но задачу усложняют блоки, стреляющие снарядами в стиле bullet-hell, а также запрет на использование одной или нескольких способностей, о которых сообщается на входе.</p>
+                      <p>В <strong>качестве укрытия и преграды</strong> на линии огня геймдизайнеры, собственно, и предлагают использовать расположенные в комнатах передвижные кубы. Они есть в первой и четвертой комнате. Схема взаимодействия с ними такая же, как с кубами в NieR: Automata.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/c70/4e8/70c/c704e870cd584ce07831fa7bdd027ac6.png" alt="NieR Replicant ver. 1.22 | Одна из комнат в Пустынном храме" title="NieR Replicant ver. 1.22 | Одна из комнат в Пустынном храме" width="1280" height="720" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/c70/4e8/70c/c704e870cd584ce07831fa7bdd027ac6.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/c70/4e8/70c/c704e870cd584ce07831fa7bdd027ac6.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         NieR Replicant ver. 1.22 | Одна из комнат в Пустынном храме
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Головоломки в Пустынном храме заметно сложнее всех описанных ранее, потому что происходят в условиях, представляющих опасность для героя, когда его функционал существенно ограничен. Их прохождение обязательно для продвижения по сюжету, и после прохождения повторить их снова невозможно.</p>
+                      <p>В целом в мире NieR Replicant ver. 1.22 передвижным кубам уделяется намного больше внимания, чем в NieR: Automata. Они есть во многих локациях и имеют разный визуал. Впервые такой куб встречается в самом начале игры в Затерянном храме (англ. Lost Shrine). Дальше их можно найти и на территории Свалки (англ. The Junk Heap). В зависимости от расположения предполагается разное их использование: в качестве платформы <strong>для прыжка или как укрытие</strong>.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/f1b/003/8da/f1b0038da726d724e00697a640f58110.jpg" alt="NieR Replicant ver. 1.22 | В Затерянном храме" title="NieR Replicant ver. 1.22 | В Затерянном храме" width="1920" height="1080" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/f1b/003/8da/f1b0038da726d724e00697a640f58110.jpg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/f1b/003/8da/f1b0038da726d724e00697a640f58110.jpg 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         NieR Replicant ver. 1.22 | В Затерянном храме
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <details class="spoiler">
+                       <summary>Видео из комнат в Пустынном храме</summary>
+                       <div class="spoiler__content">
+                        <div class="tm-iframe_temp" data-src="https://embedd.srv.habr.com/iframe/681a09c0693dbaa8508866e6" data-style="" id="681a09c0693dbaa8508866e6" width=""></div>
+                       </div>
+                      </details>
+                      <h3>Другие примеры</h3>
+                      <p>Еще один пример этой механики есть в Final Fantasy VII Remake. В одной из глав на пути главного героя Клауда появляется зеленый контейнер, который необходимо передвинуть, чтобы использовать его в качестве платформы для проникновения на новую территорию.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/a21/0ca/077/a210ca0778e0d93acce296d9e44b5683.png" alt="Final Fantasy VII Remake | Interact with Box" title="Final Fantasy VII Remake | Interact with Box" width="1280" height="720" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/a21/0ca/077/a210ca0778e0d93acce296d9e44b5683.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/a21/0ca/077/a210ca0778e0d93acce296d9e44b5683.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Final Fantasy VII Remake | Interact with Box
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>За всю игру встречается только один такой куб. И, как и в играх серии NieR, без его передвижения продвинуться дальше невозможно.</p>
+                      <details class="spoiler">
+                       <summary>Видео с кубом в Final Fantasy VII Remake</summary>
+                       <div class="spoiler__content">
+                        <div class="tm-iframe_temp" data-src="https://embedd.srv.habr.com/iframe/681a6776fc0bb4a8164a08d2" data-style="" id="681a6776fc0bb4a8164a08d2" width=""></div>
+                       </div>
+                      </details>
+                      <p>Еще передвижные кубы есть в серии God of War (видео с ними <a href="https://youtu.be/SHuosItWUNk?feature=shared&amp;t=54" rel="noopener noreferrer nofollow">по ссылке</a>). И есть в STAR WARS: Jedi: Survivor. В первой их передвижение реализовано как в описанных ранее играх. А вот в Jedi: Survivor разработчики предлагают передвигать их с помощью телекинеза, которым обладает главный герой — джедай Кэл Кестис (англ. Cal Kestis).</p>
+                      <p>В качестве «ящика» в игре выступает металлический контейнер в форме куба желтого цвета внушительных размеров. В радиусе возможного взаимодействия его корпус начинает светиться синим цветом. Контейнер можно как<strong> притягивать к себе</strong>, так и <strong>отталкивать</strong>, используя соответствующие триггеры. В сравнении с классической схемой перемещение таким образом не всегда предсказуемо, поэтому требуется не одна попытка, чтобы доставить его в нужное место.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/72f/b84/a41/72fb84a41aec41c92b6a39f24309af91.jpg" alt="STAR WARS: Jedi: Survivor | Movable Box" title="STAR WARS: Jedi: Survivor | Movable Box" width="1920" height="1080" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/72f/b84/a41/72fb84a41aec41c92b6a39f24309af91.jpg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/72f/b84/a41/72fb84a41aec41c92b6a39f24309af91.jpg 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         STAR WARS: Jedi: Survivor | Movable Box
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Встречается такой контейнер впервые в самом начале игры на планете Корусант (англ. Coruscant). Несколько таких контейнеров находятся на планете Джеда (англ. Jedha). Их передвижение обязательно для <strong>продвижения дальше</strong>. Еще несколько контейнеров есть на Кобо (англ. Koboh). Они предназначены для проникновения на дополнительные территории с сундуками и являются частью необязательной головоломки.</p>
+                      <details class="spoiler">
+                       <summary>Видео кубы в STAR WARS: Jedi: Survivor</summary>
+                       <div class="spoiler__content">
+                        <div class="tm-iframe_temp" data-src="https://embedd.srv.habr.com/iframe/681a094f693dbaa850886698" data-style="" id="681a094f693dbaa850886698" width=""></div>
+                       </div>
+                      </details>
+                      <p>Итак, подведем итог и сформируем основные требования к передвижному ящику в моей игре. В качестве примеров будем использовать игры серии NieR, God of War и Final Fantasy VII Remake с поправкой на 2D. Реализация Jedi: Survivor интересна, но не подходит, поскольку наш герой джедайской силой не обладает. Дальше напомню немного про свою игру.</p>
+                      <h2>Про X-Drums 2.0 и передвижной барабан</h2>
+                      <p>Игра называется X-Drums 2.0. Это мультиплеер 2D пиксель-арт платформер c поддержкой single-player режима, посвященный теме барабанов. Главным героем выступает барабанщик, управляя которым, необходимо собрать ноты и найти выход.</p>
+                      <p>Действие игры разворачивается условно на складах музыкальных инструментов, где размещаются барабаны, тарелки, клавиши пианино и разные подвижные платформы, по которым можно ходить и прыгать. На пути героя встречаются влюбленные фанатки, отбирающие ноты. Купидоны, пускающие стрелы, и ослепляющие прожекторы.</p>
+                      <p>Игра разрабатывается на Unreal Engine 5.3 на C++ с использованием Steam Online Subsystem для мультиплеера. Подробнее про разработку можно прочитать <a href="https://habr.com/ru/articles/874098/" rel="noopener noreferrer nofollow">здесь</a>.</p>
+                      <p>В качестве передвижного ящика наиболее подходящим в моей игре мне показался <strong>большой барабан</strong> 64×64 пикселей.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/623/612/489/623612489f7a9291c4c4797bd77b3bd2.jpg" alt="X-Drums 2.0 | Передвижной барабан" title="X-Drums 2.0 | Передвижной барабан" width="1536" height="864" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/623/612/489/623612489f7a9291c4c4797bd77b3bd2.jpg 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/623/612/489/623612489f7a9291c4c4797bd77b3bd2.jpg 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         X-Drums 2.0 | Передвижной барабан
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Опираясь на приведенные примеры, сформируем следующие ключевые требования к барабану (ящику в моей интерпретации) и его поведению:</p>
+                      <ol>
+                       <li>
+                        <p>Барабан должен перемещаться строго по горизонтали по направлению движения персонажа.</p></li>
+                       <li>
+                        <p>Скорость движения барабана одинаковая, независимо от того, толкают его или тянут.</p></li>
+                       <li>
+                        <p>Передвижение должно выглядеть с усилием, будто барабан обладает значительной массой.</p></li>
+                       <li>
+                        <p>Когда герой находится рядом с гранью барабана, появляется всплывающая подсказка, какой триггер необходимо использовать, чтобы его передвигать.</p></li>
+                       <li>
+                        <p>Для передвижения игроку необходимо удерживать триггер, чтобы ухватить барабан (англ. Grab), и двигаться в одном из интересующих направлений (вперед или назад), используя привычные триггеры движения.</p></li>
+                       <li>
+                        <p>Барабан должен останавливаться при коллизиях со статичными или подвижными объектами (в том числе и с персонажем другого игрока).</p></li>
+                       <li>
+                        <p>На барабан можно запрыгнуть. В момент приземления на него проигрывается такой же звук, как при прыжке на статичные барабаны.</p></li>
+                       <li>
+                        <p>Барабан не блокируется одним игроком. Его могут пробовать передвигать одновременно несколько.</p></li>
+                       <li>
+                        <p>При перемещении барабана используется свой набор анимации персонажа: тянуть-толкать.</p></li>
+                       <li>
+                        <p>При перемещении барабана проигрываются звуковые эффекты.</p></li>
+                      </ol>
+                      <p>Теперь перейдем к некоторым интересным и значимым деталям реализации.</p>
+                      <h3>Некоторые детали реализации</h3>
+                      <p>Классический способ реализации захвата объекта (англ. grab) и перемещения его в пространстве реализуется в Unreal Engine с помощью <strong>Physics Handle Component</strong>, который предполагает включение физики у перемещаемого объекта.</p>
+                      <p>Наряду с этим компонентом существует <strong>Physics Constraint Component</strong>, который чаще применяется для связки твердых тел и передачи движения от главного к подчиненному. Например, для груза на веревке. Этот компонент также предполагает использовать физику объекта.</p>
+                      <p>Для 2D пиксель-арт игры использовать физику, а особенно ее включение в радиусе взаимодействия и выключение вне, мне показалось overkill’ом и overhead’ом. Поэтому, реализовав несколько прототипов, демонстрирующих немало проблем этих способов, было решено отказаться от их использования.</p>
+                      <details class="spoiler">
+                       <summary>Прототип с Physics Constraint Component</summary>
+                       <div class="spoiler__content">
+                        <figure class="full-width ">
+                         <img src="https://habrastorage.org/getpro/habr/upload_files/f0c/f02/a53/f0cf02a53b5ebe03c456e5267bd82352.gif" alt="Использование Physics Constraint Component" title="Использование Physics Constraint Component" width="600" height="503" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/getpro/habr/upload_files/f0c/f02/a53/f0cf02a53b5ebe03c456e5267bd82352.gif 780w,
+       https://habrastorage.org/getpro/habr/upload_files/f0c/f02/a53/f0cf02a53b5ebe03c456e5267bd82352.gif 781w" loading="lazy" decode="async">
+                         <div>
+                          <figcaption>
+                           Использование <strong>Physics Constraint Component</strong>
+                          </figcaption>
+                         </div>
+                        </figure>
+                       </div>
+                      </details>
+                      <p>Еще один способ реализовать желаемое поведение в Unreal Engine — это использовать <strong>Attachment to Actor</strong> или <strong>Attachment to Component</strong>. Но у него есть свой большой недостаток. Так, объект после прикрепления (англ. attachment) теряет свои коллизии и поэтому может проходить сквозь стены и другие объекты. На форумах пишут, что победить это невозможно без включения физики, и объясняют тем, что в состоянии присоединения объектов таким способом коллизия сохраняется только у parent объекта. Это самый главный блокер способа, хотя были и другие.</p>
+                      <details class="spoiler">
+                       <summary>Прототип с Attachment to Actor</summary>
+                       <div class="spoiler__content">
+                        <figure class="full-width ">
+                         <img src="https://habrastorage.org/getpro/habr/upload_files/e1a/0ca/431/e1a0ca43176712becb940261efba85f4.gif" alt="Использование Attachment to Actor" title="Использование Attachment to Actor" width="600" height="499" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/getpro/habr/upload_files/e1a/0ca/431/e1a0ca43176712becb940261efba85f4.gif 780w,
+       https://habrastorage.org/getpro/habr/upload_files/e1a/0ca/431/e1a0ca43176712becb940261efba85f4.gif 781w" loading="lazy" decode="async">
+                         <div>
+                          <figcaption>
+                           Использование <strong>Attachment to Actor</strong>
+                          </figcaption>
+                         </div>
+                        </figure>
+                       </div>
+                      </details>
+                      <p><strong>Что же тогда остается?</strong></p>
+                      <p>Мне показалось возможным использовать<strong> Add Actor Local Offset</strong> барабану на каждый Tick, получая направление движения от Player Character — игрока, перемещающего барабан.</p>
+                      <pre><code class="cpp">void AMovableDrum::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (HasAuthority() &amp;&amp; MovingCharacter &amp;&amp; bGrabbed &amp;&amp; bIsOccupied)
+	{
+		FVector DeltaLocation = FVector::ZeroVector;
+
+		float MaxSpeed = MovingCharacter-&gt;GrabMaxSpeed;
+		
+		DeltaLocation.X = MoveDirection * MaxSpeed * DeltaTime;
+
+		FHitResult* HitResult = nullptr;
+
+		AddActorLocalOffset(DeltaLocation, true, HitResult);
+
+		if (HitResult &amp;&amp; HitResult-&gt;bBlockingHit)
+		{
+			bGrabbed = false;
+		}
+	}
+}
+</code></pre>
+                      <p>MovingCharacter определяется в момент overlap персонажем триггер компонента барабана (UBoxComponent Grab Volume). В этот же момент происходит подписка на делегаты OnGrabActionStartedDelegate и OnGrabActionEndedDelegate.</p>
+                      <p>OnGrabActionStartedDelegate сообщает о начале захвата барабана — это удержание клавиши Alt, что переводит bGrabbed в статус true и передает направление движения MoveDirection, где (1) — это движение вперед, а (-1) — движение назад.</p>
+                      <p>OnGrabActionEndedDelegate сообщает, что захват прекращен, и переводит bGrabbed в статус false.</p>
+                      <h3>Реализация анимации</h3>
+                      <p>Перемещение барабана предполагает специфические анимации персонажа: <strong>толкать барабан от себя</strong> (англ. push) и <strong>тянуть его на себя</strong> (англ. pull), как в примерах ранее.</p>
+                      <p>Для этого в стейт машине в анимационном блюпринте (англ. AnimBP) добавлено два новых стейта: push и pull.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/0bc/847/ed6/0bc847ed6731bf5f247f43871ade1f6f.png" alt="AnimBP" title="AnimBP" width="1159" height="636" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/0bc/847/ed6/0bc847ed6731bf5f247f43871ade1f6f.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/0bc/847/ed6/0bc847ed6731bf5f247f43871ade1f6f.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         AnimBP
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>А чтобы не усложнять код, решено было не различать в C++ эти два новых состояния и использовать проверку в самом AnimBP. Так, если: скалярное произведение форвард вектора актора и его нормализованной скорости &gt; 0, то это push, а если &lt; 0, то это pull.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/60c/d3d/231/60cd3d231add6b0cc31279effa47ba48.png" alt="Правило перехода в Pull state" title="Правило перехода в Pull state" width="1165" height="686" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/60c/d3d/231/60cd3d231add6b0cc31279effa47ba48.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/60c/d3d/231/60cd3d231add6b0cc31279effa47ba48.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Правило перехода в Pull state
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/07c/393/78d/07c39378dea64a1ec4b86f97b137f344.png" alt="Правило перехода в Push state" title="Правило перехода в Push state" width="1162" height="686" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/07c/393/78d/07c39378dea64a1ec4b86f97b137f344.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/07c/393/78d/07c39378dea64a1ec4b86f97b137f344.png 781w" loading="lazy" decode="async">
+                       <div>
+                        <figcaption>
+                         Правило перехода в Push state
+                        </figcaption>
+                       </div>
+                      </figure>
+                      <p>Новое поведение предполагает отключение обновления направления движения, благодаря которому происходит переворот Control Rotation в Controller в случае движения назад. Однако в некоторых случаях такой поворот все-таки происходит, и персонаж тянет барабан на себя спиной. К сожалению, разобраться с этим поведением у меня не получилось, и поэтому оно превратилось в фичу. А почему бы и нет?</p>
+                      <p>Для звуковых эффектов движения барабана по поверхности в соответствующие анимации персонажа добавлены AnimNotifyState вместо привычного и готового AnimNotifySound, поскольку в первом есть ивенты BeginPlay и EndPlay, что позволяет ограничивать проигрывание периодом, а не проигрывать звук постоянно, так как анимация циклическая.</p>
+                      <p><strong>Итак, смотрим, что из этого получилось!</strong></p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/getpro/habr/upload_files/1b2/50b/863/1b250b863a4d1424892e14f63621985e.gif" width="600" height="338" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/getpro/habr/upload_files/1b2/50b/863/1b250b863a4d1424892e14f63621985e.gif 780w,
+       https://habrastorage.org/getpro/habr/upload_files/1b2/50b/863/1b250b863a4d1424892e14f63621985e.gif 781w" loading="lazy" decode="async">
+                      </figure>
+                      <details class="spoiler">
+                       <summary>Видео в отличном качестве вместо гифки</summary>
+                       <div class="spoiler__content">
+                        <div class="tm-iframe_temp" data-src="https://embedd.srv.habr.com/iframe/681a5e77fec567ba65d19ad9" data-style="" id="681a5e77fec567ba65d19ad9" width=""></div>
+                        <div class="tm-iframe_temp" data-src="https://embedd.srv.habr.com/iframe/681a5e858f844fa824a4eee1" data-style="" id="681a5e858f844fa824a4eee1" width=""></div>
+                       </div>
+                      </details>
+                      <h3>Дополнительные фичи</h3>
+                      <p>Палитра игры включает в себя 8 ключевых цветов, поэтому передвижных барабанов планировалось также 8, различающихся на старте только по цвету. В будущем можно добавить в различия звуки и эффекты.</p>
+                      <p>Поскольку все передвижные барабаны обладают одинаковыми свойствами и различаются только по цвету, то был создан Base Actor Blueprint с TMap Flipbook по Enum, который отвечает за цвет.</p>
+                      <figure class="full-width ">
+                       <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/731/d64/c7f/731d64c7fc38f0885c71a5335c65362c.png" width="1299" height="687" sizes="(max-width: 780px) 100vw, 50vw" srcset="https://habrastorage.org/r/w780/getpro/habr/upload_files/731/d64/c7f/731d64c7fc38f0885c71a5335c65362c.png 780w,
+       https://habrastorage.org/r/w1560/getpro/habr/upload_files/731/d64/c7f/731d64c7fc38f0885c71a5335c65362c.png 781w" loading="lazy" decode="async">
+                      </figure>
+                      <p>Как и с софитами (<em>о них можно почитать </em><a href="https://habr.com/ru/articles/874098/" rel="noopener noreferrer nofollow"><em>здесь</em></a><em>)</em>, на карте планируется размещать несколько барабанов, поэтому необходим механизм их разнообразия, отвечающий следующим условиям:</p>
+                      <ul>
+                       <li>
+                        <p>рядом не должны оказаться одинаковые по цвету барабаны,</p></li>
+                       <li>
+                        <p>на карте должны быть представлены барабаны всех цветов и</p></li>
+                       <li>
+                        <p>при каждом запуске цвета должны меняться.</p></li>
+                      </ul>
+                      <p>Для этой задачи был использован такой же метод рандомизации через гейммод, что был использован для софитов. Поэтому каждый запуск уникальный.</p>
+                      <h3>Known Issues и Change Log</h3>
+                      <p>Несмотря на многократные тесты в мультиплеере с несколькими Steam игроками, последний релиз проявил неприятный баг, когда барабан редко, но начинал проходить сквозь стены. Баг добавлен в баг-трекер. Надеюсь его победить в будущих релизах.</p>
+                      <p>С момента прошлой публикации в игре появилось множество изменений. Например, добавлен подсчет времени, в целесообразности которого я сомневалась в самом начале. А также:</p>
+                      <ul>
+                       <li>
+                        <p>Добавлена новая карта и непосредственно выбор карт.</p></li>
+                       <li>
+                        <p>Добавлена и доработана механика клавиш пианино, которые были в основной игре.</p></li>
+                       <li>
+                        <p>Добавлена механика множественных выходов.</p></li>
+                       <li>
+                        <p>Значительно обновлен арт.</p></li>
+                       <li>
+                        <p>Добавлена локализация на 5 языков и многое другое.</p></li>
+                      </ul>
+                      <p>Скачать последнюю версию, включающую и передвижные барабаны, можно по <a href="https://inkumori.itch.io/x-drums-20/devlog/923778/announcing-the-release-of-x-drums-20-version-1006" rel="noopener noreferrer nofollow">ссылке</a>.</p>
+                      <h3>Заключение</h3>
+                      <p>Игра-головоломка «Sokoban» продолжает вдохновлять геймдизайнеров на свои интерпретации как всей игры, так и отдельно механики перемещаемого в пространстве ящика. И «Sokoban Fest» — явное тому подтверждение.</p>
+                      <p>Вдохновившись примерами, мне удалось реализовать свой вариант такого ящика в рамках моего ремейка X-Drums 2.0 на Unreal Engine 5. И в ходе реализации пришлось познакомиться со способами, которые предлагает движок, и определить наиболее подходящий для своей игры. А также решить немало задач по адаптации под мультиплеер и поддержке сетевого кода. О чем здесь сказано не много, поскольку больше хотелось сфокусировать на общем подходе.</p>
+                      <p>Новая механика наряду с&nbsp;запуском платформ добавила игроку еще одну возможность влиять на&nbsp;игровой мир и&nbsp;прохождения других игроков. Она сбавила высокий темп игры и&nbsp;позволила разнообразить левел дизайн. На&nbsp;мой взгляд, она неплохо вписалась в&nbsp;общую концепцию игры. Но&nbsp;так ли это? Решать вам, игрокам!</p>
+                     </div>
+                    </div>
+                   </div><!----><!---->
+                  </div><!----><!---->
+                 </div><!--]--><!---->
+                 <div class="tm-article-presenter__meta" data-test-id="article-meta-links">
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Теги:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[gamedev]" class="tm-tags-list__link"><span>gamedev</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[gamedevelopment]" class="tm-tags-list__link"><span>gamedevelopment</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[gamedevelop]" class="tm-tags-list__link"><span>gamedevelop</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[unrealengine]" class="tm-tags-list__link"><span>unrealengine</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[unreal+engine+5]" class="tm-tags-list__link"><span>unreal engine 5</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[storytelling]" class="tm-tags-list__link"><span>storytelling</span></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=[gamedesign]" class="tm-tags-list__link"><span>gamedesign</span></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                  <div class="tm-separated-list tm-article-presenter__meta-list">
+                   <span class="tm-separated-list__title">Хабы:</span>
+                   <ul class="tm-separated-list__list">
+                    <!--[-->
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/game_design/" class="tm-hubs-list__link"><!--[--><span>Дизайн игр</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/gamedev/" class="tm-hubs-list__link"><!--[--><span>Разработка игр</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/unreal_engine/" class="tm-hubs-list__link"><!--[--><span>Unreal Engine</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/cpp/" class="tm-hubs-list__link"><!--[--><span>C++</span><!--]--></a><!--]--></li>
+                    <li class="tm-separated-list__item"><!--[--><a href="/ru/hubs/games/" class="tm-hubs-list__link"><!--[--><span>Игры и игровые консоли</span><!--]--></a><!--]--></li><!--]--><!---->
+                   </ul>
+                  </div>
+                 </div><!----><!--]-->
+                </article><!--]-->
+               </div><!---->
+              </div>
+              <div style="" class="tm-article-sticky-panel" data-test-id="article-sticky-panel">
+               <div class="tm-data-icons tm-data-icons tm-data-icons_space-big tm-article-sticky-panel__icons" data-test-id="article-stats-icons">
+                <div class="article-rating tm-data-icons__item" data-v-86aec4a7>
+                 <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-article votes-switcher" title="Всего голосов 1: ↑1 и ↓0" data-v-86aec4a7>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-upvote-button" title="Нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon" height="24" width="24">
+                    <title>
+                     Нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                  <div class="tm-votes-lever__score tm-votes-lever__score_appearance-article tm-votes-lever__score">
+                   <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_positive tm-votes-lever__score-counter" data-test-id="votes-score-counter">+3</span></span><!--]-->
+                  </div>
+                  <button class="tm-votes-lever__button" data-test-id="votes-lever-downvote-button" title="Не нравится" type="button">
+                   <svg class="tm-svg-img tm-votes-lever__icon tm-votes-lever__icon_arrow-down" height="24" width="24">
+                    <title>
+                     Не нравится
+                    </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-vote"></use>
+                   </svg></button>
+                 </div><!--teleport start--><!--teleport end--><!---->
+                </div><!----><!---->
+                <button class="bookmarks-button tm-data-icons__item" title="Добавить в закладки" type="button"><span class="tm-svg-icon__wrapper bookmarks-button__icon">
+                  <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+                   <title>
+                    Добавить в закладки
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-favorite"></use>
+                  </svg></span><span class="bookmarks-button__counter" title="Количество пользователей, добавивших публикацию в закладки">6</span></button>
+                <div class="tm-sharing tm-data-icons__item" title="Поделиться">
+                 <button class="tm-sharing__button" type="button">
+                  <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                   <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                  </svg></button><!--teleport start--><!--teleport end-->
+                </div>
+                <div class="tm-article-comments-counter-link tm-data-icons__item" title="Читать комментарии">
+                 <a href="/ru/articles/907306/comments/" class="tm-article-comments-counter-link__link" data-test-id="counter-comments"><!--[-->
+                  <svg class="tm-svg-img tm-article-comments-counter-link__icon" height="24" width="24">
+                   <title>
+                    Комментарии
+                   </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                  </svg><span class="tm-article-comments-counter-link__value">0</span><!--]--></a><!---->
+                </div><!--[--><!--[--><!--[--><!----><!--]--><!--]--><!--]--><!--teleport start--><!--teleport end--><!---->
+               </div>
+              </div>
+             </div><!--[--><!--]-->
+             <div class="tm-article-presenter__footer">
+              <!--[--><!--[-->
+              <div class="tm-article-blocks">
+               <!----><!--[-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <!----><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-balanced">
+                 <!--[-->
+                 <div class="tm-article-author" data-test-id="article-author-info" data-async-called="true">
+                  <!--[--><!--]-->
+                  <div class="tm-user-card tm-user-card tm-user-card_variant-article tm-article-author__user-card" data-async-called="true">
+                   <div class="tm-user-card__info-container">
+                    <div class="tm-user-card__header">
+                     <div class="tm-user-card__header-data">
+                      <a href="/ru/users/xdrumsteam/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                       <div class="tm-entity-image">
+                        <!--[--><img alt="" class="tm-entity-image__pic" src="https://assets.habr.com/habr-web/img/avatars/099.png"><!--]-->
+                       </div></a>
+                      <div class="tm-user-card__meta">
+                       <div class="tm-counter-container karma" title=" 8 голосов " data-v-f7c0e283>
+                        <div class="tm-counter-container__header">
+                         <!--[-->
+                         <div class="karma-display positive" data-v-f7c0e283 data-v-7635202e>
+                          6
+                         </div><!----><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[-->
+                         <div class="karma-text" data-v-f7c0e283>
+                          Карма
+                         </div><!--teleport start--><!--teleport end--><!--]-->
+                        </div>
+                       </div>
+                       <div class="tm-counter-container" title="Рейтинг пользователя">
+                        <div class="tm-counter-container__header">
+                         <!--[--><!--[--><!--]-->
+                         <div class="tm-votes-lever tm-votes-lever tm-votes-lever_appearance-rating">
+                          <!---->
+                          <div class="tm-votes-lever__score tm-votes-lever__score_appearance-rating tm-votes-lever__score">
+                           <!--[--><span><span class="tm-votes-lever__score-counter tm-votes-lever__score-counter_rating tm-votes-lever__score-counter" data-test-id="votes-score-counter">3</span></span><!--]-->
+                          </div><!---->
+                         </div><!--]-->
+                        </div>
+                        <div class="tm-counter-container__footer">
+                         <!--[--><span class="tm-rating__text tm-rating__text">Рейтинг</span><!--]-->
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                    <div class="tm-user-card__info tm-user-card__info_variant-article tm-user-card__info">
+                     <div class="tm-user-card__title tm-user-card__title_variant-article tm-user-card__title">
+                      <span class="tm-user-card__name tm-user-card__name_variant-article tm-user-card__name">Rena</span><a href="/ru/users/xdrumsteam/" class="tm-user-card__nickname tm-user-card__nickname tm-user-card__nickname_variant-article"> @xdrumsteam</a><!---->
+                     </div>
+                     <p class="tm-user-card__short-info tm-user-card__short-info_variant-article tm-user-card__short-info" data-test-id="user-card-speciality">Пользователь</p>
+                    </div>
+                   </div><!---->
+                   <div class="tm-user-card__buttons tm-user-card__buttons_variant-article tm-user-card__buttons">
+                    <!---->
+                    <div class="tm-user-card__button">
+                     <div class="tm-button-follow tm-user-card__button-follow">
+                      <!---->
+                      <button class="tm-button-follow__button tm-button-follow__button_big" data-test-id="follow-button" type="button">Подписаться</button>
+                     </div>
+                    </div><!---->
+                    <div class="tm-user-card__button tm-user-card__button_write" data-test-id="user-card-conversations">
+                     <svg class="tm-svg-img tm-user-card__button-icon" height="16" width="16">
+                      <title>
+                       Отправить сообщение
+                      </title><use xlink:href="/img/megazord-v28.7909a852..svg#mail"></use>
+                     </svg>
+                    </div><!---->
+                   </div><!---->
+                  </div>
+                  <div class="tm-article-author__user-contacts" data-test-id="author-contacts">
+                   <!----><!----><!---->
+                  </div>
+                 </div><!--]-->
+                </div><!--]--><!---->
+               </section><!----><!--[-->
+               <div class="banner-wrapper leaderboard tm-page-article__banner" style="--38f3d936:200px;--78a3cd06:auto;" data-v-f4bf0d24>
+                <!--[-->
+                <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="adfox-banner-placeholder leaderboard" data-v-12f7bcca>
+                  <div class="image loads" data-v-12f7bcca></div>
+                  <div class="lines" data-v-12f7bcca>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                   <div class="line loads" data-v-12f7bcca></div>
+                  </div>
+                 </div><!----><!----><!---->
+                </div>
+                <div id="adfox_164725660339535756" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+               </div><!--]--><!--]-->
+               <div class="tm-article-blocks__comments">
+                <div id="publication-comments" class="tm-article-page-comments">
+                 <div>
+                  <!--[-->
+                  <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                   <a href="/ru/articles/907306/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style" data-test-id="counter-comments"><!--[-->
+                    <svg class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted" height="24" width="24">
+                     <title>
+                      Комментарии
+                     </title><use xlink:href="/img/megazord-v28.7909a852..svg#counter-comments"></use>
+                    </svg><span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментировать </span><!--]--></a><!---->
+                  </div><!--]-->
+                 </div>
+                </div>
+               </div><!--[--><!--[--><!--]-->
+               <section class="tm-block tm-block tm-block_spacing-bottom">
+                <header class="tm-block__header tm-block__header tm-block__header_variant-borderless">
+                 <div class="tm-block__header-container">
+                  <h2 class="tm-block__title tm-block__title tm-block__title_variant-large">Публикации</h2><!--[--><!--]-->
+                 </div><!---->
+                </header><!--[-->
+                <div class="tm-block__body tm-block__body tm-block__body_variant-condensed-slim">
+                 <!--[--><!--[-->
+                 <div class="tm-tabs tm-tabs">
+                  <div class="">
+                   <!--[--><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_active tm-tabs__tab-link_slim tm-tabs__tab-link">Лучшие за сутки</button></span><span class="tm-tabs__tab-item">
+                    <button class="tm-tabs__tab-link tm-tabs__tab-link_slim tm-tabs__tab-link">Похожие</button></span><!--]-->
+                  </div><!---->
+                 </div>
+                 <div class="similar-and-daily__tab-view">
+                  <div class="daily-articles-list">
+                   <ul class="tm-article-card-list">
+                    <!--[--><!--]-->
+                    <div class="tm-bordered-card">
+                     <!----><!--[--><!--]-->
+                    </div>
+                   </ul>
+                   <div class="daily-articles-block__button-container">
+                    <button class="btn btn_transparent btn_small tm-button tm-button_color-horizon" type="button"><!--[--><!--[-->Показать лучшие за всё время<!--]--><!--]--></button>
+                   </div>
+                  </div><!---->
+                 </div><!--]--><!--]-->
+                </div><!--]--><!---->
+               </section><!--[-->
+               <div>
+                <div class="placeholder-wrapper">
+                 <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                 <div class="tm-placeholder-promo">
+                  <div class="tm-placeholder-promo__header">
+                   <div class="tm-placeholder__line tm-placeholder__line_promo-title"></div>
+                  </div>
+                  <div class="tm-placeholder-promo__body">
+                   <div class="tm-placeholder-promo__posts">
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                    <div class="tm-placeholder-promo__post">
+                     <div class="tm-placeholder-promo__image"></div>
+                     <div class="tm-placeholder__line tm-placeholder__line_post-title"></div>
+                    </div>
+                   </div>
+                   <div class="tm-placeholder-promo__dots">
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                    <div class="tm-placeholder-promo__dot"></div>
+                   </div>
+                  </div>
+                 </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                </div>
+               </div>
+               <div class="placeholder-wrapper">
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="tm-placeholder-inset tm-placeholder-questions">
+                 <div class="tm-placeholder-inset__header">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-header loads"></div>
+                 </div>
+                 <div class="tm-placeholder-inset__body">
+                  <ul class="tm-placeholder-list">
+                   <!--[-->
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li>
+                   <li class="tm-placeholder-list__item tm-placeholder-list__item_inset">
+                    <div class="tm-placeholder__line tm-placeholder__line_item-title loads"></div>
+                    <div class="tm-project-block-items__properties">
+                     <!--[--><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><span class="tm-project-block-items__property-item"><span class="tm-placeholder__line loads" style="width:100px;"></span></span><!--]-->
+                    </div></li><!--]-->
+                  </ul>
+                 </div>
+                 <div class="tm-placeholder-inset__footer">
+                  <div class="tm-placeholder__line tm-placeholder__line_inset-footer loads"></div>
+                 </div>
+                </div><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               </div><!--]--><!----><!--[--><!--]--><!--]-->
+              </div><!--]--><!--]-->
+             </div>
+            </div><!--]--><!--]-->
+           </div>
+          </div>
+          <div class="tm-page__sidebar">
+           <!--[-->
+           <div class="tm-layout-sidebar">
+            <div class="tm-layout-sidebar__placeholder_initial"></div>
+            <div class="tm-sexy-sidebar_initial tm-sexy-sidebar" style="margin-top:0px;">
+             <!--[--><!--]--><!---->
+             <div class="tm-layout-sidebar__ads_initial tm-layout-sidebar__ads">
+              <div class="banner-wrapper half-page tm-layout-sidebar__banner tm-layout-sidebar__banner_top" style="--38f3d936:600px;--78a3cd06:auto;" data-v-f4bf0d24>
+               <!--[-->
+               <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <div class="adfox-banner-placeholder half-page" data-v-12f7bcca>
+                 <div class="image loads" data-v-12f7bcca></div>
+                 <div class="lines" data-v-12f7bcca>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                  <div class="line loads" data-v-12f7bcca></div>
+                 </div>
+                </div><!----><!----><!---->
+               </div>
+               <div id="adfox_164725680533065327" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+              </div>
+             </div><!--[--><!---->
+             <div></div>
+             <section class="tm-block tm-block tm-block_spacing-around" data-async-called="true">
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Работа</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[--><!--[-->
+               <div class="tm-vacancies-block__item">
+                <a class="tm-vacancies-block__vacancy-title" href="https://career.habr.com/vacancies/c_plus_plus_qt_developer" target="_blank">QT разработчик</a>
+                <div class="tm-vacancies-block__vacancies-count">
+                 8 вакансий
+                </div>
+               </div>
+               <div class="tm-vacancies-block__item">
+                <a class="tm-vacancies-block__vacancy-title" href="https://career.habr.com/vacancies/unity_developer" target="_blank">Unity разработчик</a>
+                <div class="tm-vacancies-block__vacancies-count">
+                 4 вакансии
+                </div>
+               </div>
+               <div class="tm-vacancies-block__item">
+                <a class="tm-vacancies-block__vacancy-title" href="https://career.habr.com/vacancies/game_developer" target="_blank">Разработчик игр</a>
+                <div class="tm-vacancies-block__vacancies-count">
+                 33 вакансии
+                </div>
+               </div>
+               <div class="tm-vacancies-block__item">
+                <a class="tm-vacancies-block__vacancy-title" href="https://career.habr.com/vacancies/programmist_c_plus_plus" target="_blank">Программист C++</a>
+                <div class="tm-vacancies-block__vacancies-count">
+                 101 вакансия
+                </div>
+               </div><!--]--><!--]-->
+              </div><!--]-->
+              <footer class="tm-block__footer">
+               <!--[--><a class="tm-block-extralink" href="https://career.habr.com/catalog">Все вакансии</a><!--]-->
+              </footer>
+             </section>
+             <section class="tm-block tm-block tm-block_spacing-around block" data-v-6f380946>
+              <header class="tm-block__header tm-block__header">
+               <div class="tm-block__header-container">
+                <h2 class="tm-block__title tm-block__title">Ближайшие события</h2><!--[--><!--]-->
+               </div><!---->
+              </header><!--[-->
+              <div class="tm-block__body tm-block__body">
+               <!--[-->
+               <div class="placeholder-wrapper" data-v-6f380946>
+                <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+                <section class="tm-block tm-block tm-block_spacing-none" tabindex="-1" data-v-9caf0b82>
+                 <!----><!--[-->
+                 <div class="event-card-placeholder is-widget" data-v-9caf0b82>
+                  <div class="image loads" data-v-9caf0b82></div>
+                  <div class="info" data-v-9caf0b82>
+                   <div class="date line" data-v-9caf0b82></div>
+                   <div class="title line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                   <div class="places line" data-v-9caf0b82></div>
+                  </div>
+                  <div class="footer widget" data-v-9caf0b82>
+                   <div class="link line" data-v-9caf0b82></div>
+                   <div class="categories" data-v-9caf0b82>
+                    <!--[-->
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div>
+                    <div class="category line" data-v-9caf0b82></div><!--]-->
+                   </div>
+                  </div>
+                 </div><!--]--><!---->
+                </section><!---->
+               </div><!--]-->
+              </div><!--]--><!---->
+             </section><!--]-->
+             <div class="banner-wrapper medium-rectangle tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom" style="--38f3d936:250px;--78a3cd06:auto;" data-v-f4bf0d24>
+              <!--[-->
+              <div class="placeholder-wrapper placeholder" data-v-f4bf0d24>
+               <!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+               <div class="adfox-banner-placeholder medium-rectangle" data-v-12f7bcca>
+                <div class="image loads" data-v-12f7bcca></div>
+                <div class="lines" data-v-12f7bcca>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                 <div class="line loads" data-v-12f7bcca></div>
+                </div>
+               </div><!----><!----><!---->
+              </div>
+              <div id="adfox_164725691003361602" class="tm-adfox-banner" data-v-f4bf0d24></div><!--]-->
+             </div>
+            </div>
+           </div><!--]-->
+          </div>
+         </div><!----><!--]-->
+        </div>
+       </div>
+      </main><!---->
+     </div>
+     <div class="tm-footer-menu">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer-menu__container">
+        <!--[-->
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Ваш аккаунт</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/articles/907306/&amp;hl=ru" rel="nofollow" target="_self">Войти</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/articles/907306/&amp;hl=ru" rel="nofollow" target="_self">Регистрация</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Разделы</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/articles/" class="footer-menu__item-link">Статьи</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link">Новости</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link">Хабы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link">Компании</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link">Авторы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link">Песочница</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Информация</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link">Устройство сайта</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link">Для авторов</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link">Для компаний</a></li>
+           <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link">Документы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement/?hl=ru_RU" target="_blank">Соглашение</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/?hl=ru_RU" target="_blank">Конфиденциальность</a></li><!--]-->
+          </ul>
+         </div>
+        </div>
+        <div class="tm-footer-menu__block">
+         <p class="tm-footer-menu__block-title">Услуги</p>
+         <div class="tm-footer-menu__block-content">
+          <ul class="tm-footer-menu__list">
+           <!--[-->
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/corporate-blogs/" target="_blank">Корпоративный блог</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/advertising/" target="_blank">Медийная реклама</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/native-special/" target="_blank">Нативные проекты</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/education-programs/" target="_blank">Образовательные программы</a></li>
+           <li class="tm-footer-menu__list-item"><a href="https://company.habr.com/ru/hello-startup/" target="_blank">Стартапам</a></li><!--]-->
+          </ul>
+         </div>
+        </div><!--]-->
+       </div><!--]-->
+      </div>
+     </div>
+     <div class="tm-footer">
+      <div class="tm-page-width">
+       <!--[-->
+       <div class="tm-footer__container">
+        <!---->
+        <div class="tm-footer__social">
+         <!--[--><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Facebook
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-facebook"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Twitter
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-twitter"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            VK
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-vk"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Telegram
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-telegram"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Youtube
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-youtube"></use>
+          </svg></a><a class="tm-svg-icon__wrapper tm-social-icons__icon" href="https://dzen.ru/habr" rel="nofollow noopener noreferrer" target="_blank">
+          <svg class="tm-svg-img tm-svg-icon" height="24" width="24">
+           <title>
+            Яндекс Дзен
+           </title><use xlink:href="/img/new-social-icons-sprite.svg#social-logo-dzen"></use>
+          </svg></a><!--]-->
+        </div><!--teleport start--><!--teleport end-->
+        <button class="tm-footer__link"><!----> Настройка языка</button><a href="/ru/feedback/" class="tm-footer__link">Техническая поддержка</a>
+        <div class="tm-footer-copyright">
+         <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2025, </span><span class="tm-copyright__name"><a class="tm-copyright__link" href="https://company.habr.com/" rel="noopener" target="_blank">Habr</a></span></span>
+        </div>
+       </div><!--]-->
+      </div>
+     </div><!----><!--]-->
+    </div><!---->
+   </div>
+   <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"907306":{"id":"907306","timePublished":"2025-05-06T19:52:30+00:00","isCorporative":false,"lang":"ru","titleHtml":"История одной разработки: передвижные барабаны в стиле классики Sokoban в инди платформере X-Drums 2.0","leadData":{"textHtml":"\u003Cp\u003EВ Steam завершился «Фестиваль передвижных ящиков», посвященный играм, где разными способами можно передвигать ящики. На английском фестиваль называется «Sokoban Fest» в честь первой игры, где появилась эта механика.\u003C\u002Fp\u003E\u003Cp\u003EИгра-головоломка «Sokoban» (яп. 倉庫番, рус. кладовщик) вышла в Японии в 1982 году. А разработал ее годом ранее Хироюки Имабаяси. Она имела колоссальный успех. И механика привлекла тогда внимание многих геймдизайнеров, которые стали применять ее в новых играх и продолжают применять в современных играх разных жанров.\u003C\u002Fp\u003E\u003Cp\u003EВ своем проекте X-Drums 2.0 на Unreal Engine 5 мне захотелось добавить эту механику. И в этой статье я расскажу, что из этого получилось и какие еще игры повлияли на финальную реализацию.\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F815\u002F1fe\u002F533\u002F8151fe533d33c47154f682d7112f7693.jpg","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F815\u002F1fe\u002F533\u002F8151fe533d33c47154f682d7112f7693.jpg","fit":"cover","positionY":0,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"id":"1467124","alias":"xdrumsteam","fullname":"Rena","avatarUrl":null,"speciality":"Пользователь","scoreStats":{"score":6,"votesCount":8},"rating":3,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"donationsMethod":null,"isInBlacklist":null,"careerProfile":null},"statistics":{"commentsCount":0,"favoritesCount":6,"readingCount":572,"score":3,"votesCount":1,"votesCountPlus":1,"votesCountMinus":0},"hubs":[{"id":"20800","alias":"game_design","type":"collective","title":"Дизайн игр","titleHtml":"Дизайн игр","isProfiled":true,"relatedData":null},{"id":"7773","alias":"gamedev","type":"collective","title":"Разработка игр","titleHtml":"Разработка игр","isProfiled":true,"relatedData":null},{"id":"19367","alias":"unreal_engine","type":"collective","title":"Unreal Engine","titleHtml":"Unreal Engine","isProfiled":true,"relatedData":null},{"id":"559","alias":"cpp","type":"collective","title":"C++","titleHtml":"C++","isProfiled":true,"relatedData":null},{"id":"21980","alias":"games","type":"collective","title":"Игры и игровые консоли","titleHtml":"Игры и игровые консоли","isProfiled":false,"relatedData":null}],"flows":[{"id":"1","alias":"develop","title":"Разработка","titleHtml":"Разработка"},{"id":"2","alias":"design","title":"Дизайн","titleHtml":"Дизайн"},{"id":"7","alias":"popsci","title":"Научпоп","titleHtml":"Научпоп"}],"relatedData":{"vote":null,"unreadCommentsCount":0,"bookmarked":false,"canComment":false,"canEdit":false,"canViewVotes":false,"votePlus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"voteMinus":{"canVote":false,"isChargeEnough":false,"isKarmaEnough":false,"isVotingOver":false,"isPublicationLimitEnough":false},"canModerateComments":false,"trackerSubscribed":false,"emailSubscribed":false},"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EВ Steam завершился «Фестиваль передвижных ящиков», посвященный играм, где разными способами можно передвигать ящики. На английском фестиваль называется «Sokoban Fest» в честь первой игры, где появилась эта механика.\u003C\u002Fp\u003E\u003Cp\u003EИгра-головоломка «Sokoban» (яп. 倉庫番, рус. кладовщик) вышла в Японии в 1982 году и вскоре стала абсолютным хитом. Разработал ее годом ранее Хироюки Имабаяси (яп. 今林宏行). Как пишет сам автор в своем приветствии \u003Ca href=\"https:\u002F\u002Fsokoban.jp\u002Fgreeting.html\" rel=\"noopener noreferrer nofollow\"\u003Eна официальном сайте\u003C\u002Fa\u003E, ему захотелось создать игру, где персонаж может толкать груз и таким образом перемещать его в пространстве. Используя эту простую механику, он решил собрать головоломку, где этот самый груз, который необходимо перемещать, еще и мешает самому процессу.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fcce\u002F4d6\u002Fb86\u002Fcce4d6b8636d007b88ef4bc20702a803.png\" alt=\"PC-8801 倉庫番\" title=\"PC-8801 倉庫番\" width=\"1920\" height=\"1080\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fcce\u002F4d6\u002Fb86\u002Fcce4d6b8636d007b88ef4bc20702a803.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fcce\u002F4d6\u002Fb86\u002Fcce4d6b8636d007b88ef4bc20702a803.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EPC-8801 倉庫番\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E«Sokoban» имела колоссальный успех. И механика привлекла тогда внимание многих геймдизайнеров, которые стали применять ее в новых играх и продолжают применять в современных играх разных жанров.\u003C\u002Fp\u003E\u003Cp\u003EВ своем проекте X-Drums 2.0 на Unreal Engine 5 мне захотелось добавить эту механику. И в этой статье я расскажу, что из этого получилось и какие еще игры повлияли на финальную реализацию.\u003C\u002Fp\u003E\u003Ch2\u003EКак делали в разных играх\u003C\u002Fh2\u003E\u003Cp\u003EНа фестивале «Sokoban Fest» было представлено около 500 небольших игр, где механика передвижных ящиков была ключевой. Но как одна из множества, механика чаще встречается в платформерах, но нередко и в RPG, JRPG и action играх.\u003C\u002Fp\u003E\u003Cp\u003EВ моем игровом опыте передвижные ящики (они же кубы) встретились мне в играх NieR: Automata, NieR Replicant ver. 1.22, Final Fantasy VII Remake, STAR WARS Jedi: Survivor. Примеры из этих игр и предлагаю рассмотреть для формирования требований к механике в своем проекте.\u003C\u002Fp\u003E\u003Ch3\u003ENieR: Automata\u003C\u002Fh3\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fe86\u002F8d4\u002Fe8d\u002Fe868d4e8df2ebb6f6c7bae562128a184.jpg\" alt=\"NieR: Automata | A2 толкает куб\" title=\"NieR: Automata | A2 толкает куб\" width=\"1920\" height=\"1080\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fe86\u002F8d4\u002Fe8d\u002Fe868d4e8df2ebb6f6c7bae562128a184.jpg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fe86\u002F8d4\u002Fe8d\u002Fe868d4e8df2ebb6f6c7bae562128a184.jpg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003ENieR: Automata | A2 толкает куб\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EВ игре NieR: Automata передвижной куб встречается в нескольких локациях. Один из кубов находится в Пустыне, в тоннеле между Котлованом (англ. Pit Hollow), где происходит первая встреча с Адамом и Евой, и ее Пограничной зоной (англ. Border Area). Еще один закрывает проход между Городскими руинами (англ. City Ruins) и деревней Паскаля (англ. Pascal’s Village). Эти кубы предназначены для того, чтобы \u003Cstrong\u003Eоткрыть проход \u003C\u002Fstrong\u003Eмежду локациями во время выполнения заданий основного сюжета, поэтому встреча с ними неизбежна.\u003C\u002Fp\u003E\u003Cp\u003EЕще два куба находятся в Лесном замке (англ. Forest Castle). Один блокирует проход в кузницу Масамуне (англ. Masamune Blacksmith), а второй расположен в подвале, где проходит встреча машин. Кубы в Лесном замке не связаны с сюжетом, и их можно даже не найти, если не исследовать территорию.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ffc2\u002F8d8\u002Fbeb\u002Ffc28d8beb7171218ca6fe24efd23ddb5.jpg\" alt=\"NieR: Automata | Проход в кузницу Масамуне\" title=\"NieR: Automata | Проход в кузницу Масамуне\" width=\"1920\" height=\"1080\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ffc2\u002F8d8\u002Fbeb\u002Ffc28d8beb7171218ca6fe24efd23ddb5.jpg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ffc2\u002F8d8\u002Fbeb\u002Ffc28d8beb7171218ca6fe24efd23ddb5.jpg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003ENieR: Automata | Проход в кузницу Масамуне\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EГлавные герои игры андроиды 2B, 9S и A2 могут \u003Cstrong\u003Eтолкать куб вперед\u003C\u002Fstrong\u003E и\u003Cstrong\u003E тянуть его на себя\u003C\u002Fstrong\u003E, используя физическую силу. Для этого игроку необходимо удерживать триггер, чтобы ухватить объект (англ. Grab), а потом двигаться в одном из интересующих направлений вперед или назад. Какой именно триггер, указано в подсказке, всплывающей, когда герой находится рядом с гранью.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fac3\u002F86b\u002F120\u002Fac386b12008c8da5e58440f91e7937b1.jpg\" alt=\"NieR: Automata | A2 тянет куб\" title=\"NieR: Automata | A2 тянет куб\" width=\"1920\" height=\"1080\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fac3\u002F86b\u002F120\u002Fac386b12008c8da5e58440f91e7937b1.jpg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fac3\u002F86b\u002F120\u002Fac386b12008c8da5e58440f91e7937b1.jpg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003ENieR: Automata | A2 тянет куб\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cdetails class=\"spoiler\"\u003E\u003Csummary\u003EВидео передвижения куба\u003C\u002Fsummary\u003E\u003Cdiv class=\"spoiler__content\"\u003E\u003Cdiv class=\"tm-iframe_temp\" data-src=\"https:\u002F\u002Fembedd.srv.habr.com\u002Fiframe\u002F681a0a591b6bd2ba7cea5015\" data-style=\"\" id=\"681a0a591b6bd2ba7cea5015\" width=\"\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdetails\u003E\u003Cp\u003EКроме этих кубов, геймдизайнеры NieR: Automata предлагают игрокам \u003Cstrong\u003Eпередвигать \u003C\u002Fstrong\u003Eи \u003Cstrong\u003Eклассические коробки на складах \u003C\u002Fstrong\u003Eодного из обитателей Лагеря сопротивления (англ. Resistance Camp) в серии сайд квестов «Проблемы сортировки» (англ. Sorting Trouble). Как в той самой игре «Sokoban».\u003C\u002Fp\u003E\u003Cp\u003EВсего в этой серии три квеста, которые необходимо выполнять последовательно. Два из них проходят на складе в Лагере сопротивления, а заключительный — в Городских руинах на одной из крыш здания. Квесты представляют из себя \u003Cstrong\u003Eлегкую головоломку\u003C\u002Fstrong\u003E, где игроку нужно толкать вперед деревянные ящики, чтобы освободить проход к целям. В отличие от взаимодействия с кубами, эти ящики нельзя тянуть на себя, как и в оригинальной игре «Sokoban».\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F599\u002F082\u002F023\u002F599082023c408b1737a56d5c3151cc56.jpg\" alt=\"NieR: Automata | Квест «Проблемы сортировки» 3\" title=\"NieR: Automata | Квест «Проблемы сортировки» 3\" width=\"1920\" height=\"1080\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F599\u002F082\u002F023\u002F599082023c408b1737a56d5c3151cc56.jpg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F599\u002F082\u002F023\u002F599082023c408b1737a56d5c3151cc56.jpg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003ENieR: Automata | Квест «Проблемы сортировки» 3\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cdetails class=\"spoiler\"\u003E\u003Csummary\u003EСкрытый текст\u003C\u002Fsummary\u003E\u003Cdiv class=\"spoiler__content\"\u003E\u003Cp\u003EСледующая за персонажем камера в этих квестах меняет обзор на топ-даун (англ. Top-down view), что является очередным примером оригинальных решений геймдизайнеров серии. Наряду с 2D камерой на некоторых локациях (англ. 2D Side View Camera) и другими приемами.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdetails\u003E\u003Ch3\u003ENieR Replicant ver. 1.22\u003C\u002Fh3\u003E\u003Cp\u003E\u003Cstrong\u003EПохожая головоломка\u003C\u002Fstrong\u003E есть и в игре NieR Replicant ver. 1.22, но она не является квестом, который выдается и требует выполнения. Это просто одна из небольших локаций. И доступ к ней открыт в любое время игры, а ящики всегда активны для взаимодействия. Находится она на Почте в Приморье (англ. Seafront).\u003C\u002Fp\u003E\u003Cp\u003EГлавному герою необходимо передвигать ящики, чтобы \u003Cstrong\u003Eосвободить проход\u003C\u002Fstrong\u003E в следующую комнату, где находится ценный лут. Схема взаимодействия с ящиками такая же, как в NieR: Automata, но здесь герой может двигать их в обоих направлениях, то есть и тянуть на себя. Ящики, которые можно сдвинуть, имеют более светлый оттенок и маркируются с помощью белого UI ромба. Он становится желтым, если захват объекта (англ. Grab) уже произошел.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbc8\u002Fd46\u002Fd8f\u002Fbc8d46d8fe40faa0b55c02b2a5653dac.jpg\" alt=\"NieR Replicant ver. 1.22 | Головоломка на почте\" title=\"NieR Replicant ver. 1.22 | Головоломка на почте\" width=\"1920\" height=\"1080\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbc8\u002Fd46\u002Fd8f\u002Fbc8d46d8fe40faa0b55c02b2a5653dac.jpg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbc8\u002Fd46\u002Fd8f\u002Fbc8d46d8fe40faa0b55c02b2a5653dac.jpg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003ENieR Replicant ver. 1.22 | Головоломка на почте\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EЕще несколько головоломок, но уже с \u003Cstrong\u003Eперемещением кубов\u003C\u002Fstrong\u003E и с привычным видом от третьего лица, предстоит решать игроку в комнатах в Пустынном храме (англ. The Barren Temple). Это локация из первой части игры, которая является частью основной сюжетной линии.\u003C\u002Fp\u003E\u003Cp\u003EГлавный герой в команде с напарниками Кайне и Вайсом должен помочь жителям города Фасада (англ. Facade) найти принца, пропавшего на территории храма. В поисках героям предстоит последовательно пройти \u003Cstrong\u003E7 непростых комнат\u003C\u002Fstrong\u003E. Задача в каждой — добраться до красного куба в конце комнаты и уничтожить его. Но задачу усложняют блоки, стреляющие снарядами в стиле bullet-hell, а также запрет на использование одной или нескольких способностей, о которых сообщается на входе.\u003C\u002Fp\u003E\u003Cp\u003EВ \u003Cstrong\u003Eкачестве укрытия и преграды\u003C\u002Fstrong\u003E на линии огня геймдизайнеры, собственно, и предлагают использовать расположенные в комнатах передвижные кубы. Они есть в первой и четвертой комнате. Схема взаимодействия с ними такая же, как с кубами в NieR: Automata.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fc70\u002F4e8\u002F70c\u002Fc704e870cd584ce07831fa7bdd027ac6.png\" alt=\"NieR Replicant ver. 1.22 | Одна из комнат в Пустынном храме\" title=\"NieR Replicant ver. 1.22 | Одна из комнат в Пустынном храме\" width=\"1280\" height=\"720\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fc70\u002F4e8\u002F70c\u002Fc704e870cd584ce07831fa7bdd027ac6.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fc70\u002F4e8\u002F70c\u002Fc704e870cd584ce07831fa7bdd027ac6.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003ENieR Replicant ver. 1.22 | Одна из комнат в Пустынном храме\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EГоловоломки в Пустынном храме заметно сложнее всех описанных ранее, потому что происходят в условиях, представляющих опасность для героя, когда его функционал существенно ограничен. Их прохождение обязательно для продвижения по сюжету, и после прохождения повторить их снова невозможно.\u003C\u002Fp\u003E\u003Cp\u003EВ целом в мире NieR Replicant ver. 1.22 передвижным кубам уделяется намного больше внимания, чем в NieR: Automata. Они есть во многих локациях и имеют разный визуал. Впервые такой куб встречается в самом начале игры в Затерянном храме (англ. Lost Shrine). Дальше их можно найти и на территории Свалки (англ. The Junk Heap). В зависимости от расположения предполагается разное их использование: в качестве платформы \u003Cstrong\u003Eдля прыжка или как укрытие\u003C\u002Fstrong\u003E.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff1b\u002F003\u002F8da\u002Ff1b0038da726d724e00697a640f58110.jpg\" alt=\"NieR Replicant ver. 1.22 | В Затерянном храме\" title=\"NieR Replicant ver. 1.22 | В Затерянном храме\" width=\"1920\" height=\"1080\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff1b\u002F003\u002F8da\u002Ff1b0038da726d724e00697a640f58110.jpg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff1b\u002F003\u002F8da\u002Ff1b0038da726d724e00697a640f58110.jpg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003ENieR Replicant ver. 1.22 | В Затерянном храме\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cdetails class=\"spoiler\"\u003E\u003Csummary\u003EВидео из комнат в Пустынном храме\u003C\u002Fsummary\u003E\u003Cdiv class=\"spoiler__content\"\u003E\u003Cdiv class=\"tm-iframe_temp\" data-src=\"https:\u002F\u002Fembedd.srv.habr.com\u002Fiframe\u002F681a09c0693dbaa8508866e6\" data-style=\"\" id=\"681a09c0693dbaa8508866e6\" width=\"\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdetails\u003E\u003Ch3\u003EДругие примеры\u003C\u002Fh3\u003E\u003Cp\u003EЕще один пример этой механики есть в Final Fantasy VII Remake. В одной из глав на пути главного героя Клауда появляется зеленый контейнер, который необходимо передвинуть, чтобы использовать его в качестве платформы для проникновения на новую территорию.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa21\u002F0ca\u002F077\u002Fa210ca0778e0d93acce296d9e44b5683.png\" alt=\"Final Fantasy VII Remake | Interact with Box\" title=\"Final Fantasy VII Remake | Interact with Box\" width=\"1280\" height=\"720\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa21\u002F0ca\u002F077\u002Fa210ca0778e0d93acce296d9e44b5683.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa21\u002F0ca\u002F077\u002Fa210ca0778e0d93acce296d9e44b5683.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EFinal Fantasy VII Remake | Interact with Box\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EЗа всю игру встречается только один такой куб. И, как и в играх серии NieR, без его передвижения продвинуться дальше невозможно.\u003C\u002Fp\u003E\u003Cdetails class=\"spoiler\"\u003E\u003Csummary\u003EВидео с кубом в Final Fantasy VII Remake\u003C\u002Fsummary\u003E\u003Cdiv class=\"spoiler__content\"\u003E\u003Cdiv class=\"tm-iframe_temp\" data-src=\"https:\u002F\u002Fembedd.srv.habr.com\u002Fiframe\u002F681a6776fc0bb4a8164a08d2\" data-style=\"\" id=\"681a6776fc0bb4a8164a08d2\" width=\"\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdetails\u003E\u003Cp\u003EЕще передвижные кубы есть в серии God of War (видео с ними \u003Ca href=\"https:\u002F\u002Fyoutu.be\u002FSHuosItWUNk?feature=shared&amp;t=54\" rel=\"noopener noreferrer nofollow\"\u003Eпо ссылке\u003C\u002Fa\u003E). И есть в STAR WARS: Jedi: Survivor. В первой их передвижение реализовано как в описанных ранее играх. А вот в Jedi: Survivor разработчики предлагают передвигать их с помощью телекинеза, которым обладает главный герой — джедай Кэл Кестис (англ. Cal Kestis).\u003C\u002Fp\u003E\u003Cp\u003EВ качестве «ящика» в игре выступает металлический контейнер в форме куба желтого цвета внушительных размеров. В радиусе возможного взаимодействия его корпус начинает светиться синим цветом. Контейнер можно как\u003Cstrong\u003E притягивать к себе\u003C\u002Fstrong\u003E, так и \u003Cstrong\u003Eотталкивать\u003C\u002Fstrong\u003E, используя соответствующие триггеры. В сравнении с классической схемой перемещение таким образом не всегда предсказуемо, поэтому требуется не одна попытка, чтобы доставить его в нужное место.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F72f\u002Fb84\u002Fa41\u002F72fb84a41aec41c92b6a39f24309af91.jpg\" alt=\"STAR WARS: Jedi: Survivor | Movable Box\" title=\"STAR WARS: Jedi: Survivor | Movable Box\" width=\"1920\" height=\"1080\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F72f\u002Fb84\u002Fa41\u002F72fb84a41aec41c92b6a39f24309af91.jpg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F72f\u002Fb84\u002Fa41\u002F72fb84a41aec41c92b6a39f24309af91.jpg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003ESTAR WARS: Jedi: Survivor | Movable Box\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EВстречается такой контейнер впервые в самом начале игры на планете Корусант (англ. Coruscant). Несколько таких контейнеров находятся на планете Джеда (англ. Jedha). Их передвижение обязательно для \u003Cstrong\u003Eпродвижения дальше\u003C\u002Fstrong\u003E. Еще несколько контейнеров есть на Кобо (англ. Koboh). Они предназначены для проникновения на дополнительные территории с сундуками и являются частью необязательной головоломки.\u003C\u002Fp\u003E\u003Cdetails class=\"spoiler\"\u003E\u003Csummary\u003EВидео кубы в STAR WARS: Jedi: Survivor\u003C\u002Fsummary\u003E\u003Cdiv class=\"spoiler__content\"\u003E\u003Cdiv class=\"tm-iframe_temp\" data-src=\"https:\u002F\u002Fembedd.srv.habr.com\u002Fiframe\u002F681a094f693dbaa850886698\" data-style=\"\" id=\"681a094f693dbaa850886698\" width=\"\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdetails\u003E\u003Cp\u003EИтак, подведем итог и сформируем основные требования к передвижному ящику в моей игре. В качестве примеров будем использовать игры серии NieR, God of War и Final Fantasy VII Remake с поправкой на 2D. Реализация Jedi: Survivor интересна, но не подходит, поскольку наш герой джедайской силой не обладает. Дальше напомню немного про свою игру.\u003C\u002Fp\u003E\u003Ch2\u003EПро X-Drums 2.0 и передвижной барабан\u003C\u002Fh2\u003E\u003Cp\u003EИгра называется X-Drums 2.0. Это мультиплеер 2D пиксель-арт платформер c поддержкой single-player режима, посвященный теме барабанов. Главным героем выступает барабанщик, управляя которым, необходимо собрать ноты и найти выход.\u003C\u002Fp\u003E\u003Cp\u003EДействие игры разворачивается условно на складах музыкальных инструментов, где размещаются барабаны, тарелки, клавиши пианино и разные подвижные платформы, по которым можно ходить и прыгать. На пути героя встречаются влюбленные фанатки, отбирающие ноты. Купидоны, пускающие стрелы, и ослепляющие прожекторы.\u003C\u002Fp\u003E\u003Cp\u003EИгра разрабатывается на Unreal Engine 5.3 на C++ с использованием Steam Online Subsystem для мультиплеера. Подробнее про разработку можно прочитать \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Farticles\u002F874098\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eздесь\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cp\u003EВ качестве передвижного ящика наиболее подходящим в моей игре мне показался \u003Cstrong\u003Eбольшой барабан\u003C\u002Fstrong\u003E 64×64 пикселей.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F623\u002F612\u002F489\u002F623612489f7a9291c4c4797bd77b3bd2.jpg\" alt=\"X-Drums 2.0 | Передвижной барабан\" title=\"X-Drums 2.0 | Передвижной барабан\" width=\"1536\" height=\"864\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F623\u002F612\u002F489\u002F623612489f7a9291c4c4797bd77b3bd2.jpg 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F623\u002F612\u002F489\u002F623612489f7a9291c4c4797bd77b3bd2.jpg 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EX-Drums 2.0 | Передвижной барабан\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EОпираясь на приведенные примеры, сформируем следующие ключевые требования к барабану (ящику в моей интерпретации) и его поведению:\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EБарабан должен перемещаться строго по горизонтали по направлению движения персонажа.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСкорость движения барабана одинаковая, независимо от того, толкают его или тянут.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПередвижение должно выглядеть с усилием, будто барабан обладает значительной массой.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EКогда герой находится рядом с гранью барабана, появляется всплывающая подсказка, какой триггер необходимо использовать, чтобы его передвигать.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДля передвижения игроку необходимо удерживать триггер, чтобы ухватить барабан (англ. Grab), и двигаться в одном из интересующих направлений (вперед или назад), используя привычные триггеры движения.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EБарабан должен останавливаться при коллизиях со статичными или подвижными объектами (в том числе и с персонажем другого игрока).\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EНа барабан можно запрыгнуть. В момент приземления на него проигрывается такой же звук, как при прыжке на статичные барабаны.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EБарабан не блокируется одним игроком. Его могут пробовать передвигать одновременно несколько.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПри перемещении барабана используется свой набор анимации персонажа: тянуть-толкать.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПри перемещении барабана проигрываются звуковые эффекты.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003EТеперь перейдем к некоторым интересным и значимым деталям реализации.\u003C\u002Fp\u003E\u003Ch3\u003EНекоторые детали реализации\u003C\u002Fh3\u003E\u003Cp\u003EКлассический способ реализации захвата объекта (англ. grab) и перемещения его в пространстве реализуется в Unreal Engine с помощью \u003Cstrong\u003EPhysics Handle Component\u003C\u002Fstrong\u003E, который предполагает включение физики у перемещаемого объекта.\u003C\u002Fp\u003E\u003Cp\u003EНаряду с этим компонентом существует \u003Cstrong\u003EPhysics Constraint Component\u003C\u002Fstrong\u003E, который чаще применяется для связки твердых тел и передачи движения от главного к подчиненному. Например, для груза на веревке. Этот компонент также предполагает использовать физику объекта.\u003C\u002Fp\u003E\u003Cp\u003EДля 2D пиксель-арт игры использовать физику, а особенно ее включение в радиусе взаимодействия и выключение вне, мне показалось overkill’ом и overhead’ом. Поэтому, реализовав несколько прототипов, демонстрирующих немало проблем этих способов, было решено отказаться от их использования.\u003C\u002Fp\u003E\u003Cdetails class=\"spoiler\"\u003E\u003Csummary\u003EПрототип с Physics Constraint Component\u003C\u002Fsummary\u003E\u003Cdiv class=\"spoiler__content\"\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff0c\u002Ff02\u002Fa53\u002Ff0cf02a53b5ebe03c456e5267bd82352.gif\" alt=\"Использование Physics Constraint Component\" title=\"Использование Physics Constraint Component\" width=\"600\" height=\"503\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff0c\u002Ff02\u002Fa53\u002Ff0cf02a53b5ebe03c456e5267bd82352.gif 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ff0c\u002Ff02\u002Fa53\u002Ff0cf02a53b5ebe03c456e5267bd82352.gif 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EИспользование \u003Cstrong\u003EPhysics Constraint Component\u003C\u002Fstrong\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdetails\u003E\u003Cp\u003EЕще один способ реализовать желаемое поведение в Unreal Engine — это использовать \u003Cstrong\u003EAttachment to Actor\u003C\u002Fstrong\u003E или \u003Cstrong\u003EAttachment to Component\u003C\u002Fstrong\u003E. Но у него есть свой большой недостаток. Так, объект после прикрепления (англ. attachment) теряет свои коллизии и поэтому может проходить сквозь стены и другие объекты. На форумах пишут, что победить это невозможно без включения физики, и объясняют тем, что в состоянии присоединения объектов таким способом коллизия сохраняется только у parent объекта. Это самый главный блокер способа, хотя были и другие.\u003C\u002Fp\u003E\u003Cdetails class=\"spoiler\"\u003E\u003Csummary\u003EПрототип с Attachment to Actor\u003C\u002Fsummary\u003E\u003Cdiv class=\"spoiler__content\"\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fe1a\u002F0ca\u002F431\u002Fe1a0ca43176712becb940261efba85f4.gif\" alt=\"Использование Attachment to Actor\" title=\"Использование Attachment to Actor\" width=\"600\" height=\"499\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fe1a\u002F0ca\u002F431\u002Fe1a0ca43176712becb940261efba85f4.gif 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fe1a\u002F0ca\u002F431\u002Fe1a0ca43176712becb940261efba85f4.gif 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EИспользование \u003Cstrong\u003EAttachment to Actor\u003C\u002Fstrong\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdetails\u003E\u003Cp\u003E\u003Cstrong\u003EЧто же тогда остается?\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EМне показалось возможным использовать\u003Cstrong\u003E Add Actor Local Offset\u003C\u002Fstrong\u003E барабану на каждый Tick, получая направление движения от Player Character — игрока, перемещающего барабан.\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Evoid AMovableDrum::Tick(float DeltaTime)\n{\n\tSuper::Tick(DeltaTime);\n\n\tif (HasAuthority() &amp;&amp; MovingCharacter &amp;&amp; bGrabbed &amp;&amp; bIsOccupied)\n\t{\n\t\tFVector DeltaLocation = FVector::ZeroVector;\n\n\t\tfloat MaxSpeed = MovingCharacter-&gt;GrabMaxSpeed;\n\t\t\n\t\tDeltaLocation.X = MoveDirection * MaxSpeed * DeltaTime;\n\n\t\tFHitResult* HitResult = nullptr;\n\n\t\tAddActorLocalOffset(DeltaLocation, true, HitResult);\n\n\t\tif (HitResult &amp;&amp; HitResult-&gt;bBlockingHit)\n\t\t{\n\t\t\tbGrabbed = false;\n\t\t}\n\t}\n}\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EMovingCharacter определяется в момент overlap персонажем триггер компонента барабана (UBoxComponent Grab Volume). В этот же момент происходит подписка на делегаты OnGrabActionStartedDelegate и OnGrabActionEndedDelegate.\u003C\u002Fp\u003E\u003Cp\u003EOnGrabActionStartedDelegate сообщает о начале захвата барабана — это удержание клавиши Alt, что переводит bGrabbed в статус true и передает направление движения MoveDirection, где (1) — это движение вперед, а (-1) — движение назад.\u003C\u002Fp\u003E\u003Cp\u003EOnGrabActionEndedDelegate сообщает, что захват прекращен, и переводит bGrabbed в статус false.\u003C\u002Fp\u003E\u003Ch3\u003EРеализация анимации\u003C\u002Fh3\u003E\u003Cp\u003EПеремещение барабана предполагает специфические анимации персонажа: \u003Cstrong\u003Eтолкать барабан от себя\u003C\u002Fstrong\u003E (англ. push) и \u003Cstrong\u003Eтянуть его на себя\u003C\u002Fstrong\u003E (англ. pull), как в примерах ранее.\u003C\u002Fp\u003E\u003Cp\u003EДля этого в стейт машине в анимационном блюпринте (англ. AnimBP) добавлено два новых стейта: push и pull.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0bc\u002F847\u002Fed6\u002F0bc847ed6731bf5f247f43871ade1f6f.png\" alt=\"AnimBP\" title=\"AnimBP\" width=\"1159\" height=\"636\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0bc\u002F847\u002Fed6\u002F0bc847ed6731bf5f247f43871ade1f6f.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0bc\u002F847\u002Fed6\u002F0bc847ed6731bf5f247f43871ade1f6f.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EAnimBP\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EА чтобы не усложнять код, решено было не различать в C++ эти два новых состояния и использовать проверку в самом AnimBP. Так, если: скалярное произведение форвард вектора актора и его нормализованной скорости &gt; 0, то это push, а если &lt; 0, то это pull.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F60c\u002Fd3d\u002F231\u002F60cd3d231add6b0cc31279effa47ba48.png\" alt=\"Правило перехода в Pull state\" title=\"Правило перехода в Pull state\" width=\"1165\" height=\"686\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F60c\u002Fd3d\u002F231\u002F60cd3d231add6b0cc31279effa47ba48.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F60c\u002Fd3d\u002F231\u002F60cd3d231add6b0cc31279effa47ba48.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EПравило перехода в Pull state\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F07c\u002F393\u002F78d\u002F07c39378dea64a1ec4b86f97b137f344.png\" alt=\"Правило перехода в Push state\" title=\"Правило перехода в Push state\" width=\"1162\" height=\"686\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F07c\u002F393\u002F78d\u002F07c39378dea64a1ec4b86f97b137f344.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F07c\u002F393\u002F78d\u002F07c39378dea64a1ec4b86f97b137f344.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003Cdiv\u003E\u003Cfigcaption\u003EПравило перехода в Push state\u003C\u002Ffigcaption\u003E\u003C\u002Fdiv\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EНовое поведение предполагает отключение обновления направления движения, благодаря которому происходит переворот Control Rotation в Controller в случае движения назад. Однако в некоторых случаях такой поворот все-таки происходит, и персонаж тянет барабан на себя спиной. К сожалению, разобраться с этим поведением у меня не получилось, и поэтому оно превратилось в фичу. А почему бы и нет?\u003C\u002Fp\u003E\u003Cp\u003EДля звуковых эффектов движения барабана по поверхности в соответствующие анимации персонажа добавлены AnimNotifyState вместо привычного и готового AnimNotifySound, поскольку в первом есть ивенты BeginPlay и EndPlay, что позволяет ограничивать проигрывание периодом, а не проигрывать звук постоянно, так как анимация циклическая.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EИтак, смотрим, что из этого получилось!\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F1b2\u002F50b\u002F863\u002F1b250b863a4d1424892e14f63621985e.gif\" width=\"600\" height=\"338\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F1b2\u002F50b\u002F863\u002F1b250b863a4d1424892e14f63621985e.gif 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F1b2\u002F50b\u002F863\u002F1b250b863a4d1424892e14f63621985e.gif 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cdetails class=\"spoiler\"\u003E\u003Csummary\u003EВидео в отличном качестве вместо гифки\u003C\u002Fsummary\u003E\u003Cdiv class=\"spoiler__content\"\u003E\u003Cdiv class=\"tm-iframe_temp\" data-src=\"https:\u002F\u002Fembedd.srv.habr.com\u002Fiframe\u002F681a5e77fec567ba65d19ad9\" data-style=\"\" id=\"681a5e77fec567ba65d19ad9\" width=\"\"\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"tm-iframe_temp\" data-src=\"https:\u002F\u002Fembedd.srv.habr.com\u002Fiframe\u002F681a5e858f844fa824a4eee1\" data-style=\"\" id=\"681a5e858f844fa824a4eee1\" width=\"\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdetails\u003E\u003Ch3\u003EДополнительные фичи\u003C\u002Fh3\u003E\u003Cp\u003EПалитра игры включает в себя 8 ключевых цветов, поэтому передвижных барабанов планировалось также 8, различающихся на старте только по цвету. В будущем можно добавить в различия звуки и эффекты.\u003C\u002Fp\u003E\u003Cp\u003EПоскольку все передвижные барабаны обладают одинаковыми свойствами и различаются только по цвету, то был создан Base Actor Blueprint с TMap Flipbook по Enum, который отвечает за цвет.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F731\u002Fd64\u002Fc7f\u002F731d64c7fc38f0885c71a5335c65362c.png\" width=\"1299\" height=\"687\" sizes=\"(max-width: 780px) 100vw, 50vw\" srcset=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F731\u002Fd64\u002Fc7f\u002F731d64c7fc38f0885c71a5335c65362c.png 780w,&#10;       https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F731\u002Fd64\u002Fc7f\u002F731d64c7fc38f0885c71a5335c65362c.png 781w\" loading=\"lazy\" decode=\"async\"\u002F\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EКак и с софитами (\u003Cem\u003Eо них можно почитать \u003C\u002Fem\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Farticles\u002F874098\u002F\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cem\u003Eздесь\u003C\u002Fem\u003E\u003C\u002Fa\u003E\u003Cem\u003E)\u003C\u002Fem\u003E, на карте планируется размещать несколько барабанов, поэтому необходим механизм их разнообразия, отвечающий следующим условиям:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003Eрядом не должны оказаться одинаковые по цвету барабаны,\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eна карте должны быть представлены барабаны всех цветов и\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eпри каждом запуске цвета должны меняться.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EДля этой задачи был использован такой же метод рандомизации через гейммод, что был использован для софитов. Поэтому каждый запуск уникальный.\u003C\u002Fp\u003E\u003Ch3\u003EKnown Issues и Change Log\u003C\u002Fh3\u003E\u003Cp\u003EНесмотря на многократные тесты в мультиплеере с несколькими Steam игроками, последний релиз проявил неприятный баг, когда барабан редко, но начинал проходить сквозь стены. Баг добавлен в баг-трекер. Надеюсь его победить в будущих релизах.\u003C\u002Fp\u003E\u003Cp\u003EС момента прошлой публикации в игре появилось множество изменений. Например, добавлен подсчет времени, в целесообразности которого я сомневалась в самом начале. А также:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EДобавлена новая карта и непосредственно выбор карт.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДобавлена и доработана механика клавиш пианино, которые были в основной игре.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДобавлена механика множественных выходов.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EЗначительно обновлен арт.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДобавлена локализация на 5 языков и многое другое.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EСкачать последнюю версию, включающую и передвижные барабаны, можно по \u003Ca href=\"https:\u002F\u002Finkumori.itch.io\u002Fx-drums-20\u002Fdevlog\u002F923778\u002Fannouncing-the-release-of-x-drums-20-version-1006\" rel=\"noopener noreferrer nofollow\"\u003Eссылке\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Ch3\u003EЗаключение\u003C\u002Fh3\u003E\u003Cp\u003EИгра-головоломка «Sokoban» продолжает вдохновлять геймдизайнеров на свои интерпретации как всей игры, так и отдельно механики перемещаемого в пространстве ящика. И «Sokoban Fest» — явное тому подтверждение.\u003C\u002Fp\u003E\u003Cp\u003EВдохновившись примерами, мне удалось реализовать свой вариант такого ящика в рамках моего ремейка X-Drums 2.0 на Unreal Engine 5. И в ходе реализации пришлось познакомиться со способами, которые предлагает движок, и определить наиболее подходящий для своей игры. А также решить немало задач по адаптации под мультиплеер и поддержке сетевого кода. О чем здесь сказано не много, поскольку больше хотелось сфокусировать на общем подходе.\u003C\u002Fp\u003E\u003Cp\u003EНовая механика наряду с запуском платформ добавила игроку еще одну возможность влиять на игровой мир и прохождения других игроков. Она сбавила высокий темп игры и позволила разнообразить левел дизайн. На мой взгляд, она неплохо вписалась в общую концепцию игры. Но так ли это? Решать вам, игрокам! \u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"gamedev"},{"titleHtml":"gamedevelopment"},{"titleHtml":"gamedevelop"},{"titleHtml":"unrealengine"},{"titleHtml":"unreal engine 5"},{"titleHtml":"storytelling"},{"titleHtml":"gamedesign"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F815\u002F1fe\u002F533\u002F8151fe533d33c47154f682d7112f7693.jpg","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F815\u002F1fe\u002F533\u002F8151fe533d33c47154f682d7112f7693.jpg","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F907306\\\u002F\"},\"headline\":\"История одной разработки: передвижные барабаны в стиле классики Sokoban в инди платформере X-Drums 2.0\",\"datePublished\":\"2025-05-06T22:52:30+03:00\",\"dateModified\":\"2025-05-06T23:55:37+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Rena\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"В Steam завершился &laquo;Фестиваль передвижных ящиков&raquo;, посвященный играм, где разными способами можно передвигать ящики. На английском фестиваль называется &laquo;Sokoban...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Farticles\\\u002F907306\\\u002F#post-content-body\",\"about\":[\"h_game_design\",\"h_gamedev\",\"h_unreal_engine\",\"h_cpp\",\"h_games\",\"f_develop\",\"f_design\",\"f_popsci\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F907306\\\u002F4740795dd288f0e7c6775387df91a7da\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fcce\\\u002F4d6\\\u002Fb86\\\u002Fcce4d6b8636d007b88ef4bc20702a803.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fe86\\\u002F8d4\\\u002Fe8d\\\u002Fe868d4e8df2ebb6f6c7bae562128a184.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Ffc2\\\u002F8d8\\\u002Fbeb\\\u002Ffc28d8beb7171218ca6fe24efd23ddb5.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fac3\\\u002F86b\\\u002F120\\\u002Fac386b12008c8da5e58440f91e7937b1.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F599\\\u002F082\\\u002F023\\\u002F599082023c408b1737a56d5c3151cc56.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fbc8\\\u002Fd46\\\u002Fd8f\\\u002Fbc8d46d8fe40faa0b55c02b2a5653dac.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fc70\\\u002F4e8\\\u002F70c\\\u002Fc704e870cd584ce07831fa7bdd027ac6.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Ff1b\\\u002F003\\\u002F8da\\\u002Ff1b0038da726d724e00697a640f58110.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fa21\\\u002F0ca\\\u002F077\\\u002Fa210ca0778e0d93acce296d9e44b5683.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F72f\\\u002Fb84\\\u002Fa41\\\u002F72fb84a41aec41c92b6a39f24309af91.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F623\\\u002F612\\\u002F489\\\u002F623612489f7a9291c4c4797bd77b3bd2.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Ff0c\\\u002Ff02\\\u002Fa53\\\u002Ff0cf02a53b5ebe03c456e5267bd82352.gif\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fe1a\\\u002F0ca\\\u002F431\\\u002Fe1a0ca43176712becb940261efba85f4.gif\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F0bc\\\u002F847\\\u002Fed6\\\u002F0bc847ed6731bf5f247f43871ade1f6f.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F60c\\\u002Fd3d\\\u002F231\\\u002F60cd3d231add6b0cc31279effa47ba48.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F07c\\\u002F393\\\u002F78d\\\u002F07c39378dea64a1ec4b86f97b137f344.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F1b2\\\u002F50b\\\u002F863\\\u002F1b250b863a4d1424892e14f63621985e.gif\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F731\\\u002Fd64\\\u002Fc7f\\\u002F731d64c7fc38f0885c71a5335c65362c.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F815\\\u002F1fe\\\u002F533\\\u002F8151fe533d33c47154f682d7112f7693.jpg\"]}","metaDescription":"В Steam завершился «Фестиваль передвижных ящиков», посвященный играм, где разными способами можно передвигать ящики. На английском фестиваль называется «Sokoban Fest» в честь первой игры, где...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":{"status":true,"reason":null},"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"hasPinnedComments":false,"format":"case","banner":null,"multiwidget":null,"multiwidgetUuid":null,"readingTime":11,"complexity":"medium","isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"postReasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"viewedPosts":[],"myFeedFilter":{"complexity":"all","score":"all","types":["articles","posts","news"]},"myFeedIsApplyFilters":false,"myFeedIsForce":false,"karma":{"userReasonsList":null}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[{"title":"QT разработчик","vacanciesCount":8,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Fc_plus_plus_qt_developer","itemHubs":["qt_software","cpp"]},{"title":"Unity разработчик","vacanciesCount":4,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Funity_developer","itemHubs":["unity","gamedev"]},{"title":"Разработчик игр","vacanciesCount":33,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Fgame_developer","itemHubs":["game_design","unity","gamedev","game_testing","unreal_engine","godot"]},{"title":"Программист C++","vacanciesCount":101,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Fprogrammist_c_plus_plus","itemHubs":["cpp"]}],"hubs":"game_design,gamedev,unreal_engine,cpp,games"},"comments":{"articleComments":{},"articlePinnedComments":{},"searchCommentsResults":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":"","idempotenceKey":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"multiwidgets":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"multiwidgetLoading":false,"vacancies":{},"companiesGalleries":{},"companiesBanners":{},"companiesLandingVacancies":{},"companiesTechnologies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null,"jivoStatus":0,"adminNotifications":null,"availableInvitesCount":{}},"companyAdd":{"currentStep":"","stepsData":{},"uncompletedSteps":[],"isStepLoading":true,"isStepCommitting":false,"isInitialized":false,"agreementContent":""},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"pagesCount":0},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":true},"fixedBanner":{"isArticleStickyPanelVisible":false,"isArticleStickyPanelAtTheBottom":false,"isFixedBannerVisible":false,"isStickyPanelIconsHidden":false},"flows":{"updates":{}},"global":{"isPwa":false,"device":"desktop","isHabrCom":true,"requestId":"d3ee1e981be56578672107e52fe6376c"},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"welcomePage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"query":{},"pathname":"\u002Fru\u002Farticles\u002F907306\u002F","path":"\u002Fru\u002Farticles\u002F907306\u002F","href":"\u002Fru\u002Farticles\u002F907306\u002F"}},"me":{"user":null,"uuid":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null,"userUpdates":{"feeds":{"newPostsCount":null,"newThreadsCount":null,"newNewsCount":null,"newCount":null},"conversationUnreadCount":0},"features":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"onboarding":{"currentStep":null,"stepsData":{},"stepsErrors":{},"completedSteps":[],"isStepCommitting":false,"isCommitDisabled":true},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{"questions":"project-block-article"}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null,"sticker":null},"publicationStatistics":{"statsInfo":{},"statsFunnels":{},"statsGraph":{},"defaultSuggest":{},"suggest":{},"timeTracker":{},"isTrackingActivity":false,"isUserActive":true,"otherPublicationStats":{}},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":true,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"stories":{"stories":null},"technotext":{"years":[],"technotextDocForNominees":null,"technotextDocForWinners":null,"technotextInfo":{},"technotextInfoLoading":false,"technotextWinners":{},"technotextWinnersLoading":false},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"userVotes":{"karmaVotesList":[],"karmaVotesPagesCount":null,"karmaVotesListLoading":false,"commentsVotesList":[],"commentsVotesPagesCount":null,"commentsVotesListLoading":false,"postsVotesList":[],"postsVotesPagesCount":null,"postsVotesListLoading":false,"userVotesList":[],"userVotesPagesCount":null,"userVotesListLoading":false},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"notificationsLoading":false,"notificationsList":[],"notificationsPageCount":0,"pendingMarkNotificationsRead":[],"publicationsLoading":true,"publicationsList":[],"publicationsPageCount":0,"pendingDeletePublications":false,"pendingMarkPublicationsRead":false},"events":{"eventRefs":{},"eventIds":[],"pagesCount":0,"categories":[],"cities":[],"actualEvents":null,"currentEvent":null,"eventsFilter":{"city":"all","timeStarted":null,"timeEnded":null}},"wysiwyg":{"WYSIWYGRulesRefs":null},"refs":{"specializationRefs":[]},"hint":{"hints":{}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script>
+   <script src="https://assets.habr.com/habr-web/js/chunk-vendors.978df117.js" defer></script>
+   <script src="https://assets.habr.com/habr-web/js/app.58b8c457.js" defer></script>
+  </div>
+  <div id="overlays">
+   <!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor--><!----><!--teleport anchor-->
+  </div>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S28W1WC23F"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  </script>
+  <script type="text/javascript">
+      window.addEventListener('load', function () {
+        setTimeout(() => {
+          const img = new Image();
+          img.src = 'https://vk.com/rtrg?p=VK-RTRG-421343-57vKE';
+        }, 0);
+      });
+    </script>
+ </body>
+</html>
