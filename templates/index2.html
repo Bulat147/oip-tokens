@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Поисковый движок</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        form {
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            width: 60%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .result {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .result:hover {
+            transform: translateY(-2px);
+        }
+
+        .result strong {
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        a.link {
+            color: #2980b9;
+            text-decoration: none;
+        }
+
+        a.link:hover {
+            text-decoration: underline;
+        }
+
+        .similarity {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .pagination {
+            margin-top: 30px;
+        }
+
+        .pagination a {
+            display: inline-block;
+            padding: 8px 12px;
+            margin-right: 5px;
+            text-decoration: none;
+            color: #3498db;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .pagination a.active {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .pagination a:hover {
+            background-color: #ecf0f1;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Поисковый движок</h1>
+    <form method="post">
+        <input type="text" name="query" value="{{ query }}" placeholder="Введите запрос...">
+        <button type="submit">Найти</button>
+    </form>
+
+    {% if results %}
+        <h2>Результаты:</h2>
+        {% for item in results %}
+            <div class="result">
+                <strong>Страница {{ item[0] }}</strong><br>
+                Ссылка:
+                <a href="{{ item[1] }}" target="_blank" rel="noopener noreferrer" class="link">{{ item[1] }}</a><br>
+                Сходство: <span class="similarity">{{ "%.4f"|format(item[2]) }}</span>
+            </div>
+        {% endfor %}
+
+        <!-- Пагинация -->
+        <div class="pagination">
+            {% if current_page > 1 %}
+                <a href="?query={{ query }}&page={{ current_page - 1 }}">&laquo; Назад</a>
+            {% endif %}
+
+            {% for page_num in range(1, total_pages + 1) %}
+                <a href="?query={{ query }}&page={{ page_num }}" {% if page_num == current_page %}class="active"{% endif %}>
+                    {{ page_num }}
+                </a>
+            {% endfor %}
+
+            {% if current_page < total_pages %}
+                <a href="?query={{ query }}&page={{ current_page + 1 }}">Вперёд &raquo;</a>
+            {% endif %}
+        </div>
+    {% endif %}
+
+</body>
+</html>
